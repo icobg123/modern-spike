@@ -17,7 +17,7 @@ app = Flask(__name__)
 
 # app.config.from_object(os.environ['APP_SETTINGS'])
 # await asyncio.sleep(0.1)
-card = scrython.cards.Named(fuzzy="Duskwatch Recruiter")
+card = scrython.cards.Named(fuzzy="Wear")
 card_info = vars(card)
 
 pprint(card_info)
@@ -174,21 +174,19 @@ def index():
         print(card)
         card_info = scrython.cards.Named(fuzzy=card)
         card_info = vars(card_info)
-        # cards = vars(card_info)
-        # for key in cards['scryfallJson']['data']:
-        #     card_vars = key
+        if 'card_faces' in card_info['scryfallJson']:
+            oracle_txt = card_info['scryfallJson']['card_faces'][0]['oracle_text']
+            card_img = card_info['scryfallJson']['card_faces'][0]['image_uris']['art_crop']
 
-        # pprint(card_info['scryfallJson']['oracle_text'])
-        # oracle_text[card] = card_info
-        # dict_to_append[index] = {
-        #     'name': card,
-        #     'oracle_text': card_info['scryfallJson']['oracle_text']
-        # }
+        else:
+            oracle_txt = card_info['scryfallJson']['oracle_text']
+            card_img = card_info['scryfallJson']['image_uris']['art_crop']
 
         oracle_text.append({
             'name': card,
-            'oracle_text': card_info['scryfallJson']['oracle_text'],
-            'image': card_info['scryfallJson']['image_uris']['art_crop']
+            'oracle_text': oracle_txt,
+            'image': card_img
+
         })
 
         # oracle_text.append({str(index): {

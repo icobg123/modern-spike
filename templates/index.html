@@ -3,74 +3,92 @@
 
 
     <div class="container-fluid">
-        <div class="col-12">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center">The Modern Spike</h1>
 
-            <div id="oracle_text">{{ oracle_text_answer }}</div>
-
-            <form class="form-horizontal">
-                {#            <form class="form-horizontal" method=POST action="{{ url_for('score') }}">#}
-
-
-                <div id="card_holder" class="btn-group btn-group-toggle d-flex mx-auto" data-toggle="buttons">
-
-
-{#                    {% block cards scoped %}#}
-                        {% include "cards.html" %}
-{#                    {% endblock %}#}
-
-
+                <div class=""><p class="text-center">To which modern card does the following oracle text belong?</p></div>
+                <div class="row">
+                    <div id="oracle_text" class="col-6 mx-auto"><p class="">{{ oracle_text_answer }}</p>
+                    </div>
                 </div>
 
 
-                {% for card_info in card_info %}
-
-                    {#                    <div class="form-check">#}
-                    {#                        <input class="form-check-input" type="radio" name="pickCard"#}
-                    {#                               id="{{ card_info.name | replace(" ", "_")|lower|escape }}"#}
-                    {#                               value="{{ loop.index }}">#}
-                    {#                        <label class="form-check-label" for="{{ card_info.name | replace(" ", "")|lower|escape }}">#}
-                    {#                            {{ card_info.name }}#}
-                    {#                        </label>#}
-                    {#                    </div>#}
+                <div class="row">
+                    <div class="col-6 mx-auto">
+                        <form class="form-horizontal d-flex flex-column">
+                            {#            <form class="form-horizontal" method=POST action="{{ url_for('score') }}">#}
 
 
-                {% endfor %}
+                            <div id="card_holder"
+                                 class="btn-group-vertical btn-group btn-group-toggle d-flex flex-column"
+                                 data-toggle="buttons">
 
 
-                <button id="icara" type="submit" name="choice" class="btn btn-primary">Submit</button>
-                <button id="next_card" type="button" name="choice" class="btn btn-primary">Next Card</button>
-            </form>
+                                {#                    {% block cards scoped %}#}
+                                {% include "cards.html" %}
+                                {#                    {% endblock %}#}
 
 
-            <div id="successAlert" class="alert alert-success d-none" role="alert"></div>
-            <div id="errorAlert" class="alert alert-danger d-none" role="alert"></div>
+                            </div>
 
 
-            {#            <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>#}
-            {#            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">#}
+                            {% for card_info in card_info %}
+
+                                {#                    <div class="form-check">#}
+                                {#                        <input class="form-check-input" type="radio" name="pickCard"#}
+                                {#                               id="{{ card_info.name | replace(" ", "_")|lower|escape }}"#}
+                                {#                               value="{{ loop.index }}">#}
+                                {#                        <label class="form-check-label" for="{{ card_info.name | replace(" ", "")|lower|escape }}">#}
+                                {#                            {{ card_info.name }}#}
+                                {#                        </label>#}
+                                {#                    </div>#}
+
+
+                            {% endfor %}
+
+
+                            <button id="icara" type="submit" name="choice" class="mt-2 btn btn-light">Submit
+                            </button>
+                            <button id="next_card" type="button" name="choice" class="mt-2 btn btn-info">Next
+                                Card
+                            </button>
+
+                        </form>
+
+
+                        <div id="successAlert" class="alert alert-success d-none mt-2 text-center" role="alert"></div>
+                        <div id="errorAlert" class="alert alert-danger d-none mt-2 text-center" role="alert"></div>
+
+
+                        {#            <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>#}
+                        {#            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">#}
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="d-none" id="correct_answer">{{ correct_answer_index }}</div>
     </div>
-    <div class="d-none" id="correct_answer">{{ correct_answer_index }}</div>
-{#    <div>#}
-{#        <p>{{ message }}</p>#}
-{##}
-{#        <p>{{ cards_from }}</p>#}
-{#        <p>{{ correct_answer }}</p>#}
-{##}
-{#        <p>{{ card_info }}</p>#}
-        {#        <img src="{{ card_info }}">#}
-{#        <p>My Contacts:</p>#}
-{#        <ul>#}
-{#            {% for card in random_cards %}#}
-{#                <li>{{ card }}</li>#}
-{#            {% endfor %}#}
-{#        </ul>#}
-{#        <ul>#}
-{#            {% for card_info in card_info %}#}
-{#                <li><img alt="" src="{{ card_info.image }}">{{ card_info.name }}</li>#}
-{#            {% endfor %}#}
-{#        </ul>#}
-{##}
-{##}
-{#    </div>#}
+    {#    <div>#}
+    {#        <p>{{ message }}</p>#}
+    {##}
+    {#        <p>{{ cards_from }}</p>#}
+    {#        <p>{{ correct_answer }}</p>#}
+    {##}
+    {#        <p>{{ card_info }}</p>#}
+    {#        <img src="{{ card_info }}">#}
+    {#        <p>My Contacts:</p>#}
+    {#        <ul>#}
+    {#            {% for card in random_cards %}#}
+    {#                <li>{{ card }}</li>#}
+    {#            {% endfor %}#}
+    {#        </ul>#}
+    {#        <ul>#}
+    {#            {% for card_info in card_info %}#}
+    {#                <li><img alt="" src="{{ card_info.image }}">{{ card_info.name }}</li>#}
+    {#            {% endfor %}#}
+    {#        </ul>#}
+    {##}
+    {##}
+    {#    </div>#}
 {% endblock %}
