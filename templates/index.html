@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+    <div>
+        <p>{{ message }}</p>
+
+        <p>{{ cards_from }}</p>
+        <p>{{ correct_answer }}</p>
+        <p>{{ correct_answer_index }}</p>
+        <p>{{ oracle_text_answer }}</p>
+        <p>{{ card_info }}</p>
+        {#        <img src="{{ card_info }}">#}
+        <p>My Contacts:</p>
+        <ul>
+            {% for card in random_cards %}
+                <li>{{ card }}</li>
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for card_info in card_info %}
+                <li><img alt="" src="{{ card_info.image }}">{{ card_info.name }}</li>
+            {% endfor %}
+        </ul>
+
+        {#        <ul>#}
+        {#            {% for card_info in card_info %}#}
+        {#                <li>{{ card_info }}</li>#}
+        {#            {% endfor %}#}
+        {#        </ul>#}
+    </div>
+{% endblock %}
