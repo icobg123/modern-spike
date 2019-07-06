@@ -1,0 +1,11 @@
+
+
+{% for card_info in card_info %}
+    <label class="btn btn-secondary">
+        <input class="form-check-input" type="radio" name="pickCard"
+               id="{{ card_info.name | replace(" ", "_")|lower|escape }}"
+               value="{{ loop.index }}"
+               autocomplete="off"> {{ card_info.name }}
+    </label>
+{% endfor %}
+

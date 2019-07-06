@@ -11,13 +11,13 @@ import asyncio
 # from flask_bs4 import Bootstrap
 
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
 # app.config.from_object(os.environ['APP_SETTINGS'])
 # await asyncio.sleep(0.1)
-card = scrython.cards.Named(fuzzy="Black Lotus")
+card = scrython.cards.Named(fuzzy="Duskwatch Recruiter")
 card_info = vars(card)
 
 pprint(card_info)
@@ -35,7 +35,69 @@ def is_this_a_basic(potential_basic):
     return False
 
 
-@app.route("/")
+def get_card_info():
+    with open('old_url.json', 'r') as fp:
+        data = json.load(fp)
+        unique_cards = data['card_set']
+
+    random_cards = sample(unique_cards, 5)
+    oracle_text = []
+
+    for card in random_cards:
+        print(card)
+        card_info = scrython.cards.Named(fuzzy=card)
+        card_info = vars(card_info)
+
+        if 'card_faces' in card_info['scryfallJson']:
+            oracle_txt = card_info['scryfallJson']['card_faces'][0]['oracle_text']
+        else:
+            oracle_txt = card_info['scryfallJson']['oracle_text']
+
+        oracle_text.append({
+            'name': card,
+            'oracle_text': oracle_txt,
+            'image': card_info['scryfallJson']['image_uris']['art_crop']
+        })
+
+    correct_answer = random.choice(oracle_text)
+    correct_answer_index = oracle_text.index(correct_answer) + 1
+    new_oracle_text = correct_answer['oracle_text']
+    card_name = correct_answer['name']
+    return {"card_info": oracle_text, "correct_answer": correct_answer_index, "new_oracle_text": new_oracle_text,
+            "name": card_name}
+
+
+@app.route('/get_new_cards', methods=['POST'])
+def get_new_cards():
+    asd = 'asd'
+    # return jsonify({'error': 'Nope, try again.'})
+    card_info = get_card_info()
+    correct_answ = card_info['correct_answer']
+    new_oracle_text = card_info['new_oracle_text']
+    card_name = card_info['name']
+    new_oracle_text = new_oracle_text.replace(card_name, '~')
+
+    card_info = card_info['card_info']
+    return jsonify(
+        {"html": render_template('cards.html', card_info=card_info), "correct_answ": correct_answ,
+         'new_oracle_text': new_oracle_text})
+    # return jsonify({'card_set': get_random_cards()})
+
+
+@app.route('/process', methods=['POST'])
+def process():
+    choice = request.form['choice']
+
+    correct_answer = request.form['correct_answer']
+    print(choice)
+    print(correct_answer)
+    if choice == correct_answer:
+        return jsonify({'choice': 'Well done!'})
+
+    return jsonify({'error': 'Nope, try again.'})
+
+
+@app.route("/", methods=['GET', 'POST'])
 def index():
     url = 'https://magic.wizards.com/en/content/deck-lists-magic-online-products-game-info'
     response = requests.get(url)
@@ -75,7 +137,13 @@ def index():
                 for div in cards_in_decks:
                     # print(div.string + ': ' + str(is_this_a_basic(div.string)))
                     if (div.string not in card_set) and (not is_this_a_basic(div.string)):
-                        card_set.add(div.string)
+                        if '//' in div.string:
+                            split_str = div.string.split('//', 1)
+                            for card_name in split_str:
+                                card_set.add(card_name)
+
+                        else:
+                            card_set.add(div.string)
 
                 # new_set = {x.replace('.good', '').replace('.bad', '') for x in card_set}
 
@@ -131,7 +199,7 @@ def index():
         card_index = card_index + 1
 
     correct_answer = random.choice(oracle_text)
-    correct_answer_index = oracle_text.index(correct_answer)
+    correct_answer_index = oracle_text.index(correct_answer) + 1
     # TODO: Get only oracle text of correct_answer
     card_name = correct_answer['name']
     oracle_text_answer = correct_answer['oracle_text']
@@ -142,11 +210,6 @@ def index():
                            oracle_text_answer=oracle_text_answer,
                            random_cards=random_cards, cards_from=cards_from,
                            message="Hello Flask!")
-
-
-@app.route('/<name>')
-def hello_name(name):
-    return "Hello {}!".format(name)
 
 
 if __name__ == '__main__':
