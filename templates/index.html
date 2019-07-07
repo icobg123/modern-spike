@@ -9,7 +9,12 @@
 
                 <div class=""><h5 class="text-center ">Can you guess the card?</h5>
                 </div>
+                <div class="lds-ripple d-none">
+                    <div></div>
+                    <div></div>
+                </div>
                 <div class="row">
+
                     <div id="oracle_text" class="col-lg-6 col-12 mx-auto">
 
                         <div class="card mb-2">
@@ -49,7 +54,9 @@
 
                             </div>
 
-
+                            <button id="next_card" type="button" name="choice" class="mt-2 btn btn-info">Next
+                                Card
+                            </button>
                             {% for card_info in card_info %}
 
                                 {#                    <div class="form-check">#}
@@ -65,11 +72,8 @@
                             {% endfor %}
 
 
-                            <button id="icara" type="submit" name="choice" class="mt-2 btn btn-light">Submit
-                            </button>
-                            <button id="next_card" type="button" name="choice" class="mt-2 btn btn-info">Next
-                                Card
-                            </button>
+                            {#                            <button id="icara" type="submit" name="choice" class="mt-2 btn btn-light">Submit</button>#}
+
 
                         </form>
 

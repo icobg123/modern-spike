@@ -18,12 +18,11 @@ app = Flask(__name__)
 
 # app.config.from_object(os.environ['APP_SETTINGS'])
 # await asyncio.sleep(0.1)
-card = scrython.cards.Named(fuzzy="Wear")
+card = scrython.cards.Named(fuzzy="Tear")
 
+card_info = vars(card)
 
-# card_info = vars(card)
-
-# pprint(card_info)
+pprint(card_info)
 
 
 def is_this_a_basic(potential_basic):
@@ -118,7 +117,7 @@ def get_card_info():
         card_info = scrython.cards.Named(fuzzy=card)
         card_info = vars(card_info)
 
-        if 'card_faces' in card_info['scryfallJson']:
+        if 'card_faces' in card_info['scryfallJson'] and 'image_uris' not in card_info['scryfallJson']:
             oracle_txt = card_info['scryfallJson']['card_faces'][0]['oracle_text']
             card_img = card_info['scryfallJson']['card_faces'][0]['image_uris']['art_crop']
 
@@ -159,7 +158,8 @@ def get_new_cards():
     correct_answ = card_info['correct_answer']
     new_oracle_text = card_info['new_oracle_text']
     card_name = card_info['name']
-    new_oracle_text = new_oracle_text.replace(card_name, '<span class="badge badge-secondary align-text-top">This card</span>')
+    new_oracle_text = new_oracle_text.replace(card_name,
+                                              '<span class="badge badge-secondary align-text-top">This card</span>')
 
     card_info = card_info['card_info']
     return jsonify(
@@ -287,7 +287,8 @@ def index():
     oracle_text_answer = correct_answer['oracle_text']
     oracle_text_answer = replace_symbols_in_text(oracle_text_answer)
 
-    oracle_text_answer = oracle_text_answer.replace(card_name, '<span class="badge badge-secondary align-text-top">This card</span>')
+    oracle_text_answer = oracle_text_answer.replace(card_name,
+                                                    '<span class="badge badge-secondary align-text-top">This card</span>')
     # oracle_text_answer = oracle_text_answer.replace('\n', ' <br/> ')
 
     return render_template("index.html", correct_answer_index=correct_answer_index, correct_answer=correct_answer,
