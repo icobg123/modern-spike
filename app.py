@@ -70,7 +70,7 @@ def get_card_info():
     for p in list_of_new_text:
         # to_html =   '<p class="card-text">' + p + '</p>'
 
-        to_html += str('<p class="card-text">' + p + '</p>')
+        to_html += str('<p class="card-text mb-1">' + p + '</p>')
 
     card_name = correct_answer['name']
     return {"card_info": oracle_text, "correct_answer": correct_answer_index, "new_oracle_text": to_html,
