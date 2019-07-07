@@ -18,9 +18,11 @@ app = Flask(__name__)
 # app.config.from_object(os.environ['APP_SETTINGS'])
 # await asyncio.sleep(0.1)
 card = scrython.cards.Named(fuzzy="Wear")
-card_info = vars(card)
 
-pprint(card_info)
+
+# card_info = vars(card)
+
+# pprint(card_info)
 
 
 def is_this_a_basic(potential_basic):
@@ -33,6 +35,73 @@ def is_this_a_basic(potential_basic):
         return True
 
     return False
+
+
+def replace_symbols_in_text(oracle_text):
+    symbols = {
+        "{T}": "st",
+        "{Q}": "sq",
+        "{E}": "se",
+        "{0}": "s0",
+        "{1}": "s1",
+        "{2}": "s2",
+        "{3}": "s3",
+        "{4}": "s4",
+        "{5}": "s5",
+        "{6}": "s6",
+        "{7}": "s7",
+        "{8}": "s8",
+        "{9}": "s9",
+        "{10}": "s10",
+        "{11}": "s11",
+        "{12}": "s12",
+        "{13}": "s13",
+        "{14}": "s14",
+        "{15}": "s15",
+        "{16}": "s16",
+        "{17}": "s17",
+        "{18}": "s18",
+        "{19}": "s19",
+        "{20}": "s20",
+        "{W/U}": "swu",
+        "{W/B}": "swb",
+        "{B/R}": "sub",
+        "{B/G}": "sur",
+        "{U/B}": "sbr",
+        "{U/R}": "sbg",
+        "{R/G}": "srw",
+        "{R/W}": "srg",
+        "{G/W}": "sgw",
+        "{G/U}": "sgu",
+        "{2/W}": "s2w",
+        "{2/U}": "s2u",
+        "{2/B}": "s2b",
+        "{2/R}": "s2r",
+        "{2/G}": "s2g",
+        "{W/P}": "swp",
+        "{U/P}": "sup",
+        "{B/P}": "sbp",
+        "{R/P}": "srp",
+        "{G/P}": "sgp",
+        "{W}": "sw",
+        "{U}": "su",
+        "{B}": "sb",
+        "{R}": "sr",
+        "{G}": "sg",
+        "{C}": "sc",
+        "{S}": "ss",
+    }
+    for key, value in symbols.items():
+        # pprint(key)
+        if str(key) in oracle_text:
+            oracle_text = oracle_text.replace(str(key), '<span class="mana small align-middle ' + value + '"></span>')
+
+        # oracle_text = oracle_text.replace(key, )
+
+    return oracle_text
+
+
+# print('icara' + replace_symbols_in_text('{T}'))
 
 
 def get_card_info():
@@ -65,6 +134,10 @@ def get_card_info():
     correct_answer = random.choice(oracle_text)
     correct_answer_index = oracle_text.index(correct_answer) + 1
     new_oracle_text = correct_answer['oracle_text']
+
+    new_oracle_text = replace_symbols_in_text(new_oracle_text)
+    # new_oracle_text = new_oracle_text.replace()
+
     list_of_new_text = new_oracle_text.split('\n')
     to_html = ""
     for p in list_of_new_text:
@@ -211,6 +284,8 @@ def index():
     # TODO: Get only oracle text of correct_answer
     card_name = correct_answer['name']
     oracle_text_answer = correct_answer['oracle_text']
+    oracle_text_answer = replace_symbols_in_text(oracle_text_answer)
+
     oracle_text_answer = oracle_text_answer.replace(card_name, '~')
     # oracle_text_answer = oracle_text_answer.replace('\n', ' <br/> ')
 
