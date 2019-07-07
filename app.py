@@ -159,7 +159,7 @@ def get_new_cards():
     correct_answ = card_info['correct_answer']
     new_oracle_text = card_info['new_oracle_text']
     card_name = card_info['name']
-    new_oracle_text = new_oracle_text.replace(card_name, '~')
+    new_oracle_text = new_oracle_text.replace(card_name, '<span class="badge badge-secondary align-text-top">This card</span>')
 
     card_info = card_info['card_info']
     return jsonify(
@@ -287,7 +287,7 @@ def index():
     oracle_text_answer = correct_answer['oracle_text']
     oracle_text_answer = replace_symbols_in_text(oracle_text_answer)
 
-    oracle_text_answer = oracle_text_answer.replace(card_name, '~')
+    oracle_text_answer = oracle_text_answer.replace(card_name, '<span class="badge badge-secondary align-text-top">This card</span>')
     # oracle_text_answer = oracle_text_answer.replace('\n', ' <br/> ')
 
     return render_template("index.html", correct_answer_index=correct_answer_index, correct_answer=correct_answer,
