@@ -7,11 +7,12 @@ from bs4 import BeautifulSoup
 from random import choice, sample
 import random
 import scrython
+
 import asyncio
 # from flask_bs4 import Bootstrap
 
 import os
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, Markup
 
 app = Flask(__name__)
 
@@ -135,7 +136,7 @@ def get_card_info():
     correct_answer_index = oracle_text.index(correct_answer) + 1
     new_oracle_text = correct_answer['oracle_text']
 
-    new_oracle_text = replace_symbols_in_text(new_oracle_text)
+    # new_oracle_text = replace_symbols_in_text(new_oracle_text)
     # new_oracle_text = new_oracle_text.replace()
 
     list_of_new_text = new_oracle_text.split('\n')
@@ -143,7 +144,7 @@ def get_card_info():
     for p in list_of_new_text:
         # to_html =   '<p class="card-text">' + p + '</p>'
 
-        to_html += str('<p class="card-text mb-1">' + p + '</p>')
+        to_html += str('<p class="card-text mb-1">' + replace_symbols_in_text(p) + '</p>')
 
     card_name = correct_answer['name']
     return {"card_info": oracle_text, "correct_answer": correct_answer_index, "new_oracle_text": to_html,
@@ -291,7 +292,7 @@ def index():
 
     return render_template("index.html", correct_answer_index=correct_answer_index, correct_answer=correct_answer,
                            card_info=oracle_text,
-                           oracle_text_answer=oracle_text_answer,
+                           oracle_text_answer=Markup(oracle_text_answer),
                            random_cards=random_cards, cards_from=cards_from,
                            message="Hello Flask!")
 
