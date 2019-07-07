@@ -44,7 +44,7 @@ $(document).ready(function () {
             .done(function (data) {
                 console.log(data);
                 $('#card_holder').html(data.html);
-                $('#oracle_text').html('<p>' + data.new_oracle_text + '</p>');
+                $('#oracle_text .card-body').html(data.new_oracle_text);
                 $('#correct_answer').html(data.correct_answ);
 
 

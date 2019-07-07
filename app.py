@@ -62,8 +62,13 @@ def get_card_info():
     correct_answer = random.choice(oracle_text)
     correct_answer_index = oracle_text.index(correct_answer) + 1
     new_oracle_text = correct_answer['oracle_text']
+    list_of_new_text = new_oracle_text.split('\n')
+    to_html = ""
+    for p in list_of_new_text:
+        to_html = '<p class="card-text">' + p + '</p>'
+
     card_name = correct_answer['name']
-    return {"card_info": oracle_text, "correct_answer": correct_answer_index, "new_oracle_text": new_oracle_text,
+    return {"card_info": oracle_text, "correct_answer": correct_answer_index, "new_oracle_text": to_html,
             "name": card_name}
 
 
@@ -202,6 +207,7 @@ def index():
     card_name = correct_answer['name']
     oracle_text_answer = correct_answer['oracle_text']
     oracle_text_answer = oracle_text_answer.replace(card_name, '~')
+    # oracle_text_answer = oracle_text_answer.replace('\n', ' <br/> ')
 
     return render_template("index.html", correct_answer_index=correct_answer_index, correct_answer=correct_answer,
                            card_info=oracle_text,
