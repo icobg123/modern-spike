@@ -22,7 +22,8 @@ card = scrython.cards.Named(fuzzy="Tear")
 
 card_info = vars(card)
 
-pprint(card_info)
+
+# pprint(card_info)
 
 
 def is_this_a_basic(potential_basic):
@@ -104,10 +105,17 @@ def replace_symbols_in_text(oracle_text):
 # print('icara' + replace_symbols_in_text('{T}'))
 
 
-def get_card_info():
+def read_from_file():
     with open('old_url.json', 'r') as fp:
         data = json.load(fp)
-        unique_cards = data['card_set']
+
+    return data
+
+
+def get_card_info():
+    data = read_from_file()
+
+    unique_cards = data['card_set']
 
     random_cards = sample(unique_cards, 5)
     oracle_text = []
@@ -155,6 +163,7 @@ def get_new_cards():
     asd = 'asd'
     # return jsonify({'error': 'Nope, try again.'})
     card_info = get_card_info()
+
     correct_answ = card_info['correct_answer']
     new_oracle_text = card_info['new_oracle_text']
     card_name = card_info['name']
@@ -188,77 +197,80 @@ def index():
 
     soup = BeautifulSoup(response.text, 'html.parser')
 
-    latest_modern_league = soup.find("h3", text="Modern League").parent.parent.parent
-    latest_modern_league_url = latest_modern_league['href']
+    latest_modern_league = soup.find("h3", text="Modern League")
+    if latest_modern_league is None:
+        data = read_from_file()
+
+        latest_modern_league_url = data['url']
+    else:
+        latest_modern_league_parent = latest_modern_league.parent.parent.parent
+
+        latest_modern_league_url = latest_modern_league_parent['href']
 
     url_to_file = {}
     pprint(latest_modern_league_url)
 
-    with open('old_url.json', 'r') as fp:
-        data = json.load(fp)
-        if 'card_set' not in data or 'url' not in data:
-            raise ValueError("No target in given data")
+    data = read_from_file()
+    if 'card_set' not in data or 'url' not in data:
+        raise ValueError("No target in given data")
+    else:
+        if data['url'] != latest_modern_league_url:
+            print('update url')
+            cards_from = 'cards from URL'
+
+            # get_new_url = True
+            modern_league_url_from_file = latest_modern_league_url
+
+            modern_league_url = 'https://magic.wizards.com' + modern_league_url_from_file
+
+            response_league = requests.get(modern_league_url)
+            modern_deck_lists = BeautifulSoup(response_league.text, 'html.parser')
+
+            cards_in_decks = modern_deck_lists.findAll('a', attrs={'class': 'deck-list-link'})
+
+            # print(
+            #     ''.join(text for text in cards_in_decks if not is_this_a_basic(text.string)))
+
+            card_set = set()
+
+            for div in cards_in_decks:
+                # print(div.string + ': ' + str(is_this_a_basic(div.string)))
+                if (div.string not in card_set) and (not is_this_a_basic(div.string)):
+                    if '//' in div.string:
+                        split_str = div.string.split('//', 1)
+                        for card_name in split_str:
+                            card_set.add(card_name)
+
+                    else:
+                        card_set.add(div.string)
+
+            # new_set = {x.replace('.good', '').replace('.bad', '') for x in card_set}
+
+            unique_cards = list(sorted(card_set))
+
+            dict_to_file = {
+                'url': latest_modern_league_url,
+                "card_set": unique_cards,
+            }
+            with open('old_url.json', 'w') as fp:
+                json.dump(dict_to_file, fp, sort_keys=True, indent=4)
+
         else:
-            if data['url'] != latest_modern_league_url:
-                print('update url')
-                cards_from = 'cards from URL'
-
-                # get_new_url = True
-                modern_league_url_from_file = latest_modern_league_url
-
-                modern_league_url = 'https://magic.wizards.com' + modern_league_url_from_file
-
-                response_league = requests.get(modern_league_url)
-                modern_deck_lists = BeautifulSoup(response_league.text, 'html.parser')
-
-                cards_in_decks = modern_deck_lists.findAll('a', attrs={'class': 'deck-list-link'})
-
-                # print(
-                #     ''.join(text for text in cards_in_decks if not is_this_a_basic(text.string)))
-
-                card_set = set()
-
-                for div in cards_in_decks:
-                    # print(div.string + ': ' + str(is_this_a_basic(div.string)))
-                    if (div.string not in card_set) and (not is_this_a_basic(div.string)):
-                        if '//' in div.string:
-                            split_str = div.string.split('//', 1)
-                            for card_name in split_str:
-                                card_set.add(card_name)
-
-                        else:
-                            card_set.add(div.string)
-
-                # new_set = {x.replace('.good', '').replace('.bad', '') for x in card_set}
-
-                unique_cards = list(sorted(card_set))
-
-                dict_to_file = {
-                    'url': latest_modern_league_url,
-                    "card_set": unique_cards,
-                }
-                with open('old_url.json', 'w') as fp:
-                    json.dump(dict_to_file, fp, sort_keys=True, indent=4)
-
-            else:
-                # modern_league_url_from_file = data['url']
-                cards_from = 'cards from file'
-                unique_cards = data['card_set']
+            # modern_league_url_from_file = data['url']
+            cards_from = 'cards from file'
+            unique_cards = data['card_set']
 
     # n_cards = int(input())
     # random_cards = sample(unique_cards, n_cards)
     random_cards = sample(unique_cards, 5)
 
     oracle_text = []
-    # oracle_text = {}
-    dict_to_append = {}
 
-    card_index = 0
     for card in random_cards:
         print(card)
         card_info = scrython.cards.Named(fuzzy=card)
         card_info = vars(card_info)
-        if 'card_faces' in card_info['scryfallJson']:
+        if 'card_faces' in card_info['scryfallJson'] and 'image_uris' not in card_info['scryfallJson']:
             oracle_txt = card_info['scryfallJson']['card_faces'][0]['oracle_text']
             card_img = card_info['scryfallJson']['card_faces'][0]['image_uris']['art_crop']
 
@@ -270,15 +282,12 @@ def index():
             'name': card,
             'oracle_text': oracle_txt,
             'image': card_img
-
         })
 
         # oracle_text.append({str(index): {
         #     'name': card,
         #     'oracle_text': card_info['scryfallJson']['oracle_text']
         # }})
-
-        card_index = card_index + 1
 
     correct_answer = random.choice(oracle_text)
     correct_answer_index = oracle_text.index(correct_answer) + 1
@@ -290,6 +299,11 @@ def index():
     oracle_text_answer = oracle_text_answer.replace(card_name,
                                                     '<span class="badge badge-secondary align-text-top">This card</span>')
     # oracle_text_answer = oracle_text_answer.replace('\n', ' <br/> ')
+
+    test_new_cards = get_new_cards()
+
+    pprint('icara')
+    pprint(test_new_cards)
 
     return render_template("index.html", correct_answer_index=correct_answer_index, correct_answer=correct_answer,
                            card_info=oracle_text,
