@@ -6,6 +6,7 @@ from pprint import pprint
 from bs4 import BeautifulSoup
 from random import choice, sample
 import random
+import re
 import scrython
 
 import asyncio
@@ -105,19 +106,20 @@ def replace_symbols_in_text(oracle_text):
 # print('icara' + replace_symbols_in_text('{T}'))
 
 
-def read_from_file():
-    with open('old_url.json', 'r') as fp:
+def read_from_file(filename):
+    with open(filename, 'r') as fp:
         data = json.load(fp)
 
     return data
 
 
 def get_card_info():
-    data = read_from_file()
+    data = read_from_file('old_url.json')
 
     unique_cards = data['card_set']
 
     random_cards = sample(unique_cards, 5)
+
     oracle_text = []
 
     for card in random_cards:
@@ -141,6 +143,7 @@ def get_card_info():
 
     correct_answer = random.choice(oracle_text)
     correct_answer_index = oracle_text.index(correct_answer) + 1
+
     new_oracle_text = correct_answer['oracle_text']
 
     # new_oracle_text = replace_symbols_in_text(new_oracle_text)
@@ -197,9 +200,9 @@ def index():
 
     soup = BeautifulSoup(response.text, 'html.parser')
 
-    latest_modern_league = soup.find("h3", text="Modern League")
+    latest_modern_league = soup.find("h3", text=re.compile('\bModern\s*(league|challenge)'))
     if latest_modern_league is None:
-        data = read_from_file()
+        data = read_from_file('old_url.json')
 
         latest_modern_league_url = data['url']
     else:
@@ -210,7 +213,7 @@ def index():
     url_to_file = {}
     pprint(latest_modern_league_url)
 
-    data = read_from_file()
+    data = read_from_file('old_url.json')
     if 'card_set' not in data or 'url' not in data:
         raise ValueError("No target in given data")
     else:
@@ -291,6 +294,7 @@ def index():
 
     correct_answer = random.choice(oracle_text)
     correct_answer_index = oracle_text.index(correct_answer) + 1
+
     # TODO: Get only oracle text of correct_answer
     card_name = correct_answer['name']
     oracle_text_answer = correct_answer['oracle_text']
