@@ -113,7 +113,7 @@ def read_from_file(filename):
     return data
 
 
-def get_card_info():
+def gen_new_cards():
     data = read_from_file('old_url.json')
 
     unique_cards = data['card_set']
@@ -130,7 +130,11 @@ def get_card_info():
         if 'card_faces' in card_info['scryfallJson'] and 'image_uris' not in card_info['scryfallJson']:
             oracle_txt = card_info['scryfallJson']['card_faces'][0]['oracle_text']
             card_img = card_info['scryfallJson']['card_faces'][0]['image_uris']['art_crop']
-
+        elif 'card_faces' in card_info['scryfallJson']:
+            for card_faces in card_info['scryfallJson']['card_faces']:
+                pprint(card)
+                if card in card_faces['name']:
+                    oracle_txt = card_faces['oracle_text']
         else:
             oracle_txt = card_info['scryfallJson']['oracle_text']
             card_img = card_info['scryfallJson']['image_uris']['art_crop']
@@ -165,7 +169,7 @@ def get_card_info():
 def get_new_cards():
     asd = 'asd'
     # return jsonify({'error': 'Nope, try again.'})
-    card_info = get_card_info()
+    card_info = gen_new_cards()
 
     correct_answ = card_info['correct_answer']
     new_oracle_text = card_info['new_oracle_text']
@@ -182,12 +186,12 @@ def get_new_cards():
 
 @app.route('/process', methods=['POST'])
 def process():
-    choice = request.form['choice']
+    user_choice = request.form['choice']
 
     correct_answer = request.form['correct_answer']
-    print(choice)
+    print(user_choice)
     print(correct_answer)
-    if choice == correct_answer:
+    if user_choice == correct_answer:
         return jsonify({'choice': 'Well done!'})
 
     return jsonify({'error': 'Nope, try again.'})
@@ -200,7 +204,7 @@ def index():
 
     soup = BeautifulSoup(response.text, 'html.parser')
 
-    latest_modern_league = soup.find("h3", text=re.compile('\bModern\s*(league|challenge)'))
+    latest_modern_league = soup.find("h3", text=re.compile('\bMgitodern\s*(league|challenge)'))
     if latest_modern_league is None:
         data = read_from_file('old_url.json')
 
@@ -273,10 +277,15 @@ def index():
         print(card)
         card_info = scrython.cards.Named(fuzzy=card)
         card_info = vars(card_info)
+
         if 'card_faces' in card_info['scryfallJson'] and 'image_uris' not in card_info['scryfallJson']:
             oracle_txt = card_info['scryfallJson']['card_faces'][0]['oracle_text']
             card_img = card_info['scryfallJson']['card_faces'][0]['image_uris']['art_crop']
-
+        elif 'card_faces' in card_info['scryfallJson']:
+            for card_faces in card_info['scryfallJson']['card_faces']:
+                pprint(card)
+                if card in card_faces['name']:
+                    oracle_txt = card_faces['oracle_text']
         else:
             oracle_txt = card_info['scryfallJson']['oracle_text']
             card_img = card_info['scryfallJson']['image_uris']['art_crop']
