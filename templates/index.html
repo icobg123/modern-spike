@@ -1,95 +1,150 @@
 {% extends "base.html" %}
 {% block content %}
 
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center mt-3">The Modern Spike</h1>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="text-center mt-3">The Modern Spike</h1>
-
-                <div class=""><h5 class="text-center ">Can you guess the card?</h5>
-                </div>
-                <div class="lds-ripple d-none">
-                    <div></div>
-                    <div></div>
-                </div>
-                <div class="row">
-
-                    <div id="oracle_text" class="col-lg-6 col-12 mx-auto">
-
-                        <div class="card mb-2">
-                            <div class="card-header text-dark py-2">
-                                Oracle text
-                            </div>
-                            <div class="card-body text-dark py-2">
-                                {% set list1 = oracle_text_answer.split('\n') %}
-                                {% for string in list1 %}
-                                    <p class="card-text mb-1">{{ string |e }}</p>
-                                {% endfor %}
-                            </div>
-                        </div>
-
-
-                        {#                        {{ oracle_text_answer.split }}#}
-
+                    <div class=""><h5 class="text-center ">Can you guess the card?</h5>
                     </div>
-                </div>
+                    <div class="lds-ripple d-none">
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div class="row">
+
+                        <div id="oracle_text" class="col-lg-6 col-12 mx-auto">
+
+                            <div class="card mb-2">
+                                <div class="card-header text-dark py-2 d-flex align-items-center justify-content-between">
+                                    Oracle text
 
 
-                <div class="row">
-                    <div class="col-lg-6 col-12 mx-auto">
-                        <form class="form-horizontal d-flex flex-column">
-                            {#            <form class="form-horizontal" method=POST action="{{ url_for('score') }}">#}
+                                    <button type="button" class="text-white btn btn-sm bg-info float-right"
+                                            data-toggle="modal"
+                                            data-target="#exampleModalCenter">
+                                        Hint: card image
+                                    </button>
 
 
-                            <div id="card_holder"
-                                 class="btn-group-vertical btn-group btn-group-toggle d-flex flex-column"
-                                 data-toggle="buttons">
-
-
-                                {#                    {% block cards scoped %}#}
-                                {% include "cards.html" %}
-                                {#                    {% endblock %}#}
-
-
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header py-1">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Hint: card
+                                                        image</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <img loading="lazy" id="card_image" class="img-fluid"
+                                                         src="{{ correct_answer_image }}"
+                                                         alt="{{ card_name }}">
+                                                </div>
+                                                {#<div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close
+                                                    </button>
+                                                </div>#}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body text-dark py-2">
+                                    {% set list1 = oracle_text_answer.split('\n') %}
+                                    {% for string in list1 %}
+                                        <p class="card-text mb-1">{{ string |e }}</p>
+                                    {% endfor %}
+                                </div>
                             </div>
 
-                            <button id="next_card" type="button" name="choice" class="mt-2 btn btn-info">Next
-                                Card
-                            </button>
-                            {% for card_info in card_info %}
 
-                                {#                    <div class="form-check">#}
-                                {#                        <input class="form-check-input" type="radio" name="pickCard"#}
-                                {#                               id="{{ card_info.name | replace(" ", "_")|lower|escape }}"#}
-                                {#                               value="{{ loop.index }}">#}
-                                {#                        <label class="form-check-label" for="{{ card_info.name | replace(" ", "")|lower|escape }}">#}
-                                {#                            {{ card_info.name }}#}
-                                {#                        </label>#}
-                                {#                    </div>#}
+                            {#                        {{ oracle_text_answer.split }}#}
+
+                        </div>
+                    </div>
 
 
-                            {% endfor %}
+                    <div class="row">
+                        <div class="col-lg-6 col-12 mx-auto">
+                            <form class="form-horizontal d-flex flex-column">
+                                {#            <form class="form-horizontal" method=POST action="{{ url_for('score') }}">#}
 
 
-                            {#                            <button id="icara" type="submit" name="choice" class="mt-2 btn btn-light">Submit</button>#}
+                                <div id="card_holder"
+                                     class="btn-group-vertical btn-group btn-group-toggle d-flex flex-column"
+                                     data-toggle="buttons">
 
 
-                        </form>
+                                    {#                    {% block cards scoped %}#}
+                                    {% include "cards.html" %}
+                                    {#                    {% endblock %}#}
 
 
-                        <div id="successAlert" class="alert alert-success d-none mt-2 text-center" role="alert"></div>
-                        <div id="errorAlert" class="alert alert-danger d-none mt-2 text-center" role="alert"></div>
+                                </div>
+
+                                <button id="next_card" type="button" name="choice" class="mt-2 btn btn-info">Next
+                                    Card
+                                </button>
+                                {% for card_info in card_info %}
+
+                                    {#                    <div class="form-check">#}
+                                    {#                        <input class="form-check-input" type="radio" name="pickCard"#}
+                                    {#                               id="{{ card_info.name | replace(" ", "_")|lower|escape }}"#}
+                                    {#                               value="{{ loop.index }}">#}
+                                    {#                        <label class="form-check-label" for="{{ card_info.name | replace(" ", "")|lower|escape }}">#}
+                                    {#                            {{ card_info.name }}#}
+                                    {#                        </label>#}
+                                    {#                    </div>#}
 
 
-                        {#            <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>#}
-                        {#            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">#}
+                                {% endfor %}
+
+
+                                {#                            <button id="icara" type="submit" name="choice" class="mt-2 btn btn-light">Submit</button>#}
+
+
+                            </form>
+
+
+                            <div id="successAlert" class="alert alert-success d-none mt-2 text-center"
+                                 role="alert"></div>
+                            <div id="errorAlert" class="alert alert-danger d-none mt-2 text-center" role="alert"></div>
+
+
+                            {#            <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>#}
+                            {#            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">#}
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="d-none" id="correct_answer">{{ correct_answer_index }}</div>
         </div>
-        <div class="d-none" id="correct_answer">{{ correct_answer_index }}</div>
-    </div>
+    </main>
+    <footer class="footer fixed-bottom">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-4">
+                    <a class="text-white" href="/about">
+                        <span class="text-muted"><u>About</u></span>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a class="text-white" target="_blank" href="{{ modern_league_url }}">
+                        <span class="text-muted"><u>Latest data from</u></span>
+                    </a>
+                </div>
+                <div class="col-4"></div>
+            </div>
+        </div>
+    </footer>
+
     {#    <div>#}
     {#        <p>{{ message }}</p>#}
     {##}

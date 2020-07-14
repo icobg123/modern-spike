@@ -51,13 +51,15 @@ $(document).ready(function () {
             url: '/get_new_cards'
         })
             .done(function (data) {
-                console.log(data);
+                console.log(data.correct_answer);
                 $('.lds-ripple').removeClass('d-flex').addClass('d-none');
                 $('#card_holder').html(data.html).removeClass('d-none');
                 $('#oracle_text').removeClass('d-none');
 
                 $('#oracle_text .card-body').html(data.new_oracle_text);
                 $('#correct_answer').html(data.correct_answ);
+                $("#card_image").attr('src', data.correct_answer_image);
+
                 $('#next_card').removeClass('d-none');
 
 
