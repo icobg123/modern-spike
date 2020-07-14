@@ -17,11 +17,12 @@ from flask import Flask, render_template, request, jsonify, Markup
 
 app = Flask(__name__)
 
+
 # app.config.from_object(os.environ['APP_SETTINGS'])
 # await asyncio.sleep(0.1)
-card = scrython.cards.Named(fuzzy="Tear")
-
-card_info = vars(card)
+# card = scrython.cards.Named(fuzzy="Tear")
+#
+# card_info = vars(card)
 
 
 # pprint(card_info)
@@ -109,8 +110,36 @@ def replace_symbols_in_text(oracle_text):
 def read_from_file(filename):
     with open(filename, 'r') as fp:
         data = json.load(fp)
-
     return data
+
+
+def get_card_data(random_cards):
+    random_card_data = []
+    # random_cards = ['Wear', 'Merchant of the Vale']
+
+    for card in random_cards:
+        print(card)
+        card_info = scrython.cards.Named(fuzzy=card)
+        card_info = vars(card_info)
+        oracle_txt, card_img = '', ''
+
+        if 'card_faces' in card_info['scryfallJson']:
+            for card_faces in card_info['scryfallJson']['card_faces']:
+                pprint(card)
+                if card in card_faces['name']:
+                    oracle_txt = card_faces['oracle_text']
+                    card_img = card_faces['image_uris']['art_crop']
+        else:
+            oracle_txt = card_info['scryfallJson']['oracle_text']
+            card_img = card_info['scryfallJson']['image_uris']['art_crop']
+
+        random_card_data.append({
+            'name': card,
+            'oracle_text': oracle_txt,
+            'image': card_img
+        })
+
+    return random_card_data
 
 
 def gen_new_cards():
@@ -119,49 +148,31 @@ def gen_new_cards():
     unique_cards = data['card_set']
 
     random_cards = sample(unique_cards, 5)
+    random_card_data = get_card_data(random_cards)
 
-    oracle_text = []
+    correct_answer = random.choice(random_card_data)
+    correct_answer_index = random_card_data.index(correct_answer) + 1
 
-    for card in random_cards:
-        print(card)
-        card_info = scrython.cards.Named(fuzzy=card)
-        card_info = vars(card_info)
+    correct_answer_oracle_text = correct_answer['oracle_text']
+    correct_answer_image = correct_answer['image']
 
-        if 'card_faces' in card_info['scryfallJson'] and 'image_uris' not in card_info['scryfallJson']:
-            oracle_txt = card_info['scryfallJson']['card_faces'][0]['oracle_text']
-            card_img = card_info['scryfallJson']['card_faces'][0]['image_uris']['art_crop']
-        elif 'card_faces' in card_info['scryfallJson']:
-            for card_faces in card_info['scryfallJson']['card_faces']:
-                pprint(card)
-                if card in card_faces['name']:
-                    oracle_txt = card_faces['oracle_text']
-        else:
-            oracle_txt = card_info['scryfallJson']['oracle_text']
-            card_img = card_info['scryfallJson']['image_uris']['art_crop']
-
-        oracle_text.append({
-            'name': card,
-            'oracle_text': oracle_txt,
-            'image': card_img
-        })
-
-    correct_answer = random.choice(oracle_text)
-    correct_answer_index = oracle_text.index(correct_answer) + 1
-
-    new_oracle_text = correct_answer['oracle_text']
+    pprint(correct_answer_oracle_text)
 
     # new_oracle_text = replace_symbols_in_text(new_oracle_text)
     # new_oracle_text = new_oracle_text.replace()
 
-    list_of_new_text = new_oracle_text.split('\n')
-    to_html = ""
-    for p in list_of_new_text:
-        # to_html =   '<p class="card-text">' + p + '</p>'
+    list_correct_answer_oracle_text = correct_answer_oracle_text.split('\n')
+    to_html_list_correct_answer_oracle_text = ""
 
-        to_html += str('<p class="card-text mb-1">' + replace_symbols_in_text(p) + '</p>')
+    for line in list_correct_answer_oracle_text:
+        to_html_list_correct_answer_oracle_text += str(
+            '<p class="card-text mb-1">' + replace_symbols_in_text(line) + '</p>')
 
     card_name = correct_answer['name']
-    return {"card_info": oracle_text, "correct_answer": correct_answer_index, "new_oracle_text": to_html,
+    return {"card_info": random_card_data,
+            "correct_answer": correct_answer_index,
+            "correct_answer_oracle_text": to_html_list_correct_answer_oracle_text,
+            "correct_answer_image": correct_answer_image,
             "name": card_name}
 
 
@@ -169,18 +180,22 @@ def gen_new_cards():
 def get_new_cards():
     asd = 'asd'
     # return jsonify({'error': 'Nope, try again.'})
-    card_info = gen_new_cards()
+    new_cards = gen_new_cards()
 
-    correct_answ = card_info['correct_answer']
-    new_oracle_text = card_info['new_oracle_text']
-    card_name = card_info['name']
-    new_oracle_text = new_oracle_text.replace(card_name,
-                                              '<span class="badge badge-secondary align-text-top">This card</span>')
+    correct_answ = new_cards['correct_answer']
+    correct_answer_oracle_text = new_cards['correct_answer_oracle_text']
+    card_name = new_cards['name']
+    correct_answer_image = new_cards['correct_answer_image']
 
-    card_info = card_info['card_info']
-    return jsonify(
-        {"html": render_template('cards.html', card_info=card_info), "correct_answ": correct_answ,
-         'new_oracle_text': new_oracle_text})
+    correct_answer_oracle_text = correct_answer_oracle_text.replace(card_name,
+                                                                    '<span class="badge badge-secondary align-text-top">This card</span>')
+
+    new_cards = new_cards['card_info']
+    return jsonify({
+        "html": render_template('cards.html', card_info=new_cards),
+        "correct_answ": correct_answ,
+        "correct_answer_image": correct_answer_image,
+        'new_oracle_text': correct_answer_oracle_text})
     # return jsonify({'card_set': get_random_cards()})
 
 
@@ -207,14 +222,12 @@ def index():
     latest_modern_league = soup.find("h3", text=re.compile('\bMgitodern\s*(league|challenge)'))
     if latest_modern_league is None:
         data = read_from_file('old_url.json')
-
         latest_modern_league_url = data['url']
     else:
         latest_modern_league_parent = latest_modern_league.parent.parent.parent
 
         latest_modern_league_url = latest_modern_league_parent['href']
 
-    url_to_file = {}
     pprint(latest_modern_league_url)
 
     data = read_from_file('old_url.json')
@@ -246,7 +259,7 @@ def index():
                     if '//' in div.string:
                         split_str = div.string.split('//', 1)
                         for card_name in split_str:
-                            card_set.add(card_name)
+                            card_set.add(card_name.rstrip().lstrip())
 
                     else:
                         card_set.add(div.string)
@@ -263,49 +276,26 @@ def index():
                 json.dump(dict_to_file, fp, sort_keys=True, indent=4)
 
         else:
-            # modern_league_url_from_file = data['url']
+            modern_league_url = data['url']
             cards_from = 'cards from file'
             unique_cards = data['card_set']
 
     # n_cards = int(input())
     # random_cards = sample(unique_cards, n_cards)
+
+    # random_cards = ['Wear', 'Merchant of the Vale']
     random_cards = sample(unique_cards, 5)
+    # pprint(random_cards)
+    random_card_data = get_card_data(random_cards)
 
-    oracle_text = []
+    # pprint(random_card_data)
 
-    for card in random_cards:
-        print(card)
-        card_info = scrython.cards.Named(fuzzy=card)
-        card_info = vars(card_info)
-
-        if 'card_faces' in card_info['scryfallJson'] and 'image_uris' not in card_info['scryfallJson']:
-            oracle_txt = card_info['scryfallJson']['card_faces'][0]['oracle_text']
-            card_img = card_info['scryfallJson']['card_faces'][0]['image_uris']['art_crop']
-        elif 'card_faces' in card_info['scryfallJson']:
-            for card_faces in card_info['scryfallJson']['card_faces']:
-                pprint(card)
-                if card in card_faces['name']:
-                    oracle_txt = card_faces['oracle_text']
-        else:
-            oracle_txt = card_info['scryfallJson']['oracle_text']
-            card_img = card_info['scryfallJson']['image_uris']['art_crop']
-
-        oracle_text.append({
-            'name': card,
-            'oracle_text': oracle_txt,
-            'image': card_img
-        })
-
-        # oracle_text.append({str(index): {
-        #     'name': card,
-        #     'oracle_text': card_info['scryfallJson']['oracle_text']
-        # }})
-
-    correct_answer = random.choice(oracle_text)
-    correct_answer_index = oracle_text.index(correct_answer) + 1
+    correct_answer = random.choice(random_card_data)
+    correct_answer_index = random_card_data.index(correct_answer) + 1
 
     # TODO: Get only oracle text of correct_answer
     card_name = correct_answer['name']
+    correct_answer_image = correct_answer['image']
     oracle_text_answer = correct_answer['oracle_text']
     oracle_text_answer = replace_symbols_in_text(oracle_text_answer)
 
@@ -319,11 +309,14 @@ def index():
     pprint(test_new_cards)
 
     return render_template("index.html", correct_answer_index=correct_answer_index, correct_answer=correct_answer,
-                           card_info=oracle_text,
+                           card_info=random_card_data,
+                           card_name=card_name,
                            oracle_text_answer=Markup(oracle_text_answer),
+                           correct_answer_image=correct_answer_image,
                            random_cards=random_cards, cards_from=cards_from,
+                           modern_league_url='https://magic.wizards.com' + modern_league_url,
                            message="Hello Flask!")
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, threaded=True)

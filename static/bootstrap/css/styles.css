@@ -15,6 +15,13 @@
     height: 64px;
 }
 
+.bg-magenta {
+    /*background-color: #FF00FF;*/
+    color: #fff;
+    background-color: #FF00FF;
+    border-color: #FF00FF;
+}
+
 .lds-ripple div {
     position: absolute;
     border: 4px solid #fff;
