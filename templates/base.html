@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8">
+
+    {#    <link rel="icon" href="{{ url_for('static', filename='images/icons/icon-96x96.png') }}">#}
+    <meta name="theme-color" content="#343a40">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/bootstrap/css/styles.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/bootstrap/css/mana.css" crossorigin="anonymous">
+    {#    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.css" crossorigin="anonymous">#}
+    {#    <link rel="stylesheet" href="../static/css/styles.css" crossorigin="anonymous">#}
+    {#    <link rel="stylesheet" href="../static/css/mana.css" crossorigin="anonymous">#}
+    <link rel="stylesheet" href="{{ url_for('static' , filename='bootstrap/css/bootstrap.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static' , filename='css/mana.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static' , filename='css/styles.css') }}">
+
+
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+
+    <!-- iOS -->
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/icons/icon-96x96.png') }}">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
     <title>The Modern Spike</title>
 </head>
 
@@ -15,11 +33,21 @@
 {% block content %}
 {% endblock %}
 
-<script src="../static/bootstrap/js/popper.min.js"></script>
-<script src="../static/bootstrap/js/jquery-3.4.1.min.js"></script>
+{#<script src="../static/bootstrap/js/popper.min.js"></script>#}
+{#<script src="../static/bootstrap/js/jquery-3.4.1.min.js"></script>#}
 {#<script src="../static/bootstrap/js/jquery-3.3.1.slim.min.js"></script>#}
-<script src="../static/bootstrap/js/bootstrap.min.js"></script>
-<script src="../static/bootstrap/js/ajax.js"></script>
+{#<script src="../static/bootstrap/js/bootstrap.min.js"></script>#}
+{#<script src="../static/js/ajax.js"></script>#}
+
+<script src="{{ url_for('static' , filename='bootstrap/js/popper.min.js') }}"></script>
+<script src="{{ url_for('static' , filename='bootstrap/js/jquery-3.4.1.min.js') }}"></script>
+<script src="{{ url_for('static' , filename='bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static' , filename='js/ajax.js') }}"></script>
+<script src="{{ url_for('static' , filename='js/main.js') }}"></script>
+{#<script src="../static/"></script>#}
+{#<script src="../static/bootstrap/js/jquery-3.3.1.slim.min.js"></script>#}
+{#<script src="../static/bootstrap/js/bootstrap.min.js"></script>#}
+{#<script src="../static/js/ajax.js"></script>#}
 
 </body>
 

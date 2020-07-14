@@ -8,6 +8,7 @@ from random import choice, sample
 import random
 import re
 import scrython
+from flask_sslify import SSLify
 
 import asyncio
 # from flask_bs4 import Bootstrap
@@ -16,6 +17,7 @@ import os
 from flask import Flask, render_template, request, jsonify, Markup
 
 app = Flask(__name__)
+sslify = SSLify(app)
 
 
 # app.config.from_object(os.environ['APP_SETTINGS'])
@@ -115,7 +117,7 @@ def read_from_file(filename):
 
 def get_card_data(random_cards):
     random_card_data = []
-    # random_cards = ['Wear', 'Merchant of the Vale']
+    # random_cards = ['Wear', 'Merchant of the Vale', 'Thing in the Ice']
 
     for card in random_cards:
         print(card)
@@ -125,10 +127,12 @@ def get_card_data(random_cards):
 
         if 'card_faces' in card_info['scryfallJson']:
             for card_faces in card_info['scryfallJson']['card_faces']:
-                pprint(card)
-                if card in card_faces['name']:
-                    oracle_txt = card_faces['oracle_text']
+                oracle_txt = card_faces['oracle_text']
+                if "image_uris" not in card_info['scryfallJson']:
                     card_img = card_faces['image_uris']['art_crop']
+                else:
+                    card_img = card_info['scryfallJson']['image_uris']['art_crop']
+
         else:
             oracle_txt = card_info['scryfallJson']['oracle_text']
             card_img = card_info['scryfallJson']['image_uris']['art_crop']
@@ -210,6 +214,16 @@ def process():
         return jsonify({'choice': 'Well done!'})
 
     return jsonify({'error': 'Nope, try again.'})
+
+
+@app.route('/sw.js')
+def sw():
+    return app.send_static_file('sw.js')
+
+
+@app.route('/offline')
+def offline():
+    return render_template("static/offline.html")
 
 
 @app.route("/", methods=['GET', 'POST'])
