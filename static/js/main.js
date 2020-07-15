@@ -42,5 +42,5 @@ var showBtn = () => {
     })
 }
 $(window).on('load', function () {
-    alert('icara e mn lud');
+    // alert('icara e mn lud');
 });
