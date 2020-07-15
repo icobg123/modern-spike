@@ -7,7 +7,7 @@
 //     '/static/bootstrap/css/bootstrap.css',
 // ];
 // version track
-const vn = "version-1.5";
+const vn = "version-1";
 
 // files to cache
 const appCash = [
