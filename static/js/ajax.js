@@ -6,6 +6,8 @@ $(document).ready(function () {
     $('#card_holder').on('change', '.form-check-input', (function (event) {
         // $('form').on('submit', function (event) {
         console.log('clicked');
+        $(this).hide();
+        // console.log();
 
         $.ajax({
             data: {
@@ -20,12 +22,12 @@ $(document).ready(function () {
 
                 if (data.error) {
                     console.log(data.error);
-                    $('#errorAlert').text(data.error).removeClass('d-none');
-                    $('#successAlert').addClass('d-none');
+
+                    $('#card_holder .active').removeClass('btn-secondary').addClass('alert-danger')
                 } else {
                     console.log(data.choice);
-                    $('#successAlert').text(data.choice).removeClass('d-none');
-                    $('#errorAlert').addClass('d-none');
+                    $('#card_holder .active').removeClass('btn-secondary').addClass('alert-success')
+
                 }
 
             });
