@@ -7,15 +7,15 @@
 //     '/static/bootstrap/css/bootstrap.css',
 // ];
 // version track
-const vn = "version-x";
+const vn = "version-1.5";
 
 // files to cache
 const appCash = [
     '/static/bootstrap/js/jquery-3.4.1.min.js',
     '/static/bootstrap/js/bootstrap.min.js',
+    '/static/bootstrap/css/bootstrap.css',
     '/static/js/ajax.js',
     '/static/js/main.js',
-    '/static/bootstrap/css/bootstrap.css',
     '/static/css/mana.css',
     '/static/css/styles.css',
     '/static/images/mana.svg',
