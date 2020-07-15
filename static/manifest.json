@@ -2,7 +2,7 @@
   "name": "Modern Spike",
   "short_name": "Modern Spike",
   "theme_color": "#343a40",
-  "background_color": "#2196f3",
+  "background_color": "#fff",
   "display": "standalone",
   "orientation": "portrait",
   "Scope": "/",
