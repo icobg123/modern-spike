@@ -221,9 +221,9 @@ def sw():
     return app.send_static_file('sw.js')
 
 
-@app.route('/offline')
+@app.route('/offline.html')
 def offline():
-    return render_template("static/offline.html")
+    return app.send_static_file('offline.html')
 
 
 @app.route("/", methods=['GET', 'POST'])

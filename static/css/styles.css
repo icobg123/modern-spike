@@ -56,3 +56,15 @@
     background-color: inherit;
     border-color: inherit;
 }
+
+.offline-notification {
+    display: none;
+    padding: 1em;
+    text-align: center;
+}
+
+.offline-notification.show {
+    background-color: red;
+    color: white;
+    display: block;
+}
