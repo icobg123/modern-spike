@@ -1,3 +1,20 @@
+@font-face {
+    font-family: "Beleren-Bold";
+    src: url("../fonts/Beleren-Bold/beleren-boldP101.eot"); /* IE9 Compat Modes */
+    src: url("../fonts/Beleren-Bold/beleren-boldP101.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */ url("../fonts/Beleren-Bold/beleren-boldP101.otf") format("opentype"), /* Open Type Font */ url("../fonts/Beleren-Bold/beleren-boldP101.svg") format("svg"), /* Legacy iOS */ url("../fonts/Beleren-Bold/beleren-boldP101.ttf") format("truetype"), /* Safari, Android, iOS */ url("../fonts/Beleren-Bold/beleren-boldP101.woff") format("woff"), /* Modern Browsers */ url("../fonts/Beleren-Bold/beleren-boldP101.woff2") format("woff2"); /* Modern Browsers */
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "mplantin";
+    src: url("../fonts/mplantin/mplantin.eot"); /* IE9 Compat Modes */
+    src: url("../fonts/mplantin/mplantin.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */ url("../fonts/mplantin/mplantin.otf") format("opentype"), /* Open Type Font */ url("../fonts/mplantin/mplantin.svg") format("svg"), /* Legacy iOS */ url("../fonts/mplantin/mplantin.ttf") format("truetype"), /* Safari, Android, iOS */ url("../fonts/mplantin/mplantin.woff") format("woff"), /* Modern Browsers */ url("../fonts/mplantin/mplantin.woff2") format("woff2"); /* Modern Browsers */
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 #successAlert,
 #errorAlert {
     padding: 0.375rem 0.75rem;
@@ -13,6 +30,10 @@
     position: relative;
     width: 64px;
     height: 64px;
+}
+
+#oracle_text .card-text {
+    font-family: "mplantin", sans-serif;
 }
 
 .bg-magenta {
