@@ -233,7 +233,10 @@ def index():
 
     soup = BeautifulSoup(response.text, 'html.parser')
 
-    latest_modern_league = soup.find("h3", text=re.compile('\bMgitodern\s*(league|challenge)'))
+    latest_modern_league = soup.find("h3",
+                                     text=re.compile('Modern', flags=re.IGNORECASE))
+                                     # text=re.compile('\bModern\s*(League|Challenge|Preliminary)', flags=re.IGNORECASE))
+    print(latest_modern_league)
     if latest_modern_league is None:
         data = read_from_file('old_url.json')
         latest_modern_league_url = data['url']
