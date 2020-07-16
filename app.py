@@ -123,11 +123,13 @@ def get_card_data(random_cards):
         print(card)
         card_info = scrython.cards.Named(fuzzy=card)
         card_info = vars(card_info)
-        oracle_txt, card_img = '', ''
+        oracle_txt, card_img, flavor_txt = '', '', card
 
         if 'card_faces' in card_info['scryfallJson']:
             for card_faces in card_info['scryfallJson']['card_faces']:
                 oracle_txt = card_faces['oracle_text']
+                if "flavor_text" in card_faces:
+                    flavor_txt = card_faces['flavor_text']
                 if "image_uris" not in card_info['scryfallJson']:
                     card_img = card_faces['image_uris']['art_crop']
                 else:
@@ -136,10 +138,13 @@ def get_card_data(random_cards):
         else:
             oracle_txt = card_info['scryfallJson']['oracle_text']
             card_img = card_info['scryfallJson']['image_uris']['art_crop']
+            if "flavor_text" in card_info['scryfallJson']:
+                flavor_txt = card_info['scryfallJson']['flavor_text']
 
         random_card_data.append({
             'name': card,
             'oracle_text': oracle_txt,
+            'flavor_text': flavor_txt,
             'image': card_img
         })
 
@@ -158,6 +163,12 @@ def gen_new_cards():
     correct_answer_index = random_card_data.index(correct_answer) + 1
 
     correct_answer_oracle_text = correct_answer['oracle_text']
+
+    if correct_answer['flavor_text']:
+        correct_answer_flavor_text = correct_answer['flavor_text']
+    else:
+        correct_answer_flavor_text = correct_answer
+
     correct_answer_image = correct_answer['image']
 
     pprint(correct_answer_oracle_text)
@@ -176,6 +187,7 @@ def gen_new_cards():
     return {"card_info": random_card_data,
             "correct_answer": correct_answer_index,
             "correct_answer_oracle_text": to_html_list_correct_answer_oracle_text,
+            "correct_answer_flavor_text": correct_answer_flavor_text,
             "correct_answer_image": correct_answer_image,
             "name": card_name}
 
@@ -186,20 +198,28 @@ def get_new_cards():
     # return jsonify({'error': 'Nope, try again.'})
     new_cards = gen_new_cards()
 
-    correct_answ = new_cards['correct_answer']
+    correct_answer_index = new_cards['correct_answer']
     correct_answer_oracle_text = new_cards['correct_answer_oracle_text']
-    card_name = new_cards['name']
+    correct_answer_name = new_cards['name']
     correct_answer_image = new_cards['correct_answer_image']
 
-    correct_answer_oracle_text = correct_answer_oracle_text.replace(card_name,
+    if new_cards['correct_answer_flavor_text']:
+        correct_answer_flavor_text = new_cards['correct_answer_flavor_text']
+    else:
+        correct_answer_flavor_text = correct_answer_name
+    # correct_answer_flavor_text = new_cards['correct_answer_flavor_text']
+    correct_answer_oracle_text = correct_answer_oracle_text.replace(correct_answer_name,
                                                                     '<span class="badge badge-secondary align-text-top">This card</span>')
 
     new_cards = new_cards['card_info']
     return jsonify({
         "html": render_template('cards.html', card_info=new_cards),
-        "correct_answ": correct_answ,
+        "correct_answer_index": correct_answer_index,
+        "correct_answer_name": correct_answer_name,
         "correct_answer_image": correct_answer_image,
-        'new_oracle_text': correct_answer_oracle_text})
+        'new_oracle_text': correct_answer_oracle_text,
+        'new_flavor_text': correct_answer_flavor_text,
+    })
     # return jsonify({'card_set': get_random_cards()})
 
 
@@ -235,7 +255,7 @@ def index():
 
     latest_modern_league = soup.find("h3",
                                      text=re.compile('Modern', flags=re.IGNORECASE))
-                                     # text=re.compile('\bModern\s*(League|Challenge|Preliminary)', flags=re.IGNORECASE))
+    # text=re.compile('\bModern\s*(League|Challenge|Preliminary)', flags=re.IGNORECASE))
     print(latest_modern_league)
     if latest_modern_league is None:
         data = read_from_file('old_url.json')
@@ -275,8 +295,8 @@ def index():
                 if (div.string not in card_set) and (not is_this_a_basic(div.string)):
                     if '//' in div.string:
                         split_str = div.string.split('//', 1)
-                        for card_name in split_str:
-                            card_set.add(card_name.rstrip().lstrip())
+                        for correct_answer_name in split_str:
+                            card_set.add(correct_answer_name.rstrip().lstrip())
 
                     else:
                         card_set.add(div.string)
@@ -311,24 +331,31 @@ def index():
     correct_answer_index = random_card_data.index(correct_answer) + 1
 
     # TODO: Get only oracle text of correct_answer
-    card_name = correct_answer['name']
+    correct_answer_name = correct_answer['name']
     correct_answer_image = correct_answer['image']
-    oracle_text_answer = correct_answer['oracle_text']
-    oracle_text_answer = replace_symbols_in_text(oracle_text_answer)
+    correct_oracle_text_answer = correct_answer['oracle_text']
+    if correct_answer['flavor_text']:
+        correct_answer_flavor_text = correct_answer['flavor_text']
+    else:
+        correct_answer_flavor_text = correct_answer
 
-    oracle_text_answer = oracle_text_answer.replace(card_name,
-                                                    '<span class="badge badge-secondary align-text-top">This card</span>')
+    # correct_answer_flavor_text = correct_answer['flavor_text']
+    correct_oracle_text_answer = replace_symbols_in_text(correct_oracle_text_answer)
+
+    correct_oracle_text_answer = correct_oracle_text_answer.replace(correct_answer_name,
+                                                                    '<span class="badge badge-secondary align-text-top">This card</span>')
     # oracle_text_answer = oracle_text_answer.replace('\n', ' <br/> ')
 
-    test_new_cards = get_new_cards()
+    # test_new_cards = get_new_cards()
 
-    pprint('icara')
-    pprint(test_new_cards)
+    # pprint('icara')
+    # pprint(test_new_cards)
 
     return render_template("index.html", correct_answer_index=correct_answer_index, correct_answer=correct_answer,
                            card_info=random_card_data,
-                           card_name=card_name,
-                           oracle_text_answer=Markup(oracle_text_answer),
+                           correct_answer_name=correct_answer_name,
+                           correct_answer_flavor_text=correct_answer_flavor_text,
+                           correct_oracle_text_answer=Markup(correct_oracle_text_answer),
                            correct_answer_image=correct_answer_image,
                            random_cards=random_cards, cards_from=cards_from,
                            modern_league_url='https://magic.wizards.com' + modern_league_url,

@@ -4,7 +4,7 @@
     <main>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 col-md-6 d-flex flex-column mx-auto">
+                <div class="col-12 col-sm-9 col-md-6 col-lg-9 col-xl-7 d-flex flex-column mx-auto">
                     <h1 class="text-center my-1">The Modern Spike</h1>
 
                     {#                    <div class="d-flex justify-content-between align-items-center justify-content-center my-1">#}
@@ -49,7 +49,8 @@
                                                 <div class="modal-body">
                                                     <img loading="lazy" id="card_image" class="img-fluid"
                                                          src="{{ correct_answer_image }}"
-                                                         alt="{{ card_name }}">
+                                                         alt="{{ correct_answer_flavor_text }}"
+                                                         title="{{ correct_answer_name }}">
                                                 </div>
                                                 {#<div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
@@ -61,7 +62,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body text-dark py-2">
-                                    {% set list1 = oracle_text_answer.split('\n') %}
+                                    {% set list1 = correct_oracle_text_answer.split('\n') %}
                                     {% for string in list1 %}
                                         <p class="card-text mb-1">{{ string |e }}</p>
                                     {% endfor %}
@@ -135,7 +136,7 @@
                     </a>
                 </div>
                 <div class="col-auto">
-                    <a class="text-white" rel="noopener"  target="_blank"
+                    <a class="text-white" rel="noopener" target="_blank"
                        href="{{ modern_league_url }}">
                         <span class="text-muted"><u>Latest deck lists</u></span>
                     </a>

@@ -59,8 +59,8 @@ $(document).ready(function () {
                 $('#oracle_text').removeClass('d-none');
 
                 $('#oracle_text .card-body').html(data.new_oracle_text);
-                $('#correct_answer').html(data.correct_answ);
-                $("#card_image").attr('src', data.correct_answer_image);
+                $('#correct_answer').html(data.correct_answer_index);
+                $("#card_image").attr('src', data.correct_answer_image).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
 
                 $('#next_card').removeClass('d-none');
 
