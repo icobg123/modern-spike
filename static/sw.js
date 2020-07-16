@@ -1,6 +1,6 @@
 // This is based on the First Progressive Web App Tutorial by Google
 // https://codelabs.developers.google.com/codelabs/your-first-pwapp/
-const cacheName = 'flask-PWA-v3';
+const cacheName = 'flask-PWA-v0';
 const filesToCache = [
     '/static/bootstrap/js/jquery-3.4.1.min.js',
     '/static/bootstrap/js/bootstrap.min.js',
