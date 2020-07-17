@@ -11,7 +11,26 @@
 
 
                     {#                        <button class="add-button btn-sm btn btn-light">Add to home screen</button>#}
-                    <small class="text-center my-1 ">Can you guess the card?</small>
+                    <small class="text-center my-1 ">
+                        Can you guess the card? Score:
+                        <span class="d-none" id="answered_flag">0</span>
+                        <span id="current_score">
+                            {% if request.cookies.get('current_score') %}
+                                {{ request.cookies.get('current_score') }}
+                            {% else %}
+                                {{ 0 }}
+                            {% endif %}
+
+                        </span>
+                        /
+                        <span id="total_score">
+                            {% if request.cookies.get('current_score') %}
+                                {{ request.cookies.get('total_score') }}
+                            {% else %}
+                                {{ 0 }}
+                            {% endif %}
+                        </span>
+                    </small>
                     {#                    </div>#}
                     <div class="lds-ripple d-none">
                         <div></div>

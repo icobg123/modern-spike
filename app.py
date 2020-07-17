@@ -14,7 +14,7 @@ import asyncio
 # from flask_bs4 import Bootstrap
 
 import os
-from flask import Flask, render_template, request, jsonify, Markup
+from flask import Flask, render_template, request, jsonify, Markup, request, make_response
 
 app = Flask(__name__)
 sslify = SSLify(app)
@@ -223,13 +223,51 @@ def get_new_cards():
     # return jsonify({'card_set': get_random_cards()})
 
 
+@app.route('/cookie', methods=['POST'])
+def cookie():
+    res = ''
+
+    current_score = int(request.form['current_score'])
+    total_score = int(request.form['total_score'])
+
+    user_choice = request.form['choice']
+    correct_answer = request.form['correct_answer']
+
+    if user_choice == correct_answer:
+        if not request.cookies.get('current_score') and not request.cookies.get('total_score'):
+            current_score = 1
+            total_score = 1
+            res = make_response(jsonify({'current_score': current_score,
+                                         'total_score': total_score, }))
+            res.set_cookie('current_score', str(current_score), max_age=60 * 60 * 24 * 365 * 2)
+            res.set_cookie('total_score', str(total_score), max_age=60 * 60 * 24 * 365 * 2)
+        else:
+
+            current_score = current_score + 1
+            total_score = total_score + 1
+            # pprint(current_score)
+
+            res = make_response(jsonify({'current_score': current_score,
+                                         'total_score': total_score, }))
+            res.set_cookie('current_score', str(current_score), max_age=60 * 60 * 24 * 365 * 2)
+            res.set_cookie('total_score', str(total_score), max_age=60 * 60 * 24 * 365 * 2)
+    else:
+        total_score = total_score + 1
+        res = make_response(jsonify({'total_score': total_score, }))
+        res.set_cookie('total_score', str(total_score), max_age=60 * 60 * 24 * 365 * 2)
+
+    # res = make_response("Value of cookie score is {}".format(request.cookies.get('score')))
+
+    return res
+
+
 @app.route('/process', methods=['POST'])
 def process():
     user_choice = request.form['choice']
 
     correct_answer = request.form['correct_answer']
-    print(user_choice)
-    print(correct_answer)
+    # print(user_choice)
+    # print(correct_answer)
     if user_choice == correct_answer:
         return jsonify({'choice': 'Well done!'})
 
