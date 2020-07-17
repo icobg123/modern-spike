@@ -52,6 +52,7 @@ def is_this_a_basic(potential_basic):
             potential_basic == 'Island' or \
             potential_basic == 'Plains' or \
             potential_basic == 'Forest' or \
+            potential_basic == 'Wastes' or \
             'Snow-Covered' in potential_basic:
         return True
 
@@ -343,9 +344,10 @@ def index():
             #     ''.join(text for text in cards_in_decks if not is_this_a_basic(text.string)))
 
             card_set = set()
-
+            # pprint(cards_in_decks)
             for div in cards_in_decks:
-                # print(div.string + ': ' + str(is_this_a_basic(div.string)))
+
+                print(div.string + ': ' + str(is_this_a_basic(div.string)))
                 if (div.string not in card_set) and (not is_this_a_basic(div.string)):
                     if '//' in div.string:
                         split_str = div.string.split('//', 1)

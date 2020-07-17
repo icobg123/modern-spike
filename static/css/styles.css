@@ -32,13 +32,13 @@ h1 {
     font-family: Beleren-Bold, sans-serif;
 }
 
-#card_holder .btn:first-of-type(1) {
+#card_holder .btn:first-of-type {
     margin-left: -1px;
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
 }
 
-#card_holder .btn:last-of-type(5) {
+#card_holder .btn:last-of-type {
     border-bottom-left-radius: 0.25rem;
     border-bottom-right-radius: 0.25rem;
 }
