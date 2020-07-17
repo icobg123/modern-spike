@@ -5,7 +5,7 @@
         <div class="container-fluid h-100">
             <div class="row h-100">
                 <div class="col-12 col-sm-9 col-md-6 col-lg-9 col-xl-7 d-flex flex-column mx-auto justify-content-center">
-                    <h1 class="text-center my-1">The Modern Spike</h1>
+                    <h1 class="text-center my-1">Modern Spike</h1>
 
                     {#                    <div class="d-flex justify-content-between align-items-center justify-content-center my-1">#}
 
@@ -45,7 +45,7 @@
                                     Oracle text
 
 
-                                    <button type="button" class="text-white btn btn-sm bg-info float-right"
+                                    <button type="button" class="btn btn-sm btn-info float-right text-black"
                                             data-toggle="modal"
                                             data-target="#cardImage">
                                         Hint: card image
@@ -113,7 +113,8 @@
 
                                 </div>
 
-                                <button id="next_card" type="button" name="choice" class="mt-2 btn btn-info">Next
+                                <button id="next_card" type="button" name="choice" class="mt-2 btn btn-info text-black">
+                                    Next
                                     Card
                                 </button>
                                 {% for card_info in card_info %}
@@ -141,57 +142,32 @@
                             {#            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">#}
                         </div>
                     </div>
+
+
                 </div>
+                <div class="col-12 col-sm-9 col-md-6 col-lg-9 col-xl-7 d-flex flex-column mx-auto justify-content-center">
+                    <div class="row mt-auto">
+
+                        <div class="col-lg-6 col-12 mx-auto">
+                            <nav id="footer_menu" class="nav  nav-fill justify-content-between">
+                                <a class="nav-item nav-link text-white" href="/about">About</a>
+                                <a class="nav-item nav-link text-white" rel="noopener" target="_blank"
+                                   href="{{ modern_league_url }} "> Latest deck lists</a>
+                                <a class="nav-item nav-link text-white" href="#">Link</a>
+
+                            </nav>
+
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
             <div class="d-none" id="correct_answer">{{ correct_answer_index }}</div>
         </div>
+
     </main>
-    <footer class="footer fixed-bottom px-1 py-2">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-auto">
-                    <a class="text-white" href="/about">
-                        <span class="text-muted"><u>About</u></span>
-                    </a>
-                </div>
-                <div class="col-auto">
-                    <a class="text-white" rel="noopener" target="_blank"
-                       href="{{ modern_league_url }}">
-                        <span class="text-muted"><u>Latest deck lists</u></span>
-                    </a>
-                </div>
-                <div class="col-auto">
 
-                </div>
-            </div>
-        </div>
-    </footer>
-    <div class="modal fade" id="upgradeApp" tabindex="-1" role="dialog"
-         aria-labelledby="upgradeAppTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                {#                <div class="modal-header py-1">#}
-                {#                    <h5 class="modal-title" id="exampleModalLongTitle">Upgrade App</h5>#}
-                {#                    <button type="button" class="close" data-dismiss="modal"#}
-                {#                            aria-label="Close">#}
-                {#                        <span aria-hidden="true">&times;</span>#}
-                {#                    </button>#}
-                {#                </div>#}
-                <div class="modal-body d-flex justify-content-center">
-
-                    <button class="btn btn-lg btn-info w-100" id="up" onclick="upSW();">
-                        Update
-                    </button>
-
-                </div>
-                {#<div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Close
-                                                    </button>
-                                                </div>#}
-            </div>
-        </div>
-    </div>
     {#    <div>#}
     {#        <p>{{ message }}</p>#}
     {##}

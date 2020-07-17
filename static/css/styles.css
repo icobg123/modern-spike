@@ -27,6 +27,16 @@ h1 {
     font-family: Beleren-Bold, sans-serif;
 }
 
+.text-black {
+    color: #000000;
+}
+
+#footer_menu .nav-item {
+    text-align: left !important;
+    flex: 0 1 auto !important;
+    padding: 0;
+}
+
 #card_holder .btn {
     border-radius: 0;
     font-family: Beleren-Bold, sans-serif;
