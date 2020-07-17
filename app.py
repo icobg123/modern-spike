@@ -144,13 +144,14 @@ def get_card_data(random_cards):
 
         if 'card_faces' in card_info['scryfallJson']:
             for card_faces in card_info['scryfallJson']['card_faces']:
-                oracle_txt = card_faces['oracle_text']
-                if "flavor_text" in card_faces:
-                    flavor_txt = card_faces['flavor_text']
-                if "image_uris" not in card_info['scryfallJson']:
-                    card_img = card_faces['image_uris']['art_crop']
-                else:
-                    card_img = card_info['scryfallJson']['image_uris']['art_crop']
+                if card in card_faces['name']:
+                    oracle_txt = card_faces['oracle_text']
+                    if "flavor_text" in card_faces:
+                        flavor_txt = card_faces['flavor_text']
+                    if "image_uris" not in card_info['scryfallJson']:
+                        card_img = card_faces['image_uris']['art_crop']
+                    else:
+                        card_img = card_info['scryfallJson']['image_uris']['art_crop']
 
         else:
             oracle_txt = card_info['scryfallJson']['oracle_text']
@@ -376,11 +377,12 @@ def index():
     # n_cards = int(input())
     # random_cards = sample(unique_cards, n_cards)
 
+    random_cards = sample(unique_cards, 5)
     # random_cards = ['Vexing Shusher']
+    # random_cards = ['Stomp', 'Bonecrusher Giant']
     # random_cards = ['Wear', 'Merchant of the Vale']
     # random_cards = ['Brimaz, King of Oreskos','Keranos, God of Storms']
 
-    random_cards = sample(unique_cards, 5)
     # pprint(random_cards)
     random_card_data = get_card_data(random_cards)
 
@@ -393,6 +395,7 @@ def index():
     correct_answer_name = correct_answer['name']
     correct_answer_image = correct_answer['image']
     correct_oracle_text_answer = correct_answer['oracle_text']
+    pprint(correct_oracle_text_answer)
     if correct_answer['flavor_text']:
         correct_answer_flavor_text = correct_answer['flavor_text']
     else:
