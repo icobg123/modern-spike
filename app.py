@@ -20,6 +20,9 @@ app = Flask(__name__)
 sslify = SSLify(app)
 
 
+# TODO implement same card type / similar effect
+
+
 # app.config.from_object(os.environ['APP_SETTINGS'])
 # await asyncio.sleep(0.1)
 # card = scrython.cards.Named(fuzzy="Tear")
@@ -28,6 +31,19 @@ sslify = SSLify(app)
 
 
 # pprint(card_info)
+
+def replace_card_name_in_oracle(name, oracle_text):
+    if ',' in name:
+        name_before_comma = name[:name.index(",")]
+        if name_before_comma in oracle_text:
+            pprint('name_before_comma in oracle')
+            oracle_text = oracle_text.replace(name_before_comma,
+                                              '<span class="badge badge-secondary align-text-top">This card</span>')
+
+    if name in oracle_text:
+        oracle_text = oracle_text.replace(name, '<span class="badge badge-secondary align-text-top">This card</span>')
+
+    return oracle_text
 
 
 def is_this_a_basic(potential_basic):
@@ -74,8 +90,8 @@ def replace_symbols_in_text(oracle_text):
         "{B/G}": "sur",
         "{U/B}": "sbr",
         "{U/R}": "sbg",
-        "{R/G}": "srw",
-        "{R/W}": "srg",
+        "{R/G}": "srg",
+        "{R/W}": "srw",
         "{G/W}": "sgw",
         "{G/U}": "sgu",
         "{2/W}": "s2w",
@@ -208,8 +224,8 @@ def get_new_cards():
     else:
         correct_answer_flavor_text = correct_answer_name
     # correct_answer_flavor_text = new_cards['correct_answer_flavor_text']
-    correct_answer_oracle_text = correct_answer_oracle_text.replace(correct_answer_name,
-                                                                    '<span class="badge badge-secondary align-text-top">This card</span>')
+
+    correct_answer_oracle_text = replace_card_name_in_oracle(correct_answer_name, correct_answer_oracle_text)
 
     new_cards = new_cards['card_info']
     return jsonify({
@@ -358,7 +374,10 @@ def index():
     # n_cards = int(input())
     # random_cards = sample(unique_cards, n_cards)
 
+    # random_cards = ['Vexing Shusher']
     # random_cards = ['Wear', 'Merchant of the Vale']
+    # random_cards = ['Brimaz, King of Oreskos','Keranos, God of Storms']
+
     random_cards = sample(unique_cards, 5)
     # pprint(random_cards)
     random_card_data = get_card_data(random_cards)
@@ -380,8 +399,8 @@ def index():
     # correct_answer_flavor_text = correct_answer['flavor_text']
     correct_oracle_text_answer = replace_symbols_in_text(correct_oracle_text_answer)
 
-    correct_oracle_text_answer = correct_oracle_text_answer.replace(correct_answer_name,
-                                                                    '<span class="badge badge-secondary align-text-top">This card</span>')
+    correct_oracle_text_answer = replace_card_name_in_oracle(correct_answer_name, correct_oracle_text_answer)
+
     # oracle_text_answer = oracle_text_answer.replace('\n', ' <br/> ')
 
     # test_new_cards = get_new_cards()
