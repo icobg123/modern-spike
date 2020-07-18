@@ -33,15 +33,17 @@ sslify = SSLify(app)
 # pprint(card_info)
 
 def replace_card_name_in_oracle(name, oracle_text):
+    html = '<span class="badge badge-secondary align-text-top">This card</span>'
+    if name in oracle_text:
+        pprint('name after comma oracle')
+
+        oracle_text = oracle_text.replace(name, html)
+
     if ',' in name:
         name_before_comma = name[:name.index(",")]
         if name_before_comma in oracle_text:
             pprint('name_before_comma in oracle')
-            oracle_text = oracle_text.replace(name_before_comma,
-                                              '<span class="badge badge-secondary align-text-top">This card</span>')
-
-    if name in oracle_text:
-        oracle_text = oracle_text.replace(name, '<span class="badge badge-secondary align-text-top">This card</span>')
+            oracle_text = oracle_text.replace(name_before_comma, html)
 
     return oracle_text
 
@@ -57,6 +59,29 @@ def is_this_a_basic(potential_basic):
         return True
 
     return False
+
+
+def is_card_type(potential_card_type):
+    if 'Planeswalker' in potential_card_type or \
+            'Creature' in potential_card_type or \
+            'Sorcery' in potential_card_type or \
+            'Land' in potential_card_type or \
+            'Enchantment' in potential_card_type or \
+            'Artifact' in potential_card_type or \
+            'Tribal' in potential_card_type:
+        return True
+    return False
+
+    # if potential_card_type == 'Planeswalker' or \
+    #         potential_card_type == 'Creature' or \
+    #         potential_card_type == 'Sorcery' or \
+    #         potential_card_type == 'Plains' or \
+    #         potential_card_type == 'Instant' or \
+    #         potential_card_type == 'Land' or \
+    #         'Snow-Covered' in potential_card_type:
+    #     return True
+    #
+    # return False
 
 
 def replace_symbols_in_text(oracle_text):
@@ -87,10 +112,10 @@ def replace_symbols_in_text(oracle_text):
         "{20}": "s20",
         "{W/U}": "swu",
         "{W/B}": "swb",
-        "{B/R}": "sub",
-        "{B/G}": "sur",
-        "{U/B}": "sbr",
-        "{U/R}": "sbg",
+        "{B/R}": "sbr",
+        "{B/G}": "sbg",
+        "{U/B}": "sub",
+        "{U/R}": "sur",
         "{R/G}": "srg",
         "{R/W}": "srw",
         "{G/W}": "sgw",
@@ -137,7 +162,7 @@ def get_card_data(random_cards):
     # random_cards = ['Wear', 'Merchant of the Vale', 'Thing in the Ice']
 
     for card in random_cards:
-        print(card)
+        pprint(card)
         card_info = scrython.cards.Named(fuzzy=card)
         card_info = vars(card_info)
         oracle_txt, card_img, flavor_txt = '', '', card
@@ -165,34 +190,78 @@ def get_card_data(random_cards):
             'flavor_text': flavor_txt,
             'image': card_img
         })
-
+    pprint(random_card_data)
     return random_card_data
 
 
-def gen_new_cards():
-    data = read_from_file('old_url.json')
+def gen_new_cards(*args):
+    if not args:
+        data = read_from_file('old_url.json')
+        unique_cards = data['card_set']
+    else:
+        unique_cards = args[0]
 
-    unique_cards = data['card_set']
+    list_card_names = [d['name'] for d in unique_cards]
 
-    random_cards = sample(unique_cards, 5)
-    random_card_data = get_card_data(random_cards)
+    # random.shuffle(list_card_names)
+
+    random_card_name = sample(list_card_names, 1)[0]
+    random_card_type = [d['type'] for d in unique_cards if random_card_name in d['name']][0]
+
+    list_card_names_with_same_type = [d['name'] for d in unique_cards if random_card_type in d['type']]
+
+    print(random_card_name)
+    print(random_card_type)
+    # pprint(list_card_names_with_same_type)
+
+    list_card_names_with_same_type.remove(random_card_name)
+
+    # pprint(len(list_card_names_with_same_type))
+    if len(list_card_names_with_same_type) < 4:
+        sample_size = len(list_card_names_with_same_type)
+    else:
+        sample_size = 4
+    # TODO: fix for less than 4 of card type?
+
+    random_cards_name_same_type = sample(list_card_names_with_same_type, sample_size)
+
+    random_cards_name_same_type.append(random_card_name)
+
+    # pprint(random_cards_name_same_type)
+    # pprint(random_cards_name_same_type)
+    # random_cards = sample(list_card_name, 5)
+
+    # Test special Cards
+    # random_card_data = ['Vexing Shusher']
+    # random_card_data = ['Seal of Fire', 'Shark Typhoon']
+    # random_card_data = ['Bonecrusher Giant','Stomp']
+    # random_card_data = ['Wear', 'Merchant of the Vale']
+    # random_card_data = ['Urza, Lord High Artificer']
+    # random_card_data = ['Brimaz, King of Oreskos', 'Keranos, God of Storms']
+    # random_card_data = get_card_data(random_card_data)
+
+    random_card_data = get_card_data(random_cards_name_same_type)
+
+    # random_card_data = get_card_data(random_card_name)
+    # random_card_data = get_card_data(random_cards)
 
     correct_answer = random.choice(random_card_data)
     correct_answer_index = random_card_data.index(correct_answer) + 1
 
     correct_answer_oracle_text = correct_answer['oracle_text']
+    correct_answer_name = correct_answer['name']
+    correct_answer_image = correct_answer['image']
+    # pprint(correct_answer_oracle_text)
 
     if correct_answer['flavor_text']:
         correct_answer_flavor_text = correct_answer['flavor_text']
     else:
         correct_answer_flavor_text = correct_answer
 
-    correct_answer_image = correct_answer['image']
-
-    pprint(correct_answer_oracle_text)
-
     # new_oracle_text = replace_symbols_in_text(new_oracle_text)
     # new_oracle_text = new_oracle_text.replace()
+
+    correct_answer_oracle_text = replace_card_name_in_oracle(correct_answer_name, correct_answer_oracle_text)
 
     list_correct_answer_oracle_text = correct_answer_oracle_text.split('\n')
     to_html_list_correct_answer_oracle_text = ""
@@ -201,42 +270,27 @@ def gen_new_cards():
         to_html_list_correct_answer_oracle_text += str(
             '<p class="card-text mb-1">' + replace_symbols_in_text(line) + '</p>')
 
-    card_name = correct_answer['name']
     return {"card_info": random_card_data,
-            "correct_answer": correct_answer_index,
+            "correct_answer_index": correct_answer_index,
             "correct_answer_oracle_text": to_html_list_correct_answer_oracle_text,
             "correct_answer_flavor_text": correct_answer_flavor_text,
             "correct_answer_image": correct_answer_image,
-            "name": card_name}
+            "correct_answer_name": correct_answer_name}
 
 
 @app.route('/get_new_cards', methods=['POST'])
 def get_new_cards():
     asd = 'asd'
-    # return jsonify({'error': 'Nope, try again.'})
+
     new_cards = gen_new_cards()
 
-    correct_answer_index = new_cards['correct_answer']
-    correct_answer_oracle_text = new_cards['correct_answer_oracle_text']
-    correct_answer_name = new_cards['name']
-    correct_answer_image = new_cards['correct_answer_image']
-
-    if new_cards['correct_answer_flavor_text']:
-        correct_answer_flavor_text = new_cards['correct_answer_flavor_text']
-    else:
-        correct_answer_flavor_text = correct_answer_name
-    # correct_answer_flavor_text = new_cards['correct_answer_flavor_text']
-
-    correct_answer_oracle_text = replace_card_name_in_oracle(correct_answer_name, correct_answer_oracle_text)
-
-    new_cards = new_cards['card_info']
     return jsonify({
-        "html": render_template('cards.html', card_info=new_cards),
-        "correct_answer_index": correct_answer_index,
-        "correct_answer_name": correct_answer_name,
-        "correct_answer_image": correct_answer_image,
-        'new_oracle_text': correct_answer_oracle_text,
-        'new_flavor_text': correct_answer_flavor_text,
+        "html": render_template('cards.html', card_info=new_cards['card_info']),
+        "correct_answer_index": new_cards['correct_answer_index'],
+        "correct_answer_name": new_cards['correct_answer_name'],
+        "correct_answer_image": new_cards['correct_answer_image'],
+        'new_oracle_text': new_cards['correct_answer_oracle_text'],
+        'new_flavor_text': new_cards['correct_answer_flavor_text'],
     })
     # return jsonify({'card_set': get_random_cards()})
 
@@ -339,28 +393,36 @@ def index():
             response_league = requests.get(modern_league_url)
             modern_deck_lists = BeautifulSoup(response_league.text, 'html.parser')
 
-            cards_in_decks = modern_deck_lists.findAll('a', attrs={'class': 'deck-list-link'})
+            sorted_by_type = modern_deck_lists.findAll('div',
+                                                       attrs={'class': re.compile(
+                                                           '^sorted-by-(Tribal|Planeswalker|Creature|Sorcery|Land|Enchantment|Artifact|Instant)',
+                                                           flags=re.IGNORECASE)})
+            # pprint(sorted_by_type)
+            card_list = []
+            for sorted_by_type in sorted_by_type:
+                # print(sorted_by_type.find('h5').string)
+                cards_in_decks = sorted_by_type.findAll('a', attrs={'class': 'deck-list-link'})
+                for div in cards_in_decks:
+                    dict_to_add = {}
+                    card_type = div.parent.parent.parent.find('h5').string
+                    card_type = card_type[:card_type.index(" (")]
+                    dict_to_add['type'] = card_type
+                    print(div.string + ': ' + card_type)
+                    # print(div.string + ': ' + str(is_this_a_basic(div.string)))
+                    if (div.string not in card_list) and (not is_this_a_basic(div.string)):
+                        if '//' in div.string:
+                            split_str = div.string.split('//', 1)
+                            for correct_answer_name in split_str:
+                                # card_list.append(correct_answer_name.rstrip().lstrip())
+                                dict_to_add['name'] = correct_answer_name.rstrip().lstrip()
+                                card_list.append(dict_to_add)
 
-            # print(
-            #     ''.join(text for text in cards_in_decks if not is_this_a_basic(text.string)))
+                        else:
+                            dict_to_add['name'] = div.string
+                            card_list.append(dict_to_add)
 
-            card_set = set()
-            # pprint(cards_in_decks)
-            for div in cards_in_decks:
-
-                print(div.string + ': ' + str(is_this_a_basic(div.string)))
-                if (div.string not in card_set) and (not is_this_a_basic(div.string)):
-                    if '//' in div.string:
-                        split_str = div.string.split('//', 1)
-                        for correct_answer_name in split_str:
-                            card_set.add(correct_answer_name.rstrip().lstrip())
-
-                    else:
-                        card_set.add(div.string)
-
-            # new_set = {x.replace('.good', '').replace('.bad', '') for x in card_set}
-
-            unique_cards = list(sorted(card_set))
+            # https://stackoverflow.com/questions/11092511/python-list-of-unique-dictionaries
+            unique_cards = [dict(s) for s in set(frozenset(d.items()) for d in card_list)]
 
             dict_to_file = {
                 'url': latest_modern_league_url,
@@ -374,52 +436,15 @@ def index():
             cards_from = 'cards from file'
             unique_cards = data['card_set']
 
-    # n_cards = int(input())
-    # random_cards = sample(unique_cards, n_cards)
+    new_cards = gen_new_cards(unique_cards)
 
-    random_cards = sample(unique_cards, 5)
-    # random_cards = ['Vexing Shusher']
-    # random_cards = ['Stomp', 'Bonecrusher Giant']
-    # random_cards = ['Wear', 'Merchant of the Vale']
-    # random_cards = ['Brimaz, King of Oreskos','Keranos, God of Storms']
-
-    # pprint(random_cards)
-    random_card_data = get_card_data(random_cards)
-
-    # pprint(random_card_data)
-
-    correct_answer = random.choice(random_card_data)
-    correct_answer_index = random_card_data.index(correct_answer) + 1
-
-    # TODO: Get only oracle text of correct_answer
-    correct_answer_name = correct_answer['name']
-    correct_answer_image = correct_answer['image']
-    correct_oracle_text_answer = correct_answer['oracle_text']
-    pprint(correct_oracle_text_answer)
-    if correct_answer['flavor_text']:
-        correct_answer_flavor_text = correct_answer['flavor_text']
-    else:
-        correct_answer_flavor_text = correct_answer
-
-    # correct_answer_flavor_text = correct_answer['flavor_text']
-    correct_oracle_text_answer = replace_symbols_in_text(correct_oracle_text_answer)
-
-    correct_oracle_text_answer = replace_card_name_in_oracle(correct_answer_name, correct_oracle_text_answer)
-
-    # oracle_text_answer = oracle_text_answer.replace('\n', ' <br/> ')
-
-    # test_new_cards = get_new_cards()
-
-    # pprint('icara')
-    # pprint(test_new_cards)
-
-    return render_template("index.html", correct_answer_index=correct_answer_index, correct_answer=correct_answer,
-                           card_info=random_card_data,
-                           correct_answer_name=correct_answer_name,
-                           correct_answer_flavor_text=correct_answer_flavor_text,
-                           correct_oracle_text_answer=Markup(correct_oracle_text_answer),
-                           correct_answer_image=correct_answer_image,
-                           random_cards=random_cards, cards_from=cards_from,
+    return render_template("index.html", correct_answer_index=new_cards['correct_answer_index'],
+                           card_info=new_cards['card_info'],
+                           correct_answer_name=new_cards['correct_answer_name'],
+                           correct_answer_flavor_text=new_cards['correct_answer_flavor_text'],
+                           correct_oracle_text_answer=Markup(new_cards['correct_answer_oracle_text']),
+                           correct_answer_image=new_cards['correct_answer_image'],
+                           cards_from=cards_from,
                            modern_league_url='https://magic.wizards.com' + modern_league_url,
                            message="Hello Flask!")
 

@@ -1,591 +1,880 @@
 {
     "card_set": [
-        "Abbot of Keral Keep",
-        "Abrade",
-        "Abrupt Decay",
-        "Abundant Growth",
-        "Ad Nauseam",
-        "Aether Gust",
-        "Aether Spellbomb",
-        "Aether Vial",
-        "All Is Dust",
-        "All That Glitters",
-        "Allosaurus Rider",
-        "Amulet of Vigor",
-        "Ancestral Vision",
-        "Ancient Grudge",
-        "Ancient Stirrings",
-        "Ancient Ziggurat",
-        "Angel's Grace",
-        "Anger of the Gods",
-        "Anguished Unmaking",
-        "Animation Module",
-        "Arbor Elf",
-        "Arcbound Ravager",
-        "Arcbound Worker",
-        "Archmage's Charm",
-        "Aria of Flame",
-        "Arid Mesa",
-        "As Foretold",
-        "Ashiok, Dream Render",
-        "Ashiok, Nightmare Muse",
-        "Assassin's Trophy",
-        "Assault Strobe",
-        "Auntie's Hovel",
-        "Auriok Champion",
-        "Autochthon Wurm",
-        "Aven Mindcensor",
-        "Azusa, Lost but Seeking",
-        "Baral, Chief of Compliance",
-        "Barren Moor",
-        "Batterskull",
-        "Battle at the Bridge",
-        "Beast Within",
-        "Bedlam Reveler",
-        "Birds of Paradise",
-        "Bitterblossom",
-        "Blackcleave Cliffs",
-        "Blast Zone",
-        "Blessed Alliance",
-        "Blighted Agent",
-        "Blinkmoth Nexus",
-        "Blood Crypt",
-        "Blood Moon",
-        "Bloodbraid Elf",
-        "Bloodstained Mire",
-        "Blooming Marsh",
-        "Blossoming Defense",
-        "Boggart Harbinger",
-        "Boil",
-        "Bojuka Bog",
-        "Bomat Courier",
-        "Bonecrusher Giant",
-        "Bontu's Last Reckoning",
-        "Boros Charm",
-        "Boros Garrison",
-        "Botanical Sanctum",
-        "Brazen Borrower",
-        "Breeding Pool",
-        "Bring to Light",
-        "Brushland",
-        "Burrenton Forge-Tender",
-        "Burst Lightning",
-        "Castle Garenbrig",
-        "Cathartic Reunion",
-        "Caustic Caterpillar",
-        "Cavalier of Night",
-        "Cavern of Souls",
-        "Celestial Colonnade",
-        "Celestial Purge",
-        "Censor",
-        "Ceremonious Rejection",
-        "Chalice of the Void",
-        "Champion of the Parish",
-        "Chancellor of the Annex",
-        "Chancellor of the Tangle",
-        "Chandra's Incinerator",
-        "Chandra, Awakened Inferno",
-        "Chandra, Torch of Defiance",
-        "Charming Prince",
-        "Children of Korlis",
-        "Choke",
-        "Chord of Calling",
-        "Chromatic Sphere",
-        "Chromatic Star",
-        "Cindervines",
-        "City of Brass",
-        "Cling to Dust",
-        "Collected Company",
-        "Collective Brutality",
-        "Conflagrate",
-        "Conspicuous Snoop",
-        "Containment Priest",
-        "Copperline Gorge",
-        "Corridor Monitor",
-        "Crash Through",
-        "Crashing Footfalls",
-        "Creeping Chill",
-        "Crucible of Worlds",
-        "Crumbling Vestige",
-        "Cryptic Command",
-        "Damping Sphere",
-        "Dark Confidant",
-        "Darkblast",
-        "Darkslick Shores",
-        "Daybreak Coronet",
-        "Dead of Winter",
-        "Deafening Clarion",
-        "Deafening Silence",
-        "Death's Shadow",
-        "Defense Grid",
-        "Delver of Secrets",
-        "Deprive",
-        "Deputy of Detention",
-        "Desperate Ritual",
-        "Devoted Druid",
-        "Disdainful Stroke",
-        "Disenchant",
-        "Dismember",
-        "Dissenter's Deliverance",
-        "Distortion Strike",
-        "Dovin's Veto",
-        "Dragon's Claw",
-        "Dreadbore",
-        "Drogskol Captain",
-        "Drogskol Reaver",
-        "Drown in the Loch",
-        "Dryad Arbor",
-        "Dryad of the Ilysian Grove",
-        "Duskwatch Recruiter",
-        "Earwig Squad",
-        "Echoing Truth",
-        "Edge of Autumn",
-        "Eidolon of the Great Revel",
-        "Eladamri's Call",
-        "Eldrazi Temple",
-        "Eldritch Evolution",
-        "Electrodominance",
-        "Eliminate",
-        "Empty the Warrens",
-        "Emrakul, the Aeons Torn",
-        "Emrakul, the Promised End",
-        "Engineered Explosives",
-        "Ensnaring Bridge",
-        "Eternal Witness",
-        "Ethereal Armor",
-        "Ethersworn Canonist",
-        "Expedition Map",
-        "Explore",
-        "Fact or Fiction",
-        "Fallen Shinobi",
-        "Fatal Push",
-        "Feed the Clan",
-        "Felidar Guardian",
-        "Field of Ruin",
-        "Field of the Dead",
-        "Fierce Empath",
-        "Fiery Islet",
-        "Fiery Justice",
-        "Finale of Devastation",
-        "Finale of Promise",
-        "Firebolt",
-        "Flagstones of Trokair",
-        "Flame Slash",
-        "Flickerwisp",
-        "Flooded Strand",
-        "Flusterstorm",
-        "Force of Negation",
-        "Force of Vigor",
-        "Forgotten Cave",
-        "Frantic Inventory",
-        "Frogtosser Banneret",
-        "Fulminator Mage",
-        "Gaddock Teeg",
-        "Galvanic Blast",
-        "Gather the Pack",
-        "Geist of Saint Traft",
-        "Gemrazer",
-        "Gemstone Caverns",
-        "Gemstone Mine",
-        "General Kudro of Drannith",
-        "Geralf's Messenger",
-        "Ghirapur Aether Grid",
-        "Ghor-Clan Rampager",
-        "Ghost Quarter",
-        "Gideon of the Trials",
-        "Gifts Ungiven",
-        "Gilded Goose",
-        "Giver of Runes",
-        "Glacial Fortress",
-        "Gladecover Scout",
-        "Glimmervoid",
-        "Glimpse the Unthinkable",
-        "Glistener Elf",
-        "Glorybringer",
-        "Go for the Throat",
-        "Goblin Chainwhirler",
-        "Goblin Cratermaker",
-        "Goblin Electromancer",
-        "Goblin Engineer",
-        "Goblin Guide",
-        "Goblin Matron",
-        "Goblin Ringleader",
-        "Goblin Smuggler",
-        "Goblin Trashmaster",
-        "Goblin Warchief",
-        "Godless Shrine",
-        "Golgari Rot Farm",
-        "Golgari Thug",
-        "Grafdigger's Cage",
-        "Grapeshot",
-        "Gravecrawler",
-        "Greater Gargadon",
-        "Grim Flayer",
-        "Grim Tutor",
-        "Griselbrand",
-        "Grisly Salvage",
-        "Groundswell",
-        "Grove of the Burnwillows",
-        "Growth Spiral",
-        "Gruul Turf",
-        "Gryff's Boon",
-        "Gurmag Angler",
-        "Gut Shot",
-        "Hallowed Fountain",
-        "Hangarback Walker",
-        "Hardened Scales",
-        "Heartfire Immolator",
-        "Hedron Crab",
-        "Herald of Anguish",
-        "Hooting Mandrills",
-        "Horizon Canopy",
-        "Hostage Taker",
-        "Huntmaster of the Fells",
-        "Hurkyl's Recall",
-        "Hyena Umbra",
-        "Ice-Fang Coatl",
-        "Inkmoth Nexus",
-        "Inquisition of Kozilek",
-        "Insolent Neonate",
-        "Inspiring Vantage",
-        "Inventors' Fair",
-        "Izzet Charm",
-        "Jace, the Mind Sculptor",
-        "Jegantha, the Wellspring",
-        "Kalitas, Traitor of Ghet",
-        "Kambal, Consul of Allocation",
-        "Karn Liberated",
-        "Karn, the Great Creator",
-        "Kataki, War's Wage",
-        "Kaya's Guile",
-        "Ketria Triome",
-        "Khalni Garden",
-        "Kiki-Jiki, Mirror Breaker",
-        "Kiln Fiend",
-        "Kitchen Finks",
-        "Kitesail Freebooter",
-        "Klothys, God of Destiny",
-        "Knight of Autumn",
-        "Kolaghan's Command",
-        "Kor Firewalker",
-        "Kor Spiritdancer",
-        "Kozilek's Return",
-        "Kozilek, Butcher of Truth",
-        "Kroxa, Titan of Death's Hunger",
-        "Kumena's Speaker",
-        "Kunoros, Hound of Athreos",
-        "Laboratory Maniac",
-        "Lava Dart",
-        "Lava Spike",
-        "Lavinia, Azorius Renegade",
-        "Leonin Arbiter",
-        "Leonin Relic-Warder",
-        "Leyline of Sanctity",
-        "Leyline of the Void",
-        "Life from the Loam",
-        "Light Up the Stage",
-        "Lightning Axe",
-        "Lightning Bolt",
-        "Lightning Helix",
-        "Lightning Storm",
-        "Liliana of the Veil",
-        "Liliana, the Last Hope",
-        "Liquimetal Coating",
-        "Living End",
-        "Llanowar Reborn",
-        "Logic Knot",
-        "Lord of Atlantis",
-        "Lotleth Troll",
-        "Lotus Bloom",
-        "Madcap Experiment",
-        "Maelstrom Pulse",
-        "Magus of the Moon",
-        "Mana Leak",
-        "Manamorphose",
-        "Mantis Rider",
-        "Marsh Flats",
-        "Master of the Pearl Trident",
-        "Matter Reshaper",
-        "Mausoleum Wanderer",
-        "Mazemind Tome",
-        "Meddling Mage",
-        "Merchant of the Vale",
-        "Merfolk Mistbinder",
-        "Merfolk Secretkeeper",
-        "Merfolk Trickster",
-        "Metallic Rebuke",
-        "Might of Old Krosa",
-        "Militia Bugler",
-        "Mind Stone",
-        "Mirran Crusader",
-        "Mishra's Bauble",
-        "Misty Rainforest",
-        "Mogg War Marshal",
-        "Molten Rain",
-        "Monastery Mentor",
-        "Monastery Swiftspear",
-        "Moorland Haunt",
-        "Morophon, the Boundless",
-        "Munitions Expert",
-        "Murderous Rider",
-        "Mutagenic Growth",
-        "Mutavault",
-        "Mystic Sanctuary",
-        "Mystical Dispute",
-        "Narcomoeba",
-        "Nature's Claim",
-        "Necromentia",
-        "Negate",
-        "Neoform",
-        "Nexus of Fate",
-        "Nihil Spellbomb",
-        "Niv-Mizzet Reborn",
-        "Noble Hierarch",
-        "Nourishing Shoal",
-        "Nurturing Peatland",
-        "Oath of Kaya",
-        "Oath of Nissa",
-        "Oblivion Stone",
-        "Obstinate Baloth",
-        "Omen of the Sea",
-        "Opt",
-        "Orbs of Warding",
-        "Overgrown Tomb",
-        "Ox of Agonas",
-        "Pact of Negation",
-        "Pashalik Mons",
-        "Past in Flames",
-        "Path to Exile",
-        "Pendelhaven",
-        "Pentad Prism",
-        "Phantasmal Image",
-        "Phyrexia's Core",
-        "Phyrexian Revoker",
-        "Phyrexian Unlife",
-        "Pieces of the Puzzle",
-        "Pillage",
-        "Pillar of the Paruns",
-        "Pithing Needle",
-        "Plague Engineer",
-        "Platinum Emperion",
-        "Polluted Delta",
-        "Postmortem Lunge",
-        "Prime Speaker Vannifar",
-        "Primeval Titan",
-        "Prismatic Vista",
-        "Prized Amalgam",
-        "Pyretic Ritual",
-        "Questing Beast",
-        "Radiant Fountain",
-        "Raging Ravine",
-        "Rancor",
-        "Ranger-Captain of Eos",
-        "Rattlechains",
-        "Raugrin Triome",
-        "Ravenous Trap",
-        "Razorverge Thicket",
-        "Reality Smasher",
-        "Reclamation Sage",
-        "Reflector Mage",
-        "Relic of Progenitus",
-        "Remand",
-        "Remorseful Cleric",
-        "Renegade Rallier",
-        "Repeal",
-        "Rest in Peace",
-        "Restoration Angel",
-        "Restore Balance",
-        "Rift Bolt",
-        "Sacred Foundry",
-        "Saheeli Rai",
-        "Sakura-Tribe Scout",
-        "Samut, Voice of Dissent",
-        "Sanctum of Ugin",
-        "Scalding Tarn",
-        "Scale Up",
-        "Scapeshift",
-        "Scavenger Grounds",
-        "Scavenging Ooze",
-        "Scrapyard Recombiner",
-        "Seachrome Coast",
-        "Seal of Fire",
-        "Seal of Primordium",
-        "Search for Azcanta",
-        "Searing Blaze",
-        "Searing Blood",
-        "Seasoned Pyromancer",
-        "Selesnya Sanctuary",
-        "Selfless Savior",
-        "Selfless Spirit",
-        "Serra Avenger",
-        "Serum Visions",
-        "Settle the Wreckage",
-        "Shard Volley",
-        "Shark Typhoon",
-        "Shenanigans",
-        "Shivan Reef",
-        "Shriekhorn",
-        "Shriekmaw",
-        "Shrine of Burning Rage",
-        "Silent Clearing",
-        "Silvergill Adept",
-        "Silversmote Ghoul",
-        "Simian Spirit Guide",
-        "Simic Growth Chamber",
-        "Sin Collector",
-        "Skewer the Critics",
-        "Skirk Prospector",
-        "Skullcrack",
-        "Skysovereign, Consul Flagship",
-        "Slaughter Pact",
-        "Slayers' Stronghold",
-        "Sleight of Hand",
-        "Sling-Gang Lieutenant",
-        "Slippery Bogle",
-        "Smash to Smithereens",
-        "Smiting Helix",
-        "Smuggler's Copter",
-        "Snapcaster Mage",
-        "Sorcerous Spyglass",
-        "Soul-Guide Lantern",
-        "Soul-Scar Mage",
-        "Soulflayer",
-        "Spatial Contortion",
-        "Spell Pierce",
-        "Spell Queller",
-        "Spell Snare",
-        "Spellskite",
-        "Spellstutter Sprite",
-        "Spider Umbra",
-        "Spine of Ish Sah",
-        "Spire of Industry",
-        "Spirebluff Canal",
-        "Spirit Link",
-        "Spirit Mantle",
-        "Spoils of the Vault",
-        "Spreading Seas",
-        "Springleaf Drum",
-        "Sprite Dragon",
-        "Steam Vents",
-        "Stingscourger",
-        "Stinkweed Imp",
-        "Stitcher's Supplier",
-        "Stomping Ground",
-        "Stoneforge Mystic",
-        "Stormwing Entity",
-        "Strangleroot Geist",
-        "Street Wraith",
-        "Striped Riverwinder",
-        "Stubborn Denial",
-        "Sulfur Falls",
-        "Summary Dismissal",
-        "Summoner's Pact",
-        "Sunbaked Canyon",
-        "Sundering Titan",
-        "Supreme Phantom",
-        "Supreme Verdict",
-        "Surgical Extraction",
-        "Sword of Feast and Famine",
-        "Sword of Fire and Ice",
-        "Sword of Light and Shadow",
-        "Sword of the Meek",
-        "Sylvan Caryatid",
-        "Sylvan Scrying",
-        "Talisman of Creativity",
-        "Talisman of Dominance",
-        "Tarfire",
-        "Tarmogoyf",
-        "Tasigur, the Golden Fang",
-        "Teferi, Hero of Dominaria",
-        "Teferi, Mage of Zhalfir",
-        "Teferi, Time Raveler",
-        "Temple Garden",
-        "Temple of Deceit",
-        "Temple of Enlightenment",
-        "Temur Battle Rage",
-        "Terminus",
-        "Thalia's Lieutenant",
-        "Thalia, Guardian of Thraben",
-        "Thassa's Oracle",
-        "The Ozolith",
-        "Thing in the Ice",
-        "Thopter Foundry",
-        "Thought Scour",
-        "Thought-Knot Seer",
-        "Thoughtseize",
-        "Thragtusk",
-        "Thrashing Brontodon",
-        "Throne of Geth",
-        "Through the Breach",
-        "Thrun, the Last Troll",
-        "Tidehollow Sculler",
-        "Timely Reinforcements",
-        "Tireless Tracker",
-        "Tocatli Honor Guard",
-        "Tolaria West",
-        "Tormod's Crypt",
-        "Torpor Orb",
-        "Traverse the Ulvenwald",
-        "Treetop Village",
-        "Trial of Ambition",
-        "Tribute Mage",
-        "Twilight Mire",
-        "Ugin, the Ineffable",
-        "Ugin, the Spirit Dragon",
-        "Ulamog, the Ceaseless Hunger",
-        "Unclaimed Territory",
-        "Unearth",
-        "Unified Will",
-        "Unmoored Ego",
-        "Unsettled Mariner",
-        "Urborg, Tomb of Yawgmoth",
-        "Uro, Titan of Nature's Wrath",
-        "Urza's Mine",
-        "Urza's Power Plant",
-        "Urza's Tower",
-        "Urza, Lord High Artificer",
-        "Utopia Sprawl",
-        "Valakut, the Molten Pinnacle",
-        "Vapor Snag",
-        "Veil of Summer",
-        "Vendilion Clique",
-        "Vengevine",
-        "Venser, Shaper Savant",
-        "Verdant Catacombs",
-        "Vesuva",
-        "Vexing Devil",
-        "Vines of Vastwood",
-        "Vizier of Remedies",
-        "Voice of Resurgence",
-        "Waker of Waves",
-        "Walking Ballista",
-        "Wall of Roots",
-        "Wanderwine Hub",
-        "Warren Instigator",
-        "Warren Weirding",
-        "Waste Not",
-        "Waterlogged Grove",
-        "Watery Grave",
-        "Weather the Storm",
-        "Welding Jar",
-        "Whir of Invention",
-        "Wild Cantor",
-        "Wild Slash",
-        "Wilderness Reclamation",
-        "Wilt",
-        "Winds of Abandon",
-        "Windswept Heath",
-        "Witching Well",
-        "Wooded Foothills",
-        "Wrenn and Six",
-        "Wurmcoil Engine",
-        "Yawgmoth, Thran Physician",
-        "Yixlid Jailer",
-        "Yorion, Sky Nomad",
-        "Young Wolf",
-        "Zagoth Triome",
-        "Zetalpa, Primal Dawn",
-        "Zulaport Cutthroat"
+        {
+            "name": "All Is Dust",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Striking Sliver",
+            "type": "Creature"
+        },
+        {
+            "name": "Lava Spike",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Ox of Agonas",
+            "type": "Creature"
+        },
+        {
+            "name": "Thalia's Lieutenant",
+            "type": "Creature"
+        },
+        {
+            "name": "Gruul Turf",
+            "type": "Land"
+        },
+        {
+            "name": "Nihil Spellbomb",
+            "type": "Artifact"
+        },
+        {
+            "name": "Engineered Explosives",
+            "type": "Artifact"
+        },
+        {
+            "name": "Bloodbraid Elf",
+            "type": "Creature"
+        },
+        {
+            "name": "Mishra's Bauble",
+            "type": "Artifact"
+        },
+        {
+            "name": "Seasoned Pyromancer",
+            "type": "Creature"
+        },
+        {
+            "name": "Distortion Strike",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Misty Rainforest",
+            "type": "Land"
+        },
+        {
+            "name": "Mutagenic Growth",
+            "type": "Instant"
+        },
+        {
+            "name": "Twilight Mire",
+            "type": "Land"
+        },
+        {
+            "name": "Thought Scour",
+            "type": "Instant"
+        },
+        {
+            "name": "Amulet of Vigor",
+            "type": "Artifact"
+        },
+        {
+            "name": "Dryad Arbor",
+            "type": "Land"
+        },
+        {
+            "name": "Field of the Dead",
+            "type": "Land"
+        },
+        {
+            "name": "Spirebluff Canal",
+            "type": "Land"
+        },
+        {
+            "name": "Unsettled Mariner",
+            "type": "Creature"
+        },
+        {
+            "name": "Cling to Dust",
+            "type": "Instant"
+        },
+        {
+            "name": "Dregscape Sliver",
+            "type": "Creature"
+        },
+        {
+            "name": "Pact of Negation",
+            "type": "Instant"
+        },
+        {
+            "name": "Expedition Map",
+            "type": "Artifact"
+        },
+        {
+            "name": "Reality Smasher",
+            "type": "Creature"
+        },
+        {
+            "name": "Inspiring Vantage",
+            "type": "Land"
+        },
+        {
+            "name": "Cryptic Command",
+            "type": "Instant"
+        },
+        {
+            "name": "Sanctum of Ugin",
+            "type": "Land"
+        },
+        {
+            "name": "Selesnya Sanctuary",
+            "type": "Land"
+        },
+        {
+            "name": "Forgotten Cave",
+            "type": "Land"
+        },
+        {
+            "name": "Abbot of Keral Keep",
+            "type": "Creature"
+        },
+        {
+            "name": "Thoughtseize",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Gut Shot",
+            "type": "Instant"
+        },
+        {
+            "name": "Fiery Islet",
+            "type": "Land"
+        },
+        {
+            "name": "Sacred Foundry",
+            "type": "Land"
+        },
+        {
+            "name": "Dead of Winter",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Sword of Fire and Ice",
+            "type": "Artifact"
+        },
+        {
+            "name": "Spell Snare",
+            "type": "Instant"
+        },
+        {
+            "name": "Wrenn and Six",
+            "type": "Planeswalker"
+        },
+        {
+            "name": "Pendelhaven",
+            "type": "Land"
+        },
+        {
+            "name": "Teferi, Time Raveler",
+            "type": "Planeswalker"
+        },
+        {
+            "name": "Jace, the Mind Sculptor",
+            "type": "Planeswalker"
+        },
+        {
+            "name": "Prairie Stream",
+            "type": "Land"
+        },
+        {
+            "name": "Golgari Thug",
+            "type": "Creature"
+        },
+        {
+            "name": "Ancient Ziggurat",
+            "type": "Land"
+        },
+        {
+            "name": "Fierce Empath",
+            "type": "Creature"
+        },
+        {
+            "name": "City of Brass",
+            "type": "Land"
+        },
+        {
+            "name": "Watery Grave",
+            "type": "Land"
+        },
+        {
+            "name": "Noble Hierarch",
+            "type": "Creature"
+        },
+        {
+            "name": "Logic Knot",
+            "type": "Instant"
+        },
+        {
+            "name": "Thalia, Guardian of Thraben",
+            "type": "Creature"
+        },
+        {
+            "name": "Summoner's Pact",
+            "type": "Instant"
+        },
+        {
+            "name": "Castle Garenbrig",
+            "type": "Land"
+        },
+        {
+            "name": "Liliana of the Veil",
+            "type": "Planeswalker"
+        },
+        {
+            "name": "Stomping Ground",
+            "type": "Land"
+        },
+        {
+            "name": "Groundswell",
+            "type": "Instant"
+        },
+        {
+            "name": "Wurmcoil Engine",
+            "type": "Creature"
+        },
+        {
+            "name": "Life from the Loam",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Sakura-Tribe Scout",
+            "type": "Creature"
+        },
+        {
+            "name": "Stinkweed Imp",
+            "type": "Creature"
+        },
+        {
+            "name": "Uro, Titan of Nature's Wrath",
+            "type": "Creature"
+        },
+        {
+            "name": "Frenetic Sliver",
+            "type": "Creature"
+        },
+        {
+            "name": "Shriekhorn",
+            "type": "Artifact"
+        },
+        {
+            "name": "Searing Blaze",
+            "type": "Instant"
+        },
+        {
+            "name": "Scalding Tarn",
+            "type": "Land"
+        },
+        {
+            "name": "Copperline Gorge",
+            "type": "Land"
+        },
+        {
+            "name": "Archmage's Charm",
+            "type": "Instant"
+        },
+        {
+            "name": "Field of Ruin",
+            "type": "Land"
+        },
+        {
+            "name": "Fatal Push",
+            "type": "Instant"
+        },
+        {
+            "name": "Mystic Sanctuary",
+            "type": "Land"
+        },
+        {
+            "name": "Sliver Hive",
+            "type": "Land"
+        },
+        {
+            "name": "Vines of Vastwood",
+            "type": "Instant"
+        },
+        {
+            "name": "Remand",
+            "type": "Instant"
+        },
+        {
+            "name": "Meddling Mage",
+            "type": "Creature"
+        },
+        {
+            "name": "General Kudro of Drannith",
+            "type": "Creature"
+        },
+        {
+            "name": "Breeding Pool",
+            "type": "Land"
+        },
+        {
+            "name": "Champion of the Parish",
+            "type": "Creature"
+        },
+        {
+            "name": "Gifts Ungiven",
+            "type": "Instant"
+        },
+        {
+            "name": "Become Immense",
+            "type": "Instant"
+        },
+        {
+            "name": "Kroxa, Titan of Death's Hunger",
+            "type": "Creature"
+        },
+        {
+            "name": "Goblin Guide",
+            "type": "Creature"
+        },
+        {
+            "name": "Sleight of Hand",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Matter Reshaper",
+            "type": "Creature"
+        },
+        {
+            "name": "Skullcrack",
+            "type": "Instant"
+        },
+        {
+            "name": "Zagoth Triome",
+            "type": "Land"
+        },
+        {
+            "name": "Tolaria West",
+            "type": "Land"
+        },
+        {
+            "name": "Reflector Mage",
+            "type": "Creature"
+        },
+        {
+            "name": "Grapeshot",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Flooded Strand",
+            "type": "Land"
+        },
+        {
+            "name": "Verdant Catacombs",
+            "type": "Land"
+        },
+        {
+            "name": "Sunbaked Canyon",
+            "type": "Land"
+        },
+        {
+            "name": "Overgrown Tomb",
+            "type": "Land"
+        },
+        {
+            "name": "Aether Vial",
+            "type": "Artifact"
+        },
+        {
+            "name": "Shivan Reef",
+            "type": "Land"
+        },
+        {
+            "name": "Vesuva",
+            "type": "Land"
+        },
+        {
+            "name": "Bojuka Bog",
+            "type": "Land"
+        },
+        {
+            "name": "Pyretic Ritual",
+            "type": "Instant"
+        },
+        {
+            "name": "Windswept Heath",
+            "type": "Land"
+        },
+        {
+            "name": "Abrupt Decay",
+            "type": "Instant"
+        },
+        {
+            "name": "Conflagrate",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Eldrazi Temple",
+            "type": "Land"
+        },
+        {
+            "name": "Mind Stone",
+            "type": "Artifact"
+        },
+        {
+            "name": "Sinew Sliver",
+            "type": "Creature"
+        },
+        {
+            "name": "Collective Brutality",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Stoneforge Mystic",
+            "type": "Creature"
+        },
+        {
+            "name": "Urza's Tower",
+            "type": "Land"
+        },
+        {
+            "name": "Sylvan Scrying",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Crumbling Vestige",
+            "type": "Land"
+        },
+        {
+            "name": "Manamorphose",
+            "type": "Instant"
+        },
+        {
+            "name": "Spell Pierce",
+            "type": "Instant"
+        },
+        {
+            "name": "Golgari Rot Farm",
+            "type": "Land"
+        },
+        {
+            "name": "Karn, the Great Creator",
+            "type": "Planeswalker"
+        },
+        {
+            "name": "Scale Up",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Thragtusk",
+            "type": "Creature"
+        },
+        {
+            "name": "Silent Clearing",
+            "type": "Land"
+        },
+        {
+            "name": "Shark Typhoon",
+            "type": "Enchantment"
+        },
+        {
+            "name": "Oblivion Stone",
+            "type": "Artifact"
+        },
+        {
+            "name": "Walking Ballista",
+            "type": "Creature"
+        },
+        {
+            "name": "Goblin Electromancer",
+            "type": "Creature"
+        },
+        {
+            "name": "Leeching Sliver",
+            "type": "Creature"
+        },
+        {
+            "name": "Blackcleave Cliffs",
+            "type": "Land"
+        },
+        {
+            "name": "Lightning Helix",
+            "type": "Instant"
+        },
+        {
+            "name": "Past in Flames",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Mazemind Tome",
+            "type": "Artifact"
+        },
+        {
+            "name": "Unclaimed Territory",
+            "type": "Land"
+        },
+        {
+            "name": "Tarmogoyf",
+            "type": "Creature"
+        },
+        {
+            "name": "Cathartic Reunion",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Monastery Swiftspear",
+            "type": "Creature"
+        },
+        {
+            "name": "Insolent Neonate",
+            "type": "Creature"
+        },
+        {
+            "name": "Sprite Dragon",
+            "type": "Creature"
+        },
+        {
+            "name": "Urza's Mine",
+            "type": "Land"
+        },
+        {
+            "name": "Blossoming Defense",
+            "type": "Instant"
+        },
+        {
+            "name": "Horizon Canopy",
+            "type": "Land"
+        },
+        {
+            "name": "Desperate Ritual",
+            "type": "Instant"
+        },
+        {
+            "name": "Rift Bolt",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Wooded Foothills",
+            "type": "Land"
+        },
+        {
+            "name": "Bloodstained Mire",
+            "type": "Land"
+        },
+        {
+            "name": "Skewer the Critics",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Ugin, the Ineffable",
+            "type": "Planeswalker"
+        },
+        {
+            "name": "Ice-Fang Coatl",
+            "type": "Creature"
+        },
+        {
+            "name": "Simic Growth Chamber",
+            "type": "Land"
+        },
+        {
+            "name": "Polluted Delta",
+            "type": "Land"
+        },
+        {
+            "name": "Lightning Bolt",
+            "type": "Instant"
+        },
+        {
+            "name": "Cavern of Souls",
+            "type": "Land"
+        },
+        {
+            "name": "Dreadhorde Arcanist",
+            "type": "Creature"
+        },
+        {
+            "name": "Unearth",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Hallowed Fountain",
+            "type": "Land"
+        },
+        {
+            "name": "Might of Old Krosa",
+            "type": "Instant"
+        },
+        {
+            "name": "Dismember",
+            "type": "Instant"
+        },
+        {
+            "name": "Narcomoeba",
+            "type": "Creature"
+        },
+        {
+            "name": "Merchant of the Vale",
+            "type": "Creature"
+        },
+        {
+            "name": "Ulamog, the Ceaseless Hunger",
+            "type": "Creature"
+        },
+        {
+            "name": "Blighted Agent",
+            "type": "Creature"
+        },
+        {
+            "name": "Ratchet Bomb",
+            "type": "Artifact"
+        },
+        {
+            "name": "Glistener Elf",
+            "type": "Creature"
+        },
+        {
+            "name": "Dryad of the Ilysian Grove",
+            "type": "Creature"
+        },
+        {
+            "name": "Chromatic Sphere",
+            "type": "Artifact"
+        },
+        {
+            "name": "Prized Amalgam",
+            "type": "Creature"
+        },
+        {
+            "name": "Opt",
+            "type": "Instant"
+        },
+        {
+            "name": "Tectonic Edge",
+            "type": "Land"
+        },
+        {
+            "name": "Waterlogged Grove",
+            "type": "Land"
+        },
+        {
+            "name": "Chromatic Star",
+            "type": "Artifact"
+        },
+        {
+            "name": "Blood Crypt",
+            "type": "Land"
+        },
+        {
+            "name": "Assassin's Trophy",
+            "type": "Instant"
+        },
+        {
+            "name": "Hanweir Battlements",
+            "type": "Land"
+        },
+        {
+            "name": "Soul-Scar Mage",
+            "type": "Creature"
+        },
+        {
+            "name": "Arid Mesa",
+            "type": "Land"
+        },
+        {
+            "name": "Inquisition of Kozilek",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Light Up the Stage",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Snapcaster Mage",
+            "type": "Creature"
+        },
+        {
+            "name": "Lava Dart",
+            "type": "Instant"
+        },
+        {
+            "name": "Bloodghast",
+            "type": "Creature"
+        },
+        {
+            "name": "Batterskull",
+            "type": "Artifact"
+        },
+        {
+            "name": "Azusa, Lost but Seeking",
+            "type": "Creature"
+        },
+        {
+            "name": "Serum Visions",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Cloudshredder Sliver",
+            "type": "Creature"
+        },
+        {
+            "name": "Spellskite",
+            "type": "Creature"
+        },
+        {
+            "name": "Mutavault",
+            "type": "Land"
+        },
+        {
+            "name": "Seal of Fire",
+            "type": "Enchantment"
+        },
+        {
+            "name": "Thought-Knot Seer",
+            "type": "Creature"
+        },
+        {
+            "name": "Sword of Feast and Famine",
+            "type": "Artifact"
+        },
+        {
+            "name": "Baral, Chief of Compliance",
+            "type": "Creature"
+        },
+        {
+            "name": "Sidewinder Sliver",
+            "type": "Creature"
+        },
+        {
+            "name": "Kolaghan's Command",
+            "type": "Instant"
+        },
+        {
+            "name": "Inkmoth Nexus",
+            "type": "Land"
+        },
+        {
+            "name": "Radiant Fountain",
+            "type": "Land"
+        },
+        {
+            "name": "Ghost Quarter",
+            "type": "Land"
+        },
+        {
+            "name": "Repeal",
+            "type": "Instant"
+        },
+        {
+            "name": "Fulminator Mage",
+            "type": "Creature"
+        },
+        {
+            "name": "Scavenger Grounds",
+            "type": "Land"
+        },
+        {
+            "name": "Predatory Sliver",
+            "type": "Creature"
+        },
+        {
+            "name": "Nurturing Peatland",
+            "type": "Land"
+        },
+        {
+            "name": "Mantis Rider",
+            "type": "Creature"
+        },
+        {
+            "name": "Explore",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Kitesail Freebooter",
+            "type": "Creature"
+        },
+        {
+            "name": "Phantasmal Image",
+            "type": "Creature"
+        },
+        {
+            "name": "Urza's Power Plant",
+            "type": "Land"
+        },
+        {
+            "name": "Valakut, the Molten Pinnacle",
+            "type": "Land"
+        },
+        {
+            "name": "Steam Vents",
+            "type": "Land"
+        },
+        {
+            "name": "Eidolon of the Great Revel",
+            "type": "Creature"
+        },
+        {
+            "name": "Stormwing Entity",
+            "type": "Creature"
+        },
+        {
+            "name": "Creeping Chill",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Primeval Titan",
+            "type": "Creature"
+        },
+        {
+            "name": "Raging Ravine",
+            "type": "Land"
+        },
+        {
+            "name": "Force of Negation",
+            "type": "Instant"
+        },      {
+            "name": "Stomp",
+            "type": "Instant"
+        },
+        {
+            "name": "Blooming Marsh",
+            "type": "Land"
+        },
+        {
+            "name": "Bonecrusher Giant",
+            "type": "Creature"
+        },
+        {
+            "name": "Ancient Stirrings",
+            "type": "Sorcery"
+        },
+        {
+            "name": "Path to Exile",
+            "type": "Instant"
+        },
+        {
+            "name": "Scavenging Ooze",
+            "type": "Creature"
+        },
+        {
+            "name": "Galerider Sliver",
+            "type": "Creature"
+        },
+        {
+            "name": "Mana Leak",
+            "type": "Instant"
+        },
+        {
+            "name": "Boros Charm",
+            "type": "Instant"
+        },
+        {
+            "name": "Karn Liberated",
+            "type": "Planeswalker"
+        },
+        {
+            "name": "Blast Zone",
+            "type": "Land"
+        },
+        {
+            "name": "Bedlam Reveler",
+            "type": "Creature"
+        },
+        {
+            "name": "Darkheart Sliver",
+            "type": "Creature"
+        }
     ],
-    "url": "/en/articles/archive/mtgo-standings/modern-league-2020-07-17"
+    "url": "/en/articles/archive/mtgo-standings/modern-preliminary-2020-07-18"
 }

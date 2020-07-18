@@ -7,10 +7,7 @@
                 <div class="col-12 col-sm-9 col-md-7 col-lg-9 col-xl-7 d-flex flex-column mx-auto justify-content-center">
                     <h1 class="text-center my-1">Modern Spike</h1>
 
-                    {#                    <div class="d-flex justify-content-between align-items-center justify-content-center my-1">#}
 
-
-                    {#                        <button class="add-button btn-sm btn btn-light">Add to home screen</button>#}
                     <small class="text-center my-1 ">
                         Can you guess the card? Score:
                         <span class="d-none" id="answered_flag">0</span>
@@ -31,7 +28,6 @@
                             {% endif %}
                         </span>
                     </small>
-                    {#                    </div>#}
                     <div class="lds-ripple d-none">
                         <div></div>
                         <div></div>
@@ -71,26 +67,15 @@
                                                          alt="{{ correct_answer_flavor_text }}"
                                                          title="{{ correct_answer_name }}">
                                                 </div>
-                                                {#<div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Close
-                                                    </button>
-                                                </div>#}
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body text-dark py-2">
-                                    {% set list1 = correct_oracle_text_answer.split('\n') %}
-                                    {% for string in list1 %}
-                                        <p class="card-text mb-1">{{ string |e }}</p>
-                                    {% endfor %}
+                                    {{ correct_oracle_text_answer }}
                                 </div>
                             </div>
-
-
-                            {#                        {{ oracle_text_answer.split }}#}
-
                         </div>
                     </div>
 
@@ -98,7 +83,6 @@
                     <div class="row my-1 ">
                         <div class="col-lg-6 col-12 mx-auto">
                             <form class="form-horizontal d-flex flex-column">
-                                {#            <form class="form-horizontal" method=POST action="{{ url_for('score') }}">#}
 
 
                                 <div id="card_holder"
@@ -106,9 +90,7 @@
                                      data-toggle="buttons">
 
 
-                                    {#                    {% block cards scoped %}#}
                                     {% include "cards.html" %}
-                                    {#                    {% endblock %}#}
 
 
                                 </div>
@@ -117,29 +99,11 @@
                                     Next
                                     Card
                                 </button>
-                                {% for card_info in card_info %}
-
-                                    {#                    <div class="form-check">#}
-                                    {#                        <input class="form-check-input" type="radio" name="pickCard"#}
-                                    {#                               id="{{ card_info.name | replace(" ", "_")|lower|escape }}"#}
-                                    {#                               value="{{ loop.index }}">#}
-                                    {#                        <label class="form-check-label" for="{{ card_info.name | replace(" ", "")|lower|escape }}">#}
-                                    {#                            {{ card_info.name }}#}
-                                    {#                        </label>#}
-                                    {#                    </div>#}
-
-
-                                {% endfor %}
-
-
-                                {#                            <button id="icara" type="submit" name="choice" class="mt-2 btn btn-light">Submit</button>#}
 
 
                             </form>
 
 
-                            {#            <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>#}
-                            {#            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">#}
                         </div>
                     </div>
 
@@ -168,27 +132,5 @@
 
     </main>
 
-    {#    <div>#}
-    {#        <p>{{ message }}</p>#}
-    {##}
-    {#        <p>{{ cards_from }}</p>#}
-    {#    <p>{{ correct_answer }}</p>#}
-    {##}
-    {#        <p>{{ card_info }}</p>#}
-    {#        <img src="{{ card_info }}">#}
-    {#        <p>My Contacts:</p>#}
-    {#        <ul>#}
-    {#            {% for card in random_cards %}#}
-    {#                <li>{{ card }}</li>#}
-    {#            {% endfor %}#}
-    {#        </ul>#}
-    {#        <ul>#}
-    {#            {% for card_info in card_info %}#}
-    {#                <li><img alt="" src="{{ card_info.image }}">{{ card_info.name }}</li>#}
-    {#            {% endfor %}#}
-    {#        </ul>#}
-    {##}
-    {##}
-    {#    </div>#}
 
 {% endblock %}
