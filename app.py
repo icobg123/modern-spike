@@ -157,61 +157,85 @@ def read_from_file(filename):
     return data
 
 
-def get_card_data(random_cards):
+def get_single_card_data_from_scryfall(card):
+    card_info = scrython.cards.Named(fuzzy=card)
+    card_info = vars(card_info)
+    card_data, card_oracle_txt, card_img, card_flavor_txt = {}, '', '', card
+
+    if 'card_faces' in card_info['scryfallJson']:
+        for card_faces in card_info['scryfallJson']['card_faces']:
+            if card in card_faces['name']:
+                card_oracle_txt = card_faces['oracle_text']
+                if "flavor_text" in card_faces:
+                    card_flavor_txt = card_faces['flavor_text']
+                if "image_uris" not in card_info['scryfallJson']:
+                    card_img = card_faces['image_uris']['art_crop']
+                else:
+                    card_img = card_info['scryfallJson']['image_uris']['art_crop']
+
+    else:
+        card_oracle_txt = card_info['scryfallJson']['oracle_text']
+        card_img = card_info['scryfallJson']['image_uris']['art_crop']
+        if "flavor_text" in card_info['scryfallJson']:
+            card_flavor_txt = card_info['scryfallJson']['flavor_text']
+
+    card_data = {
+        card: {
+            'name': card,
+            'oracle_text': card_oracle_txt,
+            'flavor_text': card_flavor_txt,
+            'image': card_img
+        }}
+
+    pprint(card_data.keys())
+    return card_data
+
+
+def get_card_data_from_file(random_cards):
     random_card_data = []
     # random_cards = ['Wear', 'Merchant of the Vale', 'Thing in the Ice']
-
+    data = read_from_file('static/card_data_url.json')
+    unique_cards = data['card_set']
     for card in random_cards:
         pprint(card)
-        card_info = scrython.cards.Named(fuzzy=card)
-        card_info = vars(card_info)
-        oracle_txt, card_img, flavor_txt = '', '', card
 
-        if 'card_faces' in card_info['scryfallJson']:
-            for card_faces in card_info['scryfallJson']['card_faces']:
-                if card in card_faces['name']:
-                    oracle_txt = card_faces['oracle_text']
-                    if "flavor_text" in card_faces:
-                        flavor_txt = card_faces['flavor_text']
-                    if "image_uris" not in card_info['scryfallJson']:
-                        card_img = card_faces['image_uris']['art_crop']
-                    else:
-                        card_img = card_info['scryfallJson']['image_uris']['art_crop']
+        card_info = next((item for item in unique_cards if card in item), None)
 
-        else:
-            oracle_txt = card_info['scryfallJson']['oracle_text']
-            card_img = card_info['scryfallJson']['image_uris']['art_crop']
-            if "flavor_text" in card_info['scryfallJson']:
-                flavor_txt = card_info['scryfallJson']['flavor_text']
+        pprint(card_info)
 
         random_card_data.append({
             'name': card,
-            'oracle_text': oracle_txt,
-            'flavor_text': flavor_txt,
-            'image': card_img
+            'oracle_text': card_info[card]['oracle_text'],
+            'flavor_text': card_info[card]['flavor_text'],
+            'image': card_info[card]['image']
         })
-    pprint(random_card_data)
+
+    # pprint(random_card_data)
     return random_card_data
 
 
 def gen_new_cards(*args):
     if not args:
-        data = read_from_file('old_url.json')
+        data = read_from_file('static/card_data_url.json')
         unique_cards = data['card_set']
     else:
         unique_cards = args[0]
 
-    list_card_names = [d['name'] for d in unique_cards]
+    list_card_names = [list(d.keys())[0] for d in unique_cards]
 
     # random.shuffle(list_card_names)
 
     random_card_name = sample(list_card_names, 1)[0]
-    random_card_type = [d['type'] for d in unique_cards if random_card_name in d['name']][0]
+    # random_card_type = [d[random_card_name]['type'] for d in unique_cards if
+    #                     random_card_name in d[random_card_name]['name']]
+    random_card_type = [d[random_card_name]['type'] for d in unique_cards if
+                        random_card_name in list(d.keys())[0]][0]
 
-    list_card_names_with_same_type = [d['name'] for d in unique_cards if random_card_type in d['type']]
+    list_card_names_with_same_type = [list(d.keys())[0] for d in unique_cards if
+                                      random_card_type in d[list(d.keys())[0]]['type']]
 
-    print(random_card_name)
-    print(random_card_type)
+    # print(random_card_name)
+    # print(random_card_type)
     # pprint(list_card_names_with_same_type)
 
     list_card_names_with_same_type.remove(random_card_name)
@@ -227,7 +251,7 @@ def gen_new_cards(*args):
 
     random_cards_name_same_type.append(random_card_name)
 
-    # pprint(random_cards_name_same_type)
+    pprint(random_cards_name_same_type)
     # pprint(random_cards_name_same_type)
     # random_cards = sample(list_card_name, 5)
 
@@ -240,7 +264,7 @@ def gen_new_cards(*args):
     # random_card_data = ['Brimaz, King of Oreskos', 'Keranos, God of Storms']
     # random_card_data = get_card_data(random_card_data)
 
-    random_card_data = get_card_data(random_cards_name_same_type)
+    random_card_data = get_card_data_from_file(random_cards_name_same_type)
 
     # random_card_data = get_card_data(random_card_name)
     # random_card_data = get_card_data(random_cards)
@@ -368,7 +392,7 @@ def index():
     # text=re.compile('\bModern\s*(League|Challenge|Preliminary)', flags=re.IGNORECASE))
     print(latest_modern_league)
     if latest_modern_league is None:
-        data = read_from_file('old_url.json')
+        data = read_from_file('static/card_data_url.json')
         latest_modern_league_url = data['url']
     else:
         latest_modern_league_parent = latest_modern_league.parent.parent.parent
@@ -377,7 +401,7 @@ def index():
 
     pprint(latest_modern_league_url)
 
-    data = read_from_file('old_url.json')
+    data = read_from_file('static/card_data_url.json')
     if 'card_set' not in data or 'url' not in data:
         raise ValueError("No target in given data")
     else:
@@ -402,33 +426,49 @@ def index():
             for sorted_by_type in sorted_by_type:
                 # print(sorted_by_type.find('h5').string)
                 cards_in_decks = sorted_by_type.findAll('a', attrs={'class': 'deck-list-link'})
-                for div in cards_in_decks:
+                for card_name_div in cards_in_decks:
                     dict_to_add = {}
-                    card_type = div.parent.parent.parent.find('h5').string
+                    card_type = card_name_div.parent.parent.parent.find('h5').string
                     card_type = card_type[:card_type.index(" (")]
-                    dict_to_add['type'] = card_type
-                    print(div.string + ': ' + card_type)
+                    card_name = card_name_div.string
+                    # print(card_name_div.string + ': ' + card_type)
                     # print(div.string + ': ' + str(is_this_a_basic(div.string)))
-                    if (div.string not in card_list) and (not is_this_a_basic(div.string)):
-                        if '//' in div.string:
-                            split_str = div.string.split('//', 1)
+                    # if ((any(d['name'] == card_name_div.string for d in card_list)) and (
+                    #         not is_this_a_basic(card_name_div.string)) or not card_list):
+                    card_name_in_list = any(card_name in d for d in card_list)
+                    # card_name_in_list = any(d.get('name', 'icara') == card_name for d in card_list)
+                    if (not card_name_in_list and (
+                            not is_this_a_basic(card_name))):
+                        pprint('not in the list of cards')
+                        # if (card_name_div.string not in card_list) and (not is_this_a_basic(card_name_div.string)):
+                        if '//' in card_name:
+                            split_str = card_name.split('//', 1)
                             for correct_answer_name in split_str:
+                                correct_answer_name = correct_answer_name.rstrip().lstrip()
+                                dict_to_add = get_single_card_data_from_scryfall(correct_answer_name)
+                                dict_to_add[correct_answer_name]['type'] = card_type
                                 # card_list.append(correct_answer_name.rstrip().lstrip())
-                                dict_to_add['name'] = correct_answer_name.rstrip().lstrip()
+                                # dict_to_add['name'] = correct_answer_name
+
                                 card_list.append(dict_to_add)
 
                         else:
-                            dict_to_add['name'] = div.string
+                            dict_to_add = get_single_card_data_from_scryfall(card_name)
+                            # dict_to_add['name'] = card_name_div.string
+                            dict_to_add[card_name]['type'] = card_type
+
                             card_list.append(dict_to_add)
 
             # https://stackoverflow.com/questions/11092511/python-list-of-unique-dictionaries
-            unique_cards = [dict(s) for s in set(frozenset(d.items()) for d in card_list)]
+            unique_cards = card_list
+            # unique_cards = [dict(s) for s in set(frozenset(d.items()) for d in card_list)]
 
             dict_to_file = {
+                # 'url': '',
                 'url': latest_modern_league_url,
                 "card_set": unique_cards,
             }
-            with open('old_url.json', 'w') as fp:
+            with open('static/card_data_url.json', 'w') as fp:
                 json.dump(dict_to_file, fp, sort_keys=True, indent=4)
 
         else:
