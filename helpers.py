@@ -103,7 +103,7 @@ def scrape_card_data():
 
             dict_to_file = {
                 # 'url': '',
-                'url': latest_modern_tournament_url,
+                'url': modern_league_url,
                 "card_set": unique_cards,
             }
             with open('static/card_data_url.json', 'w') as fp:
@@ -115,7 +115,7 @@ def scrape_card_data():
             unique_cards = data['card_set']
 
     return {
-        "modern_league_url": modern_league_url,
+        "modern_league_url": 'https://magic.wizards.com' + modern_league_url,
         "unique_cards": unique_cards,
         "cards_from": cards_from
     }

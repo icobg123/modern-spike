@@ -3,8 +3,12 @@
 
     <main class="h-100">
         <div class="container-fluid h-100">
-            <div class="row h-100">
-                <div class="col-12 col-sm-9 col-md-7 col-lg-9 col-xl-7 d-flex flex-column mx-auto justify-content-center">
+            <div class="row h-100 center-container">
+                <div class="lds-ripple mx-auto absolute-center">
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="col-12 col-sm-9 col-md-7 col-lg-9 col-xl-7 d-flex flex-column mx-auto justify-content-start">
                     <h1 class="text-center my-1">Modern Spike</h1>
 
 
@@ -28,13 +32,10 @@
                             {% endif %}
                         </span>
                     </small>
-                    <div class="lds-ripple mx-auto">
-                        <div></div>
-                        <div></div>
-                    </div>
+
                     <div class="row my-1 ">
 
-                        <div id="oracle_text" class="col-lg-6 col-12 mx-auto d-none">
+                        <div id="oracle_text" class="col-lg-7 col-12 mx-auto d-none">
 
                             <div class="card">
                                 <div class="card-header text-dark py-2 d-flex align-items-center justify-content-between">
@@ -81,7 +82,7 @@
 
 
                     <div class="row my-1 ">
-                        <div class="col-lg-6 col-12 mx-auto">
+                        <div class="col-lg-7 col-12 mx-auto">
                             <form class="form-horizontal d-flex flex-column">
 
 
@@ -96,7 +97,7 @@
                                 </div>
 
                                 <button id="next_card" type="button" name="choice"
-                                        class="mt-2 btn btn-info text-black d-none">
+                                        class="mt-2 btn btn-info text-black d-none btn-lg">
                                     Next
                                     Card
                                 </button>
@@ -113,12 +114,23 @@
                 <div class="col-12 col-sm-9 col-md-7 col-lg-9 col-xl-7 d-flex flex-column mx-auto justify-content-center">
                     <div class="row mt-auto">
 
-                        <div class="col-lg-6 col-12 mx-auto">
-                            <nav id="footer_menu" class="nav  nav-fill justify-content-between">
-                                <a class="nav-item nav-link text-white" href="/about">About</a>
-                                <a class="nav-item nav-link text-white" rel="noopener" target="_blank"
+                        <div class="col-lg-7 col-12 mx-auto">
+                            <nav id="footer_menu" class="nav  nav-fill justify-content-between my-1">
+                                <a class="nav-item my-1 my-md-0 nav-link text-white text-center text-md-left"
+                                   href="/about">About</a>
+                                <a class="nav-item my-1 my-md-0 nav-link text-white text-center text-md-left"
+                                   rel="noopener"
+                                   target="_blank"
                                    href="{{ modern_league_url }} "> Latest deck lists</a>
-                                <a class="nav-item nav-link text-white" href="#">Link</a>
+                                {#                                <a class="nav-item my-1 my-md-0 nav-link text-white" href="#">Link</a>#}
+
+                                <a class="nav-item my-1 my-md-0 nav-link text-white d-flex align-items-center text-center text-md-left justify-content-center"
+                                   href="https://mtgjson.com"
+                                   target="_blank"
+                                   rel="noreferrer">
+                                    <img src="http://mtgjson.com/images/assets/logo-mtgjson-light-blue.svg" width="30px"
+                                         title="MTGJSON logo">
+                                    <p class="mb-0 ml-1"> Powered by MTGJSON</p></a>
 
                             </nav>
 

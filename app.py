@@ -84,7 +84,7 @@ def offline():
 def index():
     scrape_card_data()
 
-    return render_template("index.html")
+    return render_template("index.html", modern_league_url=scrape_card_data()['modern_league_url'])
 
 
 if __name__ == '__main__':
