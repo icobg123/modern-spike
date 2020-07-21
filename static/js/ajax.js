@@ -1,5 +1,25 @@
 $(document).ready(function () {
 
+
+    $.ajax({
+        type: 'POST',
+        url: '/get_new_cards'
+    })
+        .done(function (data) {
+            console.log(data.correct_answer);
+            $('.lds-ripple').removeClass('d-flex').addClass('d-none');
+            $('#card_holder').html(data.html).removeClass('d-none');
+            $('#oracle_text').removeClass('d-none');
+
+            $('#oracle_text .card-body').html(data.new_oracle_text);
+            $('#correct_answer').html(data.correct_answer_index);
+            $("#card_image").attr('src', data.correct_answer_image).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
+
+            $('#next_card').removeClass('d-none');
+
+
+        });
+
     console.log('icara');
     console.log($('.form-check-input:checked').val());
     console.log($('#correct_answer').text());

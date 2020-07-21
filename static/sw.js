@@ -1,6 +1,6 @@
 // This is based on the First Progressive Web App Tutorial by Google
 // https://codelabs.developers.google.com/codelabs/your-first-pwapp/
-const cacheName = 'flask-PWA-33';
+const cacheName = 'flask-PWA-1';
 const filesToCache = [
     '/static/bootstrap/js/jquery-3.4.1.min.js',
     '/static/bootstrap/js/bootstrap.min.js',
@@ -74,6 +74,7 @@ self.addEventListener('fetch', function (e) {
                 // fallbacks, depending on URL & headers.
                 // Eg, a fallback silhouette image for avatars.
                 let url = e.request.url;
+                console.log(url)
                 let extension = url.split('.').pop();
 
                 if (extension === 'jpg' || extension === 'png') {

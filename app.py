@@ -82,19 +82,9 @@ def offline():
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
-    scraped_card_data = scrape_card_data()
+    scrape_card_data()
 
-    new_cards = gen_new_cards(scraped_card_data['unique_cards'])
-
-    return render_template("index.html", correct_answer_index=new_cards['correct_answer_index'],
-                           card_info=new_cards['card_info'],
-                           correct_answer_name=new_cards['correct_answer_name'],
-                           correct_answer_flavor_text=new_cards['correct_answer_flavor_text'],
-                           correct_oracle_text_answer=Markup(new_cards['correct_answer_oracle_text']),
-                           correct_answer_image=new_cards['correct_answer_image'],
-                           cards_from=scraped_card_data['cards_from'],
-                           modern_league_url='https://magic.wizards.com' + scraped_card_data['modern_league_url'],
-                           message="Hello Flask!")
+    return render_template("index.html")
 
 
 if __name__ == '__main__':
