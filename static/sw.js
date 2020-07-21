@@ -11,6 +11,7 @@ const filesToCache = [
     '/static/js/main.js',
     '/static/css/mana.css',
     '/static/css/styles.css',
+    '/static/images/logo-mtgjson-light-blue.svg',
     '/static/images/mana.svg',
     '/static/favicon.ico',
     '/static/fonts/Beleren-Bold/beleren-boldP101.otf',
@@ -26,6 +27,7 @@ const filesToCache = [
     '/static/fonts/mplantin/mplantin.woff',
     '/static/fonts/mplantin/mplantin.woff2',
     '/offline.html',
+    '/',
 ];
 
 // When the 'install' event is fired we will cache
