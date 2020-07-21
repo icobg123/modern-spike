@@ -1,264 +1,120 @@
 {
     "card_set": [
         {
-            "Bedlam Reveler": {
-                "flavor_text": "Bedlam Reveler",
-                "image": "https://img.scryfall.com/cards/art_crop/front/0/2/0232f188-44f2-4aee-963c-6f6edc4a21ac.jpg?1576384515",
-                "name": "Bedlam Reveler",
-                "oracle_text": "This spell costs {1} less to cast for each instant and sorcery card in your graveyard.\nProwess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)\nWhen Bedlam Reveler enters the battlefield, discard your hand, then draw three cards.",
+            "Karn, the Great Creator": {
+                "flavor_text": "Karn, the Great Creator",
+                "image": "https://img.scryfall.com/cards/art_crop/front/3/e/3ec0c0fb-1a4f-45f4-85b7-346a6d3ce2c5.jpg?1566819742",
+                "name": "Karn, the Great Creator",
+                "oracle_text": "Activated abilities of artifacts your opponents control can't be activated.\n+1: Until your next turn, up to one target noncreature artifact becomes an artifact creature with power and toughness each equal to its converted mana cost.\n\u22122: You may choose an artifact card you own from outside the game or in exile, reveal that card, and put it into your hand.",
+                "type": "Planeswalker"
+            }
+        },
+        {
+            "Ugin, the Ineffable": {
+                "flavor_text": "Ugin, the Ineffable",
+                "image": "https://img.scryfall.com/cards/art_crop/front/7/b/7b003521-3da3-41bf-9765-36630653f902.jpg?1559562626",
+                "name": "Ugin, the Ineffable",
+                "oracle_text": "Colorless spells you cast cost {2} less to cast.\n+1: Exile the top card of your library face down and look at it. Create a 2/2 colorless Spirit creature token. When that token leaves the battlefield, put the exiled card into your hand.\n\u22123: Destroy target permanent that's one or more colors.",
+                "type": "Planeswalker"
+            }
+        },
+        {
+            "Matter Reshaper": {
+                "flavor_text": "Matter Reshaper",
+                "image": "https://img.scryfall.com/cards/art_crop/front/3/9/3906b61a-3865-4dfd-ae06-a7d2a608851a.jpg?1562906487",
+                "name": "Matter Reshaper",
+                "oracle_text": "({C} represents colorless mana.)\nWhen Matter Reshaper dies, reveal the top card of your library. You may put that card onto the battlefield if it's a permanent card with converted mana cost 3 or less. Otherwise, put that card into your hand.",
                 "type": "Creature"
             }
         },
         {
-            "Monastery Swiftspear": {
-                "flavor_text": "The calligraphy of combat is written with strokes of sudden blood.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/5/8/58db2f81-6ff5-402c-8aef-0b667e82cdc4.jpg?1562849346",
-                "name": "Monastery Swiftspear",
-                "oracle_text": "Haste\nProwess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)",
+            "Reality Smasher": {
+                "flavor_text": "As easy to stop as it is to comprehend.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/5/2/52d4b652-a830-4fd4-94bb-c17c227f2928.jpg?1562911843",
+                "name": "Reality Smasher",
+                "oracle_text": "({C} represents colorless mana.)\nTrample, haste\nWhenever Reality Smasher becomes the target of a spell an opponent controls, counter that spell unless its controller discards a card.",
                 "type": "Creature"
             }
         },
         {
-            "Soul-Scar Mage": {
-                "flavor_text": "Soul-Scar Mage",
-                "image": "https://img.scryfall.com/cards/art_crop/front/a/8/a8003786-6e2a-4e2d-a915-f23293c7273a.jpg?1543675694",
-                "name": "Soul-Scar Mage",
-                "oracle_text": "Prowess\nIf a source you control would deal noncombat damage to a creature an opponent controls, put that many -1/-1 counters on that creature instead.",
+            "Thought-Knot Seer": {
+                "flavor_text": "Thought-Knot Seer",
+                "image": "https://img.scryfall.com/cards/art_crop/front/b/f/bffc360e-db41-48f3-9365-680d55046e04.jpg?1562933598",
+                "name": "Thought-Knot Seer",
+                "oracle_text": "({C} represents colorless mana.)\nWhen Thought-Knot Seer enters the battlefield, target opponent reveals their hand. You choose a nonland card from it and exile that card.\nWhen Thought-Knot Seer leaves the battlefield, target opponent draws a card.",
                 "type": "Creature"
             }
         },
         {
-            "Sprite Dragon": {
-                "flavor_text": "Size of a pixie, rage of a hellkite.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/2/8/281f6118-adb8-4a7d-9c77-5570f3399e6e.jpg?1591228274",
-                "name": "Sprite Dragon",
-                "oracle_text": "Flying, haste\nWhenever you cast a noncreature spell, put a +1/+1 counter on Sprite Dragon.",
+            "Walking Ballista": {
+                "flavor_text": "Walking Ballista",
+                "image": "https://img.scryfall.com/cards/art_crop/front/3/2/329a8738-3e17-403a-857a-0ba529ce8cd1.jpg?1576382470",
+                "name": "Walking Ballista",
+                "oracle_text": "Walking Ballista enters the battlefield with X +1/+1 counters on it.\n{4}: Put a +1/+1 counter on Walking Ballista.\nRemove a +1/+1 counter from Walking Ballista: It deals 1 damage to any target.",
                 "type": "Creature"
             }
         },
         {
-            "Stormwing Entity": {
-                "flavor_text": "Stormwing Entity",
-                "image": "https://img.scryfall.com/cards/art_crop/front/0/5/0540ee72-6370-4f70-9526-6f441b3cac1e.jpg?1594735784",
-                "name": "Stormwing Entity",
-                "oracle_text": "This spell costs {2}{U} less to cast if you've cast an instant or sorcery spell this turn.\nFlying\nProwess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)\nWhen Stormwing Entity enters the battlefield, scry 2.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Light Up the Stage": {
-                "flavor_text": "\"Places, everyone!\"\n\u2014Judith",
-                "image": "https://img.scryfall.com/cards/art_crop/front/9/2/9287b848-2aeb-4c70-ac4a-acafb871b7a4.jpg?1584830944",
-                "name": "Light Up the Stage",
-                "oracle_text": "Spectacle {R} (You may cast this spell for its spectacle cost rather than its mana cost if an opponent lost life this turn.)\nExile the top two cards of your library. Until the end of your next turn, you may play those cards.",
+            "All Is Dust": {
+                "flavor_text": "\"The emergence of the Eldrazi isn't necessarily a bad thing, as long as you've already lived a fulfilling and complete life without regrets.\"\n\u2014Javad Nasrin, Ondu relic hunter",
+                "image": "https://img.scryfall.com/cards/art_crop/front/8/c/8cf632ef-70e3-46f2-af21-14ea7ef30237.jpg?1547515198",
+                "name": "All Is Dust",
+                "oracle_text": "Each player sacrifices all colored permanents they control.",
                 "type": "Sorcery"
             }
         },
         {
-            "Gut Shot": {
-                "flavor_text": "\"Down here, we have a more pointed version of the scriptures.\"\n\u2014Urabrask's enforcer",
-                "image": "https://img.scryfall.com/cards/art_crop/front/4/6/461987da-8860-4a04-8f93-d182523ca311.jpg?1562261607",
-                "name": "Gut Shot",
-                "oracle_text": "({R/P} can be paid with either {R} or 2 life.)\nGut Shot deals 1 damage to any target.",
+            "Dismember": {
+                "flavor_text": "\"You serve Phyrexia. Your pieces would better serve Phyrexia elsewhere.\"\n\u2014Azax-Azog, the Demon Thane",
+                "image": "https://img.scryfall.com/cards/art_crop/front/3/d/3d286cf6-3e16-4941-9326-1818b1e06d69.jpg?1562261132",
+                "name": "Dismember",
+                "oracle_text": "({B/P} can be paid with either {B} or 2 life.)\nTarget creature gets -5/-5 until end of turn.",
                 "type": "Instant"
             }
         },
         {
-            "Lava Dart": {
-                "flavor_text": "\"Small outbursts are healthy.\"\n\u2014Koth of the Hammer",
-                "image": "https://img.scryfall.com/cards/art_crop/front/b/1/b16dd041-451d-4914-8c46-aa315a90d802.jpg?1562201890",
-                "name": "Lava Dart",
-                "oracle_text": "Lava Dart deals 1 damage to any target.\nFlashback\u2014Sacrifice a Mountain. (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+            "Spatial Contortion": {
+                "flavor_text": "\"For those without the Planeswalker spark, the merest touch of the Blind Eternities can kill.\"\n\u2014Ugin",
+                "image": "https://img.scryfall.com/cards/art_crop/front/4/e/4e2acf70-7625-4b77-83c1-0e08436da31f.jpg?1562910812",
+                "name": "Spatial Contortion",
+                "oracle_text": "({C} represents colorless mana.)\nTarget creature gets +3/-3 until end of turn.",
                 "type": "Instant"
             }
         },
         {
-            "Lightning Bolt": {
-                "flavor_text": "The sparkmage shrieked, calling on the rage of the storms of his youth. To his surprise, the sky responded with a fierce energy he'd never thought to see again.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/c/e/ce711943-c1a1-43a0-8b89-8d169cfb8e06.jpg?1594928922",
-                "name": "Lightning Bolt",
-                "oracle_text": "Lightning Bolt deals 3 damage to any target.",
-                "type": "Instant"
-            }
-        },
-        {
-            "Manamorphose": {
-                "flavor_text": "\"Master the chaotic forces of nature, and you shall master magic.\"\n\u2014Yare-Tiva, warden of Gramur forest",
-                "image": "https://img.scryfall.com/cards/art_crop/front/f/0/f079df56-60f9-46e5-8f2e-032e62b6a5f1.jpg?1561969044",
-                "name": "Manamorphose",
-                "oracle_text": "Add two mana in any combination of colors.\nDraw a card.",
-                "type": "Instant"
-            }
-        },
-        {
-            "Mutagenic Growth": {
-                "flavor_text": "\"Sympathy is for weaklings. Whoever survives, wins.\"\n\u2014Benzir, archdruid of Temple Might",
-                "image": "https://img.scryfall.com/cards/art_crop/front/2/e/2e0861a2-1858-47af-8154-20a977c2b298.jpg?1562260231",
-                "name": "Mutagenic Growth",
-                "oracle_text": "({G/P} can be paid with either {G} or 2 life.)\nTarget creature gets +2/+2 until end of turn.",
-                "type": "Instant"
-            }
-        },
-        {
-            "Opt": {
-                "flavor_text": "The crystal pulsed with the power of Teferi's planeswalker spark. Had Jhoira given him a blessing or a curse?",
-                "image": "https://img.scryfall.com/cards/art_crop/front/3/2/323db259-d35e-467d-9a46-4adcb2fc107c.jpg?1594735602",
-                "name": "Opt",
-                "oracle_text": "Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)\nDraw a card.",
-                "type": "Instant"
-            }
-        },
-        {
-            "Bloodstained Mire": {
-                "flavor_text": "Where dragons once triumphed, their bones now molder.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/7/f/7f430794-0d86-4f6a-97e0-4bbb6716d613.jpg?1571667959",
-                "name": "Bloodstained Mire",
-                "oracle_text": "{T}, Pay 1 life, Sacrifice Bloodstained Mire: Search your library for a Swamp or Mountain card, put it onto the battlefield, then shuffle your library.",
-                "type": "Land"
-            }
-        },
-        {
-            "Fiery Islet": {
-                "flavor_text": "Where water is the canvas and lava the paint.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/a/3/a3aab13c-9d9d-4507-ae5d-da979990ae1b.jpg?1562202552",
-                "name": "Fiery Islet",
-                "oracle_text": "{T}, Pay 1 life: Add {U} or {R}.\n{1}, {T}, Sacrifice Fiery Islet: Draw a card.",
-                "type": "Land"
-            }
-        },
-        {
-            "Spirebluff Canal": {
-                "flavor_text": "There's so much more to Ghirapur than can be accessed by traditional roads.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/4/e/4e587ea7-0632-4789-ba75-3c410da2bb96.jpg?1576383574",
-                "name": "Spirebluff Canal",
-                "oracle_text": "Spirebluff Canal enters the battlefield tapped unless you control two or fewer other lands.\n{T}: Add {U} or {R}.",
-                "type": "Land"
-            }
-        },
-        {
-            "Steam Vents": {
-                "flavor_text": "\"A massive new Izzet building project with an unstated purpose? Probably fine.\"\n\u2014Zija, Simic mutationist",
-                "image": "https://img.scryfall.com/cards/art_crop/front/b/8/b8ebe3cf-7143-453a-b0ef-2f5bdaac3185.jpg?1572894204",
-                "name": "Steam Vents",
-                "oracle_text": "({T}: Add {U} or {R}.)\nAs Steam Vents enters the battlefield, you may pay 2 life. If you don't, it enters the battlefield tapped.",
-                "type": "Land"
-            }
-        },
-        {
-            "Wooded Foothills": {
-                "flavor_text": "Where dragons' breath once burned, their bones now freeze.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/a/8/a8503cca-7e7d-44c4-8587-81376b396398.jpg?1571667977",
-                "name": "Wooded Foothills",
-                "oracle_text": "{T}, Pay 1 life, Sacrifice Wooded Foothills: Search your library for a Mountain or Forest card, put it onto the battlefield, then shuffle your library.",
-                "type": "Land"
-            }
-        },
-        {
-            "Cloudshredder Sliver": {
-                "flavor_text": "Forked tails rustled. Talons clicked. A lone sliver streaked overhead like jagged lightning, and the hive thundered.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/2/7/27933191-dad6-43d5-b02e-a94ad8033f2f.jpg?1562202289",
-                "name": "Cloudshredder Sliver",
-                "oracle_text": "Sliver creatures you control have flying and haste.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Darkheart Sliver": {
-                "flavor_text": "\"At first we thought we were in some haunted wood. Then the branches twisted and scuttled toward us.\"\n\u2014Merrik Aidar, Benalish patrol",
-                "image": "https://img.scryfall.com/cards/art_crop/front/3/5/3541ff31-0043-49a9-abac-77369f95b942.jpg?1562569289",
-                "name": "Darkheart Sliver",
-                "oracle_text": "All Slivers have \"Sacrifice this permanent: You gain 3 life.\"",
-                "type": "Creature"
-            }
-        },
-        {
-            "Dregscape Sliver": {
-                "flavor_text": "Dregscape Sliver",
-                "image": "https://img.scryfall.com/cards/art_crop/front/4/a/4a835b7e-cd63-486d-8b58-2f443f686e32.jpg?1562201622",
-                "name": "Dregscape Sliver",
-                "oracle_text": "Each Sliver creature card in your graveyard has unearth {2}.\nUnearth {2} ({2}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)",
-                "type": "Creature"
-            }
-        },
-        {
-            "Frenetic Sliver": {
-                "flavor_text": "Frenetic Sliver",
-                "image": "https://img.scryfall.com/cards/art_crop/front/4/2/424b1d87-ff9d-4511-a196-b8ae8b5b5e1d.jpg?1562570270",
-                "name": "Frenetic Sliver",
-                "oracle_text": "All Slivers have \"{0}: If this permanent is on the battlefield, flip a coin. If you win the flip, exile this permanent and return it to the battlefield under its owner's control at the beginning of the next end step. If you lose the flip, sacrifice it.\"",
-                "type": "Creature"
-            }
-        },
-        {
-            "Galerider Sliver": {
-                "flavor_text": "Masters of adaptation, galeriders serve multiple purposes useful to the hive. When they're not patrolling their territories, their majestic wings serve to circulate cool air through the vast hive chambers.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/4/2/425f5d1b-9989-4fd1-88e2-6c3108aefa0b.jpg?1562828431",
-                "name": "Galerider Sliver",
-                "oracle_text": "Sliver creatures you control have flying.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Leeching Sliver": {
-                "flavor_text": "\"Seeing one slowly devour one of my party begged the question\u2014do they know what cruelty is?\"\n\u2014Hastric, Thunian scout",
-                "image": "https://img.scryfall.com/cards/art_crop/front/8/8/888ca52b-1270-4587-804d-1d08b07d7c5d.jpg?1562790394",
-                "name": "Leeching Sliver",
-                "oracle_text": "Whenever a Sliver you control attacks, defending player loses 1 life.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Predatory Sliver": {
-                "flavor_text": "No matter how much the slivers change, their collective might remains.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/a/2/a2e37de8-66a1-4afa-aa6f-1151f849dfa8.jpg?1562833161",
-                "name": "Predatory Sliver",
-                "oracle_text": "Sliver creatures you control get +1/+1.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Sidewinder Sliver": {
-                "flavor_text": "\"They encircled our patrol with the stealth of snakes, corralling us like livestock.\"\n\u2014Merrik Aidar, Benalish patrol",
-                "image": "https://img.scryfall.com/cards/art_crop/front/b/0/b073b8f2-b42d-40f2-b5fb-e78ffb1733ea.jpg?1562932235",
-                "name": "Sidewinder Sliver",
-                "oracle_text": "All Sliver creatures have flanking. (Whenever a creature without flanking blocks a Sliver, the blocking creature gets -1/-1 until end of turn.)",
-                "type": "Creature"
-            }
-        },
-        {
-            "Sinew Sliver": {
-                "flavor_text": "As the muscle cords of the creature twitched, Hanna saw an unsettling unanimity in the others' rippling flesh. She didn't know what it meant, but she urged Sisay to keep the ship at a safe distance.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/6/c/6cd2ed50-cd9a-45d9-a59a-6279be1ab308.jpg?1562573847",
-                "name": "Sinew Sliver",
-                "oracle_text": "All Sliver creatures get +1/+1.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Striking Sliver": {
-                "flavor_text": "You're too busy recoiling in fear to realize that it's already hit you.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/4/e/4ee9254b-3d98-4477-a82e-1450cf3ee96e.jpg?1562829076",
-                "name": "Striking Sliver",
-                "oracle_text": "Sliver creatures you control have first strike. (They deal combat damage before creatures without first strike.)",
-                "type": "Creature"
-            }
-        },
-        {
-            "Unsettled Mariner": {
-                "flavor_text": "The call of the sea shapes many souls.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/e/a/eaea2e54-ee50-47b9-a2a5-e3353831248c.jpg?1562202420",
-                "name": "Unsettled Mariner",
-                "oracle_text": "Changeling (This card is every creature type.)\nWhenever you or a permanent you control becomes the target of a spell or ability an opponent controls, counter that spell or ability unless its controller pays {1}.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Aether Vial": {
-                "flavor_text": "Aether Vial",
-                "image": "https://img.scryfall.com/cards/art_crop/front/c/1/c14cdc38-dd46-495e-93bd-d2694b64d5ad.jpg?1562853669",
-                "name": "Aether Vial",
-                "oracle_text": "At the beginning of your upkeep, you may put a charge counter on Aether Vial.\n{T}: You may put a creature card with converted mana cost equal to the number of charge counters on Aether Vial from your hand onto the battlefield.",
+            "Chalice of the Void": {
+                "flavor_text": "Chalice of the Void",
+                "image": "https://img.scryfall.com/cards/art_crop/front/1/f/1f0d2e8e-c8f2-4b31-a6ba-6283fc8740d4.jpg?1562433485",
+                "name": "Chalice of the Void",
+                "oracle_text": "Chalice of the Void enters the battlefield with X charge counters on it.\nWhenever a player casts a spell with converted mana cost equal to the number of charge counters on Chalice of the Void, counter that spell.",
                 "type": "Artifact"
+            }
+        },
+        {
+            "Expedition Map": {
+                "flavor_text": "\"I use maps to find out where explorers have already been. Then I go the other way.\"\n\u2014Javad Nasrin, Ondu relic hunter",
+                "image": "https://img.scryfall.com/cards/art_crop/front/5/5/551c0a45-9515-4e51-84e5-79703832a661.jpg?1595243563",
+                "name": "Expedition Map",
+                "oracle_text": "{2}, {T}, Sacrifice Expedition Map: Search your library for a land card, reveal it, and put it into your hand. Then shuffle your library.",
+                "type": "Artifact"
+            }
+        },
+        {
+            "Mazemind Tome": {
+                "flavor_text": "Mazemind Tome",
+                "image": "https://img.scryfall.com/cards/art_crop/front/9/f/9fd761f3-6b43-4150-8595-dc3abd85b06c.jpg?1594737505",
+                "name": "Mazemind Tome",
+                "oracle_text": "{T}, Put a page counter on Mazemind Tome: Scry 1.\n{2}, {T}, Put a page counter on Mazemind Tome: Draw a card.\nWhen there are four or more page counters on Mazemind Tome, exile it. If you do, you gain 4 life.",
+                "type": "Artifact"
+            }
+        },
+        {
+            "Blast Zone": {
+                "flavor_text": "Blast Zone",
+                "image": "https://img.scryfall.com/cards/art_crop/front/e/a/ea6bc7d5-e8f6-4103-920c-9f7ec5cd6c28.jpg?1557577452",
+                "name": "Blast Zone",
+                "oracle_text": "Blast Zone enters the battlefield with a charge counter on it.\n{T}: Add {C}.\n{X}{X}, {T}: Put X charge counters on Blast Zone.\n{3}, {T}, Sacrifice Blast Zone: Destroy each nonland permanent with converted mana cost equal to the number of charge counters on Blast Zone.",
+                "type": "Land"
             }
         },
         {
@@ -271,173 +127,56 @@
             }
         },
         {
-            "Horizon Canopy": {
-                "flavor_text": "The day is born within its branches.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/9/3/93f7c880-9bae-4d29-b7b6-b6be6b2ffa89.jpg?1562851585",
-                "name": "Horizon Canopy",
-                "oracle_text": "{T}, Pay 1 life: Add {G} or {W}.\n{1}, {T}, Sacrifice Horizon Canopy: Draw a card.",
+            "Eldrazi Temple": {
+                "flavor_text": "Each temple is a door to a horrible future.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/c/4/c42049e2-fe4e-4fe9-9599-faf1af50b97d.jpg?1593095918",
+                "name": "Eldrazi Temple",
+                "oracle_text": "{T}: Add {C}.\n{T}: Add {C}{C}. Spend this mana only to cast colorless Eldrazi spells or activate abilities of colorless Eldrazi.",
                 "type": "Land"
             }
         },
         {
-            "Mutavault": {
-                "flavor_text": "Some worlds possess a hidden core where life's essence constantly surges.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/9/2/927ed667-c228-4b96-a9f6-7cbadade8134.jpg?1562832390",
-                "name": "Mutavault",
-                "oracle_text": "{T}: Add {C}.\n{1}: Mutavault becomes a 2/2 creature with all creature types until end of turn. It's still a land.",
+            "Scavenger Grounds": {
+                "flavor_text": "When the last scrap of flesh is scoured away, the Curse of Wandering ends. Then the dead may sleep.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/f/0/f070bcc2-d764-44da-91ab-f2af23aa42e6.jpg?1591322397",
+                "name": "Scavenger Grounds",
+                "oracle_text": "{T}: Add {C}.\n{2}, {T}, Sacrifice a Desert: Exile all cards from all graveyards.",
                 "type": "Land"
             }
         },
         {
-            "Silent Clearing": {
-                "flavor_text": "The expedition's end began the marsh's story.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/a/c/ac07e230-0297-4e1d-bdfe-119010e0ad8e.jpg?1562202597",
-                "name": "Silent Clearing",
-                "oracle_text": "{T}, Pay 1 life: Add {W} or {B}.\n{1}, {T}, Sacrifice Silent Clearing: Draw a card.",
+            "Tectonic Edge": {
+                "flavor_text": "\"We move because the earth does.\"\n\u2014Bruse Tarl, Goma Fada nomad",
+                "image": "https://img.scryfall.com/cards/art_crop/front/9/4/94b9d7af-3e6f-4227-bb7d-a17d6f250535.jpg?1561950651",
+                "name": "Tectonic Edge",
+                "oracle_text": "{T}: Add {C}.\n{1}, {T}, Sacrifice Tectonic Edge: Destroy target nonbasic land. Activate this ability only if an opponent controls four or more lands.",
                 "type": "Land"
             }
         },
         {
-            "Sliver Hive": {
-                "flavor_text": "Sliver Hive",
-                "image": "https://img.scryfall.com/cards/art_crop/front/9/1/91cef7ce-aa9f-4659-ac24-394c5ab9f77c.jpg?1562790969",
-                "name": "Sliver Hive",
-                "oracle_text": "{T}: Add {C}.\n{T}: Add one mana of any color. Spend this mana only to cast a Sliver spell.\n{5}, {T}: Create a 1/1 colorless Sliver creature token. Activate this ability only if you control a Sliver.",
+            "Urza's Mine": {
+                "flavor_text": "Mines became common as cities during the days of the artificers.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/4/e/4e15ad45-dc96-48db-931c-1bbb95dfa580.jpg?1562913281",
+                "name": "Urza's Mine",
+                "oracle_text": "{T}: Add {C}. If you control an Urza's Power-Plant and an Urza's Tower, add {C}{C} instead.",
                 "type": "Land"
             }
         },
         {
-            "Sunbaked Canyon": {
-                "flavor_text": "Since the river ran dry, travelers wander where fish once swam.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/c/3/c36820fa-ee86-4206-9a0d-737a67cf5208.jpg?1562202603",
-                "name": "Sunbaked Canyon",
-                "oracle_text": "{T}, Pay 1 life: Add {R} or {W}.\n{1}, {T}, Sacrifice Sunbaked Canyon: Draw a card.",
+            "Urza's Power Plant": {
+                "flavor_text": "Artifact construction requires immense resources.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/0/0/00d705f6-4b8b-49e7-b420-5277893f14bd.jpg?1562895229",
+                "name": "Urza's Power Plant",
+                "oracle_text": "{T}: Add {C}. If you control an Urza's Mine and an Urza's Tower, add {C}{C} instead.",
                 "type": "Land"
             }
         },
         {
-            "Unclaimed Territory": {
-                "flavor_text": "Unclaimed Territory",
-                "image": "https://img.scryfall.com/cards/art_crop/front/b/9/b96a5b3a-ee54-4864-a84c-385a97b8cb7b.jpg?1591322503",
-                "name": "Unclaimed Territory",
-                "oracle_text": "As Unclaimed Territory enters the battlefield, choose a creature type.\n{T}: Add {C}.\n{T}: Add one mana of any color. Spend this mana only to cast a creature spell of the chosen type.",
-                "type": "Land"
-            }
-        },
-        {
-            "Abbot of Keral Keep": {
-                "flavor_text": "Abbot of Keral Keep",
-                "image": "https://img.scryfall.com/cards/art_crop/front/c/b/cb7a2770-9a20-4f52-aac4-24502f50e374.jpg?1571661132",
-                "name": "Abbot of Keral Keep",
-                "oracle_text": "Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)\nWhen Abbot of Keral Keep enters the battlefield, exile the top card of your library. Until end of turn, you may play that card.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Dreadhorde Arcanist": {
-                "flavor_text": "Dreadhorde Arcanist",
-                "image": "https://img.scryfall.com/cards/art_crop/front/f/d/fd97b3cf-924e-4f77-bb82-0bf19592389f.jpg?1557576678",
-                "name": "Dreadhorde Arcanist",
-                "oracle_text": "Trample\nWhenever Dreadhorde Arcanist attacks, you may cast target instant or sorcery card with converted mana cost less than or equal to Dreadhorde Arcanist's power from your graveyard without paying its mana cost. If that spell would be put into your graveyard this turn, exile it instead.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Inquisition of Kozilek": {
-                "flavor_text": "After the awakening of the Eldrazi, some vampires took it upon themselves to remind the others where their loyalty should lie.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/e/7/e7dd9fad-d8e3-4e46-b4d7-792d029736de.jpg?1593813320",
-                "name": "Inquisition of Kozilek",
-                "oracle_text": "Target player reveals their hand. You choose a nonland card from it with converted mana cost 3 or less. That player discards that card.",
-                "type": "Sorcery"
-            }
-        },
-        {
-            "Thoughtseize": {
-                "flavor_text": "\"Any dream is a robust harvest. Still, I prefer the timeworn dreams, heavy with import, that haunt the obsessive mind.\"",
-                "image": "https://img.scryfall.com/cards/art_crop/front/3/1/310a1c46-8331-4a09-9fcb-d942f8102364.jpg?1562847415",
-                "name": "Thoughtseize",
-                "oracle_text": "Target player reveals their hand. You choose a nonland card from it. That player discards that card. You lose 2 life.",
-                "type": "Sorcery"
-            }
-        },
-        {
-            "Unearth": {
-                "flavor_text": "No matter how deep you bury it, some evil refuses to stay dead.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/b/6/b62abd0c-ec3e-45d7-989d-da269812aeef.jpg?1562201767",
-                "name": "Unearth",
-                "oracle_text": "Return target creature card with converted mana cost 3 or less from your graveyard to the battlefield.\nCycling {2} ({2}, Discard this card: Draw a card.)",
-                "type": "Sorcery"
-            }
-        },
-        {
-            "Cling to Dust": {
-                "flavor_text": "In bleak Tizerus, all hope crumbles in your grasp.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/5/2/52c2de5f-e486-4cfe-9fb6-be0078ce5f93.jpg?1581479717",
-                "name": "Cling to Dust",
-                "oracle_text": "Exile target card from a graveyard. If it was a creature card, you gain 3 life. Otherwise, you draw a card.\nEscape\u2014{3}{B}, Exile five other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)",
-                "type": "Instant"
-            }
-        },
-        {
-            "Fatal Push": {
-                "flavor_text": "Fatal Push",
-                "image": "https://img.scryfall.com/cards/art_crop/front/b/5/b5e81649-9954-424c-89d1-f87d73b66047.jpg?1576381639",
-                "name": "Fatal Push",
-                "oracle_text": "Destroy target creature if it has converted mana cost 2 or less.\nRevolt \u2014 Destroy that creature if it has converted mana cost 4 or less instead if a permanent you controlled left the battlefield this turn.",
-                "type": "Instant"
-            }
-        },
-        {
-            "Kolaghan's Command": {
-                "flavor_text": "Kolaghan's Command",
-                "image": "https://img.scryfall.com/cards/art_crop/front/7/c/7c884e1e-fecb-4330-b3de-5fc2a60f7173.jpg?1562788780",
-                "name": "Kolaghan's Command",
-                "oracle_text": "Choose two \u2014\n\u2022 Return target creature card from your graveyard to your hand.\n\u2022 Target player discards a card.\n\u2022 Destroy target artifact.\n\u2022 Kolaghan's Command deals 2 damage to any target.",
-                "type": "Instant"
-            }
-        },
-        {
-            "Mishra's Bauble": {
-                "flavor_text": "\"Arcum is a babbling fool! Phyrexian technology is our greatest blessing. Take this delightful trinket for instance . . .\"\n\u2014Heidar, Rimewind master",
-                "image": "https://img.scryfall.com/cards/art_crop/front/8/d/8dbe32c7-180f-4b9e-b260-0ff1d9017e28.jpg?1562851517",
-                "name": "Mishra's Bauble",
-                "oracle_text": "{T}, Sacrifice Mishra's Bauble: Look at the top card of target player's library. Draw a card at the beginning of the next turn's upkeep.",
-                "type": "Artifact"
-            }
-        },
-        {
-            "Seal of Fire": {
-                "flavor_text": "After the fourth time Chandra left a place engulfed in flames, she decided to just go ahead and make it her thing.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/2/1/210f4f5a-4a36-4f2f-8821-d04f3f52c8db.jpg?1562378226",
-                "name": "Seal of Fire",
-                "oracle_text": "Sacrifice Seal of Fire: It deals 2 damage to any target.",
-                "type": "Enchantment"
-            }
-        },
-        {
-            "Blackcleave Cliffs": {
-                "flavor_text": "Where the Oxidda Chain mingles with the Mephidross, oil-suffused metal crumbles away, leaving walls of blackened bones.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/3/d/3d71be5f-0fd7-4a88-8041-f4d6bc4cc9ac.jpg?1562816648",
-                "name": "Blackcleave Cliffs",
-                "oracle_text": "Blackcleave Cliffs enters the battlefield tapped unless you control two or fewer other lands.\n{T}: Add {B} or {R}.",
-                "type": "Land"
-            }
-        },
-        {
-            "Blood Crypt": {
-                "flavor_text": "Life is a show, and death its final performance.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/5/f/5faba6c8-3463-47c1-ba01-09eb87fcb2d5.jpg?1584832229",
-                "name": "Blood Crypt",
-                "oracle_text": "({T}: Add {B} or {R}.)\nAs Blood Crypt enters the battlefield, you may pay 2 life. If you don't, it enters the battlefield tapped.",
-                "type": "Land"
-            }
-        },
-        {
-            "Sacred Foundry": {
-                "flavor_text": "\"You will not be trained here. You will be forged.\"\n\u2014Commander Yaszen",
-                "image": "https://img.scryfall.com/cards/art_crop/front/b/7/b7b598d0-535d-477d-a33d-d6a10ff5439a.jpg?1572894184",
-                "name": "Sacred Foundry",
-                "oracle_text": "({T}: Add {R} or {W}.)\nAs Sacred Foundry enters the battlefield, you may pay 2 life. If you don't, it enters the battlefield tapped.",
+            "Urza's Tower": {
+                "flavor_text": "Urza always put Tocasia's lessons on resource-gathering to effective use.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/0/6/0696cc4b-45c9-424d-b472-8d530062fd52.jpg?1562896566",
+                "name": "Urza's Tower",
+                "oracle_text": "{T}: Add {C}. If you control an Urza's Mine and an Urza's Power-Plant, add {C}{C}{C} instead.",
                 "type": "Land"
             }
         },
@@ -523,6 +262,15 @@
             }
         },
         {
+            "Opt": {
+                "flavor_text": "The crystal pulsed with the power of Teferi's planeswalker spark. Had Jhoira given him a blessing or a curse?",
+                "image": "https://img.scryfall.com/cards/art_crop/front/3/2/323db259-d35e-467d-9a46-4adcb2fc107c.jpg?1594735602",
+                "name": "Opt",
+                "oracle_text": "Scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)\nDraw a card.",
+                "type": "Instant"
+            }
+        },
+        {
             "Path to Exile": {
                 "flavor_text": "Path to Exile",
                 "image": "https://img.scryfall.com/cards/art_crop/front/5/9/59d40386-6ea6-4b77-8c61-2a9a16a88a01.jpg?1594928938",
@@ -555,15 +303,6 @@
                 "image": "https://img.scryfall.com/cards/art_crop/front/5/8/580b4818-2a01-46ad-b4d9-7d895a625bb3.jpg?1562611491",
                 "name": "Sword of Feast and Famine",
                 "oracle_text": "Equipped creature gets +2/+2 and has protection from black and from green.\nWhenever equipped creature deals combat damage to a player, that player discards a card and you untap all lands you control.\nEquip {2}",
-                "type": "Artifact"
-            }
-        },
-        {
-            "Sword of Fire and Ice": {
-                "flavor_text": "Sword of Fire and Ice",
-                "image": "https://img.scryfall.com/cards/art_crop/front/d/f/dfddc025-4396-4d88-8d72-6c06ea7125f1.jpg?1561969026",
-                "name": "Sword of Fire and Ice",
-                "oracle_text": "Equipped creature gets +2/+2 and has protection from red and from blue.\nWhenever equipped creature deals combat damage to a player, Sword of Fire and Ice deals 2 damage to any target and you draw a card.\nEquip {2}",
                 "type": "Artifact"
             }
         },
@@ -631,327 +370,12 @@
             }
         },
         {
-            "Scalding Tarn": {
-                "flavor_text": "Scalding Tarn",
-                "image": "https://img.scryfall.com/cards/art_crop/front/f/2/f2661d4a-450a-433a-b893-b1ee15982494.jpg?1593815090",
-                "name": "Scalding Tarn",
-                "oracle_text": "{T}, Pay 1 life, Sacrifice Scalding Tarn: Search your library for an Island or Mountain card, put it onto the battlefield, then shuffle your library.",
-                "type": "Land"
-            }
-        },
-        {
-            "Blighted Agent": {
-                "flavor_text": "\"Urabrask may suspect our surveillance, but he cannot stop it.\"\n\u2014Avaricta, Gitaxian sective",
-                "image": "https://img.scryfall.com/cards/art_crop/front/c/d/cddaebde-a060-4510-8c97-68432d931987.jpg?1562881631",
-                "name": "Blighted Agent",
-                "oracle_text": "Infect (This creature deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters.)\nBlighted Agent can't be blocked.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Glistener Elf": {
-                "flavor_text": "\"Beg me for life, and I will fill you with the glory of Phyrexian perfection.\"",
-                "image": "https://img.scryfall.com/cards/art_crop/front/8/b/8b94f4c6-b518-43b3-be52-e889d1f3ea38.jpg?1562879525",
-                "name": "Glistener Elf",
-                "oracle_text": "Infect (This creature deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters.)",
-                "type": "Creature"
-            }
-        },
-        {
-            "Noble Hierarch": {
-                "flavor_text": "She protects the sacred groves from blight, drought, and the Unbeholden.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/f/f/ff782973-e33c-4edd-bbd7-5c8dc8d59554.jpg?1547517681",
-                "name": "Noble Hierarch",
-                "oracle_text": "Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)\n{T}: Add {G}, {W}, or {U}.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Spellskite": {
-                "flavor_text": "\"Let's show Vorinclex that progress doesn't always need teeth or claws.\"\n\u2014Malcator, Executor of Synthesis",
-                "image": "https://img.scryfall.com/cards/art_crop/front/4/4/440e0daf-aafe-4696-a977-ac5b822134e2.jpg?1562261576",
-                "name": "Spellskite",
-                "oracle_text": "{U/P}: Change a target of target spell or ability to Spellskite. ({U/P} can be paid with either {U} or 2 life.)",
-                "type": "Creature"
-            }
-        },
-        {
-            "Distortion Strike": {
-                "flavor_text": "Distortion Strike",
-                "image": "https://img.scryfall.com/cards/art_crop/front/5/7/57556595-8ede-4a35-b3a4-0e6f8bfc4d9d.jpg?1562848971",
-                "name": "Distortion Strike",
-                "oracle_text": "Target creature gets +1/+0 until end of turn and can't be blocked this turn.\nRebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)",
-                "type": "Sorcery"
-            }
-        },
-        {
-            "Scale Up": {
-                "flavor_text": "Scale Up",
-                "image": "https://img.scryfall.com/cards/art_crop/front/3/f/3f2d9bae-2753-486c-be79-2438208ac353.jpg?1562202186",
-                "name": "Scale Up",
-                "oracle_text": "Until end of turn, target creature you control becomes a green Wurm with base power and toughness 6/4.\nOverload {4}{G}{G} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of \"target\" with \"each.\")",
-                "type": "Sorcery"
-            }
-        },
-        {
-            "Become Immense": {
-                "flavor_text": "Become Immense",
-                "image": "https://img.scryfall.com/cards/art_crop/front/5/7/573e1673-3ab5-4b28-9cf1-b0d43cad5ef3.jpg?1547517493",
-                "name": "Become Immense",
-                "oracle_text": "Delve (Each card you exile from your graveyard while casting this spell pays for {1}.)\nTarget creature gets +6/+6 until end of turn.",
-                "type": "Instant"
-            }
-        },
-        {
-            "Blossoming Defense": {
-                "flavor_text": "Those who move harmoniously with the flow of aether can channel the power of the natural world.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/5/c/5c026c39-b09c-408a-844f-fb5eb785862a.jpg?1576382384",
-                "name": "Blossoming Defense",
-                "oracle_text": "Target creature you control gets +2/+2 and gains hexproof until end of turn.",
-                "type": "Instant"
-            }
-        },
-        {
-            "Groundswell": {
-                "flavor_text": "\"This world will not be tamed.\"",
-                "image": "https://img.scryfall.com/cards/art_crop/front/8/2/821e9cb9-f78e-4d11-9c36-42e8b84b49cd.jpg?1593095453",
-                "name": "Groundswell",
-                "oracle_text": "Target creature gets +2/+2 until end of turn.\nLandfall \u2014 If you had a land enter the battlefield under your control this turn, that creature gets +4/+4 until end of turn instead.",
-                "type": "Instant"
-            }
-        },
-        {
-            "Might of Old Krosa": {
-                "flavor_text": "\"Krosa the great. Krosa the enduring. Look to the forest, and it will share its bounty.\"\n\u2014Zyd, Kamahlite druid",
-                "image": "https://img.scryfall.com/cards/art_crop/front/1/4/142600e0-9646-4327-aaa4-bc3294cf9b99.jpg?1593813838",
-                "name": "Might of Old Krosa",
-                "oracle_text": "Target creature gets +2/+2 until end of turn. If you cast this spell during your main phase, that creature gets +4/+4 until end of turn instead.",
-                "type": "Instant"
-            }
-        },
-        {
-            "Spell Pierce": {
-                "flavor_text": "\"A fool's fire is quickly quenched.\"\n\u2014Shaper Kumena",
-                "image": "https://img.scryfall.com/cards/art_crop/front/6/b/6bf4dfc0-c58b-4535-b660-54ceaa6e0217.jpg?1562557054",
-                "name": "Spell Pierce",
-                "oracle_text": "Counter target noncreature spell unless its controller pays {2}.",
-                "type": "Instant"
-            }
-        },
-        {
-            "Vines of Vastwood": {
-                "flavor_text": "Vines of Vastwood",
-                "image": "https://img.scryfall.com/cards/art_crop/front/6/2/6203e3d4-8998-41d6-9f7e-b68af0f1f8b5.jpg?1562263070",
-                "name": "Vines of Vastwood",
-                "oracle_text": "Kicker {G} (You may pay an additional {G} as you cast this spell.)\nTarget creature can't be the target of spells or abilities your opponents control this turn. If this spell was kicked, that creature gets +4/+4 until end of turn.",
-                "type": "Instant"
-            }
-        },
-        {
-            "Breeding Pool": {
-                "flavor_text": "\"One beginning, many paths.\"\n\u2014Vannifar",
-                "image": "https://img.scryfall.com/cards/art_crop/front/b/b/bb54233c-0844-4965-9cde-e8a4ef3e11b8.jpg?1584832238",
-                "name": "Breeding Pool",
-                "oracle_text": "({T}: Add {G} or {U}.)\nAs Breeding Pool enters the battlefield, you may pay 2 life. If you don't, it enters the battlefield tapped.",
-                "type": "Land"
-            }
-        },
-        {
-            "Dryad Arbor": {
-                "flavor_text": "\"Touch no tree, break no branch, and speak only the question you wish answered.\"\n\u2014Von Yomm, elder druid, to her initiates",
-                "image": "https://img.scryfall.com/cards/art_crop/front/8/c/8cee476d-42e1-4997-87af-73e18f542167.jpg?1562923491",
-                "name": "Dryad Arbor",
-                "oracle_text": "(Dryad Arbor isn't a spell, it's affected by summoning sickness, and it has \"{T}: Add {G}.\")",
-                "type": "Land"
-            }
-        },
-        {
-            "Inkmoth Nexus": {
-                "flavor_text": "Inkmoth Nexus",
-                "image": "https://img.scryfall.com/cards/art_crop/front/e/c/ec50c1c3-885e-47d3-ada7-cc0edbf09df1.jpg?1562615687",
-                "name": "Inkmoth Nexus",
-                "oracle_text": "{T}: Add {C}.\n{1}: Inkmoth Nexus becomes a 1/1 Blinkmoth artifact creature with flying and infect until end of turn. It's still a land. (It deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters.)",
-                "type": "Land"
-            }
-        },
-        {
-            "Pendelhaven": {
-                "flavor_text": "The limbs of Pendelhaven extend as far as the meek roam, and reach as high as they strive.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/a/c/acf85879-4d14-4d86-978c-b155c47b7dcd.jpg?1562439693",
-                "name": "Pendelhaven",
-                "oracle_text": "{T}: Add {G}.\n{T}: Target 1/1 creature gets +1/+2 until end of turn.",
-                "type": "Land"
-            }
-        },
-        {
-            "Waterlogged Grove": {
-                "flavor_text": "The trees pull water from deep underground, filling the forest for miles.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/0/a/0ab6bfbd-d2e1-4c4c-9f91-6f69c5b8e3bb.jpg?1562202616",
-                "name": "Waterlogged Grove",
-                "oracle_text": "{T}, Pay 1 life: Add {G} or {U}.\n{1}, {T}, Sacrifice Waterlogged Grove: Draw a card.",
-                "type": "Land"
-            }
-        },
-        {
-            "Windswept Heath": {
-                "flavor_text": "Where dragons once roared, their bones now keen.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/e/7/e7b28650-cddc-4878-b1d1-b5a764f4df49.jpg?1571667973",
-                "name": "Windswept Heath",
-                "oracle_text": "{T}, Pay 1 life, Sacrifice Windswept Heath: Search your library for a Forest or Plains card, put it onto the battlefield, then shuffle your library.",
-                "type": "Land"
-            }
-        },
-        {
-            "Bonecrusher Giant": {
-                "flavor_text": "Not every tale ends in glory.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/0/9/09fd2d9c-1793-4beb-a3fb-7a869f660cd4.jpg?1572490299",
-                "name": "Bonecrusher Giant",
-                "oracle_text": "Whenever Bonecrusher Giant becomes the target of a spell, Bonecrusher Giant deals 2 damage to that spell's controller.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Fulminator Mage": {
-                "flavor_text": "\"Burn, suffer, and trouble me no more.\"",
-                "image": "https://img.scryfall.com/cards/art_crop/front/2/1/2168dd99-f4a9-4fe9-89d4-fc0effeb8f89.jpg?1547518206",
-                "name": "Fulminator Mage",
-                "oracle_text": "Sacrifice Fulminator Mage: Destroy target nonbasic land.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Insolent Neonate": {
-                "flavor_text": "\"Manners are for mortals.\"",
-                "image": "https://img.scryfall.com/cards/art_crop/front/8/1/813104f6-e6e4-4709-8626-12fe4262a11f.jpg?1576384817",
-                "name": "Insolent Neonate",
-                "oracle_text": "Menace (This creature can't be blocked except by two or more creatures.)\nDiscard a card, Sacrifice Insolent Neonate: Draw a card.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Kroxa, Titan of Death's Hunger": {
-                "flavor_text": "Kroxa, Titan of Death's Hunger",
-                "image": "https://img.scryfall.com/cards/art_crop/front/c/e/cee0459b-9aac-4d2f-abe4-4d5fedde7eb8.jpg?1581481096",
-                "name": "Kroxa, Titan of Death's Hunger",
-                "oracle_text": "When Kroxa enters the battlefield, sacrifice it unless it escaped.\nWhenever Kroxa enters the battlefield or attacks, each opponent discards a card, then each opponent who didn't discard a nonland card this way loses 3 life.\nEscape\u2014{B}{B}{R}{R}, Exile five other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)",
-                "type": "Creature"
-            }
-        },
-        {
-            "Seasoned Pyromancer": {
-                "flavor_text": "Seasoned Pyromancer",
-                "image": "https://img.scryfall.com/cards/art_crop/front/2/e/2e139ad1-1079-49e9-babd-6399c44ad333.jpg?1562201956",
-                "name": "Seasoned Pyromancer",
-                "oracle_text": "When Seasoned Pyromancer enters the battlefield, discard two cards, then draw two cards. For each nonland card discarded this way, create a 1/1 red Elemental creature token.\n{3}{R}{R}, Exile Seasoned Pyromancer from your graveyard: Create two 1/1 red Elemental creature tokens.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Collective Brutality": {
-                "flavor_text": "Collective Brutality",
-                "image": "https://img.scryfall.com/cards/art_crop/front/c/b/cb94a02f-4660-45b6-8a39-941b710cf8f3.jpg?1576384285",
-                "name": "Collective Brutality",
-                "oracle_text": "Escalate\u2014Discard a card. (Pay this cost for each mode chosen beyond the first.)\nChoose one or more \u2014\n\u2022 Target opponent reveals their hand. You choose an instant or sorcery card from it. That player discards that card.\n\u2022 Target creature gets -2/-2 until end of turn.\n\u2022 Target opponent loses 2 life and you gain 2 life.",
-                "type": "Sorcery"
-            }
-        },
-        {
-            "Verdant Catacombs": {
-                "flavor_text": "Verdant Catacombs",
-                "image": "https://img.scryfall.com/cards/art_crop/front/1/5/15faa763-b897-4e86-b094-73f3236291a9.jpg?1593815136",
-                "name": "Verdant Catacombs",
-                "oracle_text": "{T}, Pay 1 life, Sacrifice Verdant Catacombs: Search your library for a Swamp or Forest card, put it onto the battlefield, then shuffle your library.",
-                "type": "Land"
-            }
-        },
-        {
-            "Eidolon of the Great Revel": {
-                "flavor_text": "Xenagos reveled while Theros burned.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/1/8/183ef738-0559-49ca-85b4-e6836521f203.jpg?1562433053",
-                "name": "Eidolon of the Great Revel",
-                "oracle_text": "Whenever a player casts a spell with converted mana cost 3 or less, Eidolon of the Great Revel deals 2 damage to that player.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Goblin Guide": {
-                "flavor_text": "\"I've been all over this world. I even remember some of those places.\"",
-                "image": "https://img.scryfall.com/cards/art_crop/front/5/5/552b7314-5dd9-4722-841b-2e9d5647f854.jpg?1593813469",
-                "name": "Goblin Guide",
-                "oracle_text": "Haste\nWhenever Goblin Guide attacks, defending player reveals the top card of their library. If it's a land card, that player puts it into their hand.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Lava Spike": {
-                "flavor_text": "It's not the most subtle incantation, but it gets the point across.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/7/9/79c21c1f-eaa4-454d-a1c7-b41466d0a428.jpg?1547517298",
-                "name": "Lava Spike",
-                "oracle_text": "Lava Spike deals 3 damage to target player or planeswalker.",
-                "type": "Sorcery"
-            }
-        },
-        {
-            "Rift Bolt": {
-                "flavor_text": "Rift Bolt",
-                "image": "https://img.scryfall.com/cards/art_crop/front/f/c/fc98895a-bfc3-4b0b-a8a6-2c202f6edf0d.jpg?1562856120",
-                "name": "Rift Bolt",
-                "oracle_text": "Rift Bolt deals 3 damage to any target.\nSuspend 1\u2014{R} (Rather than cast this card from your hand, you may pay {R} and exile it with a time counter on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)",
-                "type": "Sorcery"
-            }
-        },
-        {
-            "Skewer the Critics": {
-                "flavor_text": "Going to a Rakdos show is dangerous. Trying to leave early can be fatal.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/9/7/97295660-6bea-46ae-9a3b-0fc6abba407f.jpg?1584831035",
-                "name": "Skewer the Critics",
-                "oracle_text": "Spectacle {R} (You may cast this spell for its spectacle cost rather than its mana cost if an opponent lost life this turn.)\nSkewer the Critics deals 3 damage to any target.",
-                "type": "Sorcery"
-            }
-        },
-        {
-            "Boros Charm": {
-                "flavor_text": "Boros Charm",
-                "image": "https://img.scryfall.com/cards/art_crop/front/a/6/a6e601a7-c542-4843-98c6-e0a38aaf6cab.jpg?1562439515",
-                "name": "Boros Charm",
-                "oracle_text": "Choose one \u2014\n\u2022 Boros Charm deals 4 damage to target player or planeswalker.\n\u2022 Permanents you control gain indestructible until end of turn.\n\u2022 Target creature gains double strike until end of turn.",
-                "type": "Instant"
-            }
-        },
-        {
-            "Lightning Helix": {
-                "flavor_text": "\"Rage is not the answer. Rage followed by fitting vengeance is the answer.\"\n\u2014Ajani Goldmane",
-                "image": "https://img.scryfall.com/cards/art_crop/front/7/0/7053b773-a369-45b8-912f-ee66de3a63c6.jpg?1562850123",
-                "name": "Lightning Helix",
-                "oracle_text": "Lightning Helix deals 3 damage to any target and you gain 3 life.",
-                "type": "Instant"
-            }
-        },
-        {
-            "Searing Blaze": {
-                "flavor_text": "Searing Blaze",
-                "image": "https://img.scryfall.com/cards/art_crop/front/f/6/f659d464-13dd-49e2-a842-098dcba49659.jpg?1581708594",
-                "name": "Searing Blaze",
-                "oracle_text": "Searing Blaze deals 1 damage to target player or planeswalker and 1 damage to target creature that player or that planeswalker's controller controls.\nLandfall \u2014 If you had a land enter the battlefield under your control this turn, Searing Blaze deals 3 damage to that player or planeswalker and 3 damage to that creature instead.",
-                "type": "Instant"
-            }
-        },
-        {
-            "Skullcrack": {
-                "flavor_text": "The lawmage's argument was clever and well reasoned, but Blunk's response proved irrefutable.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/8/0/8068a146-f6fe-46f3-a42e-822fbc3502e6.jpg?1561833692",
-                "name": "Skullcrack",
-                "oracle_text": "Players can't gain life this turn. Damage can't be prevented this turn. Skullcrack deals 3 damage to target player or planeswalker.",
-                "type": "Instant"
-            }
-        },
-        {
-            "Inspiring Vantage": {
-                "flavor_text": "Ghirapur is a beacon of inspiration, attracting the most brilliant minds on Kaladesh.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/1/6/160ac412-005f-48ca-a204-10207307c6c2.jpg?1576383543",
-                "name": "Inspiring Vantage",
-                "oracle_text": "Inspiring Vantage enters the battlefield tapped unless you control two or fewer other lands.\n{T}: Add {R} or {W}.",
-                "type": "Land"
+            "Teferi, Hero of Dominaria": {
+                "flavor_text": "Teferi, Hero of Dominaria",
+                "image": "https://img.scryfall.com/cards/art_crop/front/5/d/5d10b752-d9cb-419d-a5c4-d4ee1acb655e.jpg?1562736365",
+                "name": "Teferi, Hero of Dominaria",
+                "oracle_text": "+1: Draw a card. At the beginning of the next end step, untap up to two lands.\n\u22123: Put target nonland permanent into its owner's library third from the top.\n\u22128: You get an emblem with \"Whenever you draw a card, exile target permanent an opponent controls.\"",
+                "type": "Planeswalker"
             }
         },
         {
@@ -973,11 +397,92 @@
             }
         },
         {
-            "Dead of Winter": {
-                "flavor_text": "\"At last, silence.\"\n\u2014Tevesh Szat",
-                "image": "https://img.scryfall.com/cards/art_crop/front/f/4/f480df6d-e227-4ccb-ad6d-a4ad48a360ad.jpg?1562201599",
-                "name": "Dead of Winter",
-                "oracle_text": "All nonsnow creatures get -X/-X until end of turn, where X is the number of snow permanents you control.",
+            "Supreme Verdict": {
+                "flavor_text": "Leonos had no second thoughts about the abolishment edict. He'd left skyrunes warning of the eviction, even though it was cloudy.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/a/6/a679cc74-6119-468f-8c64-5dcf216438d1.jpg?1562852509",
+                "name": "Supreme Verdict",
+                "oracle_text": "This spell can't be countered.\nDestroy all creatures.",
+                "type": "Sorcery"
+            }
+        },
+        {
+            "Breeding Pool": {
+                "flavor_text": "\"One beginning, many paths.\"\n\u2014Vannifar",
+                "image": "https://img.scryfall.com/cards/art_crop/front/b/b/bb54233c-0844-4965-9cde-e8a4ef3e11b8.jpg?1584832238",
+                "name": "Breeding Pool",
+                "oracle_text": "({T}: Add {G} or {U}.)\nAs Breeding Pool enters the battlefield, you may pay 2 life. If you don't, it enters the battlefield tapped.",
+                "type": "Land"
+            }
+        },
+        {
+            "Temple Garden": {
+                "flavor_text": "\"Where the roots reach, there the temple rises.\"\n\u2014Niszka, Selesnya evangel",
+                "image": "https://img.scryfall.com/cards/art_crop/front/2/b/2b9b0195-beda-403e-bc27-7ae3be9f318c.jpg?1572894210",
+                "name": "Temple Garden",
+                "oracle_text": "({T}: Add {G} or {W}.)\nAs Temple Garden enters the battlefield, you may pay 2 life. If you don't, it enters the battlefield tapped.",
+                "type": "Land"
+            }
+        },
+        {
+            "Windswept Heath": {
+                "flavor_text": "Where dragons once roared, their bones now keen.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/e/7/e7b28650-cddc-4878-b1d1-b5a764f4df49.jpg?1571667973",
+                "name": "Windswept Heath",
+                "oracle_text": "{T}, Pay 1 life, Sacrifice Windswept Heath: Search your library for a Forest or Plains card, put it onto the battlefield, then shuffle your library.",
+                "type": "Land"
+            }
+        },
+        {
+            "Death's Shadow": {
+                "flavor_text": "The shadow of the candle looms tall even as its light grows dim.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/9/d/9ddf501c-af11-4e97-81f7-32c9ee384a27.jpg?1593813240",
+                "name": "Death's Shadow",
+                "oracle_text": "Death's Shadow gets -X/-X, where X is your life total.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Street Wraith": {
+                "flavor_text": "The lamps on Wyndmoor Street snuff themselves at midnight and refuse to relight, afraid to illuminate what lies in the darkness.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/c/8/c81c6c07-0a76-4e43-a2ef-45ccffa7b0b8.jpg?1562441114",
+                "name": "Street Wraith",
+                "oracle_text": "Swampwalk (This creature can't be blocked as long as defending player controls a Swamp.)\nCycling\u2014Pay 2 life. (Pay 2 life, Discard this card: Draw a card.)",
+                "type": "Creature"
+            }
+        },
+        {
+            "Tarmogoyf": {
+                "flavor_text": "What doesn't grow, dies. And what dies grows the tarmogoyf.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/4/2/42e56220-81c3-4440-9f97-8616d630a8ee.jpg?1547517874",
+                "name": "Tarmogoyf",
+                "oracle_text": "Tarmogoyf's power is equal to the number of card types among cards in all graveyards and its toughness is equal to that number plus 1.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Inquisition of Kozilek": {
+                "flavor_text": "After the awakening of the Eldrazi, some vampires took it upon themselves to remind the others where their loyalty should lie.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/e/7/e7dd9fad-d8e3-4e46-b4d7-792d029736de.jpg?1593813320",
+                "name": "Inquisition of Kozilek",
+                "oracle_text": "Target player reveals their hand. You choose a nonland card from it with converted mana cost 3 or less. That player discards that card.",
+                "type": "Sorcery"
+            }
+        },
+        {
+            "Thoughtseize": {
+                "flavor_text": "\"Any dream is a robust harvest. Still, I prefer the timeworn dreams, heavy with import, that haunt the obsessive mind.\"",
+                "image": "https://img.scryfall.com/cards/art_crop/front/3/1/310a1c46-8331-4a09-9fcb-d942f8102364.jpg?1562847415",
+                "name": "Thoughtseize",
+                "oracle_text": "Target player reveals their hand. You choose a nonland card from it. That player discards that card. You lose 2 life.",
+                "type": "Sorcery"
+            }
+        },
+        {
+            "Traverse the Ulvenwald": {
+                "flavor_text": "Traverse the Ulvenwald",
+                "image": "https://img.scryfall.com/cards/art_crop/front/b/b/bbc69a17-db08-4b4a-bc37-98a12ea108dc.jpg?1576385271",
+                "name": "Traverse the Ulvenwald",
+                "oracle_text": "Search your library for a basic land card, reveal it, put it into your hand, then shuffle your library.\nDelirium \u2014 If there are four or more card types among cards in your graveyard, instead search your library for a creature or land card, reveal it, put it into your hand, then shuffle your library.",
                 "type": "Sorcery"
             }
         },
@@ -991,12 +496,75 @@
             }
         },
         {
-            "Thought Scour": {
-                "flavor_text": "\"As you inject the *viscus vitae* into the brain stem, don't let the spastic moaning bother you. It will soon become music to your ears.\"\n\u2014Stitcher Geralf",
-                "image": "https://img.scryfall.com/cards/art_crop/front/1/4/142944d5-1b11-4ec4-b6b4-b5c03e682cd3.jpg?1595011040",
-                "name": "Thought Scour",
-                "oracle_text": "Target player mills two cards.\nDraw a card.",
+            "Cling to Dust": {
+                "flavor_text": "In bleak Tizerus, all hope crumbles in your grasp.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/5/2/52c2de5f-e486-4cfe-9fb6-be0078ce5f93.jpg?1581479717",
+                "name": "Cling to Dust",
+                "oracle_text": "Exile target card from a graveyard. If it was a creature card, you gain 3 life. Otherwise, you draw a card.\nEscape\u2014{3}{B}, Exile five other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)",
                 "type": "Instant"
+            }
+        },
+        {
+            "Fatal Push": {
+                "flavor_text": "Fatal Push",
+                "image": "https://img.scryfall.com/cards/art_crop/front/b/5/b5e81649-9954-424c-89d1-f87d73b66047.jpg?1576381639",
+                "name": "Fatal Push",
+                "oracle_text": "Destroy target creature if it has converted mana cost 2 or less.\nRevolt \u2014 Destroy that creature if it has converted mana cost 4 or less instead if a permanent you controlled left the battlefield this turn.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Stubborn Denial": {
+                "flavor_text": "The Temur have no patience for subtlety.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/6/f/6f8626c4-306f-4e9d-8840-2bb73fe87e87.jpg?1562788344",
+                "name": "Stubborn Denial",
+                "oracle_text": "Counter target noncreature spell unless its controller pays {1}.\nFerocious \u2014 If you control a creature with power 4 or greater, counter that spell instead.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Temur Battle Rage": {
+                "flavor_text": "Temur Battle Rage",
+                "image": "https://img.scryfall.com/cards/art_crop/front/8/a/8a1dd786-f4e3-4951-b87b-82442edec016.jpg?1562827408",
+                "name": "Temur Battle Rage",
+                "oracle_text": "Target creature gains double strike until end of turn. (It deals both first-strike and regular combat damage.)\nFerocious \u2014 That creature also gains trample until end of turn if you control a creature with power 4 or greater.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Mishra's Bauble": {
+                "flavor_text": "\"Arcum is a babbling fool! Phyrexian technology is our greatest blessing. Take this delightful trinket for instance . . .\"\n\u2014Heidar, Rimewind master",
+                "image": "https://img.scryfall.com/cards/art_crop/front/8/d/8dbe32c7-180f-4b9e-b260-0ff1d9017e28.jpg?1562851517",
+                "name": "Mishra's Bauble",
+                "oracle_text": "{T}, Sacrifice Mishra's Bauble: Look at the top card of target player's library. Draw a card at the beginning of the next turn's upkeep.",
+                "type": "Artifact"
+            }
+        },
+        {
+            "Blood Crypt": {
+                "flavor_text": "Life is a show, and death its final performance.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/5/f/5faba6c8-3463-47c1-ba01-09eb87fcb2d5.jpg?1584832229",
+                "name": "Blood Crypt",
+                "oracle_text": "({T}: Add {B} or {R}.)\nAs Blood Crypt enters the battlefield, you may pay 2 life. If you don't, it enters the battlefield tapped.",
+                "type": "Land"
+            }
+        },
+        {
+            "Bloodstained Mire": {
+                "flavor_text": "Where dragons once triumphed, their bones now molder.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/7/f/7f430794-0d86-4f6a-97e0-4bbb6716d613.jpg?1571667959",
+                "name": "Bloodstained Mire",
+                "oracle_text": "{T}, Pay 1 life, Sacrifice Bloodstained Mire: Search your library for a Swamp or Mountain card, put it onto the battlefield, then shuffle your library.",
+                "type": "Land"
+            }
+        },
+        {
+            "Nurturing Peatland": {
+                "flavor_text": "New life is born within its shadows.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/2/7/2744ac83-a79f-4042-8720-688b5adda382.jpg?1562202580",
+                "name": "Nurturing Peatland",
+                "oracle_text": "{T}, Pay 1 life: Add {B} or {G}.\n{1}, {T}, Sacrifice Nurturing Peatland: Draw a card.",
+                "type": "Land"
             }
         },
         {
@@ -1018,6 +586,15 @@
             }
         },
         {
+            "Verdant Catacombs": {
+                "flavor_text": "Verdant Catacombs",
+                "image": "https://img.scryfall.com/cards/art_crop/front/1/5/15faa763-b897-4e86-b094-73f3236291a9.jpg?1593815136",
+                "name": "Verdant Catacombs",
+                "oracle_text": "{T}, Pay 1 life, Sacrifice Verdant Catacombs: Search your library for a Swamp or Forest card, put it onto the battlefield, then shuffle your library.",
+                "type": "Land"
+            }
+        },
+        {
             "Watery Grave": {
                 "flavor_text": "Few believe Duskmantle exists. Fewer find it. None live to bear witness.",
                 "image": "https://img.scryfall.com/cards/art_crop/front/7/d/7d4595f2-9297-40dc-b2dd-7144bbb401f7.jpg?1572894217",
@@ -1027,11 +604,155 @@
             }
         },
         {
-            "Zagoth Triome": {
-                "flavor_text": "Hunters in the primeval wetlands become fluent in reading the ripples to tell when to pursue and when to flee.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/c/c/cc520518-2063-4b57-a0d4-10cf62a7175e.jpg?1591228738",
-                "name": "Zagoth Triome",
-                "oracle_text": "({T}: Add {B}, {G}, or {U}.)\nZagoth Triome enters the battlefield tapped.\nCycling {3} ({3}, Discard this card: Draw a card.)",
+            "Bedlam Reveler": {
+                "flavor_text": "Bedlam Reveler",
+                "image": "https://img.scryfall.com/cards/art_crop/front/0/2/0232f188-44f2-4aee-963c-6f6edc4a21ac.jpg?1576384515",
+                "name": "Bedlam Reveler",
+                "oracle_text": "This spell costs {1} less to cast for each instant and sorcery card in your graveyard.\nProwess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)\nWhen Bedlam Reveler enters the battlefield, discard your hand, then draw three cards.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Monastery Swiftspear": {
+                "flavor_text": "The calligraphy of combat is written with strokes of sudden blood.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/5/8/58db2f81-6ff5-402c-8aef-0b667e82cdc4.jpg?1562849346",
+                "name": "Monastery Swiftspear",
+                "oracle_text": "Haste\nProwess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)",
+                "type": "Creature"
+            }
+        },
+        {
+            "Soul-Scar Mage": {
+                "flavor_text": "Soul-Scar Mage",
+                "image": "https://img.scryfall.com/cards/art_crop/front/a/8/a8003786-6e2a-4e2d-a915-f23293c7273a.jpg?1543675694",
+                "name": "Soul-Scar Mage",
+                "oracle_text": "Prowess\nIf a source you control would deal noncombat damage to a creature an opponent controls, put that many -1/-1 counters on that creature instead.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Sprite Dragon": {
+                "flavor_text": "Size of a pixie, rage of a hellkite.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/2/8/281f6118-adb8-4a7d-9c77-5570f3399e6e.jpg?1591228274",
+                "name": "Sprite Dragon",
+                "oracle_text": "Flying, haste\nWhenever you cast a noncreature spell, put a +1/+1 counter on Sprite Dragon.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Stormwing Entity": {
+                "flavor_text": "Stormwing Entity",
+                "image": "https://img.scryfall.com/cards/art_crop/front/0/5/0540ee72-6370-4f70-9526-6f441b3cac1e.jpg?1594735784",
+                "name": "Stormwing Entity",
+                "oracle_text": "This spell costs {2}{U} less to cast if you've cast an instant or sorcery spell this turn.\nFlying\nProwess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)\nWhen Stormwing Entity enters the battlefield, scry 2.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Light Up the Stage": {
+                "flavor_text": "\"Places, everyone!\"\n\u2014Judith",
+                "image": "https://img.scryfall.com/cards/art_crop/front/9/2/9287b848-2aeb-4c70-ac4a-acafb871b7a4.jpg?1584830944",
+                "name": "Light Up the Stage",
+                "oracle_text": "Spectacle {R} (You may cast this spell for its spectacle cost rather than its mana cost if an opponent lost life this turn.)\nExile the top two cards of your library. Until the end of your next turn, you may play those cards.",
+                "type": "Sorcery"
+            }
+        },
+        {
+            "Burst Lightning": {
+                "flavor_text": "Burst Lightning",
+                "image": "https://img.scryfall.com/cards/art_crop/front/f/2/f2e6428f-5c78-45f7-9bf9-eb4de63325d5.jpg?1562269259",
+                "name": "Burst Lightning",
+                "oracle_text": "Kicker {4} (You may pay an additional {4} as you cast this spell.)\nBurst Lightning deals 2 damage to any target. If this spell was kicked, it deals 4 damage instead.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Gut Shot": {
+                "flavor_text": "\"Down here, we have a more pointed version of the scriptures.\"\n\u2014Urabrask's enforcer",
+                "image": "https://img.scryfall.com/cards/art_crop/front/4/6/461987da-8860-4a04-8f93-d182523ca311.jpg?1562261607",
+                "name": "Gut Shot",
+                "oracle_text": "({R/P} can be paid with either {R} or 2 life.)\nGut Shot deals 1 damage to any target.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Lava Dart": {
+                "flavor_text": "\"Small outbursts are healthy.\"\n\u2014Koth of the Hammer",
+                "image": "https://img.scryfall.com/cards/art_crop/front/b/1/b16dd041-451d-4914-8c46-aa315a90d802.jpg?1562201890",
+                "name": "Lava Dart",
+                "oracle_text": "Lava Dart deals 1 damage to any target.\nFlashback\u2014Sacrifice a Mountain. (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+                "type": "Instant"
+            }
+        },
+        {
+            "Lightning Bolt": {
+                "flavor_text": "The sparkmage shrieked, calling on the rage of the storms of his youth. To his surprise, the sky responded with a fierce energy he'd never thought to see again.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/c/e/ce711943-c1a1-43a0-8b89-8d169cfb8e06.jpg?1594928922",
+                "name": "Lightning Bolt",
+                "oracle_text": "Lightning Bolt deals 3 damage to any target.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Manamorphose": {
+                "flavor_text": "\"Master the chaotic forces of nature, and you shall master magic.\"\n\u2014Yare-Tiva, warden of Gramur forest",
+                "image": "https://img.scryfall.com/cards/art_crop/front/f/0/f079df56-60f9-46e5-8f2e-032e62b6a5f1.jpg?1561969044",
+                "name": "Manamorphose",
+                "oracle_text": "Add two mana in any combination of colors.\nDraw a card.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Mutagenic Growth": {
+                "flavor_text": "\"Sympathy is for weaklings. Whoever survives, wins.\"\n\u2014Benzir, archdruid of Temple Might",
+                "image": "https://img.scryfall.com/cards/art_crop/front/2/e/2e0861a2-1858-47af-8154-20a977c2b298.jpg?1562260231",
+                "name": "Mutagenic Growth",
+                "oracle_text": "({G/P} can be paid with either {G} or 2 life.)\nTarget creature gets +2/+2 until end of turn.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Arid Mesa": {
+                "flavor_text": "Arid Mesa",
+                "image": "https://img.scryfall.com/cards/art_crop/front/c/9/c9a8cc61-7e36-4df7-9c89-c32fce129c5a.jpg?1593814974",
+                "name": "Arid Mesa",
+                "oracle_text": "{T}, Pay 1 life, Sacrifice Arid Mesa: Search your library for a Mountain or Plains card, put it onto the battlefield, then shuffle your library.",
+                "type": "Land"
+            }
+        },
+        {
+            "Fiery Islet": {
+                "flavor_text": "Where water is the canvas and lava the paint.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/a/3/a3aab13c-9d9d-4507-ae5d-da979990ae1b.jpg?1562202552",
+                "name": "Fiery Islet",
+                "oracle_text": "{T}, Pay 1 life: Add {U} or {R}.\n{1}, {T}, Sacrifice Fiery Islet: Draw a card.",
+                "type": "Land"
+            }
+        },
+        {
+            "Spirebluff Canal": {
+                "flavor_text": "There's so much more to Ghirapur than can be accessed by traditional roads.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/4/e/4e587ea7-0632-4789-ba75-3c410da2bb96.jpg?1576383574",
+                "name": "Spirebluff Canal",
+                "oracle_text": "Spirebluff Canal enters the battlefield tapped unless you control two or fewer other lands.\n{T}: Add {U} or {R}.",
+                "type": "Land"
+            }
+        },
+        {
+            "Steam Vents": {
+                "flavor_text": "\"A massive new Izzet building project with an unstated purpose? Probably fine.\"\n\u2014Zija, Simic mutationist",
+                "image": "https://img.scryfall.com/cards/art_crop/front/b/8/b8ebe3cf-7143-453a-b0ef-2f5bdaac3185.jpg?1572894204",
+                "name": "Steam Vents",
+                "oracle_text": "({T}: Add {U} or {R}.)\nAs Steam Vents enters the battlefield, you may pay 2 life. If you don't, it enters the battlefield tapped.",
+                "type": "Land"
+            }
+        },
+        {
+            "Wooded Foothills": {
+                "flavor_text": "Where dragons' breath once burned, their bones now freeze.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/a/8/a8503cca-7e7d-44c4-8587-81376b396398.jpg?1571667977",
+                "name": "Wooded Foothills",
+                "oracle_text": "{T}, Pay 1 life, Sacrifice Wooded Foothills: Search your library for a Mountain or Forest card, put it onto the battlefield, then shuffle your library.",
                 "type": "Land"
             }
         },
@@ -1054,15 +775,6 @@
             }
         },
         {
-            "Fierce Empath": {
-                "flavor_text": "Fierce Empath",
-                "image": "https://img.scryfall.com/cards/art_crop/front/1/7/17bc2af0-5a1d-4319-a285-6a15cf86be83.jpg?1594736962",
-                "name": "Fierce Empath",
-                "oracle_text": "When Fierce Empath enters the battlefield, you may search your library for a creature card with converted mana cost 6 or greater, reveal it, put it into your hand, then shuffle your library.",
-                "type": "Creature"
-            }
-        },
-        {
             "Primeval Titan": {
                 "flavor_text": "When nature calls, run.",
                 "image": "https://img.scryfall.com/cards/art_crop/front/6/d/6d5537da-112e-4679-a113-b5d7ce32a66b.jpg?1562850064",
@@ -1078,6 +790,15 @@
                 "name": "Sakura-Tribe Scout",
                 "oracle_text": "{T}: You may put a land card from your hand onto the battlefield.",
                 "type": "Creature"
+            }
+        },
+        {
+            "Ancient Stirrings": {
+                "flavor_text": "Ancient Stirrings",
+                "image": "https://img.scryfall.com/cards/art_crop/front/9/0/90ea4a23-63fa-4d3d-90e3-c007ba0c0e78.jpg?1562438516",
+                "name": "Ancient Stirrings",
+                "oracle_text": "Look at the top five cards of your library. You may reveal a colorless card from among them and put it into your hand. Then put the rest on the bottom of your library in any order. (Cards with no colored mana in their mana costs are colorless. Lands are also colorless.)",
+                "type": "Sorcery"
             }
         },
         {
@@ -1117,20 +838,20 @@
             }
         },
         {
-            "Engineered Explosives": {
-                "flavor_text": "Engineered Explosives",
-                "image": "https://img.scryfall.com/cards/art_crop/front/f/1/f1e2b69e-b06b-46a5-ac57-a6a180eeecc7.jpg?1547518428",
-                "name": "Engineered Explosives",
-                "oracle_text": "Sunburst (This enters the battlefield with a charge counter on it for each color of mana spent to cast it.)\n{2}, Sacrifice Engineered Explosives: Destroy each nonland permanent with converted mana cost equal to the number of charge counters on Engineered Explosives.",
-                "type": "Artifact"
-            }
-        },
-        {
             "Bojuka Bog": {
                 "flavor_text": "Bojuka Bog",
                 "image": "https://img.scryfall.com/cards/art_crop/front/0/1/01769b12-4841-4a1a-a089-e061442203ed.jpg?1591321823",
                 "name": "Bojuka Bog",
                 "oracle_text": "Bojuka Bog enters the battlefield tapped.\nWhen Bojuka Bog enters the battlefield, exile all cards from target player's graveyard.\n{T}: Add {B}.",
+                "type": "Land"
+            }
+        },
+        {
+            "Boros Garrison": {
+                "flavor_text": "Boros Garrison",
+                "image": "https://img.scryfall.com/cards/art_crop/front/7/f/7fbc73e9-a17f-475c-8a23-f9673e1930ae.jpg?1591321835",
+                "name": "Boros Garrison",
+                "oracle_text": "Boros Garrison enters the battlefield tapped.\nWhen Boros Garrison enters the battlefield, return a land you control to its owner's hand.\n{T}: Add {R}{W}.",
                 "type": "Land"
             }
         },
@@ -1162,6 +883,15 @@
             }
         },
         {
+            "Gemstone Mine": {
+                "flavor_text": "Gemstone Mine",
+                "image": "https://img.scryfall.com/cards/art_crop/front/2/6/26794aa3-7532-4611-a591-51a51e5f9189.jpg?1562773338",
+                "name": "Gemstone Mine",
+                "oracle_text": "Gemstone Mine enters the battlefield with three mining counters on it.\n{T}, Remove a mining counter from Gemstone Mine: Add one mana of any color. If there are no mining counters on Gemstone Mine, sacrifice it.",
+                "type": "Land"
+            }
+        },
+        {
             "Ghost Quarter": {
                 "flavor_text": "Deserted, but not uninhabited.",
                 "image": "https://img.scryfall.com/cards/art_crop/front/1/2/12f8071c-8955-4aa2-889c-6043df047223.jpg?1562272439",
@@ -1185,15 +915,6 @@
                 "image": "https://img.scryfall.com/cards/art_crop/front/f/1/f15671c2-d9a3-459c-9f1e-d110062b2e53.jpg?1591322049",
                 "name": "Gruul Turf",
                 "oracle_text": "Gruul Turf enters the battlefield tapped.\nWhen Gruul Turf enters the battlefield, return a land you control to its owner's hand.\n{T}: Add {R}{G}.",
-                "type": "Land"
-            }
-        },
-        {
-            "Hanweir Battlements": {
-                "flavor_text": "Hanweir Battlements",
-                "image": "https://img.scryfall.com/cards/art_crop/front/1/d/1d743ad6-6ca2-409a-9773-581cc195dbf2.jpg?1581393311",
-                "name": "Hanweir Battlements",
-                "oracle_text": "{T}: Add {C}.\n{R}, {T}: Target creature gains haste until end of turn.\n{3}{R}{R}, {T}: If you both own and control Hanweir Battlements and a creature named Hanweir Garrison, exile them, then meld them into Hanweir, the Writhing Township.",
                 "type": "Land"
             }
         },
@@ -1225,6 +946,15 @@
             }
         },
         {
+            "Slayers' Stronghold": {
+                "flavor_text": "Its courtyards are lit during every hour of the day so that night may never fall within its walls.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/9/3/939a4351-3ec7-4e6c-8cdd-766bfd670391.jpg?1592709656",
+                "name": "Slayers' Stronghold",
+                "oracle_text": "{T}: Add {C}.\n{R}{W}, {T}: Target creature gets +2/+0 and gains vigilance and haste until end of turn.",
+                "type": "Land"
+            }
+        },
+        {
             "Tolaria West": {
                 "flavor_text": "Tolaria West",
                 "image": "https://img.scryfall.com/cards/art_crop/front/a/9/a9e80f06-ea05-4151-920f-7ddc88952169.jpg?1562929228",
@@ -1252,11 +982,56 @@
             }
         },
         {
-            "Arid Mesa": {
-                "flavor_text": "Arid Mesa",
-                "image": "https://img.scryfall.com/cards/art_crop/front/c/9/c9a8cc61-7e36-4df7-9c89-c32fce129c5a.jpg?1593814974",
-                "name": "Arid Mesa",
-                "oracle_text": "{T}, Pay 1 life, Sacrifice Arid Mesa: Search your library for a Mountain or Plains card, put it onto the battlefield, then shuffle your library.",
+            "Abbot of Keral Keep": {
+                "flavor_text": "Abbot of Keral Keep",
+                "image": "https://img.scryfall.com/cards/art_crop/front/c/b/cb7a2770-9a20-4f52-aac4-24502f50e374.jpg?1571661132",
+                "name": "Abbot of Keral Keep",
+                "oracle_text": "Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)\nWhen Abbot of Keral Keep enters the battlefield, exile the top card of your library. Until end of turn, you may play that card.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Hooting Mandrills": {
+                "flavor_text": "Interlopers in Sultai territory usually end up as crocodile chow or baboon bait.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/6/d/6dfbd094-1d59-4539-80e1-595227d3e64d.jpg?1547517629",
+                "name": "Hooting Mandrills",
+                "oracle_text": "Delve (Each card you exile from your graveyard while casting this spell pays for {1}.)\nTrample",
+                "type": "Creature"
+            }
+        },
+        {
+            "Seal of Fire": {
+                "flavor_text": "After the fourth time Chandra left a place engulfed in flames, she decided to just go ahead and make it her thing.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/2/1/210f4f5a-4a36-4f2f-8821-d04f3f52c8db.jpg?1562378226",
+                "name": "Seal of Fire",
+                "oracle_text": "Sacrifice Seal of Fire: It deals 2 damage to any target.",
+                "type": "Enchantment"
+            }
+        },
+        {
+            "Copperline Gorge": {
+                "flavor_text": "Where the Tangle overruns the Oxidda mountains, metallic beasts scratch their territories in the verdigris.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/2/8/28f1d784-f286-418d-a712-bc07ad10d4a2.jpg?1562815756",
+                "name": "Copperline Gorge",
+                "oracle_text": "Copperline Gorge enters the battlefield tapped unless you control two or fewer other lands.\n{T}: Add {R} or {G}.",
+                "type": "Land"
+            }
+        },
+        {
+            "Stomping Ground": {
+                "flavor_text": "\"What we begin, the End-Raze will finish. Then we will dance in Ravnica's rubble.\"\n\u2014Nikya of the Old Ways",
+                "image": "https://img.scryfall.com/cards/art_crop/front/d/c/dcaa1ff6-304e-4660-9df3-36de8e89592e.jpg?1584832363",
+                "name": "Stomping Ground",
+                "oracle_text": "({T}: Add {R} or {G}.)\nAs Stomping Ground enters the battlefield, you may pay 2 life. If you don't, it enters the battlefield tapped.",
+                "type": "Land"
+            }
+        },
+        {
+            "Sunbaked Canyon": {
+                "flavor_text": "Since the river ran dry, travelers wander where fish once swam.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/c/3/c36820fa-ee86-4206-9a0d-737a67cf5208.jpg?1562202603",
+                "name": "Sunbaked Canyon",
+                "oracle_text": "{T}, Pay 1 life: Add {R} or {W}.\n{1}, {T}, Sacrifice Sunbaked Canyon: Draw a card.",
                 "type": "Land"
             }
         },
@@ -1266,6 +1041,96 @@
                 "image": "https://img.scryfall.com/cards/art_crop/front/4/a/4a706ecf-3277-40e3-871c-4ba4ead16e20.jpg?1582053605",
                 "name": "Wrenn and Six",
                 "oracle_text": "+1: Return up to one target land card from your graveyard to your hand.\n\u22121: Wrenn and Six deals 1 damage to any target.\n\u22127: You get an emblem with \"Instant and sorcery cards in your graveyard have retrace.\" (You may cast instant and sorcery cards from your graveyard by discarding a land card in addition to paying their other costs.)",
+                "type": "Planeswalker"
+            }
+        },
+        {
+            "Fact or Fiction": {
+                "flavor_text": "\"Try to pretend like you understand what's important.\"",
+                "image": "https://img.scryfall.com/cards/art_crop/front/d/7/d7a7a247-51bd-4244-81c7-2b406a23cc69.jpg?1568003990",
+                "name": "Fact or Fiction",
+                "oracle_text": "Reveal the top five cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other into your graveyard.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Growth Spiral": {
+                "flavor_text": "Cyclical and spiral patterns are the specialty of the Gyre Clade, which seeks to revitalize the cycles of nature.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/6/9/69625c5a-cf13-4c5d-816c-fd1670685587.jpg?1591321303",
+                "name": "Growth Spiral",
+                "oracle_text": "Draw a card. You may put a land card from your hand onto the battlefield.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Nexus of Fate": {
+                "flavor_text": "Sarkhan wandered into a tomb and back in time.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/f/1/f163cfbf-6df6-4af5-9fe4-23b0d511586a.jpg?1594656234",
+                "name": "Nexus of Fate",
+                "oracle_text": "Take an extra turn after this one.\nIf Nexus of Fate would be put into a graveyard from anywhere, reveal Nexus of Fate and shuffle it into its owner's library instead.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Remand": {
+                "flavor_text": "For the Azorius, the law can be a physical shield against chaos and anarchy.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/d/c/dc595c63-af05-4c05-80e8-e1a90df26b0f.jpg?1562268359",
+                "name": "Remand",
+                "oracle_text": "Counter target spell. If that spell is countered this way, put it into its owner's hand instead of into that player's graveyard.\nDraw a card.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Wilderness Reclamation": {
+                "flavor_text": "\"Walls crack. Buildings fall. Always the wilds return.\"\n\u2014Domri Rade",
+                "image": "https://img.scryfall.com/cards/art_crop/front/9/4/94a28102-dfbe-49e9-b64f-52b552afac1b.jpg?1591321090",
+                "name": "Wilderness Reclamation",
+                "oracle_text": "At the beginning of your end step, untap all lands you control.",
+                "type": "Enchantment"
+            }
+        },
+        {
+            "Castle Vantress": {
+                "flavor_text": "Without Vantress's knowledge, the realm would lose itself in darkness.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/0/a/0a8b9d37-e89c-44ad-bd1b-51cb06ec3e0b.jpg?1572491190",
+                "name": "Castle Vantress",
+                "oracle_text": "Castle Vantress enters the battlefield tapped unless you control an Island.\n{T}: Add {U}.\n{2}{U}{U}, {T}: Scry 2.",
+                "type": "Land"
+            }
+        },
+        {
+            "Ketria Triome": {
+                "flavor_text": "Nowhere on Ikoria are monsters more integral to the landscape than Ketria, where the river itself will stand up and roar.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/a/2/a249b1f4-2b22-4b67-a207-e0c4ae95d2e1.jpg?1591228658",
+                "name": "Ketria Triome",
+                "oracle_text": "({T}: Add {G}, {U}, or {R}.)\nKetria Triome enters the battlefield tapped.\nCycling {3} ({3}, Discard this card: Draw a card.)",
+                "type": "Land"
+            }
+        },
+        {
+            "Scalding Tarn": {
+                "flavor_text": "Scalding Tarn",
+                "image": "https://img.scryfall.com/cards/art_crop/front/f/2/f2661d4a-450a-433a-b893-b1ee15982494.jpg?1593815090",
+                "name": "Scalding Tarn",
+                "oracle_text": "{T}, Pay 1 life, Sacrifice Scalding Tarn: Search your library for an Island or Mountain card, put it onto the battlefield, then shuffle your library.",
+                "type": "Land"
+            }
+        },
+        {
+            "Zagoth Triome": {
+                "flavor_text": "Hunters in the primeval wetlands become fluent in reading the ripples to tell when to pursue and when to flee.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/c/c/cc520518-2063-4b57-a0d4-10cf62a7175e.jpg?1591228738",
+                "name": "Zagoth Triome",
+                "oracle_text": "({T}: Add {B}, {G}, or {U}.)\nZagoth Triome enters the battlefield tapped.\nCycling {3} ({3}, Discard this card: Draw a card.)",
+                "type": "Land"
+            }
+        },
+        {
+            "Liliana of the Veil": {
+                "flavor_text": "Liliana of the Veil",
+                "image": "https://img.scryfall.com/cards/art_crop/front/e/6/e653437e-2e56-4443-aec5-5bb7d8860238.jpg?1547516945",
+                "name": "Liliana of the Veil",
+                "oracle_text": "+1: Each player discards a card.\n\u22122: Target player sacrifices a creature.\n\u22126: Separate all permanents target player controls into two piles. That player sacrifices all permanents in the pile of their choice.",
                 "type": "Planeswalker"
             }
         },
@@ -1288,12 +1153,12 @@
             }
         },
         {
-            "Tarmogoyf": {
-                "flavor_text": "What doesn't grow, dies. And what dies grows the tarmogoyf.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/4/2/42e56220-81c3-4440-9f97-8616d630a8ee.jpg?1547517874",
-                "name": "Tarmogoyf",
-                "oracle_text": "Tarmogoyf's power is equal to the number of card types among cards in all graveyards and its toughness is equal to that number plus 1.",
-                "type": "Creature"
+            "Maelstrom Pulse": {
+                "flavor_text": "During the collision of the shards, entire ways of life disappeared without a trace.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/d/3/d30ea59f-c582-4044-b639-dce6fc429b72.jpg?1547518078",
+                "name": "Maelstrom Pulse",
+                "oracle_text": "Destroy target nonland permanent and all other permanents with the same name as that permanent.",
+                "type": "Sorcery"
             }
         },
         {
@@ -1306,29 +1171,668 @@
             }
         },
         {
-            "Nurturing Peatland": {
-                "flavor_text": "New life is born within its shadows.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/2/7/2744ac83-a79f-4042-8720-688b5adda382.jpg?1562202580",
-                "name": "Nurturing Peatland",
-                "oracle_text": "{T}, Pay 1 life: Add {B} or {G}.\n{1}, {T}, Sacrifice Nurturing Peatland: Draw a card.",
+            "Kolaghan's Command": {
+                "flavor_text": "Kolaghan's Command",
+                "image": "https://img.scryfall.com/cards/art_crop/front/7/c/7c884e1e-fecb-4330-b3de-5fc2a60f7173.jpg?1562788780",
+                "name": "Kolaghan's Command",
+                "oracle_text": "Choose two \u2014\n\u2022 Return target creature card from your graveyard to your hand.\n\u2022 Target player discards a card.\n\u2022 Destroy target artifact.\n\u2022 Kolaghan's Command deals 2 damage to any target.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Barren Moor": {
+                "flavor_text": "Barren Moor",
+                "image": "https://img.scryfall.com/cards/art_crop/front/c/6/c6ae4a0f-6b58-4a29-826e-cda2f115cdda.jpg?1568005022",
+                "name": "Barren Moor",
+                "oracle_text": "Barren Moor enters the battlefield tapped.\n{T}: Add {B}.\nCycling {B} ({B}, Discard this card: Draw a card.)",
                 "type": "Land"
             }
         },
         {
-            "Stomping Ground": {
-                "flavor_text": "\"What we begin, the End-Raze will finish. Then we will dance in Ravnica's rubble.\"\n\u2014Nikya of the Old Ways",
-                "image": "https://img.scryfall.com/cards/art_crop/front/d/c/dcaa1ff6-304e-4660-9df3-36de8e89592e.jpg?1584832363",
-                "name": "Stomping Ground",
-                "oracle_text": "({T}: Add {R} or {G}.)\nAs Stomping Ground enters the battlefield, you may pay 2 life. If you don't, it enters the battlefield tapped.",
+            "Blackcleave Cliffs": {
+                "flavor_text": "Where the Oxidda Chain mingles with the Mephidross, oil-suffused metal crumbles away, leaving walls of blackened bones.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/3/d/3d71be5f-0fd7-4a88-8041-f4d6bc4cc9ac.jpg?1562816648",
+                "name": "Blackcleave Cliffs",
+                "oracle_text": "Blackcleave Cliffs enters the battlefield tapped unless you control two or fewer other lands.\n{T}: Add {B} or {R}.",
                 "type": "Land"
             }
         },
         {
-            "Twilight Mire": {
-                "flavor_text": "As their roots soaked in a weak tea of bogwater and decay, the trees absorbed the essence of death into their living tissue.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/8/0/80f7d8f4-0452-4163-960c-499ce07933eb.jpg?1562437525",
-                "name": "Twilight Mire",
-                "oracle_text": "{T}: Add {C}.\n{B/G}, {T}: Add {B}{B}, {B}{G}, or {G}{G}.",
+            "Raging Ravine": {
+                "flavor_text": "Raging Ravine",
+                "image": "https://img.scryfall.com/cards/art_crop/front/7/9/79e6b8fc-6627-47ab-bfd1-7300e13debec.jpg?1547518746",
+                "name": "Raging Ravine",
+                "oracle_text": "Raging Ravine enters the battlefield tapped.\n{T}: Add {R} or {G}.\n{2}{R}{G}: Until end of turn, Raging Ravine becomes a 3/3 red and green Elemental creature with \"Whenever this creature attacks, put a +1/+1 counter on it.\" It's still a land.",
+                "type": "Land"
+            }
+        },
+        {
+            "Simian Spirit Guide": {
+                "flavor_text": "\"It's rarely worth questioning where the mana comes from. Just be grateful.\"\n\u2014Jaya Ballard, task mage",
+                "image": "https://img.scryfall.com/cards/art_crop/front/1/9/19f1ac65-aed8-4ac6-ba90-e088db6c1389.jpg?1562433078",
+                "name": "Simian Spirit Guide",
+                "oracle_text": "Exile Simian Spirit Guide from your hand: Add {R}.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Thassa's Oracle": {
+                "flavor_text": "Thassa's Oracle",
+                "image": "https://img.scryfall.com/cards/art_crop/front/7/2/726e8b29-13e9-4138-b6a9-d2a0d8188d1c.jpg?1582752984",
+                "name": "Thassa's Oracle",
+                "oracle_text": "When Thassa's Oracle enters the battlefield, look at the top X cards of your library, where X is your devotion to blue. Put up to one of them on top of your library and the rest on the bottom of your library in a random order. If X is greater than or equal to the number of cards in your library, you win the game. (Each {U} in the mana costs of permanents you control counts toward your devotion to blue.)",
+                "type": "Creature"
+            }
+        },
+        {
+            "Grim Tutor": {
+                "flavor_text": "As blood touched the empty page, it formed words that seared themselves into the wizard's mind.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/9/2/928558ab-e29a-44cb-ac2f-88443571f41a.jpg?1594736179",
+                "name": "Grim Tutor",
+                "oracle_text": "Search your library for a card, put that card into your hand, then shuffle your library. You lose 3 life.",
+                "type": "Sorcery"
+            }
+        },
+        {
+            "Serum Visions": {
+                "flavor_text": "Serum was once derived from Mirrodin's blinkmoths, offering visions of inspiration. Now it is pulled from Phyrexian inkmoths, yielding visions of perfection.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/2/0/20296a5b-4e15-4f07-8bce-9a37abb35729.jpg?1593813131",
+                "name": "Serum Visions",
+                "oracle_text": "Draw a card. Scry 2.",
+                "type": "Sorcery"
+            }
+        },
+        {
+            "Ad Nauseam": {
+                "flavor_text": "When the task spilled over into undeath, he stopped calling it his life's work.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/0/a/0a4ce4a1-65e3-4b40-be35-8fc55a968ec8.jpg?1562700939",
+                "name": "Ad Nauseam",
+                "oracle_text": "Reveal the top card of your library and put that card into your hand. You lose life equal to its converted mana cost. You may repeat this process any number of times.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Angel's Grace": {
+                "flavor_text": "Angel's Grace",
+                "image": "https://img.scryfall.com/cards/art_crop/front/3/1/310deafe-124b-4813-a383-bc9a9d028cfc.jpg?1561966867",
+                "name": "Angel's Grace",
+                "oracle_text": "Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.)\nYou can't lose the game this turn and your opponents can't win the game this turn. Until end of turn, damage that would reduce your life total to less than 1 reduces it to 1 instead.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Lightning Storm": {
+                "flavor_text": "Lightning Storm",
+                "image": "https://img.scryfall.com/cards/art_crop/front/c/9/c9c0388e-a04c-4757-a06d-8e8046f5a783.jpg?1593275279",
+                "name": "Lightning Storm",
+                "oracle_text": "Lightning Storm deals X damage to any target, where X is 3 plus the number of charge counters on Lightning Storm.\nDiscard a land card: Put two charge counters on Lightning Storm. You may choose a new target for it. Any player may activate this ability but only if Lightning Storm is on the stack.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Spoils of the Vault": {
+                "flavor_text": "Spoils of the Vault",
+                "image": "https://img.scryfall.com/cards/art_crop/front/6/e/6eb97a96-2c56-4638-b971-00cdf1eafd43.jpg?1547517076",
+                "name": "Spoils of the Vault",
+                "oracle_text": "Choose a card name. Reveal cards from the top of your library until you reveal a card with that name, then put that card into your hand. Exile all other cards revealed this way, and you lose 1 life for each of the exiled cards.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Lotus Bloom": {
+                "flavor_text": "Lotus Bloom",
+                "image": "https://img.scryfall.com/cards/art_crop/front/0/3/035c3112-222d-4362-9109-c8b872a59a2b.jpg?1561965995",
+                "name": "Lotus Bloom",
+                "oracle_text": "Suspend 3\u2014{0} (Rather than cast this card from your hand, pay {0} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)\n{T}, Sacrifice Lotus Bloom: Add three mana of any one color.",
+                "type": "Artifact"
+            }
+        },
+        {
+            "Pentad Prism": {
+                "flavor_text": "Pentad Prism",
+                "image": "https://img.scryfall.com/cards/art_crop/front/8/d/8d6a94a8-33cc-4f9b-bdd2-5fb6ddb1f4ad.jpg?1562842631",
+                "name": "Pentad Prism",
+                "oracle_text": "Sunburst (This enters the battlefield with a charge counter on it for each color of mana spent to cast it.)\nRemove a charge counter from Pentad Prism: Add one mana of any color.",
+                "type": "Artifact"
+            }
+        },
+        {
+            "Phyrexian Unlife": {
+                "flavor_text": "Phyrexian Unlife",
+                "image": "https://img.scryfall.com/cards/art_crop/front/b/4/b4a1e16a-39f0-47ab-aba8-73e82ba9ab18.jpg?1562880895",
+                "name": "Phyrexian Unlife",
+                "oracle_text": "You don't lose the game for having 0 or less life.\nAs long as you have 0 or less life, all damage is dealt to you as though its source had infect. (Damage is dealt to you in the form of poison counters.)",
+                "type": "Enchantment"
+            }
+        },
+        {
+            "City of Brass": {
+                "flavor_text": "\"There is much to learn here, but few can endure the ringing of the spires.\"\n\u2014Nulakam the Archivist",
+                "image": "https://img.scryfall.com/cards/art_crop/front/4/5/459042ef-0d5b-480f-9b8a-520e13ae9217.jpg?1561966887",
+                "name": "City of Brass",
+                "oracle_text": "Whenever City of Brass becomes tapped, it deals 1 damage to you.\n{T}: Add one mana of any color.",
+                "type": "Land"
+            }
+        },
+        {
+            "Darkslick Shores": {
+                "flavor_text": "Where the Mephidross leaches into the Quicksilver Sea, the waves writhe with necrogen.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/e/5/e530388b-eb19-4211-abd8-8a4c3c38c3af.jpg?1562824349",
+                "name": "Darkslick Shores",
+                "oracle_text": "Darkslick Shores enters the battlefield tapped unless you control two or fewer other lands.\n{T}: Add {U} or {B}.",
+                "type": "Land"
+            }
+        },
+        {
+            "Seachrome Coast": {
+                "flavor_text": "Where the Quicksilver Sea laps over the Razor Fields, the landscape reflects the suns' fading hope.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/9/9/99939b90-e88c-4c2f-ba78-56d455611703.jpg?1562820718",
+                "name": "Seachrome Coast",
+                "oracle_text": "Seachrome Coast enters the battlefield tapped unless you control two or fewer other lands.\n{T}: Add {W} or {U}.",
+                "type": "Land"
+            }
+        },
+        {
+            "Temple of Deceit": {
+                "flavor_text": "Temple of Deceit",
+                "image": "https://img.scryfall.com/cards/art_crop/front/e/3/e3d4fd29-dab5-481f-94c9-eeb70f3c29dd.jpg?1581481259",
+                "name": "Temple of Deceit",
+                "oracle_text": "Temple of Deceit enters the battlefield tapped.\nWhen Temple of Deceit enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)\n{T}: Add {U} or {B}.",
+                "type": "Land"
+            }
+        },
+        {
+            "Temple of Enlightenment": {
+                "flavor_text": "Temple of Enlightenment",
+                "image": "https://img.scryfall.com/cards/art_crop/front/a/d/adad8390-66d8-4022-a059-c68e44e718fe.jpg?1581481265",
+                "name": "Temple of Enlightenment",
+                "oracle_text": "Temple of Enlightenment enters the battlefield tapped.\nWhen Temple of Enlightenment enters the battlefield, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)\n{T}: Add {W} or {U}.",
+                "type": "Land"
+            }
+        },
+        {
+            "Boggart Harbinger": {
+                "flavor_text": "Boggart Harbinger",
+                "image": "https://img.scryfall.com/cards/art_crop/front/8/e/8ea8d2b8-bcac-410d-aa5a-e4a74f7d5315.jpg?1562357880",
+                "name": "Boggart Harbinger",
+                "oracle_text": "When Boggart Harbinger enters the battlefield, you may search your library for a Goblin card, reveal it, then shuffle your library and put that card on top of it.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Conspicuous Snoop": {
+                "flavor_text": "Conspicuous Snoop",
+                "image": "https://img.scryfall.com/cards/art_crop/front/5/d/5d878dab-5ed2-4ef3-b2c7-472290892854.jpg?1594736570",
+                "name": "Conspicuous Snoop",
+                "oracle_text": "Play with the top card of your library revealed.\nYou may cast Goblin spells from the top of your library.\nAs long as the top card of your library is a Goblin card, Conspicuous Snoop has all activated abilities of that card.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Dark Confidant": {
+                "flavor_text": "Greatness, at any cost.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/0/5/05cf51d8-9f91-42ff-99e9-4397f2251c20.jpg?1562258950",
+                "name": "Dark Confidant",
+                "oracle_text": "At the beginning of your upkeep, reveal the top card of your library and put that card into your hand. You lose life equal to its converted mana cost.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Frogtosser Banneret": {
+                "flavor_text": "The Frogtossers thread feathers, bones, and trophies from past raids into their standards, believing they fuel the warren with the anger of its victims.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/7/8/78543dac-7367-429f-88a5-83cb803193ef.jpg?1562879393",
+                "name": "Frogtosser Banneret",
+                "oracle_text": "Haste\nGoblin spells and Rogue spells you cast cost {1} less to cast.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Goblin Matron": {
+                "flavor_text": "A mother only a child could love.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/2/0/2092e6db-1196-43bf-b7c9-07498fa7ca90.jpg?1562201861",
+                "name": "Goblin Matron",
+                "oracle_text": "When Goblin Matron enters the battlefield, you may search your library for a Goblin card, reveal that card, put it into your hand, then shuffle your library.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Kiki-Jiki, Mirror Breaker": {
+                "flavor_text": "Kiki-Jiki, Mirror Breaker",
+                "image": "https://img.scryfall.com/cards/art_crop/front/a/2/a2ff0ee3-9600-4c7d-acec-6ec90595384e.jpg?1562852476",
+                "name": "Kiki-Jiki, Mirror Breaker",
+                "oracle_text": "Haste\n{T}: Create a token that's a copy of target nonlegendary creature you control, except it has haste. Sacrifice it at the beginning of the next end step.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Sling-Gang Lieutenant": {
+                "flavor_text": "Freshly promoted to \"first rock\", Zaz was eager to make an impact.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/f/8/f82aec21-441b-4fcd-b666-61723bd79531.jpg?1562201738",
+                "name": "Sling-Gang Lieutenant",
+                "oracle_text": "When Sling-Gang Lieutenant enters the battlefield, create two 1/1 red Goblin creature tokens.\nSacrifice a Goblin: Target player loses 1 life and you gain 1 life.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Unearth": {
+                "flavor_text": "No matter how deep you bury it, some evil refuses to stay dead.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/b/6/b62abd0c-ec3e-45d7-989d-da269812aeef.jpg?1562201767",
+                "name": "Unearth",
+                "oracle_text": "Return target creature card with converted mana cost 3 or less from your graveyard to the battlefield.\nCycling {2} ({2}, Discard this card: Draw a card.)",
+                "type": "Sorcery"
+            }
+        },
+        {
+            "Aether Vial": {
+                "flavor_text": "Aether Vial",
+                "image": "https://img.scryfall.com/cards/art_crop/front/c/1/c14cdc38-dd46-495e-93bd-d2694b64d5ad.jpg?1562853669",
+                "name": "Aether Vial",
+                "oracle_text": "At the beginning of your upkeep, you may put a charge counter on Aether Vial.\n{T}: You may put a creature card with converted mana cost equal to the number of charge counters on Aether Vial from your hand onto the battlefield.",
+                "type": "Artifact"
+            }
+        },
+        {
+            "Auntie's Hovel": {
+                "flavor_text": "The Stinkdrinker warren's hill of salvaged trinkets is large enough to cut a door in.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/0/9/098685c9-cd85-4279-a3b5-b495485bba35.jpg?1562337683",
+                "name": "Auntie's Hovel",
+                "oracle_text": "As Auntie's Hovel enters the battlefield, you may reveal a Goblin card from your hand. If you don't, Auntie's Hovel enters the battlefield tapped.\n{T}: Add {B} or {R}.",
+                "type": "Land"
+            }
+        },
+        {
+            "Marsh Flats": {
+                "flavor_text": "Marsh Flats",
+                "image": "https://img.scryfall.com/cards/art_crop/front/6/5/659039ed-c269-4c2d-bce6-91d143f0618e.jpg?1593815053",
+                "name": "Marsh Flats",
+                "oracle_text": "{T}, Pay 1 life, Sacrifice Marsh Flats: Search your library for a Plains or Swamp card, put it onto the battlefield, then shuffle your library.",
+                "type": "Land"
+            }
+        },
+        {
+            "Tarfire": {
+                "flavor_text": "\"After Auntie brushed the soot from her eyes, she discovered something wonderful: the fire had turned the goat into something that smelled delicious.\"\n\u2014A tale of Auntie Grub",
+                "image": "https://img.scryfall.com/cards/art_crop/front/5/8/5841e5dd-2a4a-42b9-a04f-d7c5c4840d74.jpg?1592764877",
+                "name": "Tarfire",
+                "oracle_text": "Tarfire deals 2 damage to any target.",
+                "type": "Tribal instant"
+            }
+        },
+        {
+            "Chandra, Torch of Defiance": {
+                "flavor_text": "Chandra, Torch of Defiance",
+                "image": "https://img.scryfall.com/cards/art_crop/front/f/f/ff8086cd-b868-4f4e-823e-2635ad7ebc07.jpg?1576381994",
+                "name": "Chandra, Torch of Defiance",
+                "oracle_text": "+1: Exile the top card of your library. You may cast that card. If you don't, Chandra, Torch of Defiance deals 2 damage to each opponent.\n+1: Add {R}{R}.\n\u22123: Chandra, Torch of Defiance deals 4 damage to target creature.\n\u22127: You get an emblem with \"Whenever you cast a spell, this emblem deals 5 damage to any target.\"",
+                "type": "Planeswalker"
+            }
+        },
+        {
+            "Arbor Elf": {
+                "flavor_text": "Arbor Elf",
+                "image": "https://img.scryfall.com/cards/art_crop/front/4/b/4b81165e-f091-4211-8b47-5ea6868b0d4c.jpg?1562435427",
+                "name": "Arbor Elf",
+                "oracle_text": "{T}: Untap target Forest.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Bonecrusher Giant": {
+                "flavor_text": "Not every tale ends in glory.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/0/9/09fd2d9c-1793-4beb-a3fb-7a869f660cd4.jpg?1572490299",
+                "name": "Bonecrusher Giant",
+                "oracle_text": "Whenever Bonecrusher Giant becomes the target of a spell, Bonecrusher Giant deals 2 damage to that spell's controller.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Glorybringer": {
+                "flavor_text": "What the initiates face in the final trial is completely at Hazoret's discretion.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/3/2/3277ad99-5682-4baa-b106-de15721876a6.jpg?1543675596",
+                "name": "Glorybringer",
+                "oracle_text": "Flying, haste\nYou may exert Glorybringer as it attacks. When you do, it deals 4 damage to target non-Dragon creature an opponent controls. (An exerted creature won't untap during your next untap step.)",
+                "type": "Creature"
+            }
+        },
+        {
+            "Klothys, God of Destiny": {
+                "flavor_text": "Klothys, God of Destiny",
+                "image": "https://img.scryfall.com/cards/art_crop/front/5/b/5b3c393c-3596-4bd9-a553-e0b03c2eb950.jpg?1581481087",
+                "name": "Klothys, God of Destiny",
+                "oracle_text": "Indestructible\nAs long as your devotion to red and green is less than seven, Klothys isn't a creature.\nAt the beginning of your precombat main phase, exile target card from a graveyard. If it was a land card, add {R} or {G}. Otherwise, you gain 2 life and Klothys deals 2 damage to each opponent.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Seasoned Pyromancer": {
+                "flavor_text": "Seasoned Pyromancer",
+                "image": "https://img.scryfall.com/cards/art_crop/front/2/e/2e139ad1-1079-49e9-babd-6399c44ad333.jpg?1562201956",
+                "name": "Seasoned Pyromancer",
+                "oracle_text": "When Seasoned Pyromancer enters the battlefield, discard two cards, then draw two cards. For each nonland card discarded this way, create a 1/1 red Elemental creature token.\n{3}{R}{R}, Exile Seasoned Pyromancer from your graveyard: Create two 1/1 red Elemental creature tokens.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Pillage": {
+                "flavor_text": "\"The embers of our homes still smolder, and already the villages of Kjeldor burn in retaliation. What they have started, we will finish.\"\n\u2014Lovisa Coldeyes",
+                "image": "https://img.scryfall.com/cards/art_crop/front/b/d/bdd06d55-a40f-4b0e-905b-3cd0ce12eb82.jpg?1562201923",
+                "name": "Pillage",
+                "oracle_text": "Destroy target artifact or land. It can't be regenerated.",
+                "type": "Sorcery"
+            }
+        },
+        {
+            "Blood Moon": {
+                "flavor_text": "Blood Moon",
+                "image": "https://img.scryfall.com/cards/art_crop/front/d/5/d50988ad-a7dc-4ae3-bdd7-c4d6d3789bf2.jpg?1562441645",
+                "name": "Blood Moon",
+                "oracle_text": "Nonbasic lands are Mountains.",
+                "type": "Enchantment"
+            }
+        },
+        {
+            "Utopia Sprawl": {
+                "flavor_text": "Utopia Sprawl",
+                "image": "https://img.scryfall.com/cards/art_crop/front/1/5/15625580-3cbd-459c-a667-87efdcdaf2b2.jpg?1562433020",
+                "name": "Utopia Sprawl",
+                "oracle_text": "Enchant Forest\nAs Utopia Sprawl enters the battlefield, choose a color.\nWhenever enchanted Forest is tapped for mana, its controller adds an additional one mana of the chosen color.",
+                "type": "Enchantment"
+            }
+        },
+        {
+            "Forgotten Cave": {
+                "flavor_text": "Forgotten Cave",
+                "image": "https://img.scryfall.com/cards/art_crop/front/c/4/c4b2e22e-ad34-4d4a-beb6-82a64b3127e5.jpg?1591322007",
+                "name": "Forgotten Cave",
+                "oracle_text": "Forgotten Cave enters the battlefield tapped.\n{T}: Add {R}.\nCycling {R} ({R}, Discard this card: Draw a card.)",
+                "type": "Land"
+            }
+        },
+        {
+            "Greater Gargadon": {
+                "flavor_text": "Greater Gargadon",
+                "image": "https://img.scryfall.com/cards/art_crop/front/2/b/2b922fc5-602b-4f92-9588-00a77a9d803c.jpg?1561966855",
+                "name": "Greater Gargadon",
+                "oracle_text": "Suspend 10\u2014{R}\nSacrifice an artifact, creature, or land: Remove a time counter from Greater Gargadon. Activate this ability only if Greater Gargadon is suspended.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Ancestral Vision": {
+                "flavor_text": "Ancestral Vision",
+                "image": "https://img.scryfall.com/cards/art_crop/front/a/5/a5dc736d-7e61-4909-973f-61f7adb82b64.jpg?1562852502",
+                "name": "Ancestral Vision",
+                "oracle_text": "Suspend 4\u2014{U} (Rather than cast this card from your hand, pay {U} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)\nTarget player draws three cards.",
+                "type": "Sorcery"
+            }
+        },
+        {
+            "Crashing Footfalls": {
+                "flavor_text": "Crashing Footfalls",
+                "image": "https://img.scryfall.com/cards/art_crop/front/a/8/a8cca2a2-69e3-4136-936c-7a2774c19351.jpg?1562202050",
+                "name": "Crashing Footfalls",
+                "oracle_text": "Suspend 4\u2014{G} (Rather than cast this card from your hand, pay {G} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)\nCreate two 4/4 green Rhino creature tokens with trample.",
+                "type": "Sorcery"
+            }
+        },
+        {
+            "Finale of Promise": {
+                "flavor_text": "Finale of Promise",
+                "image": "https://img.scryfall.com/cards/art_crop/front/8/1/811b2dda-e1b7-4a46-83cc-5cdc17554836.jpg?1557576690",
+                "name": "Finale of Promise",
+                "oracle_text": "You may cast up to one target instant card and/or up to one target sorcery card from your graveyard each with converted mana cost X or less without paying their mana costs. If a spell cast this way would be put into your graveyard this turn, exile it instead. If X is 10 or more, copy each of those spells twice. You may choose new targets for the copies.",
+                "type": "Sorcery"
+            }
+        },
+        {
+            "Restore Balance": {
+                "flavor_text": "Restore Balance",
+                "image": "https://img.scryfall.com/cards/art_crop/front/c/3/c3be9788-2360-4ff0-b7f6-0bfbefa03ce0.jpg?1562936374",
+                "name": "Restore Balance",
+                "oracle_text": "Suspend 6\u2014{W} (Rather than cast this card from your hand, pay {W} and exile it with six time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)\nEach player chooses a number of lands they control equal to the number of lands controlled by the player who controls the fewest, then sacrifices the rest. Players sacrifice creatures and discard cards the same way.",
+                "type": "Sorcery"
+            }
+        },
+        {
+            "Electrodominance": {
+                "flavor_text": "\"Basically, we turn a bunch of little lightnings into one big lightning.\"",
+                "image": "https://img.scryfall.com/cards/art_crop/front/5/c/5c63877b-cdab-4ce4-a1c0-c088eb62a57a.jpg?1584830858",
+                "name": "Electrodominance",
+                "oracle_text": "Electrodominance deals X damage to any target. You may cast a spell with converted mana cost X or less from your hand without paying its mana cost.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Izzet Charm": {
+                "flavor_text": "Izzet Charm",
+                "image": "https://img.scryfall.com/cards/art_crop/front/b/0/b04eae11-6bc4-41d2-98cc-285621d5724b.jpg?1593814441",
+                "name": "Izzet Charm",
+                "oracle_text": "Choose one \u2014\n\u2022 Counter target noncreature spell unless its controller pays {2}.\n\u2022 Izzet Charm deals 2 damage to target creature.\n\u2022 Draw two cards, then discard two cards.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Spell Pierce": {
+                "flavor_text": "\"A fool's fire is quickly quenched.\"\n\u2014Shaper Kumena",
+                "image": "https://img.scryfall.com/cards/art_crop/front/6/b/6bf4dfc0-c58b-4535-b660-54ceaa6e0217.jpg?1562557054",
+                "name": "Spell Pierce",
+                "oracle_text": "Counter target noncreature spell unless its controller pays {2}.",
+                "type": "Instant"
+            }
+        },
+        {
+            "As Foretold": {
+                "flavor_text": "As Foretold",
+                "image": "https://img.scryfall.com/cards/art_crop/front/0/f/0f91d225-788e-42fc-9d01-8668f672b717.jpg?1543674881",
+                "name": "As Foretold",
+                "oracle_text": "At the beginning of your upkeep, put a time counter on As Foretold.\nOnce each turn, you may pay {0} rather than pay the mana cost for a spell you cast with converted mana cost X or less, where X is the number of time counters on As Foretold.",
+                "type": "Enchantment"
+            }
+        },
+        {
+            "Mind Stone": {
+                "flavor_text": "\"What is mana but possibility, an idea not yet given form?\"\n\u2014Jhoira, master artificer",
+                "image": "https://img.scryfall.com/cards/art_crop/front/4/2/42bd038d-1005-4095-9310-108caa56465f.jpg?1592711273",
+                "name": "Mind Stone",
+                "oracle_text": "{T}: Add {C}.\n{1}, {T}, Sacrifice Mind Stone: Draw a card.",
+                "type": "Artifact"
+            }
+        },
+        {
+            "Scapeshift": {
+                "flavor_text": "\"Whether we like it or not, our arrival has altered the landscape.\"\n\u2014Malcolm, navigator of the Belligerent",
+                "image": "https://img.scryfall.com/cards/art_crop/front/1/7/175e21a3-00f7-4c51-8a8e-fbfd7089efda.jpg?1574767873",
+                "name": "Scapeshift",
+                "oracle_text": "Sacrifice any number of lands. Search your library for up to that many land cards, put them onto the battlefield tapped, then shuffle your library.",
+                "type": "Sorcery"
+            }
+        },
+        {
+            "Censor": {
+                "flavor_text": "\"Why so many questions?\"\n\u2014Temmet, vizier of Naktamun",
+                "image": "https://img.scryfall.com/cards/art_crop/front/4/c/4cb4e315-1a77-479a-9f15-fb23575de805.jpg?1543674908",
+                "name": "Censor",
+                "oracle_text": "Counter target spell unless its controller pays {1}.\nCycling {U} ({U}, Discard this card: Draw a card.)",
+                "type": "Instant"
+            }
+        },
+        {
+            "Grim Flayer": {
+                "flavor_text": "Grim Flayer",
+                "image": "https://img.scryfall.com/cards/art_crop/front/0/2/025af99f-a029-4f99-9c76-676b68821520.jpg?1576384990",
+                "name": "Grim Flayer",
+                "oracle_text": "Trample\nWhenever Grim Flayer deals combat damage to a player, look at the top three cards of your library. Put any number of them into your graveyard and the rest back on top of your library in any order.\nDelirium \u2014 Grim Flayer gets +2/+2 as long as there are four or more card types among cards in your graveyard.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Kroxa, Titan of Death's Hunger": {
+                "flavor_text": "Kroxa, Titan of Death's Hunger",
+                "image": "https://img.scryfall.com/cards/art_crop/front/c/e/cee0459b-9aac-4d2f-abe4-4d5fedde7eb8.jpg?1581481096",
+                "name": "Kroxa, Titan of Death's Hunger",
+                "oracle_text": "When Kroxa enters the battlefield, sacrifice it unless it escaped.\nWhenever Kroxa enters the battlefield or attacks, each opponent discards a card, then each opponent who didn't discard a nonland card this way loses 3 life.\nEscape\u2014{B}{B}{R}{R}, Exile five other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)",
+                "type": "Creature"
+            }
+        },
+        {
+            "Engineered Explosives": {
+                "flavor_text": "Engineered Explosives",
+                "image": "https://img.scryfall.com/cards/art_crop/front/f/1/f1e2b69e-b06b-46a5-ac57-a6a180eeecc7.jpg?1547518428",
+                "name": "Engineered Explosives",
+                "oracle_text": "Sunburst (This enters the battlefield with a charge counter on it for each color of mana spent to cast it.)\n{2}, Sacrifice Engineered Explosives: Destroy each nonland permanent with converted mana cost equal to the number of charge counters on Engineered Explosives.",
+                "type": "Artifact"
+            }
+        },
+        {
+            "Nihil Spellbomb": {
+                "flavor_text": "Nihil Spellbomb",
+                "image": "https://img.scryfall.com/cards/art_crop/front/e/5/e5892a23-efae-4731-9b8f-41c87960fe93.jpg?1562442193",
+                "name": "Nihil Spellbomb",
+                "oracle_text": "{T}, Sacrifice Nihil Spellbomb: Exile all cards from target player's graveyard.\nWhen Nihil Spellbomb is put into a graveyard from the battlefield, you may pay {B}. If you do, draw a card.",
+                "type": "Artifact"
+            }
+        },
+        {
+            "Magus of the Moon": {
+                "flavor_text": "Tidal forces of the blood moon wrench and buckle the land, drawing monoliths of stone and soil toward the flaming orb.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/1/f/1f685078-c9b3-42aa-be5a-be16be89ecc6.jpg?1562846494",
+                "name": "Magus of the Moon",
+                "oracle_text": "Nonbasic lands are Mountains.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Questing Beast": {
+                "flavor_text": "Questing Beast",
+                "image": "https://img.scryfall.com/cards/art_crop/front/e/4/e41cf82d-3213-47ce-a015-6e51a8b07e4f.jpg?1572490640",
+                "name": "Questing Beast",
+                "oracle_text": "Vigilance, deathtouch, haste\nQuesting Beast can't be blocked by creatures with power 2 or less.\nCombat damage that would be dealt by creatures you control can't be prevented.\nWhenever Questing Beast deals combat damage to an opponent, it deals that much damage to target planeswalker that player controls.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Sleight of Hand": {
+                "flavor_text": "\"Gambling with mages never is.\"\n\u2014Remin, venerable monk",
+                "image": "https://img.scryfall.com/cards/art_crop/front/1/7/1766d117-6ee1-4103-88e8-47b932a94d65.jpg?1547516514",
+                "name": "Sleight of Hand",
+                "oracle_text": "Look at the top two cards of your library. Put one of them into your hand and the other on the bottom of your library.",
+                "type": "Sorcery"
+            }
+        },
+        {
+            "Gurmag Angler": {
+                "flavor_text": "If everything in the Gurmag Swamp hungers for human flesh, what bait could be more effective?",
+                "image": "https://img.scryfall.com/cards/art_crop/front/c/e/cedd44eb-f381-46e1-bcb0-88416b4ce33d.jpg?1547516928",
+                "name": "Gurmag Angler",
+                "oracle_text": "Delve (Each card you exile from your graveyard while casting this spell pays for {1}.)",
+                "type": "Creature"
+            }
+        },
+        {
+            "Drown in the Loch": {
+                "flavor_text": "Drown in the Loch",
+                "image": "https://img.scryfall.com/cards/art_crop/front/8/b/8bf5df5b-164d-4ec2-a5e6-bbaea152e271.jpg?1572490739",
+                "name": "Drown in the Loch",
+                "oracle_text": "Choose one \u2014\n\u2022 Counter target spell with converted mana cost less than or equal to the number of cards in its controller's graveyard.\n\u2022 Destroy target creature with converted mana cost less than or equal to the number of cards in its controller's graveyard.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Thought Scour": {
+                "flavor_text": "\"As you inject the *viscus vitae* into the brain stem, don't let the spastic moaning bother you. It will soon become music to your ears.\"\n\u2014Stitcher Geralf",
+                "image": "https://img.scryfall.com/cards/art_crop/front/1/4/142944d5-1b11-4ec4-b6b4-b5c03e682cd3.jpg?1595011040",
+                "name": "Thought Scour",
+                "oracle_text": "Target player mills two cards.\nDraw a card.",
+                "type": "Instant"
+            }
+        },
+        {
+            "Karn Liberated": {
+                "flavor_text": "Karn Liberated",
+                "image": "https://img.scryfall.com/cards/art_crop/front/6/9/69714257-2848-48e1-95cf-cdb6595215f0.jpg?1547515288",
+                "name": "Karn Liberated",
+                "oracle_text": "+4: Target player exiles a card from their hand.\n\u22123: Exile target permanent.\n\u221214: Restart the game, leaving in exile all non-Aura permanent cards exiled with Karn Liberated. Then put those cards onto the battlefield under your control.",
+                "type": "Planeswalker"
+            }
+        },
+        {
+            "Ugin, the Spirit Dragon": {
+                "flavor_text": "Ugin, the Spirit Dragon",
+                "image": "https://img.scryfall.com/cards/art_crop/front/9/c/9c017fa9-7021-417a-9c2e-3df409644fcf.jpg?1594734662",
+                "name": "Ugin, the Spirit Dragon",
+                "oracle_text": "+2: Ugin, the Spirit Dragon deals 3 damage to any target.\n\u2212X: Exile each permanent with converted mana cost X or less that's one or more colors.\n\u221210: You gain 7 life, draw seven cards, then put up to seven permanent cards from your hand onto the battlefield.",
+                "type": "Planeswalker"
+            }
+        },
+        {
+            "Thragtusk": {
+                "flavor_text": "\"Always carry two spears.\"\n\u2014Mokgar, Kalonian hunter",
+                "image": "https://img.scryfall.com/cards/art_crop/front/d/0/d0594c41-0361-4a3b-a9cd-60f4e3b0cffe.jpg?1592707724",
+                "name": "Thragtusk",
+                "oracle_text": "When Thragtusk enters the battlefield, you gain 5 life.\nWhen Thragtusk leaves the battlefield, create a 3/3 green Beast creature token.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Ulamog, the Ceaseless Hunger": {
+                "flavor_text": "A force as voracious as time itself.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/1/1/1192f7a9-102e-4b3a-b154-18c8eb332217.jpg?1562899233",
+                "name": "Ulamog, the Ceaseless Hunger",
+                "oracle_text": "When you cast this spell, exile two target permanents.\nIndestructible\nWhenever Ulamog, the Ceaseless Hunger attacks, defending player exiles the top twenty cards of their library.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Wurmcoil Engine": {
+                "flavor_text": "Wurmcoil Engine",
+                "image": "https://img.scryfall.com/cards/art_crop/front/4/a/4ab5195f-7cc3-4972-92f8-1b26fa3fb927.jpg?1562273858",
+                "name": "Wurmcoil Engine",
+                "oracle_text": "Deathtouch, lifelink\nWhen Wurmcoil Engine dies, create a 3/3 colorless Wurm artifact creature token with deathtouch and a 3/3 colorless Wurm artifact creature token with lifelink.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Sylvan Scrying": {
+                "flavor_text": "\"As long as there is a single shred of life, there is hope.\"\n\u2014Nissa Revane",
+                "image": "https://img.scryfall.com/cards/art_crop/front/d/1/d1b93087-e6a0-4ba9-83ba-a0ed2e396dc7.jpg?1562944944",
+                "name": "Sylvan Scrying",
+                "oracle_text": "Search your library for a land card, reveal it, and put it into your hand. Then shuffle your library.",
+                "type": "Sorcery"
+            }
+        },
+        {
+            "Chromatic Sphere": {
+                "flavor_text": "\"As expected, this sphere's design reflects the colors of the four moons . . . plus another?\"\n\u2014Pontifex, elder researcher",
+                "image": "https://img.scryfall.com/cards/art_crop/front/e/d/edabc8b2-4413-48e4-8d6f-521b19d839a6.jpg?1592707874",
+                "name": "Chromatic Sphere",
+                "oracle_text": "{1}, {T}, Sacrifice Chromatic Sphere: Add one mana of any color. Draw a card.",
+                "type": "Artifact"
+            }
+        },
+        {
+            "Chromatic Star": {
+                "flavor_text": "Chromatic Star",
+                "image": "https://img.scryfall.com/cards/art_crop/front/3/2/3233db3e-ec30-4be5-867d-81855652a8b0.jpg?1562545796",
+                "name": "Chromatic Star",
+                "oracle_text": "{1}, {T}, Sacrifice Chromatic Star: Add one mana of any color.\nWhen Chromatic Star is put into a graveyard from the battlefield, draw a card.",
+                "type": "Artifact"
+            }
+        },
+        {
+            "Oblivion Stone": {
+                "flavor_text": "Oblivion Stone",
+                "image": "https://img.scryfall.com/cards/art_crop/front/a/8/a8b5d975-3968-4d42-9837-872095759776.jpg?1562275497",
+                "name": "Oblivion Stone",
+                "oracle_text": "{4}, {T}: Put a fate counter on target permanent.\n{5}, {T}, Sacrifice Oblivion Stone: Destroy each nonland permanent without a fate counter on it, then remove all fate counters from all permanents.",
+                "type": "Artifact"
+            }
+        },
+        {
+            "Sanctum of Ugin": {
+                "flavor_text": "Sanctum of Ugin",
+                "image": "https://img.scryfall.com/cards/art_crop/front/8/6/86798d03-9f2d-46bd-a660-13c8dd5535ce.jpg?1562926694",
+                "name": "Sanctum of Ugin",
+                "oracle_text": "{T}: Add {C}.\nWhenever you cast a colorless spell with converted mana cost 7 or greater, you may sacrifice Sanctum of Ugin. If you do, search your library for a colorless creature card, reveal it, put it into your hand, then shuffle your library.",
                 "type": "Land"
             }
         },
@@ -1342,11 +1846,29 @@
             }
         },
         {
+            "Deputy of Detention": {
+                "flavor_text": "Deputy of Detention",
+                "image": "https://img.scryfall.com/cards/art_crop/front/7/e/7e362055-78a1-48fa-a4ef-6cf7e0b21b14.jpg?1584831457",
+                "name": "Deputy of Detention",
+                "oracle_text": "When Deputy of Detention enters the battlefield, exile target nonland permanent an opponent controls and all other nonland permanents that player controls with the same name as that permanent until Deputy of Detention leaves the battlefield.",
+                "type": "Creature"
+            }
+        },
+        {
             "General Kudro of Drannith": {
                 "flavor_text": "General Kudro of Drannith",
                 "image": "https://img.scryfall.com/cards/art_crop/front/2/c/2c3227ae-0c72-478a-a6dd-661aaf718038.jpg?1591228027",
                 "name": "General Kudro of Drannith",
                 "oracle_text": "Other Humans you control get +1/+1.\nWhenever General Kudro of Drannith or another Human enters the battlefield under your control, exile target card from an opponent's graveyard.\n{2}, Sacrifice two Humans: Destroy target creature with power 4 or greater.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Kessig Malcontents": {
+                "flavor_text": "Discontent is a powerful weapon in the hands of a mob.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/d/c/dce9a30f-a850-4826-a255-ce511d567b60.jpg?1592709121",
+                "name": "Kessig Malcontents",
+                "oracle_text": "When Kessig Malcontents enters the battlefield, it deals damage to target player or planeswalker equal to the number of Humans you control.",
                 "type": "Creature"
             }
         },
@@ -1374,6 +1896,15 @@
                 "image": "https://img.scryfall.com/cards/art_crop/front/1/a/1a55308b-5772-430a-93e4-b65c416b86cf.jpg?1562639927",
                 "name": "Meddling Mage",
                 "oracle_text": "As Meddling Mage enters the battlefield, choose a nonland card name.\nSpells with the chosen name can't be cast.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Noble Hierarch": {
+                "flavor_text": "She protects the sacred groves from blight, drought, and the Unbeholden.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/f/f/ff782973-e33c-4edd-bbd7-5c8dc8d59554.jpg?1547517681",
+                "name": "Noble Hierarch",
+                "oracle_text": "Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)\n{T}: Add {G}, {W}, or {U}.",
                 "type": "Creature"
             }
         },
@@ -1423,12 +1954,30 @@
             }
         },
         {
-            "Bloodghast": {
-                "flavor_text": "Bloodghast",
-                "image": "https://img.scryfall.com/cards/art_crop/front/7/3/730c521f-ba12-48fb-b18f-6bb55423a551.jpg?1562850143",
-                "name": "Bloodghast",
-                "oracle_text": "Bloodghast can't block.\nBloodghast has haste as long as an opponent has 10 or less life.\nLandfall \u2014 Whenever a land enters the battlefield under your control, you may return Bloodghast from your graveyard to the battlefield.",
-                "type": "Creature"
+            "Horizon Canopy": {
+                "flavor_text": "The day is born within its branches.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/9/3/93f7c880-9bae-4d29-b7b6-b6be6b2ffa89.jpg?1562851585",
+                "name": "Horizon Canopy",
+                "oracle_text": "{T}, Pay 1 life: Add {G} or {W}.\n{1}, {T}, Sacrifice Horizon Canopy: Draw a card.",
+                "type": "Land"
+            }
+        },
+        {
+            "Unclaimed Territory": {
+                "flavor_text": "Unclaimed Territory",
+                "image": "https://img.scryfall.com/cards/art_crop/front/b/9/b96a5b3a-ee54-4864-a84c-385a97b8cb7b.jpg?1591322503",
+                "name": "Unclaimed Territory",
+                "oracle_text": "As Unclaimed Territory enters the battlefield, choose a creature type.\n{T}: Add {C}.\n{T}: Add one mana of any color. Spend this mana only to cast a creature spell of the chosen type.",
+                "type": "Land"
+            }
+        },
+        {
+            "Waterlogged Grove": {
+                "flavor_text": "The trees pull water from deep underground, filling the forest for miles.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/0/a/0ab6bfbd-d2e1-4c4c-9f91-6f69c5b8e3bb.jpg?1562202616",
+                "name": "Waterlogged Grove",
+                "oracle_text": "{T}, Pay 1 life: Add {G} or {U}.\n{1}, {T}, Sacrifice Waterlogged Grove: Draw a card.",
+                "type": "Land"
             }
         },
         {
@@ -1473,6 +2022,15 @@
                 "image": "https://img.scryfall.com/cards/art_crop/front/6/3/634cedb6-8b00-4f4b-8790-541188955295.jpg?1576385376",
                 "name": "Prized Amalgam",
                 "oracle_text": "Whenever a creature enters the battlefield, if it entered from your graveyard or you cast it from your graveyard, return Prized Amalgam from your graveyard to the battlefield tapped at the beginning of the next end step.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Silversmote Ghoul": {
+                "flavor_text": "Being trapped between two forms of unlife is a fate worse than mere death.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/f/f/ff5444cb-0ecd-4482-a8d8-09332f382dbd.jpg?1594736374",
+                "name": "Silversmote Ghoul",
+                "oracle_text": "At the beginning of your end step, if you gained 3 or more life this turn, return Silversmote Ghoul from your graveyard to the battlefield tapped.\n{1}{B}, Sacrifice Silversmote Ghoul: Draw a card.",
                 "type": "Creature"
             }
         },
@@ -1522,6 +2080,15 @@
             }
         },
         {
+            "Smiting Helix": {
+                "flavor_text": "Malice is appropriate when vengeance is called for.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/5/f/5fa3e132-125a-492f-aab7-c560ea36b779.jpg?1562201744",
+                "name": "Smiting Helix",
+                "oracle_text": "Smiting Helix deals 3 damage to any target and you gain 3 life.\nFlashback {R}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+                "type": "Sorcery"
+            }
+        },
+        {
             "Shriekhorn": {
                 "flavor_text": "Shriekhorn",
                 "image": "https://img.scryfall.com/cards/art_crop/front/b/b/bb41269f-007d-43ba-a682-d3929cc69696.jpg?1562614251",
@@ -1531,437 +2098,311 @@
             }
         },
         {
-            "City of Brass": {
-                "flavor_text": "\"There is much to learn here, but few can endure the ringing of the spires.\"\n\u2014Nulakam the Archivist",
-                "image": "https://img.scryfall.com/cards/art_crop/front/4/5/459042ef-0d5b-480f-9b8a-520e13ae9217.jpg?1561966887",
-                "name": "City of Brass",
-                "oracle_text": "Whenever City of Brass becomes tapped, it deals 1 damage to you.\n{T}: Add one mana of any color.",
+            "Sacred Foundry": {
+                "flavor_text": "\"You will not be trained here. You will be forged.\"\n\u2014Commander Yaszen",
+                "image": "https://img.scryfall.com/cards/art_crop/front/b/7/b7b598d0-535d-477d-a33d-d6a10ff5439a.jpg?1572894184",
+                "name": "Sacred Foundry",
+                "oracle_text": "({T}: Add {R} or {W}.)\nAs Sacred Foundry enters the battlefield, you may pay 2 life. If you don't, it enters the battlefield tapped.",
                 "type": "Land"
             }
         },
         {
-            "Copperline Gorge": {
-                "flavor_text": "Where the Tangle overruns the Oxidda mountains, metallic beasts scratch their territories in the verdigris.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/2/8/28f1d784-f286-418d-a712-bc07ad10d4a2.jpg?1562815756",
-                "name": "Copperline Gorge",
-                "oracle_text": "Copperline Gorge enters the battlefield tapped unless you control two or fewer other lands.\n{T}: Add {R} or {G}.",
-                "type": "Land"
-            }
-        },
-        {
-            "Forgotten Cave": {
-                "flavor_text": "Forgotten Cave",
-                "image": "https://img.scryfall.com/cards/art_crop/front/c/4/c4b2e22e-ad34-4d4a-beb6-82a64b3127e5.jpg?1591322007",
-                "name": "Forgotten Cave",
-                "oracle_text": "Forgotten Cave enters the battlefield tapped.\n{T}: Add {R}.\nCycling {R} ({R}, Discard this card: Draw a card.)",
-                "type": "Land"
-            }
-        },
-        {
-            "Baral, Chief of Compliance": {
-                "flavor_text": "\"The echo of silence is music to my ears.\"",
-                "image": "https://img.scryfall.com/cards/art_crop/front/6/0/60e16d94-1166-4050-8554-686e153a7f80.jpg?1576381454",
-                "name": "Baral, Chief of Compliance",
-                "oracle_text": "Instant and sorcery spells you cast cost {1} less to cast.\nWhenever a spell or ability you control counters a spell, you may draw a card. If you do, discard a card.",
+            "Arcbound Ravager": {
+                "flavor_text": "Arcbound Ravager",
+                "image": "https://img.scryfall.com/cards/art_crop/front/c/0/c0c33a92-5621-40b4-a3a2-b67893edbc01.jpg?1561968545",
+                "name": "Arcbound Ravager",
+                "oracle_text": "Sacrifice an artifact: Put a +1/+1 counter on Arcbound Ravager.\nModular 1 (This creature enters the battlefield with a +1/+1 counter on it. When it dies, you may put its +1/+1 counters on target artifact creature.)",
                 "type": "Creature"
             }
         },
         {
-            "Goblin Electromancer": {
-                "flavor_text": "\"Result 752: Rapid mass redistribution.\n\"Result 753: Calamitous reverse synthesis.\n\"Result 754: Acute disarrayment.\"\n\u2014Izzet research notes",
-                "image": "https://img.scryfall.com/cards/art_crop/front/0/a/0ae987da-e4b5-4b82-843c-6aaa87262fc8.jpg?1572893645",
-                "name": "Goblin Electromancer",
-                "oracle_text": "Instant and sorcery spells you cast cost {1} less to cast.",
+            "Arcbound Worker": {
+                "flavor_text": "The parts are as strong as the whole.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/f/d/fdfc2453-5a2b-4104-bf82-84f935de7b99.jpg?1561969500",
+                "name": "Arcbound Worker",
+                "oracle_text": "Modular 1 (This creature enters the battlefield with a +1/+1 counter on it. When it dies, you may put its +1/+1 counters on target artifact creature.)",
                 "type": "Creature"
             }
         },
         {
-            "Grapeshot": {
-                "flavor_text": "Mages often seek to emulate the powerful relics lost to time and apocalypse.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/8/d/8dfe022f-cbdf-4710-af7b-9f0e213fc89c.jpg?1592761601",
-                "name": "Grapeshot",
-                "oracle_text": "Grapeshot deals 1 damage to any target.\nStorm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)",
+            "Hangarback Walker": {
+                "flavor_text": "Hangarback Walker",
+                "image": "https://img.scryfall.com/cards/art_crop/front/7/9/791c21fb-fc78-4106-9a42-abc73f41ab8b.jpg?1562026741",
+                "name": "Hangarback Walker",
+                "oracle_text": "Hangarback Walker enters the battlefield with X +1/+1 counters on it.\nWhen Hangarback Walker dies, create a 1/1 colorless Thopter artifact creature token with flying for each +1/+1 counter on Hangarback Walker.\n{1}, {T}: Put a +1/+1 counter on Hangarback Walker.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Metallic Mimic": {
+                "flavor_text": "Metallic Mimic",
+                "image": "https://img.scryfall.com/cards/art_crop/front/1/a/1aa4eba9-9e91-4beb-9296-a18baa73a318.jpg?1576382339",
+                "name": "Metallic Mimic",
+                "oracle_text": "As Metallic Mimic enters the battlefield, choose a creature type.\nMetallic Mimic is the chosen type in addition to its other types.\nEach other creature you control of the chosen type enters the battlefield with an additional +1/+1 counter on it.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Scrapyard Recombiner": {
+                "flavor_text": "Scrapyard Recombiner",
+                "image": "https://img.scryfall.com/cards/art_crop/front/8/9/8945f5e0-c143-47ca-910e-32ad9ac34487.jpg?1562202487",
+                "name": "Scrapyard Recombiner",
+                "oracle_text": "Modular 2 (This creature enters the battlefield with two +1/+1 counters on it. When it dies, you may put its +1/+1 counters on target artifact creature.)\n{T}, Sacrifice an artifact: Search your library for a Construct card, reveal it, put it into your hand, then shuffle your library.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Steel Overseer": {
+                "flavor_text": "\"The world is already run by all manner of machines. One day, they'll remind us of that fact.\"\n\u2014Sargis Haz, artificer",
+                "image": "https://img.scryfall.com/cards/art_crop/front/6/e/6ed61426-e652-4b48-b936-8be9b6b57731.jpg?1592517743",
+                "name": "Steel Overseer",
+                "oracle_text": "{T}: Put a +1/+1 counter on each artifact creature you control.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Animation Module": {
+                "flavor_text": "Design leads to progress.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/3/4/34bdc973-db45-46a6-ac48-ce88fb59920a.jpg?1576382961",
+                "name": "Animation Module",
+                "oracle_text": "Whenever one or more +1/+1 counters are put on a permanent you control, you may pay {1}. If you do, create a 1/1 colorless Servo artifact creature token.\n{3}, {T}: Choose a counter on target permanent or player. Give that permanent or player another counter of that kind.",
+                "type": "Artifact"
+            }
+        },
+        {
+            "The Ozolith": {
+                "flavor_text": "As it twists, so does all life around it.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/9/3/9341ed06-53db-4604-b60a-3ea9129afbc2.jpg?1591228544",
+                "name": "The Ozolith",
+                "oracle_text": "Whenever a creature you control leaves the battlefield, if it had counters on it, put those counters on The Ozolith.\nAt the beginning of combat on your turn, if The Ozolith has counters on it, you may move all counters from The Ozolith onto target creature.",
+                "type": "Artifact"
+            }
+        },
+        {
+            "Throne of Geth": {
+                "flavor_text": "At the heart of Ish Sah, Geth stokes the dark fires of Phyrexia.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/5/8/583d7386-3eb5-4f1d-8da9-f00e020a307b.jpg?1562817823",
+                "name": "Throne of Geth",
+                "oracle_text": "{T}, Sacrifice an artifact: Proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)",
+                "type": "Artifact"
+            }
+        },
+        {
+            "Hardened Scales": {
+                "flavor_text": "\"Naga shed their scales. We wear ours with pride.\"\n\u2014Golran, dragonscale captain",
+                "image": "https://img.scryfall.com/cards/art_crop/front/0/1/01c4a294-d8b5-4237-af09-f592029c917a.jpg?1562272002",
+                "name": "Hardened Scales",
+                "oracle_text": "If one or more +1/+1 counters would be put on a creature you control, that many plus one +1/+1 counters are put on it instead.",
+                "type": "Enchantment"
+            }
+        },
+        {
+            "Darksteel Citadel": {
+                "flavor_text": "Structures built from darksteel yield to neither assault nor age.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/d/6/d61ecc3f-8c76-43e6-8f16-4863b2ea25fb.jpg?1592711448",
+                "name": "Darksteel Citadel",
+                "oracle_text": "Indestructible\n{T}: Add {C}.",
+                "type": "Land"
+            }
+        },
+        {
+            "Inkmoth Nexus": {
+                "flavor_text": "Inkmoth Nexus",
+                "image": "https://img.scryfall.com/cards/art_crop/front/e/c/ec50c1c3-885e-47d3-ada7-cc0edbf09df1.jpg?1562615687",
+                "name": "Inkmoth Nexus",
+                "oracle_text": "{T}: Add {C}.\n{1}: Inkmoth Nexus becomes a 1/1 Blinkmoth artifact creature with flying and infect until end of turn. It's still a land. (It deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters.)",
+                "type": "Land"
+            }
+        },
+        {
+            "Llanowar Reborn": {
+                "flavor_text": "Llanowar Reborn",
+                "image": "https://img.scryfall.com/cards/art_crop/front/0/8/08a712ca-05dd-4ff9-b22f-8e9f36d6c445.jpg?1562700989",
+                "name": "Llanowar Reborn",
+                "oracle_text": "Llanowar Reborn enters the battlefield tapped.\n{T}: Add {G}.\nGraft 1 (This land enters the battlefield with a +1/+1 counter on it. Whenever a creature enters the battlefield, you may move a +1/+1 counter from this land onto it.)",
+                "type": "Land"
+            }
+        },
+        {
+            "Pendelhaven": {
+                "flavor_text": "The limbs of Pendelhaven extend as far as the meek roam, and reach as high as they strive.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/a/c/acf85879-4d14-4d86-978c-b155c47b7dcd.jpg?1562439693",
+                "name": "Pendelhaven",
+                "oracle_text": "{T}: Add {G}.\n{T}: Target 1/1 creature gets +1/+2 until end of turn.",
+                "type": "Land"
+            }
+        },
+        {
+            "Phyrexia's Core": {
+                "flavor_text": "\"So even the heart of our world has succumbed.\"\n\u2014Koth of the Hammer",
+                "image": "https://img.scryfall.com/cards/art_crop/front/a/8/a8b38935-41c4-4157-992e-c584f5e92e04.jpg?1562275493",
+                "name": "Phyrexia's Core",
+                "oracle_text": "{T}: Add {C}.\n{1}, {T}, Sacrifice an artifact: You gain 1 life.",
+                "type": "Land"
+            }
+        },
+        {
+            "Venerated Loxodon": {
+                "flavor_text": "Venerated Loxodon",
+                "image": "https://img.scryfall.com/cards/art_crop/front/9/3/93599fba-7c53-4621-85b5-6434be077bf6.jpg?1572892675",
+                "name": "Venerated Loxodon",
+                "oracle_text": "Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of that creature's color.)\nWhen Venerated Loxodon enters the battlefield, put a +1/+1 counter on each creature that convoked it.",
+                "type": "Creature"
+            }
+        },
+        {
+            "Battle Screech": {
+                "flavor_text": "All sounds harmonize with the Worldsoul.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/e/a/eacf7dd0-5855-4e7b-b75c-8119cc3d1460.jpg?1562201069",
+                "name": "Battle Screech",
+                "oracle_text": "Create two 1/1 white Bird creature tokens with flying.\nFlashback\u2014Tap three untapped white creatures you control. (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
                 "type": "Sorcery"
             }
         },
         {
-            "Past in Flames": {
-                "flavor_text": "Past in Flames",
-                "image": "https://img.scryfall.com/cards/art_crop/front/2/b/2b7472f4-37b0-439f-b4ac-80706d40d191.jpg?1593813533",
-                "name": "Past in Flames",
-                "oracle_text": "Each instant and sorcery card in your graveyard gains flashback until end of turn. The flashback cost is equal to its mana cost.\nFlashback {4}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+            "Gather the Townsfolk": {
+                "flavor_text": "In the memories of those they lost lies the strength needed to defend their city.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/7/6/76f66ee8-8289-4780-aaec-feabd8ea9e3d.jpg?1592762642",
+                "name": "Gather the Townsfolk",
+                "oracle_text": "Create two 1/1 white Human creature tokens.\nFateful hour \u2014 If you have 5 or less life, create five of those tokens instead.",
                 "type": "Sorcery"
             }
         },
         {
-            "Serum Visions": {
-                "flavor_text": "Serum was once derived from Mirrodin's blinkmoths, offering visions of inspiration. Now it is pulled from Phyrexian inkmoths, yielding visions of perfection.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/2/0/20296a5b-4e15-4f07-8bce-9a37abb35729.jpg?1593813131",
-                "name": "Serum Visions",
-                "oracle_text": "Draw a card. Scry 2.",
+            "Servo Exhibition": {
+                "flavor_text": "\"The judges really put them through their paces, but they prevailed. I think they even impressed Head Judge Tezzeret.\"\n\u2014Ritika, artificer",
+                "image": "https://img.scryfall.com/cards/art_crop/front/9/a/9aba0c60-78e2-4e1c-a6ad-6f1c001ad7ee.jpg?1576380987",
+                "name": "Servo Exhibition",
+                "oracle_text": "Create two 1/1 colorless Servo artifact creature tokens.",
                 "type": "Sorcery"
             }
         },
         {
-            "Sleight of Hand": {
-                "flavor_text": "\"Gambling with mages never is.\"\n\u2014Remin, venerable monk",
-                "image": "https://img.scryfall.com/cards/art_crop/front/1/7/1766d117-6ee1-4103-88e8-47b932a94d65.jpg?1547516514",
-                "name": "Sleight of Hand",
-                "oracle_text": "Look at the top two cards of your library. Put one of them into your hand and the other on the bottom of your library.",
+            "Spectral Procession": {
+                "flavor_text": "\"I need never remember my past associates, my victims, my mistakes. Innistrad preserves them all for me.\"\n\u2014Sorin Markov",
+                "image": "https://img.scryfall.com/cards/art_crop/front/9/9/9964629e-d79e-46e4-b3fd-e7d1759cbc60.jpg?1562265268",
+                "name": "Spectral Procession",
+                "oracle_text": "Create three 1/1 white Spirit creature tokens with flying.",
                 "type": "Sorcery"
             }
         },
         {
-            "Desperate Ritual": {
-                "flavor_text": "Desperate Ritual",
-                "image": "https://img.scryfall.com/cards/art_crop/front/3/8/3825b85d-07df-43b9-a8d8-930863262d83.jpg?1547517210",
-                "name": "Desperate Ritual",
-                "oracle_text": "Add {R}{R}{R}.\nSplice onto Arcane {1}{R} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)",
+            "Raise the Alarm": {
+                "flavor_text": "Like blinking or breathing, responding to an alarm is an involuntary reflex.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/f/5/f552f9b6-0a60-44d8-985e-249617e04866.jpg?1592705980",
+                "name": "Raise the Alarm",
+                "oracle_text": "Create two 1/1 white Soldier creature tokens.",
                 "type": "Instant"
             }
         },
         {
-            "Gifts Ungiven": {
-                "flavor_text": "Gifts Ungiven",
-                "image": "https://img.scryfall.com/cards/art_crop/front/4/b/4b11f693-716e-41de-a0ea-2a5178a284dc.jpg?1593813064",
-                "name": "Gifts Ungiven",
-                "oracle_text": "Search your library for up to four cards with different names and reveal them. Target opponent chooses two of those cards. Put the chosen cards into your graveyard and the rest into your hand. Then shuffle your library.",
+            "Unbreakable Formation": {
+                "flavor_text": "Unbreakable Formation",
+                "image": "https://img.scryfall.com/cards/art_crop/front/4/6/46cc8574-7b8c-492c-8a36-75cb0192f853.jpg?1584830090",
+                "name": "Unbreakable Formation",
+                "oracle_text": "Creatures you control gain indestructible until end of turn.\nAddendum \u2014 If you cast this spell during your main phase, put a +1/+1 counter on each of those creatures and they gain vigilance until end of turn.",
                 "type": "Instant"
             }
         },
         {
-            "Pyretic Ritual": {
-                "flavor_text": "The Multiverse is filled with limitless power just waiting for someone to reach out and seize it.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/1/e/1e577638-a7ed-4bcc-90fb-0cffe87d5a28.jpg?1562452888",
-                "name": "Pyretic Ritual",
-                "oracle_text": "Add {R}{R}{R}.",
+            "Force of Virtue": {
+                "flavor_text": "\"Where divinity leads, victory follows.\"\n\u2014Silverblade motto",
+                "image": "https://img.scryfall.com/cards/art_crop/front/9/7/9736d6f4-5ff6-4006-b45d-8e630382d160.jpg?1562201106",
+                "name": "Force of Virtue",
+                "oracle_text": "If it's not your turn, you may exile a white card from your hand rather than pay this spell's mana cost.\nFlash\nCreatures you control get +1/+1.",
+                "type": "Enchantment"
+            }
+        },
+        {
+            "Intangible Virtue": {
+                "flavor_text": "In life, they were a motley crew: farmers, lords, cutpurses, priests. In death, they are united in singular, benevolent purpose.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/b/0/b08f5d19-55ec-4cb9-b836-4d432cd9da33.jpg?1568003860",
+                "name": "Intangible Virtue",
+                "oracle_text": "Creature tokens you control get +1/+1 and have vigilance.",
+                "type": "Enchantment"
+            }
+        },
+        {
+            "Legion's Landing": {
+                "flavor_text": "\"I claim this land in the name of the queen.\"\n\u2014Adrian Adanto of Lujio",
+                "image": "https://img.scryfall.com/cards/art_crop/front/0/5/05e2a5e6-3aaa-4096-bdd0-fcc1afe5a36c.jpg?1562550045",
+                "name": "Legion's Landing",
+                "oracle_text": "When Legion's Landing enters the battlefield, create a 1/1 white Vampire creature token with lifelink.\nWhen you attack with three or more creatures, transform Legion's Landing.",
+                "type": "Enchantment"
+            }
+        },
+        {
+            "Shefet Dunes": {
+                "flavor_text": "Shefet Dunes",
+                "image": "https://img.scryfall.com/cards/art_crop/front/6/0/6077f4e9-5717-4048-b798-4f8d535a4170.jpg?1562801103",
+                "name": "Shefet Dunes",
+                "oracle_text": "{T}: Add {C}.\n{T}, Pay 1 life: Add {W}.\n{2}{W}{W}, {T}, Sacrifice a Desert: Creatures you control get +1/+1 until end of turn. Activate this ability only any time you could cast a sorcery.",
+                "type": "Land"
+            }
+        },
+        {
+            "Silent Clearing": {
+                "flavor_text": "The expedition's end began the marsh's story.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/a/c/ac07e230-0297-4e1d-bdfe-119010e0ad8e.jpg?1562202597",
+                "name": "Silent Clearing",
+                "oracle_text": "{T}, Pay 1 life: Add {W} or {B}.\n{1}, {T}, Sacrifice Silent Clearing: Draw a card.",
+                "type": "Land"
+            }
+        },
+        {
+            "Windbrisk Heights": {
+                "flavor_text": "Windbrisk Heights",
+                "image": "https://img.scryfall.com/cards/art_crop/front/e/c/ec7f0e60-8fa4-4eab-8465-baf4e5e8196b.jpg?1591322511",
+                "name": "Windbrisk Heights",
+                "oracle_text": "Hideaway (This land enters the battlefield tapped. When it does, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library.)\n{T}: Add {W}.\n{W}, {T}: You may play the exiled card without paying its mana cost if you attacked with three or more creatures this turn.",
+                "type": "Land"
+            }
+        },
+        {
+            "Deprive": {
+                "flavor_text": "\"That would have brought shame to you as a mage. Tell you what\u2014I'll keep your secret.\"\n\u2014Noyan Dar, Tazeem lullmage",
+                "image": "https://img.scryfall.com/cards/art_crop/front/2/e/2efecdd9-bd3a-4b79-92da-6485589d5bde.jpg?1562702470",
+                "name": "Deprive",
+                "oracle_text": "As an additional cost to cast this spell, return a land you control to its owner's hand.\nCounter target spell.",
                 "type": "Instant"
             }
         },
         {
-            "Remand": {
-                "flavor_text": "For the Azorius, the law can be a physical shield against chaos and anarchy.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/d/c/dc595c63-af05-4c05-80e8-e1a90df26b0f.jpg?1562268359",
-                "name": "Remand",
-                "oracle_text": "Counter target spell. If that spell is countered this way, put it into its owner's hand instead of into that player's graveyard.\nDraw a card.",
+            "Frantic Inventory": {
+                "flavor_text": "\"Another village, another angry mob. Why do I even bother unpacking?\"",
+                "image": "https://img.scryfall.com/cards/art_crop/front/8/f/8f14abb0-0e9f-448e-85d7-6cb71f756c56.jpg?1594735485",
+                "name": "Frantic Inventory",
+                "oracle_text": "Draw a card, then draw cards equal to the number of cards named Frantic Inventory in your graveyard.",
                 "type": "Instant"
             }
         },
         {
-            "Repeal": {
-                "flavor_text": "\"Your deed cannot be undone. You, however, can be.\"\n\u2014Agosto, Azorius imperator",
-                "image": "https://img.scryfall.com/cards/art_crop/front/9/c/9c8ccab7-cc10-4fe8-a302-25d7518f4823.jpg?1562852049",
-                "name": "Repeal",
-                "oracle_text": "Return target nonland permanent with converted mana cost X to its owner's hand.\nDraw a card.",
+            "Celestial Colonnade": {
+                "flavor_text": "Celestial Colonnade",
+                "image": "https://img.scryfall.com/cards/art_crop/front/4/c/4c830a99-595b-4aed-9f6b-85a78917f498.jpg?1547518582",
+                "name": "Celestial Colonnade",
+                "oracle_text": "Celestial Colonnade enters the battlefield tapped.\n{T}: Add {W} or {U}.\n{3}{W}{U}: Until end of turn, Celestial Colonnade becomes a 4/4 white and blue Elemental creature with flying and vigilance. It's still a land.",
+                "type": "Land"
+            }
+        },
+        {
+            "Hanweir Battlements": {
+                "flavor_text": "Hanweir Battlements",
+                "image": "https://img.scryfall.com/cards/art_crop/front/1/d/1d743ad6-6ca2-409a-9773-581cc195dbf2.jpg?1581393311",
+                "name": "Hanweir Battlements",
+                "oracle_text": "{T}: Add {C}.\n{R}, {T}: Target creature gains haste until end of turn.\n{3}{R}{R}, {T}: If you both own and control Hanweir Battlements and a creature named Hanweir Garrison, exile them, then meld them into Hanweir, the Writhing Township.",
+                "type": "Land"
+            }
+        },
+        {
+            "Terminate": {
+                "flavor_text": "All suns must set.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/1/a/1a2ba191-f11c-47d3-8459-34b0e0e56fd9.jpg?1591321484",
+                "name": "Terminate",
+                "oracle_text": "Destroy target creature. It can't be regenerated.",
                 "type": "Instant"
-            }
-        },
-        {
-            "Shivan Reef": {
-                "flavor_text": "Shivan Reef",
-                "image": "https://img.scryfall.com/cards/art_crop/front/9/8/983d129b-809b-436e-bb66-3c7028709e50.jpg?1591322435",
-                "name": "Shivan Reef",
-                "oracle_text": "{T}: Add {C}.\n{T}: Add {U} or {R}. Shivan Reef deals 1 damage to you.",
-                "type": "Land"
-            }
-        },
-        {
-            "Karn, the Great Creator": {
-                "flavor_text": "Karn, the Great Creator",
-                "image": "https://img.scryfall.com/cards/art_crop/front/3/e/3ec0c0fb-1a4f-45f4-85b7-346a6d3ce2c5.jpg?1566819742",
-                "name": "Karn, the Great Creator",
-                "oracle_text": "Activated abilities of artifacts your opponents control can't be activated.\n+1: Until your next turn, up to one target noncreature artifact becomes an artifact creature with power and toughness each equal to its converted mana cost.\n\u22122: You may choose an artifact card you own from outside the game or in exile, reveal that card, and put it into your hand.",
-                "type": "Planeswalker"
-            }
-        },
-        {
-            "Ugin, the Ineffable": {
-                "flavor_text": "Ugin, the Ineffable",
-                "image": "https://img.scryfall.com/cards/art_crop/front/7/b/7b003521-3da3-41bf-9765-36630653f902.jpg?1559562626",
-                "name": "Ugin, the Ineffable",
-                "oracle_text": "Colorless spells you cast cost {2} less to cast.\n+1: Exile the top card of your library face down and look at it. Create a 2/2 colorless Spirit creature token. When that token leaves the battlefield, put the exiled card into your hand.\n\u22123: Destroy target permanent that's one or more colors.",
-                "type": "Planeswalker"
-            }
-        },
-        {
-            "Matter Reshaper": {
-                "flavor_text": "Matter Reshaper",
-                "image": "https://img.scryfall.com/cards/art_crop/front/3/9/3906b61a-3865-4dfd-ae06-a7d2a608851a.jpg?1562906487",
-                "name": "Matter Reshaper",
-                "oracle_text": "({C} represents colorless mana.)\nWhen Matter Reshaper dies, reveal the top card of your library. You may put that card onto the battlefield if it's a permanent card with converted mana cost 3 or less. Otherwise, put that card into your hand.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Reality Smasher": {
-                "flavor_text": "As easy to stop as it is to comprehend.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/5/2/52d4b652-a830-4fd4-94bb-c17c227f2928.jpg?1562911843",
-                "name": "Reality Smasher",
-                "oracle_text": "({C} represents colorless mana.)\nTrample, haste\nWhenever Reality Smasher becomes the target of a spell an opponent controls, counter that spell unless its controller discards a card.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Thought-Knot Seer": {
-                "flavor_text": "Thought-Knot Seer",
-                "image": "https://img.scryfall.com/cards/art_crop/front/b/f/bffc360e-db41-48f3-9365-680d55046e04.jpg?1562933598",
-                "name": "Thought-Knot Seer",
-                "oracle_text": "({C} represents colorless mana.)\nWhen Thought-Knot Seer enters the battlefield, target opponent reveals their hand. You choose a nonland card from it and exile that card.\nWhen Thought-Knot Seer leaves the battlefield, target opponent draws a card.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Walking Ballista": {
-                "flavor_text": "Walking Ballista",
-                "image": "https://img.scryfall.com/cards/art_crop/front/3/2/329a8738-3e17-403a-857a-0ba529ce8cd1.jpg?1576382470",
-                "name": "Walking Ballista",
-                "oracle_text": "Walking Ballista enters the battlefield with X +1/+1 counters on it.\n{4}: Put a +1/+1 counter on Walking Ballista.\nRemove a +1/+1 counter from Walking Ballista: It deals 1 damage to any target.",
-                "type": "Creature"
-            }
-        },
-        {
-            "All Is Dust": {
-                "flavor_text": "\"The emergence of the Eldrazi isn't necessarily a bad thing, as long as you've already lived a fulfilling and complete life without regrets.\"\n\u2014Javad Nasrin, Ondu relic hunter",
-                "image": "https://img.scryfall.com/cards/art_crop/front/8/c/8cf632ef-70e3-46f2-af21-14ea7ef30237.jpg?1547515198",
-                "name": "All Is Dust",
-                "oracle_text": "Each player sacrifices all colored permanents they control.",
-                "type": "Sorcery"
-            }
-        },
-        {
-            "Dismember": {
-                "flavor_text": "\"You serve Phyrexia. Your pieces would better serve Phyrexia elsewhere.\"\n\u2014Azax-Azog, the Demon Thane",
-                "image": "https://img.scryfall.com/cards/art_crop/front/3/d/3d286cf6-3e16-4941-9326-1818b1e06d69.jpg?1562261132",
-                "name": "Dismember",
-                "oracle_text": "({B/P} can be paid with either {B} or 2 life.)\nTarget creature gets -5/-5 until end of turn.",
-                "type": "Instant"
-            }
-        },
-        {
-            "Expedition Map": {
-                "flavor_text": "\"I use maps to find out where explorers have already been. Then I go the other way.\"\n\u2014Javad Nasrin, Ondu relic hunter",
-                "image": "https://img.scryfall.com/cards/art_crop/front/c/7/c708dbd5-1d7b-4ed3-b5a7-93a02d8355ee.jpg?1594662263",
-                "name": "Expedition Map",
-                "oracle_text": "{2}, {T}, Sacrifice Expedition Map: Search your library for a land card, reveal it, and put it into your hand. Then shuffle your library.",
-                "type": "Artifact"
-            }
-        },
-        {
-            "Mazemind Tome": {
-                "flavor_text": "Mazemind Tome",
-                "image": "https://img.scryfall.com/cards/art_crop/front/9/f/9fd761f3-6b43-4150-8595-dc3abd85b06c.jpg?1594737505",
-                "name": "Mazemind Tome",
-                "oracle_text": "{T}, Put a page counter on Mazemind Tome: Scry 1.\n{2}, {T}, Put a page counter on Mazemind Tome: Draw a card.\nWhen there are four or more page counters on Mazemind Tome, exile it. If you do, you gain 4 life.",
-                "type": "Artifact"
-            }
-        },
-        {
-            "Mind Stone": {
-                "flavor_text": "\"What is mana but possibility, an idea not yet given form?\"\n\u2014Jhoira, master artificer",
-                "image": "https://img.scryfall.com/cards/art_crop/front/4/2/42bd038d-1005-4095-9310-108caa56465f.jpg?1592711273",
-                "name": "Mind Stone",
-                "oracle_text": "{T}: Add {C}.\n{1}, {T}, Sacrifice Mind Stone: Draw a card.",
-                "type": "Artifact"
-            }
-        },
-        {
-            "Ratchet Bomb": {
-                "flavor_text": "Ratchet Bomb",
-                "image": "https://img.scryfall.com/cards/art_crop/front/3/e/3e9045df-3eff-4236-9bbb-77537b302e27.jpg?1562828276",
-                "name": "Ratchet Bomb",
-                "oracle_text": "{T}: Put a charge counter on Ratchet Bomb.\n{T}, Sacrifice Ratchet Bomb: Destroy each nonland permanent with converted mana cost equal to the number of charge counters on Ratchet Bomb.",
-                "type": "Artifact"
-            }
-        },
-        {
-            "Blast Zone": {
-                "flavor_text": "Blast Zone",
-                "image": "https://img.scryfall.com/cards/art_crop/front/e/a/ea6bc7d5-e8f6-4103-920c-9f7ec5cd6c28.jpg?1557577452",
-                "name": "Blast Zone",
-                "oracle_text": "Blast Zone enters the battlefield with a charge counter on it.\n{T}: Add {C}.\n{X}{X}, {T}: Put X charge counters on Blast Zone.\n{3}, {T}, Sacrifice Blast Zone: Destroy each nonland permanent with converted mana cost equal to the number of charge counters on Blast Zone.",
-                "type": "Land"
-            }
-        },
-        {
-            "Eldrazi Temple": {
-                "flavor_text": "Each temple is a door to a horrible future.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/c/4/c42049e2-fe4e-4fe9-9599-faf1af50b97d.jpg?1593095918",
-                "name": "Eldrazi Temple",
-                "oracle_text": "{T}: Add {C}.\n{T}: Add {C}{C}. Spend this mana only to cast colorless Eldrazi spells or activate abilities of colorless Eldrazi.",
-                "type": "Land"
-            }
-        },
-        {
-            "Scavenger Grounds": {
-                "flavor_text": "When the last scrap of flesh is scoured away, the Curse of Wandering ends. Then the dead may sleep.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/f/0/f070bcc2-d764-44da-91ab-f2af23aa42e6.jpg?1591322397",
-                "name": "Scavenger Grounds",
-                "oracle_text": "{T}: Add {C}.\n{2}, {T}, Sacrifice a Desert: Exile all cards from all graveyards.",
-                "type": "Land"
-            }
-        },
-        {
-            "Tectonic Edge": {
-                "flavor_text": "\"We move because the earth does.\"\n\u2014Bruse Tarl, Goma Fada nomad",
-                "image": "https://img.scryfall.com/cards/art_crop/front/9/4/94b9d7af-3e6f-4227-bb7d-a17d6f250535.jpg?1561950651",
-                "name": "Tectonic Edge",
-                "oracle_text": "{T}: Add {C}.\n{1}, {T}, Sacrifice Tectonic Edge: Destroy target nonbasic land. Activate this ability only if an opponent controls four or more lands.",
-                "type": "Land"
-            }
-        },
-        {
-            "Urza's Mine": {
-                "flavor_text": "Mines became common as cities during the days of the artificers.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/4/e/4e15ad45-dc96-48db-931c-1bbb95dfa580.jpg?1562913281",
-                "name": "Urza's Mine",
-                "oracle_text": "{T}: Add {C}. If you control an Urza's Power-Plant and an Urza's Tower, add {C}{C} instead.",
-                "type": "Land"
-            }
-        },
-        {
-            "Urza's Power Plant": {
-                "flavor_text": "Artifact construction requires immense resources.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/0/0/00d705f6-4b8b-49e7-b420-5277893f14bd.jpg?1562895229",
-                "name": "Urza's Power Plant",
-                "oracle_text": "{T}: Add {C}. If you control an Urza's Mine and an Urza's Tower, add {C}{C} instead.",
-                "type": "Land"
-            }
-        },
-        {
-            "Urza's Tower": {
-                "flavor_text": "Urza always put Tocasia's lessons on resource-gathering to effective use.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/0/6/0696cc4b-45c9-424d-b472-8d530062fd52.jpg?1562896566",
-                "name": "Urza's Tower",
-                "oracle_text": "{T}: Add {C}. If you control an Urza's Mine and an Urza's Power-Plant, add {C}{C}{C} instead.",
-                "type": "Land"
-            }
-        },
-        {
-            "Karn Liberated": {
-                "flavor_text": "Karn Liberated",
-                "image": "https://img.scryfall.com/cards/art_crop/front/6/9/69714257-2848-48e1-95cf-cdb6595215f0.jpg?1547515288",
-                "name": "Karn Liberated",
-                "oracle_text": "+4: Target player exiles a card from their hand.\n\u22123: Exile target permanent.\n\u221214: Restart the game, leaving in exile all non-Aura permanent cards exiled with Karn Liberated. Then put those cards onto the battlefield under your control.",
-                "type": "Planeswalker"
-            }
-        },
-        {
-            "Thragtusk": {
-                "flavor_text": "\"Always carry two spears.\"\n\u2014Mokgar, Kalonian hunter",
-                "image": "https://img.scryfall.com/cards/art_crop/front/d/0/d0594c41-0361-4a3b-a9cd-60f4e3b0cffe.jpg?1592707724",
-                "name": "Thragtusk",
-                "oracle_text": "When Thragtusk enters the battlefield, you gain 5 life.\nWhen Thragtusk leaves the battlefield, create a 3/3 green Beast creature token.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Ulamog, the Ceaseless Hunger": {
-                "flavor_text": "A force as voracious as time itself.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/1/1/1192f7a9-102e-4b3a-b154-18c8eb332217.jpg?1562899233",
-                "name": "Ulamog, the Ceaseless Hunger",
-                "oracle_text": "When you cast this spell, exile two target permanents.\nIndestructible\nWhenever Ulamog, the Ceaseless Hunger attacks, defending player exiles the top twenty cards of their library.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Wurmcoil Engine": {
-                "flavor_text": "Wurmcoil Engine",
-                "image": "https://img.scryfall.com/cards/art_crop/front/4/a/4ab5195f-7cc3-4972-92f8-1b26fa3fb927.jpg?1562273858",
-                "name": "Wurmcoil Engine",
-                "oracle_text": "Deathtouch, lifelink\nWhen Wurmcoil Engine dies, create a 3/3 colorless Wurm artifact creature token with deathtouch and a 3/3 colorless Wurm artifact creature token with lifelink.",
-                "type": "Creature"
-            }
-        },
-        {
-            "Ancient Stirrings": {
-                "flavor_text": "Ancient Stirrings",
-                "image": "https://img.scryfall.com/cards/art_crop/front/9/0/90ea4a23-63fa-4d3d-90e3-c007ba0c0e78.jpg?1562438516",
-                "name": "Ancient Stirrings",
-                "oracle_text": "Look at the top five cards of your library. You may reveal a colorless card from among them and put it into your hand. Then put the rest on the bottom of your library in any order. (Cards with no colored mana in their mana costs are colorless. Lands are also colorless.)",
-                "type": "Sorcery"
-            }
-        },
-        {
-            "Sylvan Scrying": {
-                "flavor_text": "\"As long as there is a single shred of life, there is hope.\"\n\u2014Nissa Revane",
-                "image": "https://img.scryfall.com/cards/art_crop/front/d/1/d1b93087-e6a0-4ba9-83ba-a0ed2e396dc7.jpg?1562944944",
-                "name": "Sylvan Scrying",
-                "oracle_text": "Search your library for a land card, reveal it, and put it into your hand. Then shuffle your library.",
-                "type": "Sorcery"
-            }
-        },
-        {
-            "Chromatic Sphere": {
-                "flavor_text": "\"As expected, this sphere's design reflects the colors of the four moons . . . plus another?\"\n\u2014Pontifex, elder researcher",
-                "image": "https://img.scryfall.com/cards/art_crop/front/e/d/edabc8b2-4413-48e4-8d6f-521b19d839a6.jpg?1592707874",
-                "name": "Chromatic Sphere",
-                "oracle_text": "{1}, {T}, Sacrifice Chromatic Sphere: Add one mana of any color. Draw a card.",
-                "type": "Artifact"
-            }
-        },
-        {
-            "Chromatic Star": {
-                "flavor_text": "Chromatic Star",
-                "image": "https://img.scryfall.com/cards/art_crop/front/3/2/3233db3e-ec30-4be5-867d-81855652a8b0.jpg?1562545796",
-                "name": "Chromatic Star",
-                "oracle_text": "{1}, {T}, Sacrifice Chromatic Star: Add one mana of any color.\nWhen Chromatic Star is put into a graveyard from the battlefield, draw a card.",
-                "type": "Artifact"
-            }
-        },
-        {
-            "Oblivion Stone": {
-                "flavor_text": "Oblivion Stone",
-                "image": "https://img.scryfall.com/cards/art_crop/front/a/8/a8b5d975-3968-4d42-9837-872095759776.jpg?1562275497",
-                "name": "Oblivion Stone",
-                "oracle_text": "{4}, {T}: Put a fate counter on target permanent.\n{5}, {T}, Sacrifice Oblivion Stone: Destroy each nonland permanent without a fate counter on it, then remove all fate counters from all permanents.",
-                "type": "Artifact"
-            }
-        },
-        {
-            "Sanctum of Ugin": {
-                "flavor_text": "Sanctum of Ugin",
-                "image": "https://img.scryfall.com/cards/art_crop/front/8/6/86798d03-9f2d-46bd-a660-13c8dd5535ce.jpg?1562926694",
-                "name": "Sanctum of Ugin",
-                "oracle_text": "{T}: Add {C}.\nWhenever you cast a colorless spell with converted mana cost 7 or greater, you may sacrifice Sanctum of Ugin. If you do, search your library for a colorless creature card, reveal it, put it into your hand, then shuffle your library.",
-                "type": "Land"
-            }
-        },
-        {
-            "Liliana of the Veil": {
-                "flavor_text": "Liliana of the Veil",
-                "image": "https://img.scryfall.com/cards/art_crop/front/e/6/e653437e-2e56-4443-aec5-5bb7d8860238.jpg?1547516945",
-                "name": "Liliana of the Veil",
-                "oracle_text": "+1: Each player discards a card.\n\u22122: Target player sacrifices a creature.\n\u22126: Separate all permanents target player controls into two piles. That player sacrifices all permanents in the pile of their choice.",
-                "type": "Planeswalker"
-            }
-        },
-        {
-            "Nihil Spellbomb": {
-                "flavor_text": "Nihil Spellbomb",
-                "image": "https://img.scryfall.com/cards/art_crop/front/e/5/e5892a23-efae-4731-9b8f-41c87960fe93.jpg?1562442193",
-                "name": "Nihil Spellbomb",
-                "oracle_text": "{T}, Sacrifice Nihil Spellbomb: Exile all cards from target player's graveyard.\nWhen Nihil Spellbomb is put into a graveyard from the battlefield, you may pay {B}. If you do, draw a card.",
-                "type": "Artifact"
-            }
-        },
-        {
-            "Blooming Marsh": {
-                "flavor_text": "A retreat to nature can inspire even the most jaded inventor.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/9/0/90da33d4-fe9c-42fe-b326-2fe337dc3ecd.jpg?1576383503",
-                "name": "Blooming Marsh",
-                "oracle_text": "Blooming Marsh enters the battlefield tapped unless you control two or fewer other lands.\n{T}: Add {B} or {G}.",
-                "type": "Land"
-            }
-        },
-        {
-            "Raging Ravine": {
-                "flavor_text": "Raging Ravine",
-                "image": "https://img.scryfall.com/cards/art_crop/front/7/9/79e6b8fc-6627-47ab-bfd1-7300e13debec.jpg?1547518746",
-                "name": "Raging Ravine",
-                "oracle_text": "Raging Ravine enters the battlefield tapped.\n{T}: Add {R} or {G}.\n{2}{R}{G}: Until end of turn, Raging Ravine becomes a 3/3 red and green Elemental creature with \"Whenever this creature attacks, put a +1/+1 counter on it.\" It's still a land.",
-                "type": "Land"
             }
         }
     ],
-    "url": "/en/articles/archive/mtgo-standings/modern-preliminary-2020-07-18"
+    "url": "/en/articles/archive/mtgo-standings/modern-champ-qual-2020-07-20"
 }
