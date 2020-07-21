@@ -155,8 +155,8 @@
         },
         {
             "Urza's Mine": {
-                "flavor_text": "Mines became common as cities during the days of the artificers.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/4/e/4e15ad45-dc96-48db-931c-1bbb95dfa580.jpg?1562913281",
+                "flavor_text": "In his hunger for power and knowledge, Urza dug deep into Dominaria's ancient past.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/0/8/08dea8f6-bd32-44a3-bec4-93a5607819df.jpg?1595253046",
                 "name": "Urza's Mine",
                 "oracle_text": "{T}: Add {C}. If you control an Urza's Power-Plant and an Urza's Tower, add {C}{C} instead.",
                 "type": "Land"
@@ -164,8 +164,8 @@
         },
         {
             "Urza's Power Plant": {
-                "flavor_text": "Artifact construction requires immense resources.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/0/0/00d705f6-4b8b-49e7-b420-5277893f14bd.jpg?1562895229",
+                "flavor_text": "Urza threw himself into his research, pushing the boundaries of both possibility and morality.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/5/4/54445d1f-5426-47e9-9e02-0274cea7174f.jpg?1595253064",
                 "name": "Urza's Power Plant",
                 "oracle_text": "{T}: Add {C}. If you control an Urza's Mine and an Urza's Tower, add {C}{C} instead.",
                 "type": "Land"
@@ -173,8 +173,8 @@
         },
         {
             "Urza's Tower": {
-                "flavor_text": "Urza always put Tocasia's lessons on resource-gathering to effective use.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/0/6/0696cc4b-45c9-424d-b472-8d530062fd52.jpg?1562896566",
+                "flavor_text": "Urza studied the creations of the Thran not simply to learn from them, but to surpass them.",
+                "image": "https://img.scryfall.com/cards/art_crop/front/9/e/9e369f3f-354b-42bf-9b2f-286912730c6c.jpg?1595253080",
                 "name": "Urza's Tower",
                 "oracle_text": "{T}: Add {C}. If you control an Urza's Mine and an Urza's Power-Plant, add {C}{C}{C} instead.",
                 "type": "Land"
@@ -183,7 +183,7 @@
         {
             "Jace, the Mind Sculptor": {
                 "flavor_text": "Jace, the Mind Sculptor",
-                "image": "https://img.scryfall.com/cards/art_crop/front/c/0/c057dc0d-4017-4e60-9c5e-45fc569a8d31.jpg?1562440655",
+                "image": "https://img.scryfall.com/cards/art_crop/front/c/8/c8817585-0d32-4d56-9142-0d29512e86a9.jpg?1595251337",
                 "name": "Jace, the Mind Sculptor",
                 "oracle_text": "+2: Look at the top card of target player's library. You may put that card on the bottom of that player's library.\n0: Draw three cards, then put two cards from your hand on top of your library in any order.\n\u22121: Return target creature to its owner's hand.\n\u221212: Exile all cards from target player's library, then that player shuffles their hand into their library.",
                 "type": "Planeswalker"
@@ -1677,7 +1677,7 @@
         {
             "Engineered Explosives": {
                 "flavor_text": "Engineered Explosives",
-                "image": "https://img.scryfall.com/cards/art_crop/front/f/1/f1e2b69e-b06b-46a5-ac57-a6a180eeecc7.jpg?1547518428",
+                "image": "https://img.scryfall.com/cards/art_crop/front/4/2/420bf1e9-f2ec-4dff-b540-e64de71e58be.jpg?1595262661",
                 "name": "Engineered Explosives",
                 "oracle_text": "Sunburst (This enters the battlefield with a charge counter on it for each color of mana spent to cast it.)\n{2}, Sacrifice Engineered Explosives: Destroy each nonland permanent with converted mana cost equal to the number of charge counters on Engineered Explosives.",
                 "type": "Artifact"
@@ -1749,7 +1749,7 @@
         {
             "Karn Liberated": {
                 "flavor_text": "Karn Liberated",
-                "image": "https://img.scryfall.com/cards/art_crop/front/6/9/69714257-2848-48e1-95cf-cdb6595215f0.jpg?1547515288",
+                "image": "https://img.scryfall.com/cards/art_crop/front/4/b/4b0c6662-4dde-40a2-97e0-0318478c0367.jpg?1595251469",
                 "name": "Karn Liberated",
                 "oracle_text": "+4: Target player exiles a card from their hand.\n\u22123: Exile target permanent.\n\u221214: Restart the game, leaving in exile all non-Aura permanent cards exiled with Karn Liberated. Then put those cards onto the battlefield under your control.",
                 "type": "Planeswalker"
@@ -1785,7 +1785,7 @@
         {
             "Wurmcoil Engine": {
                 "flavor_text": "Wurmcoil Engine",
-                "image": "https://img.scryfall.com/cards/art_crop/front/4/a/4ab5195f-7cc3-4972-92f8-1b26fa3fb927.jpg?1562273858",
+                "image": "https://img.scryfall.com/cards/art_crop/front/5/d/5d275f04-cc60-4e3f-95cc-3d02bc916b82.jpg?1595262143",
                 "name": "Wurmcoil Engine",
                 "oracle_text": "Deathtouch, lifelink\nWhen Wurmcoil Engine dies, create a 3/3 colorless Wurm artifact creature token with deathtouch and a 3/3 colorless Wurm artifact creature token with lifelink.",
                 "type": "Creature"
@@ -1902,7 +1902,7 @@
         {
             "Noble Hierarch": {
                 "flavor_text": "She protects the sacred groves from blight, drought, and the Unbeholden.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/f/f/ff782973-e33c-4edd-bbd7-5c8dc8d59554.jpg?1547517681",
+                "image": "https://img.scryfall.com/cards/art_crop/front/4/0/400382a4-aea2-4827-b06a-1b0b3745908b.jpg?1595321801",
                 "name": "Noble Hierarch",
                 "oracle_text": "Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)\n{T}: Add {G}, {W}, or {U}.",
                 "type": "Creature"

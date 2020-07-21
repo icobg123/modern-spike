@@ -1,6 +1,6 @@
 // This is based on the First Progressive Web App Tutorial by Google
 // https://codelabs.developers.google.com/codelabs/your-first-pwapp/
-const cacheName = 'flask-PWA-99';
+const cacheName = 'flask-PWA-10';
 const filesToCache = [
     '/static/bootstrap/js/jquery-3.4.1.min.js',
     '/static/bootstrap/js/bootstrap.min.js',
@@ -10,8 +10,20 @@ const filesToCache = [
     '/static/css/mana.css',
     '/static/css/styles.css',
     '/static/images/mana.svg',
-    '/static/card_data_url.json',
     '/static/favicon.ico',
+    '/static/fonts/Beleren-Bold/beleren-boldP101.otf',
+    '/static/fonts/Beleren-Bold/beleren-boldP101.eot',
+    '/static/fonts/Beleren-Bold/beleren-boldP101.svg',
+    '/static/fonts/Beleren-Bold/beleren-boldP101.ttf',
+    '/static/fonts/Beleren-Bold/beleren-boldP101.woff',
+    '/static/fonts/Beleren-Bold/beleren-boldP101.woff2',
+    '/static/fonts/mplantin/mplantin.otf',
+    '/static/fonts/mplantin/mplantin.eot',
+    '/static/fonts/mplantin/mplantin.svg',
+    '/static/fonts/mplantin/mplantin.ttf',
+    '/static/fonts/mplantin/mplantin.woff',
+    '/static/fonts/mplantin/mplantin.woff2',
+
     '/offline.html',
 ];
 
