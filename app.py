@@ -34,16 +34,20 @@ sslify = SSLify(app)
 
 def replace_card_name_in_oracle(name, oracle_text):
     html = '<span class="badge badge-secondary align-text-top">This card</span>'
-    if name in oracle_text:
-        pprint('name after comma oracle')
+    names = name.split("//")
 
-        oracle_text = oracle_text.replace(name, html)
+    for name in names:
+        name = name.rstrip().lstrip()
+        if name in oracle_text:
+            pprint('name after comma oracle')
 
-    if ',' in name:
-        name_before_comma = name[:name.index(",")]
-        if name_before_comma in oracle_text:
-            pprint('name_before_comma in oracle')
-            oracle_text = oracle_text.replace(name_before_comma, html)
+            oracle_text = oracle_text.replace(name, html)
+
+        if ',' in name:
+            name_before_comma = name[:name.index(",")]
+            if name_before_comma in oracle_text:
+                pprint('name_before_comma in oracle')
+                oracle_text = oracle_text.replace(name_before_comma, html)
 
     return oracle_text
 
@@ -191,6 +195,38 @@ def get_single_card_data_from_scryfall(card):
     return card_data
 
 
+def get_card_data_from_file_modern_json(card):
+    # random_card_data = {}
+
+    image_data = read_from_file('static/card_data_url.json')
+    card_images = image_data['card_set']
+    card_data = read_from_file('static/ModernAtomic.json')
+    # card_data = json.loads(open("static/ModernAtomic.json", encoding="utf8").read())
+
+    # for card in card:
+    pprint(card)
+
+    card_info = next((item for item in card_images if card in item), None)
+    # card_name = next((key for key in card_data['data'].keys() if card in key), None)
+    card_name = next(
+        (key for key in card_data['data'].keys() if
+         card in [key.rstrip().lstrip() for key in key.split("//") if string_found(card, key)]), None)
+
+    pprint(card_info)
+
+    card_data_json = card_data['data'][card_name][0]
+
+    random_card_data = {
+        'name': card_name,
+        'oracle_text': card_data_json['text'],
+        'flavor_text': card_name,
+        'image': card_info[card]['image']
+    }
+
+    # pprint(random_card_data)
+    return random_card_data
+
+
 def get_card_data_from_file(random_cards):
     random_card_data = []
     # random_cards = ['Wear', 'Merchant of the Vale', 'Thing in the Ice']
@@ -214,6 +250,140 @@ def get_card_data_from_file(random_cards):
     return random_card_data
 
 
+def string_found(string1, string2):
+    if re.search(r"\b" + re.escape(string1) + r"\b", string2):
+        return True
+    return False
+
+
+def similar_cards(card_name, not_enough=False):
+    # TODO: Fix lands same identity and creature identity
+
+    list_similar_cards = []
+    cards = read_from_file('static/ModernAtomic.json')
+
+    card_name = next(
+        (key for key in cards['data'].keys() if
+         card_name in [key.rstrip().lstrip() for key in key.split("//") if string_found(card_name, key)]), None)
+    pprint(card_name)
+    #  card_name = next(
+    #     (key for key in cards['data'].keys() if card_name in [key.rstrip().lstrip() for key in key.split("//")]), None)
+    #
+    # # cards = json.loads(open("static/ModernAtomic.json", encoding="utf8").read())
+
+    card_info = cards['data'][card_name][0]
+    card_colors = card_info['colors']
+    card_type = card_info['types']
+    card_subtypes = card_info['subtypes']
+    card_identity = card_info['colorIdentity']
+    if 'convertedManaCost' in card_info:
+        card_cmc = card_info['convertedManaCost']
+
+    card_subtypes.sort()
+    # pprint(card_info)
+
+    for k, v in cards['data'].items():
+        # result = all(elem in card_subtypes for elem in v[0]['subtypes'])
+        if k != card_name:
+            this_type = v[0]['types']
+            subtypes = v[0]['subtypes']
+            colors = v[0]['colors']
+            identity = v[0]['colorIdentity']
+
+            subtypes.sort()
+            colors.sort()
+
+            # pprint(v[0]['name'])
+            if 'convertedManaCost' in v[0].keys():
+                # if this_type != 'Land':
+                cmc = v[0]['convertedManaCost']
+            if this_type != card_type:
+                continue
+            if is_this_a_basic(k):
+                pprint(k)
+                continue
+
+            if 'Planeswalker' in card_type:
+                # if card_type == 'Planeswalker':
+                # if not_enough:
+                # if len(list_similar_cards)
+                if subtypes == card_subtypes:
+                    # pprint(k)
+                    list_similar_cards.append(k)
+
+            if 'Land' in card_type:
+                if not_enough:
+                    if identity == card_identity:
+                        list_similar_cards.append(k)
+                else:
+                    if (card_subtypes and subtypes == card_subtypes) or identity == card_identity:
+                        list_similar_cards.append(k)
+            # if 'Land' in card_type:
+            #     if not_enough:
+            #         if identity == card_identity:
+            #             list_similar_cards.append(k)
+            #     else:
+            #         if identity == card_identity:
+            #             list_similar_cards.append(k)
+
+            if 'Creature' in card_type:
+                if not_enough:
+                    if colors == card_colors and cmc == card_cmc:
+                        list_similar_cards.append(k)
+                    elif card_subtypes[0] in subtypes and cmc == card_cmc:
+                        list_similar_cards.append(k)
+
+                else:
+                    if card_subtypes[0] in subtypes and colors == card_colors and cmc == card_cmc:
+                        # if subtypes == card_subtypes and colors == card_colors and cmc == card_cmc:
+                        list_similar_cards.append(k)
+
+            if 'Sorcery' in card_type or 'Instant' in card_type:
+                if not_enough:
+                    if colors == card_colors and not_enough:
+                        list_similar_cards.append(k)
+                else:
+                    if colors == card_colors and cmc == card_cmc:
+                        list_similar_cards.append(k)
+                # if colors == card_colors and cmc == card_cmc:
+                #     # print(cmc, card_cmc)
+                #     list_similar_cards.append(k)
+                #     continue
+                # elif colors == card_colors and not_enough:
+                #     list_similar_cards.append(k)
+                # else:
+                #     continue
+
+            if 'Artifact' in card_type:
+                if colors == card_colors and cmc == card_cmc and not not_enough:
+                    list_similar_cards.append(k)
+
+                elif cmc == card_cmc:
+                    list_similar_cards.append(k)
+
+            if 'Enchantment' in card_type:
+                if colors == card_colors and subtypes == card_subtypes and cmc == card_cmc:
+                    list_similar_cards.append(k)
+
+            if 'Tribal' in card_type:
+                if colors == card_colors:
+                    list_similar_cards.append(k)
+
+    pprint(list_similar_cards)
+    # if len(list_similar_cards) < 5:
+    #     similar_cards(card_name, True)
+
+    return list_similar_cards
+
+    # elif colors == card_colors:
+    #     # print(subtypes)
+    #     list_similar_subtype.add(k)
+
+    # if result:
+    #     list_similar_subtype.append(k)
+    # print(k, v)
+
+
 def gen_new_cards(*args):
     if not args:
         data = read_from_file('static/card_data_url.json')
@@ -225,24 +395,33 @@ def gen_new_cards(*args):
 
     # random.shuffle(list_card_names)
 
+    # random_card_name = 'Ugin, the Ineffable'
+    # random_card_name = 'Klothys, God of Destiny'
+    # random_card_name = 'Shefet Dunes'
+    # random_card_name = 'Sling-Gang Lieutenant'
     random_card_name = sample(list_card_names, 1)[0]
+
+    correct_answer = get_card_data_from_file_modern_json(random_card_name)
+
+    list_card_names_with_same_type = similar_cards(random_card_name)
     # random_card_type = [d[random_card_name]['type'] for d in unique_cards if
-    #                     random_card_name in d[random_card_name]['name']]
-    random_card_type = [d[random_card_name]['type'] for d in unique_cards if
-                        random_card_name in list(d.keys())[0]][0]
+    #                     random_card_name in list(d.keys())[0]][0]
+    #
+    # list_card_names_with_same_type = [list(d.keys())[0] for d in unique_cards if
+    #                                   random_card_type in d[list(d.keys())[0]]['type']]
+    #
+    #
+    sample_size = len(list_card_names_with_same_type)
 
-    list_card_names_with_same_type = [list(d.keys())[0] for d in unique_cards if
-                                      random_card_type in d[list(d.keys())[0]]['type']]
-
-    # print(random_card_name)
-    # print(random_card_type)
-    # pprint(list_card_names_with_same_type)
-
-    list_card_names_with_same_type.remove(random_card_name)
-
-    # pprint(len(list_card_names_with_same_type))
-    if len(list_card_names_with_same_type) < 4:
+    # list_card_names_with_same_type.remove(random_card_name)
+    if sample_size < 4:
+        list_card_names_with_same_type = similar_cards(random_card_name, True)
+        print(len(list_card_names_with_same_type))
         sample_size = len(list_card_names_with_same_type)
+        if sample_size < 4:
+            sample_size = len(list_card_names_with_same_type)
+        else:
+            sample_size = 4
     else:
         sample_size = 4
     # TODO: fix for less than 4 of card type?
@@ -252,6 +431,8 @@ def gen_new_cards(*args):
     random_cards_name_same_type.append(random_card_name)
 
     pprint(random_cards_name_same_type)
+
+    random.shuffle(random_cards_name_same_type)
     # pprint(random_cards_name_same_type)
     # random_cards = sample(list_card_name, 5)
 
@@ -264,15 +445,16 @@ def gen_new_cards(*args):
     # random_card_data = ['Brimaz, King of Oreskos', 'Keranos, God of Storms']
     # random_card_data = get_card_data(random_card_data)
 
-    random_card_data = get_card_data_from_file(random_cards_name_same_type)
+    # random_card_data = get_card_data_from_file(random_cards_name_same_type)
 
     # random_card_data = get_card_data(random_card_name)
     # random_card_data = get_card_data(random_cards)
 
-    correct_answer = random.choice(random_card_data)
-    correct_answer_index = random_card_data.index(correct_answer) + 1
+    # correct_answer = random.choice(random_card_data)
+    correct_answer_index = random_cards_name_same_type.index(random_card_name) + 1
 
     correct_answer_oracle_text = correct_answer['oracle_text']
+    pprint(correct_answer_oracle_text)
     correct_answer_name = correct_answer['name']
     correct_answer_image = correct_answer['image']
     # pprint(correct_answer_oracle_text)
@@ -294,7 +476,7 @@ def gen_new_cards(*args):
         to_html_list_correct_answer_oracle_text += str(
             '<p class="card-text mb-1">' + replace_symbols_in_text(line) + '</p>')
 
-    return {"card_info": random_card_data,
+    return {"card_info": random_cards_name_same_type,
             "correct_answer_index": correct_answer_index,
             "correct_answer_oracle_text": to_html_list_correct_answer_oracle_text,
             "correct_answer_flavor_text": correct_answer_flavor_text,
