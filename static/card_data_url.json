@@ -939,7 +939,7 @@
         {
             "Path to Exile": {
                 "flavor_text": "Path to Exile",
-                "image": "https://img.scryfall.com/cards/art_crop/front/5/9/59d40386-6ea6-4b77-8c61-2a9a16a88a01.jpg?1594928938",
+                "image": "https://img.scryfall.com/cards/art_crop/front/e/9/e9d36855-c38a-4bba-a642-cff3f81e057e.jpg?1595353267",
                 "name": "Path to Exile",
                 "oracle_text": "Exile target creature. Its controller may search their library for a basic land card, put that card onto the battlefield tapped, then shuffle their library.",
                 "type": "Instant"
@@ -3351,7 +3351,7 @@
         {
             "Dark Confidant": {
                 "flavor_text": "Greatness, at any cost.",
-                "image": "https://img.scryfall.com/cards/art_crop/front/0/5/05cf51d8-9f91-42ff-99e9-4397f2251c20.jpg?1562258950",
+                "image": "https://img.scryfall.com/cards/art_crop/front/b/0/b0d88239-43dc-46b8-8d46-626e2f8f1070.jpg?1595353433",
                 "name": "Dark Confidant",
                 "oracle_text": "At the beginning of your upkeep, reveal the top card of your library and put that card into your hand. You lose life equal to its converted mana cost.",
                 "type": "Creature"
@@ -4816,5 +4816,5 @@
             }
         }
     ],
-    "url": "/en/articles/archive/mtgo-standings/modern-league-2020-07-21"
+    "url": "https://magic.wizards.com/en/articles/archive/mtgo-standings/modern-league-2020-07-21"
 }

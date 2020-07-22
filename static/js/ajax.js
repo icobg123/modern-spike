@@ -6,7 +6,7 @@ $(document).ready(function () {
         url: '/get_new_cards'
     })
         .done(function (data) {
-            console.log(data.correct_answer);
+            // console.log(data.correct_answer);
             $('.lds-ripple').removeClass('d-flex').addClass('d-none');
             $('#card_holder').html(data.html).removeClass('d-none');
             $('#oracle_text').removeClass('d-none');

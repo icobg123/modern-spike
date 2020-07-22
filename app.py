@@ -1,10 +1,16 @@
+import os
 from flask_sslify import SSLify
-
 from flask import Flask, render_template, request, jsonify, Markup, request, make_response
 from helpers import *
+from rq import Queue
+from worker import conn
 
 app = Flask(__name__)
 sslify = SSLify(app)
+
+# REDIS_URL = os.environ.get('REDIS_URL') or 'redis://'
+
+q = Queue(connection=conn)
 
 
 @app.route('/get_new_cards', methods=['POST'])
@@ -82,9 +88,27 @@ def offline():
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
-    scrape_card_data()
+    new_data_obj = is_there_new_data()
+    print(new_data_obj)
 
-    return render_template("index.html", modern_league_url=scrape_card_data()['modern_league_url'])
+    new_data = new_data_obj['is_new_data']
+    latest_modern_tournament_url = new_data_obj['latest_modern_tournament_url']
+    pprint(latest_modern_tournament_url)
+    job = q.fetch_job('scrape_cards')
+    pprint(job)
+    q.empty()
+    if new_data:
+        if not job:
+            print('enqueueing scraping of cards')
+            result = q.enqueue(scrape_card_data, job_id="scrape_cards", job_timeout=600)
+        # result = q.enqueue(count_words_at_url, 100)
+        print('haha')
+    else:
+        data = read_from_file('static/card_data_url.json')
+        result = q.enqueue(count_words_at_url, 100)
+
+        latest_modern_tournament_url = data['url']
+    return render_template("index.html", latest_modern_tournament_url=latest_modern_tournament_url)
 
 
 if __name__ == '__main__':

@@ -6,6 +6,11 @@ import re
 import scrython
 from bs4 import BeautifulSoup
 import requests
+from rq import Queue
+from worker import conn
+# from test import count_words_at_url
+from rq import get_current_job
+import time
 
 
 def is_there_new_data():
@@ -18,7 +23,7 @@ def is_there_new_data():
     latest_modern_tournament = soup.find("h3",
                                          text=re.compile('Modern', flags=re.IGNORECASE))
     # text=re.compile('\bModern\s*(League|Challenge|Preliminary)', flags=re.IGNORECASE))
-    print(latest_modern_tournament)
+    # print(latest_modern_tournament)
 
     if latest_modern_tournament is None:
         data = read_from_file('static/card_data_url.json')
@@ -26,7 +31,7 @@ def is_there_new_data():
     else:
         latest_modern_tournament_parent = latest_modern_tournament.parent.parent.parent
 
-        latest_modern_tournament_url = latest_modern_tournament_parent['href']
+        latest_modern_tournament_url = 'https://magic.wizards.com' + latest_modern_tournament_parent['href']
 
     data = read_from_file('static/card_data_url.json')
     if data['url'] != latest_modern_tournament_url:
@@ -46,6 +51,7 @@ def scrape_card_data():
         if is_new_data:
             print('update url')
             cards_from = 'cards from URL'
+            print(cards_from)
 
             # get_new_url = True
             modern_league_url_from_file = latest_modern_tournament_url
@@ -77,7 +83,9 @@ def scrape_card_data():
                     # card_name_in_list = any(d.get('name', 'icara') == card_name for d in card_list)
                     if (not card_name_in_list and (
                             not is_this_a_basic(card_name))):
-                        pprint('not in the list of cards')
+                        # pprint('')
+                        print("{} - not in the list of cards".format(card_name))
+
                         # if (card_name_div.string not in card_list) and (not is_this_a_basic(card_name_div.string)):
                         if '//' in card_name:
                             split_str = card_name.split('//', 1)
@@ -113,6 +121,7 @@ def scrape_card_data():
             modern_league_url = data['url']
             cards_from = 'cards from file'
             unique_cards = data['card_set']
+            print(cards_from)
 
     return {
         "modern_league_url": 'https://magic.wizards.com' + modern_league_url,
@@ -128,14 +137,14 @@ def replace_card_name_in_oracle(name, oracle_text):
     for name in names:
         name = name.rstrip().lstrip()
         if name in oracle_text:
-            pprint('name after comma oracle')
+            # pprint('name after comma oracle')
 
             oracle_text = oracle_text.replace(name, html)
 
         if ',' in name:
             name_before_comma = name[:name.index(",")]
             if name_before_comma in oracle_text:
-                pprint('name_before_comma in oracle')
+                # pprint('name_before_comma in oracle')
                 oracle_text = oracle_text.replace(name_before_comma, html)
     oracle_text = oracle_text.replace('−', '<span class="minus">−</span>')
     return oracle_text
@@ -254,7 +263,7 @@ def get_single_card_data_from_scryfall(card):
             'image': card_img
         }}
 
-    pprint(card_data.keys())
+    # pprint(card_data.keys())
     return card_data
 
 
@@ -267,7 +276,7 @@ def get_card_data_from_file_modern_json(card):
     # card_data = json.loads(open("static/ModernAtomic.json", encoding="utf8").read())
 
     # for card in card:
-    pprint(card)
+    # pprint(card)
 
     card_info = next((item for item in card_data_scryfall if card in item), None)
     # card_name = next((key for key in card_data['data'].keys() if card in key), None)
@@ -275,7 +284,7 @@ def get_card_data_from_file_modern_json(card):
         (key for key in card_data_mtgjson['data'].keys() if
          card in [key.rstrip().lstrip() for key in key.split("//") if string_found(card, key)]), None)
 
-    pprint(card_info)
+    # pprint(card_info)
 
     card_data_json = card_data_mtgjson['data'][card_name][0]
 
@@ -305,7 +314,7 @@ def similar_cards(card_name, not_enough=False):
     card_name = next(
         (key for key in cards['data'].keys() if
          card_name in [key.rstrip().lstrip() for key in key.split("//") if string_found(card_name, key)]), None)
-    pprint(card_name)
+    # pprint(card_name)
     #  card_name = next(
     #     (key for key in cards['data'].keys() if card_name in [key.rstrip().lstrip() for key in key.split("//")]), None)
     #
@@ -340,7 +349,7 @@ def similar_cards(card_name, not_enough=False):
             if this_type != card_type:
                 continue
             if is_this_a_basic(k):
-                pprint(k)
+                # pprint(k)
                 continue
 
             if 'Planeswalker' in card_type:
@@ -409,7 +418,7 @@ def similar_cards(card_name, not_enough=False):
                 if colors == card_colors:
                     list_similar_cards.append(k)
 
-    pprint(list_similar_cards)
+    # pprint(list_similar_cards)
     # if len(list_similar_cards) < 5:
     #     similar_cards(card_name, True)
 
@@ -458,7 +467,7 @@ def gen_new_cards(*args):
     # list_card_names_with_same_type.remove(random_card_name)
     if sample_size < 4:
         list_card_names_with_same_type = similar_cards(random_card_name, True)
-        print(len(list_card_names_with_same_type))
+        # print(len(list_card_names_with_same_type))
         sample_size = len(list_card_names_with_same_type)
         if sample_size < 4:
             sample_size = len(list_card_names_with_same_type)
@@ -472,7 +481,7 @@ def gen_new_cards(*args):
 
     random_cards_name_same_type.append(random_card_name)
 
-    pprint(random_cards_name_same_type)
+    # pprint(random_cards_name_same_type)
 
     random.shuffle(random_cards_name_same_type)
     # pprint(random_cards_name_same_type)
@@ -496,7 +505,7 @@ def gen_new_cards(*args):
     correct_answer_index = random_cards_name_same_type.index(random_card_name) + 1
 
     correct_answer_oracle_text = correct_answer['oracle_text']
-    pprint(correct_answer_oracle_text)
+    # pprint(correct_answer_oracle_text)
     correct_answer_name = correct_answer['name']
     correct_answer_image = correct_answer['image']
     # pprint(correct_answer_oracle_text)
@@ -524,3 +533,16 @@ def gen_new_cards(*args):
             "correct_answer_flavor_text": correct_answer_flavor_text,
             "correct_answer_image": correct_answer_image,
             "correct_answer_name": correct_answer_name}
+
+
+def count_words_at_url(seconds):
+    job = get_current_job()
+    print('Starting task')
+    for i in range(seconds):
+        job.meta['progress'] = 100.0 * i / seconds
+        job.save_meta()
+        print(i)
+        time.sleep(1)
+    job.meta['progress'] = 100
+    job.save_meta()
+    print('Task completed')
