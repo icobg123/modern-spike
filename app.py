@@ -105,9 +105,8 @@ def index():
         print('haha')
     else:
         data = read_from_file('static/card_data_url.json')
-        result = q.enqueue(count_words_at_url, 100)
-
         latest_modern_tournament_url = data['url']
+
     return render_template("index.html", latest_modern_tournament_url=latest_modern_tournament_url)
 
 
