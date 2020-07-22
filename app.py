@@ -28,6 +28,7 @@ csp = {
     ],
     'object-src': 'none',
     'script-src': 'none',
+    'connect-src': '*.scryfall.com'
 }
 talisman = Talisman(app, content_security_policy=csp)
 
