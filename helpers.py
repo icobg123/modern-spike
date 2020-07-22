@@ -166,7 +166,6 @@ def is_this_a_basic(potential_basic):
             potential_basic == 'Wastes' or \
             'Snow-Covered' in potential_basic:
         return True
-
     return False
 
 
@@ -319,9 +318,22 @@ def similar_cards(card_name, not_enough=False):
     list_similar_cards = []
     cards = read_from_file('static/ModernAtomic.json')
 
-    card_name = next(
-        (key for key in cards['data'].keys() if
-         card_name in [key.rstrip().lstrip() for key in key.split("//") if string_found(card_name, key)]), None)
+    all_card_names = cards['data'].keys()
+    # card_name = next(
+    #     (key for key in cards['data'].keys() if
+    #      card_name in [key.rstrip().lstrip() for key in key.split("//") if string_found(card_name, key)]), None)
+
+    card_name_full = ""
+    for name in all_card_names:
+        if '//' in name:
+            if name.split("//")[0].rstrip().lstrip() == card_name:
+                card_name_full = name
+                break
+        elif name == card_name:
+            card_name_full = name
+            break
+    card_name = card_name_full
+
     # pprint(card_name)
     #  card_name = next(
     #     (key for key in cards['data'].keys() if card_name in [key.rstrip().lstrip() for key in key.split("//")]), None)
@@ -333,30 +345,29 @@ def similar_cards(card_name, not_enough=False):
     card_type = card_info['types']
     card_subtypes = card_info['subtypes']
     card_identity = card_info['colorIdentity']
-    if 'convertedManaCost' in card_info:
-        card_cmc = card_info['convertedManaCost']
+    card_cmc = card_info['convertedManaCost'] if 'convertedManaCost' in card_info else ""
 
-    card_subtypes.sort()
+    # card_subtypes.sort()
     # pprint(card_info)
 
-    for k, v in cards['data'].items():
+    for current_card_name, current_card_data in cards['data'].items():
         # result = all(elem in card_subtypes for elem in v[0]['subtypes'])
-        if k != card_name:
-            this_type = v[0]['types']
-            subtypes = v[0]['subtypes']
-            colors = v[0]['colors']
-            identity = v[0]['colorIdentity']
+        if current_card_name != card_name:
+            current_type = current_card_data[0]['types']
+            current_subtypes = current_card_data[0]['subtypes']
+            current_colors = current_card_data[0]['colors']
+            current_identity = current_card_data[0]['colorIdentity']
 
-            subtypes.sort()
-            colors.sort()
+            # current_subtypes.sort()
+            # current_colors.sort()
 
             # pprint(v[0]['name'])
-            if 'convertedManaCost' in v[0].keys():
-                # if this_type != 'Land':
-                cmc = v[0]['convertedManaCost']
-            if this_type != card_type:
+
+            # if this_type != 'Land':
+            cmc = current_card_data[0]['convertedManaCost'] if 'convertedManaCost' in current_card_data[0].keys() else ""
+            if current_type != card_type:
                 continue
-            if is_this_a_basic(k):
+            if is_this_a_basic(current_card_name):
                 # pprint(k)
                 continue
 
@@ -364,17 +375,17 @@ def similar_cards(card_name, not_enough=False):
                 # if card_type == 'Planeswalker':
                 # if not_enough:
                 # if len(list_similar_cards)
-                if subtypes == card_subtypes:
+                if current_subtypes == card_subtypes:
                     # pprint(k)
-                    list_similar_cards.append(k)
+                    list_similar_cards.append(current_card_name)
 
             if 'Land' in card_type:
                 if not_enough:
-                    if identity == card_identity:
-                        list_similar_cards.append(k)
+                    if current_identity == card_identity:
+                        list_similar_cards.append(current_card_name)
                 else:
-                    if (card_subtypes and subtypes == card_subtypes) or identity == card_identity:
-                        list_similar_cards.append(k)
+                    if (card_subtypes and current_subtypes == card_subtypes) or current_identity == card_identity:
+                        list_similar_cards.append(current_card_name)
             # if 'Land' in card_type:
             #     if not_enough:
             #         if identity == card_identity:
@@ -385,23 +396,23 @@ def similar_cards(card_name, not_enough=False):
 
             if 'Creature' in card_type:
                 if not_enough:
-                    if colors == card_colors and cmc == card_cmc:
-                        list_similar_cards.append(k)
-                    elif card_subtypes[0] in subtypes and cmc == card_cmc:
-                        list_similar_cards.append(k)
+                    if current_colors == card_colors and cmc == card_cmc:
+                        list_similar_cards.append(current_card_name)
+                    elif card_subtypes[0] in current_subtypes and cmc == card_cmc:
+                        list_similar_cards.append(current_card_name)
 
                 else:
-                    if card_subtypes[0] in subtypes and colors == card_colors and cmc == card_cmc:
+                    if card_subtypes[0] in current_subtypes and current_colors == card_colors and cmc == card_cmc:
                         # if subtypes == card_subtypes and colors == card_colors and cmc == card_cmc:
-                        list_similar_cards.append(k)
+                        list_similar_cards.append(current_card_name)
 
             if 'Sorcery' in card_type or 'Instant' in card_type:
                 if not_enough:
-                    if colors == card_colors and not_enough:
-                        list_similar_cards.append(k)
+                    if current_colors == card_colors and not_enough:
+                        list_similar_cards.append(current_card_name)
                 else:
-                    if colors == card_colors and cmc == card_cmc:
-                        list_similar_cards.append(k)
+                    if current_colors == card_colors and cmc == card_cmc:
+                        list_similar_cards.append(current_card_name)
                 # if colors == card_colors and cmc == card_cmc:
                 #     # print(cmc, card_cmc)
                 #     list_similar_cards.append(k)
@@ -412,19 +423,19 @@ def similar_cards(card_name, not_enough=False):
                 #     continue
 
             if 'Artifact' in card_type:
-                if colors == card_colors and cmc == card_cmc and not not_enough:
-                    list_similar_cards.append(k)
+                if current_colors == card_colors and cmc == card_cmc and not not_enough:
+                    list_similar_cards.append(current_card_name)
 
                 elif cmc == card_cmc:
-                    list_similar_cards.append(k)
+                    list_similar_cards.append(current_card_name)
 
             if 'Enchantment' in card_type:
-                if colors == card_colors and subtypes == card_subtypes and cmc == card_cmc:
-                    list_similar_cards.append(k)
+                if current_colors == card_colors and current_subtypes == card_subtypes and cmc == card_cmc:
+                    list_similar_cards.append(current_card_name)
 
             if 'Tribal' in card_type:
-                if colors == card_colors:
-                    list_similar_cards.append(k)
+                if current_colors == card_colors:
+                    list_similar_cards.append(current_card_name)
 
     # pprint(list_similar_cards)
     # if len(list_similar_cards) < 5:

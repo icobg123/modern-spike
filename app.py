@@ -20,6 +20,7 @@ csp = {
     'report-uri': '',
     'object-src': 'none',
 }
+
 talisman = Talisman(app, content_security_policy=csp)
 
 # REDIS_URL = os.environ.get('REDIS_URL') or 'redis://'
