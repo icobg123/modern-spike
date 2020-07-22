@@ -364,7 +364,8 @@ def similar_cards(card_name, not_enough=False):
             # pprint(v[0]['name'])
 
             # if this_type != 'Land':
-            cmc = current_card_data[0]['convertedManaCost'] if 'convertedManaCost' in current_card_data[0].keys() else ""
+            cmc = current_card_data[0]['convertedManaCost'] if 'convertedManaCost' in current_card_data[
+                0].keys() else ""
             if current_type != card_type:
                 continue
             if is_this_a_basic(current_card_name):
@@ -423,10 +424,12 @@ def similar_cards(card_name, not_enough=False):
                 #     continue
 
             if 'Artifact' in card_type:
-                if current_colors == card_colors and cmc == card_cmc and not not_enough:
+                if current_colors == card_colors and \
+                        cmc == card_cmc and \
+                        (card_subtypes and current_subtypes == card_subtypes) and not not_enough:
                     list_similar_cards.append(current_card_name)
 
-                elif cmc == card_cmc:
+                elif cmc == card_cmc and current_colors == card_colors:
                     list_similar_cards.append(current_card_name)
 
             if 'Enchantment' in card_type:
@@ -468,7 +471,7 @@ def gen_new_cards(*args):
     # random_card_name = 'Shefet Dunes'
     # random_card_name = 'Sling-Gang Lieutenant'
     # TODO Darksteel Citadel - Artifact land
-    # random_card_name = 'Jace, the Mind Sculptor'
+    # random_card_name = 'Batterskull'
     random_card_name = sample(list_card_names, 1)[0]
 
     correct_answer = get_card_data_from_file_modern_json(random_card_name)

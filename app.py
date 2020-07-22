@@ -15,7 +15,6 @@ app = Flask(__name__)
 sslify = SSLify(app)
 # Compress(app)
 csp = {
-    'default-src': '\'self\'',
     'img-src': "'self' https://img.scryfall.com/",
     'report-uri': '',
     'object-src': 'none',
