@@ -43,14 +43,20 @@
                             <div class="card">
                                 <div class="card-header text-dark py-2 d-flex align-items-center justify-content-between">
                                     Oracle text
+                                    <div class="oracle-btns">
+                                        <a id="decklist_id" href="#"
+                                           target="_blank"
+                                           rel="noopener"
+                                           class="btn btn-outline-dark btn-sm mr-1"
+                                           role="button">Decklist</a>
 
-
-                                    <button type="button" class="btn btn-sm btn-info float-right text-black"
-                                            data-toggle="modal"
-                                            data-target="#cardImage">
-                                        Hint: card image
-                                    </button>
-
+                                        <button type="button"
+                                                class="btn btn-sm btn-info float-right text-black ml-1"
+                                                data-toggle="modal"
+                                                data-target="#cardImage">
+                                            Hint: card image
+                                        </button>
+                                    </div>
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="cardImage" tabindex="-1" role="dialog"
@@ -123,8 +129,9 @@
                                    href="/about">About</a>
                                 <a class="nav-item my-1 my-md-0 nav-link text-white text-center text-md-left"
                                    rel="noopener"
+                                   id="decklist_url"
                                    target="_blank"
-                                   href="{{ latest_modern_tournament_url }} "> Latest deck lists</a>
+                                   href="{{ latest_modern_tournament_url }}"> Latest deck lists</a>
                                 {#                                <a class="nav-item my-1 my-md-0 nav-link text-white" href="#">Link</a>#}
 
                                 <a class="nav-item my-1 my-md-0 nav-link text-white d-flex align-items-center text-center text-md-left justify-content-center"

@@ -56,8 +56,9 @@ def scrape_card_data():
             # get_new_url = True
             modern_league_url_from_file = latest_modern_tournament_url
 
-            modern_league_url = 'https://magic.wizards.com' + modern_league_url_from_file
-
+            modern_league_url = modern_league_url_from_file
+            # modern_league_url = 'https://magic.wizards.com' + modern_league_url_from_file
+            pprint(modern_league_url)
             response_league = requests.get(modern_league_url)
             modern_deck_lists = BeautifulSoup(response_league.text, 'html.parser')
 
@@ -72,9 +73,12 @@ def scrape_card_data():
                 cards_in_decks = sorted_by_type.findAll('a', attrs={'class': 'deck-list-link'})
                 for card_name_div in cards_in_decks:
                     dict_to_add = {}
+                    card_deck_list_id = card_name_div.parent.parent.parent.parent.parent.parent.parent.get('id')
+                    print(card_deck_list_id)
                     card_type = card_name_div.parent.parent.parent.find('h5').string
                     card_type = card_type[:card_type.index(" (")]
                     card_name = card_name_div.string
+
                     # print(card_name_div.string + ': ' + card_type)
                     # print(div.string + ': ' + str(is_this_a_basic(div.string)))
                     # if ((any(d['name'] == card_name_div.string for d in card_list)) and (
@@ -93,6 +97,8 @@ def scrape_card_data():
                                 split_card_name = split_card_name.rstrip().lstrip()
                                 dict_to_add = get_single_card_data_from_scryfall(split_card_name)
                                 dict_to_add[split_card_name]['type'] = card_type
+                                dict_to_add[card_name]['decklist_id'] = card_deck_list_id
+
                                 # card_list.append(correct_answer_name.rstrip().lstrip())
                                 # dict_to_add['name'] = correct_answer_name
 
@@ -102,6 +108,7 @@ def scrape_card_data():
                             dict_to_add = get_single_card_data_from_scryfall(card_name)
                             # dict_to_add['name'] = card_name_div.string
                             dict_to_add[card_name]['type'] = card_type
+                            dict_to_add[card_name]['decklist_id'] = card_deck_list_id
 
                             card_list.append(dict_to_add)
 
@@ -290,8 +297,9 @@ def get_card_data_from_file_modern_json(card):
 
     random_card_data = {
         'name': card_name,
-        'oracle_text': card_data_json['text'],
+        'oracle_text': card_info[card]['oracle_text'],
         'flavor_text': card_info[card]['flavor_text'],
+        'decklist_id': card_info[card]['decklist_id'],
         'image': card_info[card]['image']
     }
 
@@ -505,6 +513,7 @@ def gen_new_cards(*args):
     correct_answer_index = random_cards_name_same_type.index(random_card_name) + 1
 
     correct_answer_oracle_text = correct_answer['oracle_text']
+    correct_answer_decklist_id = correct_answer['decklist_id']
     # pprint(correct_answer_oracle_text)
     correct_answer_name = correct_answer['name']
     correct_answer_image = correct_answer['image']
@@ -531,6 +540,7 @@ def gen_new_cards(*args):
             "correct_answer_index": correct_answer_index,
             "correct_answer_oracle_text": to_html_list_correct_answer_oracle_text,
             "correct_answer_flavor_text": correct_answer_flavor_text,
+            "correct_answer_decklist_id": correct_answer_decklist_id,
             "correct_answer_image": correct_answer_image,
             "correct_answer_name": correct_answer_name}
 

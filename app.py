@@ -19,22 +19,23 @@ def get_new_cards():
 
     if job:
         if job.is_finished:
-            # print('job done new job')
+            print('job done new job')
             new_cards = job.result
             result = q.enqueue(gen_new_cards, job_id="gen_new_cards")
         else:
-            # print('job not finished')
+            print('job not finished')
             new_cards = gen_new_cards()
     else:
-        # print('no job create job now')
+        print('no job create job now')
         result = q.enqueue(gen_new_cards, job_id="gen_new_cards")
-    # new_cards = gen_new_cards()
+        new_cards = gen_new_cards()
 
     return jsonify({
         "html": render_template('cards.html', card_info=new_cards['card_info']),
         "correct_answer_index": new_cards['correct_answer_index'],
         "correct_answer_name": new_cards['correct_answer_name'],
         "correct_answer_image": new_cards['correct_answer_image'],
+        "correct_answer_decklist_id": new_cards['correct_answer_decklist_id'],
         'new_oracle_text': new_cards['correct_answer_oracle_text'],
         'new_flavor_text': new_cards['correct_answer_flavor_text'],
     })
@@ -109,15 +110,28 @@ def index():
     pprint(latest_modern_tournament_url)
     job = q.fetch_job('scrape_cards')
     pprint(job)
-    q.empty()
+    # q.empty()
+    # job.cancel()
+
     if new_data:
-        if not job:
+        if job:
+            if job.is_failed:
+                print('failed')
+            if job.is_finished:
+                print('scraping job done ')
+
+            else:
+                print('scraping job not finished')
+                data = read_from_file('static/card_data_url.json')
+                latest_modern_tournament_url = data['url']
+
+        # result = q.enqueue(count_words_at_url, 100)
+        else:
             print('enqueueing scraping of cards')
             result = q.enqueue(scrape_card_data, job_id="scrape_cards", job_timeout=600)
-        # result = q.enqueue(count_words_at_url, 100)
-        print('haha')
     else:
         data = read_from_file('static/card_data_url.json')
+
         latest_modern_tournament_url = data['url']
 
     return render_template("index.html", latest_modern_tournament_url=latest_modern_tournament_url)
