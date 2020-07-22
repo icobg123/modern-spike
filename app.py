@@ -16,7 +16,7 @@ sslify = SSLify(app)
 # Compress(app)
 csp = {
     'default-src': "'self'",
-    'img-src': "'self' https://img.scryfall.com/",
+    'img-src': "*",
     'report-uri': '',
     'object-src': 'none',
 }
