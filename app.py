@@ -4,9 +4,12 @@ from flask import Flask, render_template, request, jsonify, Markup, request, mak
 from helpers import *
 from rq import Queue
 from worker import conn
+from flask import Flask
+from flask_compress import Compress
 
 app = Flask(__name__)
-sslify = SSLify(app)
+# sslify = SSLify(app)
+Compress(app)
 
 # REDIS_URL = os.environ.get('REDIS_URL') or 'redis://'
 
