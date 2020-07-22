@@ -28,8 +28,13 @@ csp = {
     ],
     'img-src': '*.scryfall.com',
     'object-src': 'none',
-    'script-src': 'none',
-    'connect-src': '*.scryfall.com'
+    'script-src': [
+        '\'self\'',
+        '*.scryfall.com',
+    ], 'connect-src': [
+        '\'self\'',
+        '*.scryfall.com',
+    ]
 }
 talisman = Talisman(app, content_security_policy=csp)
 
