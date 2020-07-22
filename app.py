@@ -14,22 +14,23 @@ from flask_talisman import Talisman, ALLOW_FROM
 app = Flask(__name__)
 sslify = SSLify(app)
 # Compress(app)
-# csp = {
-#     'default-src': "'self'",
-#     'img-src': "*",
-#     'report-uri': '',
-#     'object-src': 'none',
-#     'script-src': 'none',
-# }
 csp = {
-    'default-src': [
-        '\'self\'',
-        '*.scryfall.com',
-    ],
+    'default-src': "'self'",
+    'img-src': '*.scryfall.com',
     'object-src': 'none',
-    'script-src': 'none',
+    'script-src': "'self'",
     'connect-src': '*.scryfall.com'
 }
+# csp = {
+#     'default-src': [
+#         '\'self\'',
+#         '*.scryfall.com',
+#     ],
+#     'img-src': '*.scryfall.com',
+#     'object-src': 'none',
+#     'script-src': 'none',
+#     'connect-src': '*.scryfall.com'
+# }
 talisman = Talisman(app, content_security_policy=csp)
 
 # REDIS_URL = os.environ.get('REDIS_URL') or 'redis://'
