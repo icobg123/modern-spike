@@ -15,7 +15,20 @@ q = Queue(connection=conn)
 
 @app.route('/get_new_cards', methods=['POST'])
 def get_new_cards():
-    new_cards = gen_new_cards()
+    job = q.fetch_job('gen_new_cards')
+
+    if job:
+        if job.is_finished:
+            # print('job done new job')
+            new_cards = job.result
+            result = q.enqueue(gen_new_cards, job_id="gen_new_cards")
+        else:
+            # print('job not finished')
+            new_cards = gen_new_cards()
+    else:
+        # print('no job create job now')
+        result = q.enqueue(gen_new_cards, job_id="gen_new_cards")
+    # new_cards = gen_new_cards()
 
     return jsonify({
         "html": render_template('cards.html', card_info=new_cards['card_info']),

@@ -546,3 +546,4 @@ def count_words_at_url(seconds):
     job.meta['progress'] = 100
     job.save_meta()
     print('Task completed')
+    return {"result": "mn sum lud"}
