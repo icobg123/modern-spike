@@ -6,9 +6,10 @@ from rq import Queue
 from worker import conn
 from flask import Flask
 from flask_compress import Compress
+from flask_csp.csp import csp_header
 
 app = Flask(__name__)
-# sslify = SSLify(app)
+sslify = SSLify(app)
 Compress(app)
 
 # REDIS_URL = os.environ.get('REDIS_URL') or 'redis://'
@@ -17,6 +18,7 @@ q = Queue(connection=conn)
 
 
 @app.route('/get_new_cards', methods=['POST'])
+@csp_header()
 def get_new_cards():
     job = q.fetch_job('gen_new_cards')
 
@@ -45,6 +47,7 @@ def get_new_cards():
 
 
 @app.route('/cookie', methods=['POST'])
+@csp_header()
 def cookie():
     current_score = int(request.form['current_score'])
     total_score = int(request.form['total_score'])
@@ -81,6 +84,7 @@ def cookie():
 
 
 @app.route('/process', methods=['POST'])
+@csp_header()
 def process():
     user_choice = request.form['choice']
 
@@ -94,16 +98,19 @@ def process():
 
 
 @app.route('/sw.js')
+@csp_header()
 def sw():
     return app.send_static_file('sw.js')
 
 
 @app.route('/offline.html')
+@csp_header()
 def offline():
     return app.send_static_file('offline.html')
 
 
 @app.route("/", methods=['GET', 'POST'])
+@csp_header({'img-src': "'self' https://img.scryfall.com/", 'report-uri': ''})
 def index():
     new_data_obj = is_there_new_data()
     print(new_data_obj)
