@@ -123,7 +123,7 @@ $(document).ready(function () {
                 $('#oracle_text .card-body').html(data.new_oracle_text);
                 $('#correct_answer').html(data.correct_answer_index);
                 $("#card_image").attr('src', data.correct_answer_image).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
-                $("#decklist_id").attr('href', decklist_url + data.correct_answer_decklist_id);
+                $("#decklist_id").attr('href', decklist_url + "#" + data.correct_answer_decklist_id);
 
                 $('#next_card').removeClass('d-none');
 
