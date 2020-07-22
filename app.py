@@ -14,13 +14,18 @@ from flask_talisman import Talisman, ALLOW_FROM
 app = Flask(__name__)
 sslify = SSLify(app)
 # Compress(app)
+# csp = {
+#     'default-src': "'self'",
+#     'img-src': "*",
+#     'report-uri': '',
+#     'object-src': 'none',
+# }
 csp = {
-    'default-src': "'self'",
-    'img-src': "*",
-    'report-uri': '',
-    'object-src': 'none',
+    'default-src': [
+        '\'self\'',
+        '*img.scryfall.com'
+    ]
 }
-
 talisman = Talisman(app, content_security_policy=csp)
 
 # REDIS_URL = os.environ.get('REDIS_URL') or 'redis://'
