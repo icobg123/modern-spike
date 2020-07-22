@@ -15,10 +15,13 @@ app = Flask(__name__)
 sslify = SSLify(app)
 # Compress(app)
 csp = {
-    'img-src': "'self' https://img.scryfall.com/",
+    'default-src': '\'self\'',
+    'img-src': [
+        "'self'",
+        'https://img.scryfall.com/',
+    ],
     'report-uri': '',
     'object-src': 'none',
-    'require-trusted-types-for': 'script'
 }
 talisman = Talisman(app, content_security_policy=csp)
 
@@ -122,7 +125,7 @@ def offline():
 @app.route("/", methods=['GET', 'POST'])
 # @csp_header({'img-src': "'self' https://img.scryfall.com/", 'report-uri': '', 'object-src': 'none',
 #              'require-trusted-types-for': 'script'})
-@talisman(frame_options=ALLOW_FROM, frame_options_allow_from='*')
+@talisman(frame_options=ALLOW_FROM, frame_options_allow_from='SAMEORIGIN')
 def index():
     new_data_obj = is_there_new_data()
     print(new_data_obj)
