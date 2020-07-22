@@ -19,12 +19,15 @@ sslify = SSLify(app)
 #     'img-src': "*",
 #     'report-uri': '',
 #     'object-src': 'none',
+#     'script-src': 'none',
 # }
 csp = {
     'default-src': [
         '\'self\'',
-        '*img.scryfall.com'
-    ]
+        '*.scryfall.com',
+    ],
+    'object-src': 'none',
+    'script-src': 'none',
 }
 talisman = Talisman(app, content_security_policy=csp)
 
