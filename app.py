@@ -123,7 +123,7 @@ def offline():
 @app.route("/", methods=['GET', 'POST'])
 # @csp_header({'img-src': "'self' https://img.scryfall.com/", 'report-uri': '', 'object-src': 'none',
 #              'require-trusted-types-for': 'script'})
-@talisman(frame_options=ALLOW_FROM, frame_options_allow_from='SAMEORIGIN')
+@talisman(frame_options=ALLOW_FROM, frame_options_allow_from='SAMEORIGIN', content_security_policy={'img-src': "*"}, )
 def index():
     new_data_obj = is_there_new_data()
     print(new_data_obj)
