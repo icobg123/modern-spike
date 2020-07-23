@@ -355,7 +355,7 @@ def get_single_card_data_from_scryfall(card: str) -> dict:
     return card_data
 
 
-def get_card_data_from_file_modern_json(card: str) -> dict:
+def get_card_data_from_local_file(card: str) -> dict:
     # random_card_data = {}
 
     data_api = read_from_file('static/card_data_url.json')
@@ -561,9 +561,9 @@ def gen_new_cards(*args):
     # random_card_name = 'Sling-Gang Lieutenant'
     # TODO Darksteel Citadel - Artifact land
     # random_card_name = 'Batterskull'
-    # random_card_name = 'Maelstrom Pulse'
+    # random_card_name = 'Merfolk Secretkeeper'
 
-    correct_answer_data = get_card_data_from_file_modern_json(random_card_name)
+    correct_answer_data = get_card_data_from_local_file(random_card_name)
 
     list_card_names_with_same_type = similar_cards(random_card_name)
     # random_card_type = [d[random_card_name]['type'] for d in unique_cards if
@@ -615,7 +615,8 @@ def gen_new_cards(*args):
     # correct_answer = random.choice(random_card_data)
     correct_answer_index = random_cards_name_same_type.index(random_card_name) + 1
 
-    correct_answer_oracle_text = correct_answer_data['oracle_text']
+    correct_answer_oracle_text = correct_answer_data['flavor_text'] if not correct_answer_data['oracle_text'] else \
+    correct_answer_data['oracle_text']
     correct_answer_decklist_id = correct_answer_data['decklist_id']
     # pprint(correct_answer_oracle_text)
     correct_answer_name = correct_answer_data['name']
