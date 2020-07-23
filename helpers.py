@@ -13,7 +13,11 @@ from rq import get_current_job
 import time
 
 
-def is_there_new_data():
+def is_there_new_data() -> dict:
+    """
+    Checks if new modern tournament decklist data has been published from MTGO
+    :return:is_new_data :bool,latest_modern_tournament_url:str
+    """
     is_new_data = False
     url = 'https://magic.wizards.com/en/content/deck-lists-magic-online-products-game-info'
     response = requests.get(url)
@@ -31,6 +35,7 @@ def is_there_new_data():
     else:
         latest_modern_tournament_parent = latest_modern_tournament.parent.parent.parent
 
+        # latest_modern_tournament_url = 'https://magic.wizards.com/en/articles/archive/mtgo-standings/modern-league-2020-07-21'
         latest_modern_tournament_url = 'https://magic.wizards.com' + latest_modern_tournament_parent['href']
 
     data = read_from_file('static/card_data_url.json')
@@ -40,10 +45,17 @@ def is_there_new_data():
     return {"is_new_data": is_new_data, "latest_modern_tournament_url": latest_modern_tournament_url}
 
 
-def scrape_card_data():
-    data = read_from_file('static/card_data_url.json')
+def scrape_card_data() -> dict:
+    """
+    Using Beautiful soup scrapes card names,types and decklist_ids and saves that information
+    in dict format to a local JSON file
 
-    if 'card_set' not in data or 'url' not in data:
+    :return:unique_cards:Dict format card data,modern_league_url:str,cards_from:str
+    """
+    card_data = read_from_file('static/card_data_url.json')
+    # latest_card_names = read_from_file('static/latest_card_names.json')
+    existing_card_data = card_data['card_set']
+    if 'card_set' not in card_data or 'url' not in card_data:
         raise ValueError("No target in given data")
     else:
         is_new_data = is_there_new_data()['is_new_data']
@@ -64,17 +76,22 @@ def scrape_card_data():
 
             sorted_by_type = modern_deck_lists.findAll('div',
                                                        attrs={'class': re.compile(
-                                                           '^sorted-by-(Tribal|Planeswalker|Creature|Sorcery|Land|Enchantment|Artifact|Instant)',
+                                                           '^sorted-by-(Tribal|Planeswalker|Creature|Sorcery|Land|Enchantment|Artifact|Instant|Sideboard)',
                                                            flags=re.IGNORECASE)})
             # pprint(sorted_by_type)
-            card_list = []
+            card_list = []  # list of dict items
+            new_card_name_list = []  # list of dict items
             for sorted_by_type in sorted_by_type:
                 # print(sorted_by_type.find('h5').string)
                 cards_in_decks = sorted_by_type.findAll('a', attrs={'class': 'deck-list-link'})
                 for card_name_div in cards_in_decks:
                     dict_to_add = {}
+
                     card_deck_list_id = card_name_div.parent.parent.parent.parent.parent.parent.parent.get('id')
+                    if not card_deck_list_id:
+                        card_deck_list_id = card_name_div.parent.parent.parent.parent.parent.parent.get('id')
                     print(card_deck_list_id)
+
                     card_type = card_name_div.parent.parent.parent.find('h5').string
                     card_type = card_type[:card_type.index(" (")]
                     card_name = card_name_div.string
@@ -83,12 +100,15 @@ def scrape_card_data():
                     # print(div.string + ': ' + str(is_this_a_basic(div.string)))
                     # if ((any(d['name'] == card_name_div.string for d in card_list)) and (
                     #         not is_this_a_basic(card_name_div.string)) or not card_list):
-                    card_name_in_list = any(card_name in d for d in card_list)
+                    card_name_in_list = []
+                    # card_name_in_list = any(card_name in d for d in card_list)
+
+                    in_existing_card_data = any(card_name in d for d in existing_card_data)
                     # card_name_in_list = any(d.get('name', 'icara') == card_name for d in card_list)
-                    if (not card_name_in_list and (
+                    if (not card_name_in_list and not in_existing_card_data and (
                             not is_this_a_basic(card_name))):
                         # pprint('')
-                        print("{} - not in the list of cards".format(card_name))
+                        print("{} - not in existing card data".format(card_name))
 
                         # if (card_name_div.string not in card_list) and (not is_this_a_basic(card_name_div.string)):
                         if '//' in card_name:
@@ -97,12 +117,16 @@ def scrape_card_data():
                                 split_card_name = split_card_name.rstrip().lstrip()
                                 dict_to_add = get_single_card_data_from_scryfall(split_card_name)
                                 dict_to_add[split_card_name]['type'] = card_type
-                                dict_to_add[card_name]['decklist_id'] = card_deck_list_id
+                                dict_to_add[split_card_name]['decklist_id'] = card_deck_list_id
 
                                 # card_list.append(correct_answer_name.rstrip().lstrip())
                                 # dict_to_add['name'] = correct_answer_name
 
-                                card_list.append(dict_to_add)
+                                # card_list.append(dict_to_add)
+                                existing_card_data.append(dict_to_add)
+                                card_name_in_list.append(card_name)
+                                new_card_name_list.append(split_card_name)
+
 
                         else:
                             dict_to_add = get_single_card_data_from_scryfall(card_name)
@@ -110,10 +134,35 @@ def scrape_card_data():
                             dict_to_add[card_name]['type'] = card_type
                             dict_to_add[card_name]['decklist_id'] = card_deck_list_id
 
-                            card_list.append(dict_to_add)
+                            existing_card_data.append(dict_to_add)
+                            card_name_in_list.append(card_name)
+                            new_card_name_list.append(card_name)
+
+                    else:
+                        print("{} In data file".format(card_name))
+
+                        if not is_this_a_basic(card_name):
+                            if '//' in card_name:
+                                split_str = card_name.split('//', 1)
+                                for split_card_name in split_str:
+                                    split_card_name = split_card_name.rstrip().lstrip()
+                                    new_card_name_list.append(split_card_name)
+                                    for card in existing_card_data:
+                                        if split_card_name in card.keys():
+                                            card[split_card_name]['decklist_id'] = card_deck_list_id
+                                            break
+                            else:
+                                new_card_name_list.append(card_name)
+                                # existing_card_data[card_name]['decklist_id'] = card_deck_list_id
+                                for card in existing_card_data:
+                                    if card_name in card.keys():
+                                        card[card_name]['decklist_id'] = card_deck_list_id
+                                        break
+
+                        # card_list.append(dict_to_add)
 
             # https://stackoverflow.com/questions/11092511/python-list-of-unique-dictionaries
-            unique_cards = card_list
+            unique_cards = existing_card_data
             # unique_cards = [dict(s) for s in set(frozenset(d.items()) for d in card_list)]
 
             dict_to_file = {
@@ -121,13 +170,18 @@ def scrape_card_data():
                 'url': modern_league_url,
                 "card_set": unique_cards,
             }
+            latest_card_names_dict = {
+                "card_names": new_card_name_list
+            }
             with open('static/card_data_url.json', 'w') as fp:
                 json.dump(dict_to_file, fp, sort_keys=True, indent=4)
+            with open('static/latest_card_names.json', 'w') as fp:
+                json.dump(latest_card_names_dict, fp, sort_keys=True, indent=4)
 
         else:
-            modern_league_url = data['url']
+            modern_league_url = card_data['url']
             cards_from = 'cards from file'
-            unique_cards = data['card_set']
+            unique_cards = card_data['card_set']
             print(cards_from)
 
     return {
@@ -137,7 +191,13 @@ def scrape_card_data():
     }
 
 
-def replace_card_name_in_oracle(name, oracle_text):
+def replace_card_name_in_oracle(name: str, oracle_text: str) -> str:
+    """
+    Replaces the name of the card in the oracle text with "This card" and returns it
+    :param name: The name of the card
+    :param oracle_text: The Oracle text of the card
+    :return: oracle_text (str):
+    """
     html = '<span class="badge badge-secondary align-text-top">This card</span>'
     names = name.split("//")
 
@@ -157,7 +217,12 @@ def replace_card_name_in_oracle(name, oracle_text):
     return oracle_text
 
 
-def is_this_a_basic(potential_basic):
+def is_this_a_basic(potential_basic: str) -> bool:
+    """
+    Returns True if potential_basic is a name of a basic land
+    :param potential_basic:str()
+    :return:
+    """
     if potential_basic == 'Swamp' or \
             potential_basic == 'Mountain' or \
             potential_basic == 'Island' or \
@@ -169,7 +234,13 @@ def is_this_a_basic(potential_basic):
     return False
 
 
-def replace_symbols_in_text(oracle_text):
+def replace_symbols_in_text(oracle_text: str) -> str:
+    """
+    Replaces mana and other special symbols in oracle text with a
+    HTML <span> with the corresponding class
+    :param oracle_text: str()
+    :return: oracle_text
+    """
     symbols = {
         "{T}": "st",
         "{Q}": "sq",
@@ -234,13 +305,23 @@ def replace_symbols_in_text(oracle_text):
     return oracle_text
 
 
-def read_from_file(filename):
+def read_from_file(filename: str) -> dict:
+    """
+    Return JSON data from file as a dict object
+    :param filename: str() Path to file
+    :return: JSON data
+    """
     with open(filename, 'r') as fp:
         data = json.load(fp)
     return data
 
 
-def get_single_card_data_from_scryfall(card):
+def get_single_card_data_from_scryfall(card: str) -> dict:
+    """
+    Fetches Oracle text, Image URL, Flavor text from Scryfall's API
+    :param card: str() name of the card we want to return data for
+    :return: dict()
+    """
     card_info = scrython.cards.Named(fuzzy=card)
     card_info = vars(card_info)
     card_data, card_oracle_txt, card_img, card_flavor_txt = {}, '', '', card
@@ -274,12 +355,12 @@ def get_single_card_data_from_scryfall(card):
     return card_data
 
 
-def get_card_data_from_file_modern_json(card):
+def get_card_data_from_file_modern_json(card: str) -> dict:
     # random_card_data = {}
 
     data_api = read_from_file('static/card_data_url.json')
     card_data_scryfall = data_api['card_set']
-    card_data_mtgjson = read_from_file('static/ModernAtomic.json')
+    # card_data_mtgjson = read_from_file('static/ModernAtomic.json')
     # card_data = json.loads(open("static/ModernAtomic.json", encoding="utf8").read())
 
     # for card in card:
@@ -287,16 +368,16 @@ def get_card_data_from_file_modern_json(card):
 
     card_info = next((item for item in card_data_scryfall if card in item), None)
     # card_name = next((key for key in card_data['data'].keys() if card in key), None)
-    card_name = next(
-        (key for key in card_data_mtgjson['data'].keys() if
-         card in [key.rstrip().lstrip() for key in key.split("//") if string_found(card, key)]), None)
+    # card_name = next(
+    #     (key for key in card_data_mtgjson['data'].keys() if
+    #      card in [key.rstrip().lstrip() for key in key.split("//") if string_found(card, key)]), None)
 
     # pprint(card_info)
 
-    card_data_json = card_data_mtgjson['data'][card_name][0]
+    # card_data_json = card_data_mtgjson['data'][card_name][0]
 
     random_card_data = {
-        'name': card_name,
+        'name': card,
         'oracle_text': card_info[card]['oracle_text'],
         'flavor_text': card_info[card]['flavor_text'],
         'decklist_id': card_info[card]['decklist_id'],
@@ -402,6 +483,9 @@ def similar_cards(card_name, not_enough=False):
                         list_similar_cards.append(current_card_name)
                     elif card_subtypes[0] in current_subtypes and cmc == card_cmc:
                         list_similar_cards.append(current_card_name)
+                    elif card_subtypes[0] in current_subtypes and current_colors == card_colors:
+                        list_similar_cards.append(current_card_name)
+
 
                 else:
                     if card_subtypes[0] in current_subtypes and current_colors == card_colors and cmc == card_cmc:
@@ -471,12 +555,13 @@ def gen_new_cards(*args):
     # random_card_name = 'Ugin, the Ineffable'
     # random_card_name = 'Klothys, God of Destiny'
     # random_card_name = 'Shefet Dunes'
+    # random_card_name = 'Wear'
     # random_card_name = 'Sling-Gang Lieutenant'
     # TODO Darksteel Citadel - Artifact land
     # random_card_name = 'Batterskull'
-    # random_card_name = 'Condescend'
+    # random_card_name = 'Autochthon Wurm'
 
-    correct_answer = get_card_data_from_file_modern_json(random_card_name)
+    correct_answer_data = get_card_data_from_file_modern_json(random_card_name)
 
     list_card_names_with_same_type = similar_cards(random_card_name)
     # random_card_type = [d[random_card_name]['type'] for d in unique_cards if
@@ -517,7 +602,6 @@ def gen_new_cards(*args):
     # random_card_data = ['Bonecrusher Giant','Stomp']
     # random_card_data = ['Wear', 'Merchant of the Vale']
     # random_card_data = ['Urza, Lord High Artificer']
-    # random_card_data = ['Condescend']
     # random_card_data = ['Brimaz, King of Oreskos', 'Keranos, God of Storms']
     # random_card_data = get_card_data(random_card_data)
 
@@ -529,17 +613,17 @@ def gen_new_cards(*args):
     # correct_answer = random.choice(random_card_data)
     correct_answer_index = random_cards_name_same_type.index(random_card_name) + 1
 
-    correct_answer_oracle_text = correct_answer['oracle_text']
-    correct_answer_decklist_id = correct_answer['decklist_id']
+    correct_answer_oracle_text = correct_answer_data['oracle_text']
+    correct_answer_decklist_id = correct_answer_data['decklist_id']
     # pprint(correct_answer_oracle_text)
-    correct_answer_name = correct_answer['name']
-    correct_answer_image = correct_answer['image']
+    correct_answer_name = correct_answer_data['name']
+    correct_answer_image = correct_answer_data['image']
     # pprint(correct_answer_oracle_text)
 
-    if correct_answer['flavor_text']:
-        correct_answer_flavor_text = correct_answer['flavor_text']
+    if correct_answer_data['flavor_text']:
+        correct_answer_flavor_text = correct_answer_data['flavor_text']
     else:
-        correct_answer_flavor_text = correct_answer
+        correct_answer_flavor_text = correct_answer_data
 
     # new_oracle_text = replace_symbols_in_text(new_oracle_text)
     # new_oracle_text = new_oracle_text.replace()
@@ -574,3 +658,7 @@ def count_words_at_url(seconds):
     job.save_meta()
     print('Task completed')
     return {"result": "mn sum lud"}
+
+
+# pprint(get_single_card_data_from_scryfall('Wear'))
+# scrape_card_data()
