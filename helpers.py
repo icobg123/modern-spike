@@ -474,7 +474,7 @@ def gen_new_cards(*args):
     # random_card_name = 'Sling-Gang Lieutenant'
     # TODO Darksteel Citadel - Artifact land
     # random_card_name = 'Batterskull'
-    random_card_name = 'Condescend'
+    # random_card_name = 'Condescend'
 
     correct_answer = get_card_data_from_file_modern_json(random_card_name)
 
