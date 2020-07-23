@@ -222,6 +222,7 @@ def replace_symbols_in_text(oracle_text):
         "{G}": "sg",
         "{C}": "sc",
         "{S}": "ss",
+        "{X}": "sx",
     }
     for key, value in symbols.items():
         # pprint(key)
@@ -465,6 +466,7 @@ def gen_new_cards(*args):
     list_card_names = [list(d.keys())[0] for d in unique_cards]
 
     # random.shuffle(list_card_names)
+    random_card_name = sample(list_card_names, 1)[0]
 
     # random_card_name = 'Ugin, the Ineffable'
     # random_card_name = 'Klothys, God of Destiny'
@@ -472,7 +474,7 @@ def gen_new_cards(*args):
     # random_card_name = 'Sling-Gang Lieutenant'
     # TODO Darksteel Citadel - Artifact land
     # random_card_name = 'Batterskull'
-    random_card_name = sample(list_card_names, 1)[0]
+    random_card_name = 'Condescend'
 
     correct_answer = get_card_data_from_file_modern_json(random_card_name)
 
@@ -515,6 +517,7 @@ def gen_new_cards(*args):
     # random_card_data = ['Bonecrusher Giant','Stomp']
     # random_card_data = ['Wear', 'Merchant of the Vale']
     # random_card_data = ['Urza, Lord High Artificer']
+    # random_card_data = ['Condescend']
     # random_card_data = ['Brimaz, King of Oreskos', 'Keranos, God of Storms']
     # random_card_data = get_card_data(random_card_data)
 
