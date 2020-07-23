@@ -439,6 +439,7 @@ def similar_cards(card_name, not_enough=False):
             current_subtypes = current_card_data[0]['subtypes']
             current_colors = current_card_data[0]['colors']
             current_identity = current_card_data[0]['colorIdentity']
+            current_name = current_card_data[0]['name']
 
             # current_subtypes.sort()
             # current_colors.sort()
@@ -460,15 +461,15 @@ def similar_cards(card_name, not_enough=False):
                 # if len(list_similar_cards)
                 if current_subtypes == card_subtypes:
                     # pprint(k)
-                    list_similar_cards.append(current_card_name)
+                    list_similar_cards.append(current_name)
 
-            if 'Land' in card_type:
+            if 'Land' in card_type and current_card_name not in list_similar_cards:
                 if not_enough:
                     if current_identity == card_identity:
-                        list_similar_cards.append(current_card_name)
+                        list_similar_cards.append(current_name)
                 else:
                     if (card_subtypes and current_subtypes == card_subtypes) or current_identity == card_identity:
-                        list_similar_cards.append(current_card_name)
+                        list_similar_cards.append(current_name)
             # if 'Land' in card_type:
             #     if not_enough:
             #         if identity == card_identity:
@@ -477,28 +478,28 @@ def similar_cards(card_name, not_enough=False):
             #         if identity == card_identity:
             #             list_similar_cards.append(k)
 
-            if 'Creature' in card_type:
+            if 'Creature' in card_type and current_card_name not in list_similar_cards:
                 if not_enough:
                     if current_colors == card_colors and cmc == card_cmc:
-                        list_similar_cards.append(current_card_name)
+                        list_similar_cards.append(current_name)
                     elif card_subtypes[0] in current_subtypes and cmc == card_cmc:
-                        list_similar_cards.append(current_card_name)
+                        list_similar_cards.append(current_name)
                     elif card_subtypes[0] in current_subtypes and current_colors == card_colors:
-                        list_similar_cards.append(current_card_name)
+                        list_similar_cards.append(current_name)
 
 
                 else:
                     if card_subtypes[0] in current_subtypes and current_colors == card_colors and cmc == card_cmc:
                         # if subtypes == card_subtypes and colors == card_colors and cmc == card_cmc:
-                        list_similar_cards.append(current_card_name)
+                        list_similar_cards.append(current_name)
 
-            if 'Sorcery' in card_type or 'Instant' in card_type:
+            if 'Sorcery' in card_type or 'Instant' in card_type and current_card_name not in list_similar_cards:
                 if not_enough:
                     if current_colors == card_colors and not_enough:
-                        list_similar_cards.append(current_card_name)
+                        list_similar_cards.append(current_name)
                 else:
                     if current_colors == card_colors and cmc == card_cmc:
-                        list_similar_cards.append(current_card_name)
+                        list_similar_cards.append(current_name)
                 # if colors == card_colors and cmc == card_cmc:
                 #     # print(cmc, card_cmc)
                 #     list_similar_cards.append(k)
@@ -508,22 +509,22 @@ def similar_cards(card_name, not_enough=False):
                 # else:
                 #     continue
 
-            if 'Artifact' in card_type:
+            if 'Artifact' in card_type and current_card_name not in list_similar_cards:
                 if current_colors == card_colors and \
                         cmc == card_cmc and \
                         (card_subtypes and current_subtypes == card_subtypes) and not not_enough:
-                    list_similar_cards.append(current_card_name)
+                    list_similar_cards.append(current_name)
 
                 elif cmc == card_cmc and current_colors == card_colors:
-                    list_similar_cards.append(current_card_name)
+                    list_similar_cards.append(current_name)
 
-            if 'Enchantment' in card_type:
+            if 'Enchantment' in card_type and current_card_name not in list_similar_cards:
                 if current_colors == card_colors and current_subtypes == card_subtypes and cmc == card_cmc:
-                    list_similar_cards.append(current_card_name)
+                    list_similar_cards.append(current_name)
 
-            if 'Tribal' in card_type:
+            if 'Tribal' in card_type and current_card_name not in list_similar_cards:
                 if current_colors == card_colors:
-                    list_similar_cards.append(current_card_name)
+                    list_similar_cards.append(current_name)
 
     # pprint(list_similar_cards)
     # if len(list_similar_cards) < 5:
@@ -541,13 +542,14 @@ def similar_cards(card_name, not_enough=False):
 
 
 def gen_new_cards(*args):
-    if not args:
-        data = read_from_file('static/card_data_url.json')
-        unique_cards = data['card_set']
-    else:
-        unique_cards = args[0]
+    data = read_from_file('static/card_data_url.json')
+    # data = read_from_file('static/card_data_url.json')
+    latest_card_names = read_from_file('static/latest_card_names.json')
 
-    list_card_names = [list(d.keys())[0] for d in unique_cards]
+    unique_cards = data['card_set']
+
+    list_card_names = latest_card_names['card_names']
+    # list_card_names = [list(d.keys())[0] for d in unique_cards]
 
     # random.shuffle(list_card_names)
     random_card_name = sample(list_card_names, 1)[0]
@@ -559,7 +561,7 @@ def gen_new_cards(*args):
     # random_card_name = 'Sling-Gang Lieutenant'
     # TODO Darksteel Citadel - Artifact land
     # random_card_name = 'Batterskull'
-    # random_card_name = 'Autochthon Wurm'
+    # random_card_name = 'Maelstrom Pulse'
 
     correct_answer_data = get_card_data_from_file_modern_json(random_card_name)
 
@@ -658,7 +660,6 @@ def count_words_at_url(seconds):
     job.save_meta()
     print('Task completed')
     return {"result": "mn sum lud"}
-
 
 # pprint(get_single_card_data_from_scryfall('Wear'))
 # scrape_card_data()
