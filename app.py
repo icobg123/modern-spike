@@ -13,7 +13,7 @@ from flask_talisman import Talisman, ALLOW_FROM
 
 app = Flask(__name__)
 sslify = SSLify(app)
-# Compress(app)
+Compress(app)
 # csp = {
 #     'default-src': "'self'",
 #     'img-src': '*.scryfall.com',
