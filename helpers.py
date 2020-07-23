@@ -434,17 +434,17 @@ def similar_cards(card_name, not_enough=False):
 
     for current_card_name, current_card_data in cards['data'].items():
         # result = all(elem in card_subtypes for elem in v[0]['subtypes'])
+        if len(list_similar_cards) > 15:
+            break
+
         if current_card_name != card_name:
             current_type = current_card_data[0]['types']
             current_subtypes = current_card_data[0]['subtypes']
             current_colors = current_card_data[0]['colors']
             current_identity = current_card_data[0]['colorIdentity']
             current_name = current_card_data[0]['name']
-
-            # current_subtypes.sort()
-            # current_colors.sort()
-
-            # pprint(v[0]['name'])
+            if '//' in current_name:
+                current_name = current_name[:current_name.index("/")]
 
             # if this_type != 'Land':
             cmc = current_card_data[0]['convertedManaCost'] if 'convertedManaCost' in current_card_data[
@@ -562,6 +562,7 @@ def gen_new_cards(*args):
     # TODO Darksteel Citadel - Artifact land
     # random_card_name = 'Batterskull'
     # random_card_name = 'Merfolk Secretkeeper'
+    # random_card_name = 'Grafdigger\'s Cage'
 
     correct_answer_data = get_card_data_from_local_file(random_card_name)
 
@@ -616,7 +617,7 @@ def gen_new_cards(*args):
     correct_answer_index = random_cards_name_same_type.index(random_card_name) + 1
 
     correct_answer_oracle_text = correct_answer_data['flavor_text'] if not correct_answer_data['oracle_text'] else \
-    correct_answer_data['oracle_text']
+        correct_answer_data['oracle_text']
     correct_answer_decklist_id = correct_answer_data['decklist_id']
     # pprint(correct_answer_oracle_text)
     correct_answer_name = correct_answer_data['name']

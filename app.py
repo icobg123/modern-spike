@@ -55,14 +55,14 @@ def get_new_cards():
         if job.is_finished:
             print('job done new job')
             new_cards = job.result
-            result = q.enqueue(gen_new_cards, job_id="gen_new_cards")
+            result = q.enqueue(gen_new_cards, job_id="gen_new_cards", result_ttl=43200)
         else:
             job.delete()
             print('gen_new_cards job not finished')
             new_cards = gen_new_cards()
     else:
         print('no gen_new_cards job gen_new_cards create job now')
-        result = q.enqueue(gen_new_cards, job_id="gen_new_cards")
+        result = q.enqueue(gen_new_cards, job_id="gen_new_cards", result_ttl=43200)
         new_cards = gen_new_cards()
 
     return jsonify({
