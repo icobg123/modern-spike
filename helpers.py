@@ -436,7 +436,7 @@ def similar_cards(card_name, not_enough=False):
         (item[card_name]['similar_cards'] for item in existing_card_data if
          card_name in item and 'similar_cards' in item[card_name].keys()),
         None)
-    # pprint(card_info)
+    pprint(card_info)
 
     if card_info:
         print('card in info')
@@ -714,12 +714,18 @@ def count_words_at_url(seconds):
     print('Task completed')
     return {"result": "mn sum lud"}
 
-
 # pprint(get_single_card_data_from_scryfall('Wear'))
 # scrape_card_data()
 
 # local_card_data = read_from_file('static/card_data_url.json')
 # existing_card_data = local_card_data['card_set']
 # for card in existing_card_data:
+#     list_card_names_with_same_type = similar_cards(list(card.keys())[0])
+#     sample_size = len(list_card_names_with_same_type)
+#
+#     # list_card_names_with_same_type.remove(random_card_name)
+#     if sample_size < 4:
+#         print('not enough cards')
+#         list_card_names_with_same_type = similar_cards(list(card.keys())[0], True)
 #     pprint(list(card.keys())[0])
-#     pprint(similar_cards(list(card.keys())[0], not_enough=True))
+# pprint(similar_cards(list(card.keys())[0], not_enough=True))
