@@ -6534,7 +6534,17 @@
                 "image": "https://img.scryfall.com/cards/art_crop/front/4/a/4a706ecf-3277-40e3-871c-4ba4ead16e20.jpg?1582053605",
                 "name": "Wrenn and Six",
                 "oracle_text": "+1: Return up to one target land card from your graveyard to your hand.\n\u22121: Wrenn and Six deals 1 damage to any target.\n\u22127: You get an emblem with \"Instant and sorcery cards in your graveyard have retrace.\" (You may cast instant and sorcery cards from your graveyard by discarding a land card in addition to paying their other costs.)",
-                "similar_cards": [],
+                "similar_cards": [
+                    "Arlinn Kord ",
+                    "Domri Rade",
+                    "Domri, Anarch of Bolas",
+                    "Domri, Chaos Bringer",
+                    "Domri, City Smasher",
+                    "Samut, Tyrant Smasher",
+                    "Samut, the Tested",
+                    "Sarkhan Vol",
+                    "Xenagos, the Reveler"
+                ],
                 "type": "Planeswalker"
             }
         },
@@ -9725,7 +9735,16 @@
                 "image": "https://img.scryfall.com/cards/art_crop/front/9/f/9f970f79-3051-4ba1-badb-697ef321cbb3.jpg?1584831429",
                 "name": "Cindervines",
                 "oracle_text": "Whenever an opponent casts a noncreature spell, Cindervines deals 1 damage to that player.\n{1}, Sacrifice Cindervines: Destroy target artifact or enchantment. Cindervines deals 2 damage to that permanent's controller.",
-                "similar_cards": [],
+                "similar_cards": [
+                    "Gruul War Chant",
+                    "Impromptu Raid",
+                    "Killer Instinct",
+                    "Predatory Advantage",
+                    "Primal Visitation",
+                    "Rhythm of the Wild",
+                    "Runes of the Deus",
+                    "Stormbind"
+                ],
                 "type": "Sideboard"
             }
         },
@@ -9927,10 +9946,14 @@
                 "name": "Teferi, Time Raveler",
                 "oracle_text": "Each opponent can cast spells only any time they could cast a sorcery.\n+1: Until your next turn, you may cast sorcery spells as though they had flash.\n\u22123: Return up to one target artifact, creature, or enchantment to its owner's hand. Draw a card.",
                 "similar_cards": [
+                    "Dovin Baan",
+                    "Dovin, Architect of Law",
+                    "Dovin, Grand Arbiter",
+                    "Dovin, Hand of Control",
+                    "Narset Transcendent",
                     "Teferi, Hero of Dominaria",
-                    "Teferi, Master of Time",
                     "Teferi, Timebender",
-                    "Teferi, Timeless Voyager"
+                    "Venser, the Sojourner"
                 ],
                 "type": "Planeswalker"
             }
@@ -11852,8 +11875,25 @@
                 "name": "Narset, Parter of Veils",
                 "oracle_text": "Each opponent can't draw more than one card each turn.\n\u22122: Look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.",
                 "similar_cards": [
-                    "Narset Transcendent",
-                    "Narset of the Ancient Way"
+                    "Jace Beleren",
+                    "Jace, Arcane Strategist",
+                    "Jace, Architect of Thought",
+                    "Jace, Cunning Castaway",
+                    "Jace, Ingenious Mind-Mage",
+                    "Jace, Memory Adept",
+                    "Jace, Unraveler of Secrets",
+                    "Jace, Wielder of Mysteries",
+                    "Jace, the Living Guildpact",
+                    "Jace, the Mind Sculptor",
+                    "Kasmina, Enigmatic Mentor",
+                    "Mu Yanling, Celestial Wind",
+                    "Mu Yanling, Sky Dancer",
+                    "Tamiyo, the Moon Sage",
+                    "Teferi, Master of Time",
+                    "Teferi, Timeless Voyager",
+                    "Tezzeret the Seeker",
+                    "Tezzeret, Artifice Master",
+                    "Tezzeret, Cruel Machinist"
                 ],
                 "type": "Planeswalker"
             }
@@ -12386,7 +12426,11 @@
                 "similar_cards": [
                     "Ashiok, Nightmare Muse",
                     "Ashiok, Nightmare Weaver",
-                    "Ashiok, Sculptor of Fears"
+                    "Ashiok, Sculptor of Fears",
+                    "Tezzeret the Schemer",
+                    "Tezzeret, Agent of Bolas",
+                    "Tezzeret, Master of Metal",
+                    "Tezzeret, Master of the Bridge"
                 ],
                 "type": "Sideboard"
             }
@@ -15942,8 +15986,18 @@
                 "name": "Oath of Kaya",
                 "oracle_text": "When Oath of Kaya enters the battlefield, it deals 3 damage to any target and you gain 3 life.\nWhenever an opponent attacks a planeswalker you control with one or more creatures, Oath of Kaya deals 2 damage to that player and you gain 2 life.",
                 "similar_cards": [
+                    "Campaign of Vengeance",
+                    "Debtors' Knell",
+                    "Doom Foretold",
+                    "Edge of the Divinity",
                     "Etchings of the Chosen",
+                    "Ethereal Absolution",
+                    "Gift of Orzhova",
+                    "Hidden Stockpile",
                     "Knights' Charge",
+                    "Necromancer's Covenant",
+                    "One Thousand Lashes",
+                    "Pillory of the Sleepless",
                     "Profane Procession "
                 ],
                 "type": "Enchantment"
@@ -18729,7 +18783,12 @@
                 "name": "Saheeli Rai",
                 "oracle_text": "+1: Scry 1. Saheeli Rai deals 1 damage to each opponent.\n\u22122: Create a token that's a copy of target artifact or creature you control, except it's an artifact in addition to its other types. That token gains haste. Exile it at the beginning of the next end step.\n\u22127: Search your library for up to three artifact cards with different names, put them onto the battlefield, then shuffle your library.",
                 "similar_cards": [
-                    "Saheeli, Sublime Artificer"
+                    "Ral Zarek",
+                    "Ral, Caller of Storms",
+                    "Ral, Izzet Viceroy",
+                    "Ral, Storm Conduit",
+                    "Saheeli, Sublime Artificer",
+                    "The Royal Scions"
                 ],
                 "type": "Planeswalker"
             }
@@ -21775,7 +21834,9 @@
                 "oracle_text": "Activated abilities of artifacts your opponents control can't be activated.\n+1: Until your next turn, up to one target noncreature artifact becomes an artifact creature with power and toughness each equal to its converted mana cost.\n\u22122: You may choose an artifact card you own from outside the game or in exile, reveal that card, and put it into your hand.",
                 "similar_cards": [
                     "Karn Liberated",
-                    "Karn, Scion of Urza"
+                    "Karn, Scion of Urza",
+                    "Ugin, the Ineffable",
+                    "Ugin, the Spirit Dragon"
                 ],
                 "type": "Planeswalker"
             }
@@ -29773,10 +29834,14 @@
                 "name": "Teferi, Hero of Dominaria",
                 "oracle_text": "+1: Draw a card. At the beginning of the next end step, untap up to two lands.\n\u22123: Put target nonland permanent into its owner's library third from the top.\n\u22128: You get an emblem with \"Whenever you draw a card, exile target permanent an opponent controls.\"",
                 "similar_cards": [
-                    "Teferi, Master of Time",
+                    "Dovin Baan",
+                    "Dovin, Architect of Law",
+                    "Dovin, Grand Arbiter",
+                    "Dovin, Hand of Control",
+                    "Narset Transcendent",
                     "Teferi, Time Raveler",
                     "Teferi, Timebender",
-                    "Teferi, Timeless Voyager"
+                    "Venser, the Sojourner"
                 ],
                 "type": "Planeswalker"
             }
@@ -33005,7 +33070,9 @@
                 "oracle_text": "+4: Target player exiles a card from their hand.\n\u22123: Exile target permanent.\n\u221214: Restart the game, leaving in exile all non-Aura permanent cards exiled with Karn Liberated. Then put those cards onto the battlefield under your control.",
                 "similar_cards": [
                     "Karn, Scion of Urza",
-                    "Karn, the Great Creator"
+                    "Karn, the Great Creator",
+                    "Ugin, the Ineffable",
+                    "Ugin, the Spirit Dragon"
                 ],
                 "type": "Planeswalker"
             }
@@ -33018,6 +33085,9 @@
                 "name": "Ugin, the Spirit Dragon",
                 "oracle_text": "+2: Ugin, the Spirit Dragon deals 3 damage to any target.\n\u2212X: Exile each permanent with converted mana cost X or less that's one or more colors.\n\u221210: You gain 7 life, draw seven cards, then put up to seven permanent cards from your hand onto the battlefield.",
                 "similar_cards": [
+                    "Karn Liberated",
+                    "Karn, Scion of Urza",
+                    "Karn, the Great Creator",
                     "Ugin, the Ineffable"
                 ],
                 "type": "Planeswalker"
@@ -37647,7 +37717,33 @@
                 "image": "https://img.scryfall.com/cards/art_crop/front/d/c/dccb325a-6fba-4a6f-af35-dc9e9de996a9.jpg?1581708471",
                 "name": "Koth of the Hammer",
                 "oracle_text": "+1: Untap target Mountain. It becomes a 4/4 red Elemental creature until end of turn. It's still a land.\n\u22122: Add {R} for each Mountain you control.\n\u22125: You get an emblem with \"Mountains you control have '{T}: This land deals 1 damage to any target.'\"",
-                "similar_cards": [],
+                "similar_cards": [
+                    "Chandra Ablaze",
+                    "Chandra Nalaar",
+                    "Chandra, Acolyte of Flame",
+                    "Chandra, Awakened Inferno",
+                    "Chandra, Bold Pyromancer",
+                    "Chandra, Fire Artisan",
+                    "Chandra, Flame's Catalyst",
+                    "Chandra, Flame's Fury",
+                    "Chandra, Flamecaller",
+                    "Chandra, Heart of Fire",
+                    "Chandra, Novice Pyromancer",
+                    "Chandra, Pyrogenius",
+                    "Chandra, Pyromaster",
+                    "Chandra, Torch of Defiance",
+                    "Chandra, the Firebrand",
+                    "Jaya Ballard",
+                    "Jaya, Venerated Firemage",
+                    "Lukka, Coppercoat Outcast",
+                    "Rowan, Fearless Sparkmage",
+                    "Sarkhan the Masterless",
+                    "Sarkhan, Dragonsoul",
+                    "Sarkhan, Fireblood",
+                    "Sarkhan, the Dragonspeaker",
+                    "Tibalt, Rakish Instigator",
+                    "Tibalt, the Fiend-Blooded"
+                ],
                 "type": "Planeswalker"
             }
         },
@@ -39051,6 +39147,9 @@
                 "name": "Ugin, the Ineffable",
                 "oracle_text": "Colorless spells you cast cost {2} less to cast.\n+1: Exile the top card of your library face down and look at it. Create a 2/2 colorless Spirit creature token. When that token leaves the battlefield, put the exiled card into your hand.\n\u22123: Destroy target permanent that's one or more colors.",
                 "similar_cards": [
+                    "Karn Liberated",
+                    "Karn, Scion of Urza",
+                    "Karn, the Great Creator",
                     "Ugin, the Spirit Dragon"
                 ],
                 "type": "Planeswalker"
@@ -40017,8 +40116,22 @@
                 "oracle_text": "When Detention Sphere enters the battlefield, you may exile target nonland permanent not named Detention Sphere and all other permanents with the same name as that permanent.\nWhen Detention Sphere leaves the battlefield, return the exiled cards to the battlefield under their owner's control.",
                 "similar_cards": [
                     "Ardent Plea",
+                    "Curse of Chains",
+                    "Dovescape",
                     "Dovin's Acuity",
-                    "High Alert"
+                    "Enchanted Evening",
+                    "Ephara's Enlightenment",
+                    "High Alert",
+                    "Invocation of Saint Traft",
+                    "Lawmage's Binding",
+                    "Oath of Teferi",
+                    "Palliation Accord",
+                    "Plumes of Peace",
+                    "Righteous Authority",
+                    "Staggering Insight",
+                    "Steel of the Godhead",
+                    "Stormcaller's Boon",
+                    "Teferi's Moat"
                 ],
                 "type": "Enchantment"
             }
@@ -48509,8 +48622,10 @@
                 "name": "Architects of Will",
                 "oracle_text": "When Architects of Will enters the battlefield, look at the top three cards of target player's library, then put them back in any order.\nCycling {U/B} ({U/B}, Discard this card: Draw a card.)",
                 "similar_cards": [
-                    "Master Transmuter",
+                    "Etherium Abomination",
+                    "Sphinx Summoner",
                     "Thoughtcutter Agent",
+                    "Tidehollow Strix",
                     "Vectis Agents"
                 ],
                 "type": "Creature"
@@ -49205,9 +49320,23 @@
                 "name": "Ardent Plea",
                 "oracle_text": "Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)\nCascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order.)",
                 "similar_cards": [
+                    "Curse of Chains",
                     "Detention Sphere",
+                    "Dovescape",
                     "Dovin's Acuity",
-                    "High Alert"
+                    "Enchanted Evening",
+                    "Ephara's Enlightenment",
+                    "High Alert",
+                    "Invocation of Saint Traft",
+                    "Lawmage's Binding",
+                    "Oath of Teferi",
+                    "Palliation Accord",
+                    "Plumes of Peace",
+                    "Righteous Authority",
+                    "Staggering Insight",
+                    "Steel of the Godhead",
+                    "Stormcaller's Boon",
+                    "Teferi's Moat"
                 ],
                 "type": "Enchantment"
             }
@@ -52469,7 +52598,9 @@
                 "image": "https://img.scryfall.com/cards/art_crop/front/a/8/a824a790-ab8d-4733-9ed6-1a24676fb8f3.jpg?1562414327",
                 "name": "Thopter Foundry",
                 "oracle_text": "{1}, Sacrifice a nontoken artifact: Create a 1/1 blue Thopter artifact creature token with flying. You gain 1 life.",
-                "similar_cards": [],
+                "similar_cards": [
+                    "Etherwrought Page"
+                ],
                 "type": "Artifact"
             }
         },
@@ -52481,7 +52612,18 @@
                 "name": "Witching Well",
                 "oracle_text": "When Witching Well enters the battlefield, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)\n{3}{U}, Sacrifice Witching Well: Draw two cards.",
                 "similar_cards": [
-                    "Mantle of Tides"
+                    "Courier's Capsule",
+                    "Cumber Stone",
+                    "Etherium Astrolabe",
+                    "Folio of Fancies",
+                    "Mantle of Tides",
+                    "Midnight Clock",
+                    "Mindlock Orb",
+                    "Portal of Sanctuary",
+                    "Protomatter Powder",
+                    "Scepter of Insight",
+                    "Silent Submersible",
+                    "The Magic Mirror"
                 ],
                 "type": "Artifact"
             }
@@ -52989,7 +53131,11 @@
                 "similar_cards": [
                     "Ashiok, Dream Render",
                     "Ashiok, Nightmare Weaver",
-                    "Ashiok, Sculptor of Fears"
+                    "Ashiok, Sculptor of Fears",
+                    "Tezzeret the Schemer",
+                    "Tezzeret, Agent of Bolas",
+                    "Tezzeret, Master of Metal",
+                    "Tezzeret, Master of the Bridge"
                 ],
                 "type": "Sideboard"
             }
@@ -56651,7 +56797,9 @@
                 "image": "https://img.scryfall.com/cards/art_crop/front/0/9/09521f23-52d6-482d-9f3b-c4d12fcc08cc.jpg?1561966375",
                 "name": "Tidehollow Sculler",
                 "oracle_text": "When Tidehollow Sculler enters the battlefield, target opponent reveals their hand and you choose a nonland card from it. Exile that card.\nWhen Tidehollow Sculler leaves the battlefield, return the exiled card to its owner's hand.",
-                "similar_cards": [],
+                "similar_cards": [
+                    "Vectis Dominator"
+                ],
                 "type": "Creature"
             }
         },
@@ -57440,7 +57588,14 @@
                 "image": "https://img.scryfall.com/cards/art_crop/front/6/a/6a7111f3-01a6-4311-bc08-036a1fba60f5.jpg?1572490808",
                 "name": "The Royal Scions",
                 "oracle_text": "+1: Draw a card, then discard a card.\n+1: Target creature gets +2/+0 and gains first strike and trample until end of turn.\n\u22128: Draw four cards. When you do, The Royal Scions deals damage to any target equal to the number of cards in your hand.",
-                "similar_cards": [],
+                "similar_cards": [
+                    "Ral Zarek",
+                    "Ral, Caller of Storms",
+                    "Ral, Izzet Viceroy",
+                    "Ral, Storm Conduit",
+                    "Saheeli Rai",
+                    "Saheeli, Sublime Artificer"
+                ],
                 "type": "Planeswalker"
             }
         },
@@ -58243,10 +58398,29 @@
                 "name": "Elspeth, Sun's Nemesis",
                 "oracle_text": "\u22121: Up to two target creatures you control each get +2/+1 until end of turn.\n\u22122: Create two 1/1 white Human Soldier creature tokens.\n\u22123: You gain 5 life.\nEscape\u2014{4}{W}{W}, Exile four other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)",
                 "similar_cards": [
+                    "Ajani Goldmane",
+                    "Ajani Steadfast",
+                    "Ajani, Adversary of Tyrants",
+                    "Ajani, Caller of the Pride",
+                    "Ajani, Inspiring Leader",
+                    "Ajani, Strength of the Pride",
+                    "Ajani, Wise Counselor",
+                    "Basri Ket",
+                    "Basri, Devoted Paladin",
                     "Elspeth Tirel",
                     "Elspeth, Knight-Errant",
                     "Elspeth, Sun's Champion",
-                    "Elspeth, Undaunted Hero"
+                    "Elspeth, Undaunted Hero",
+                    "Gideon Blackblade",
+                    "Gideon Jura",
+                    "Gideon of the Trials",
+                    "Gideon, Ally of Zendikar",
+                    "Gideon, Champion of Justice",
+                    "Gideon, Martial Paragon",
+                    "Gideon, the Oathsworn",
+                    "Serra the Benevolent",
+                    "Teyo, the Shieldmage",
+                    "The Wanderer"
                 ],
                 "type": "Sideboard"
             }

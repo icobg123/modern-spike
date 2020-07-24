@@ -80,7 +80,7 @@ def scrape_card_data() -> dict:
                                                            flags=re.IGNORECASE)})
             # pprint(sorted_by_type)
             card_list = []  # list of dict items
-            new_card_name_list = []  # list of dict items
+            new_card_name_list = set()  # list of dict items
 
             for sorted_by_type in sorted_by_type:
                 # print(sorted_by_type.find('h5').string)
@@ -127,21 +127,19 @@ def scrape_card_data() -> dict:
 
                                 existing_card_data.append(dict_to_add)
                                 card_name_in_list.append(card_name)
-                                new_card_name_list.append(split_card_name)
+                                new_card_name_list.add(split_card_name)
 
                             else:
                                 print('// card in existing data')
                                 print("// in name {} - in  existing data".format(split_card_name))
                                 card_name_in_list.append(card_name)
-                                new_card_name_list.append(split_card_name)
+                                new_card_name_list.add(split_card_name)
 
                                 for card in existing_card_data:
                                     if split_card_name in card.keys():
                                         # existing_card_data[card[split_card_name]['decklist_id']] = card_deck_list_id
                                         index = existing_card_data.index(card)
-
                                         existing_card_data[index][split_card_name]['decklist_id'] = card_deck_list_id
-
                                         # card[split_card_name]['decklist_id'] = card_deck_list_id
                                         break
 
@@ -157,35 +155,34 @@ def scrape_card_data() -> dict:
                         print('regular name')
 
                         in_existing_card_data = any(card_name in d for d in existing_card_data)
+                        if not is_this_a_basic(card_name):
+                            if (not card_name_in_list and not in_existing_card_data):
 
-                        if (not card_name_in_list and not in_existing_card_data and (
-                                not is_this_a_basic(card_name))):
+                                # pprint('')
+                                print("regular name {} - not in existing card data".format(card_name))
 
-                            # pprint('')
-                            print("regular name {} - not in existing card data".format(card_name))
+                                # if (card_name_div.string not in card_list) and (not is_this_a_basic(card_name_div.string)):
 
-                            # if (card_name_div.string not in card_list) and (not is_this_a_basic(card_name_div.string)):
+                                dict_to_add = get_single_card_data_from_scryfall(card_name)
+                                # dict_to_add['name'] = card_name_div.string
+                                dict_to_add[card_name]['type'] = card_type
+                                dict_to_add[card_name]['decklist_id'] = card_deck_list_id
 
-                            dict_to_add = get_single_card_data_from_scryfall(card_name)
-                            # dict_to_add['name'] = card_name_div.string
-                            dict_to_add[card_name]['type'] = card_type
-                            dict_to_add[card_name]['decklist_id'] = card_deck_list_id
+                                existing_card_data.append(dict_to_add)
+                                card_name_in_list.append(card_name)
+                                new_card_name_list.add(card_name)
 
-                            existing_card_data.append(dict_to_add)
-                            card_name_in_list.append(card_name)
-                            new_card_name_list.append(card_name)
-
-                        else:
-                            print("regular name {} In data file".format(card_name))
-                            card_name_in_list.append(card_name)
-                            new_card_name_list.append(card_name)
-                            # existing_card_data[card_name]['decklist_id'] = card_deck_list_id
-                            for card in existing_card_data:
-                                if card_name in card.keys():
-                                    # card[card_name]['decklist_id'] = card_deck_list_idndex
-                                    index = existing_card_data.index(card)
-                                    existing_card_data[index][card_name]['decklist_id'] = card_deck_list_id
-                                    break
+                            else:
+                                print("regular name {} In data file".format(card_name))
+                                card_name_in_list.append(card_name)
+                                new_card_name_list.add(card_name)
+                                # existing_card_data[card_name]['decklist_id'] = card_deck_list_id
+                                for card in existing_card_data:
+                                    if card_name in card.keys():
+                                        # card[card_name]['decklist_id'] = card_deck_list_idndex
+                                        index = existing_card_data.index(card)
+                                        existing_card_data[index][card_name]['decklist_id'] = card_deck_list_id
+                                        break
 
                         # card_list.append(dict_to_add)
 
@@ -199,7 +196,7 @@ def scrape_card_data() -> dict:
                 "card_set": unique_cards,
             }
             latest_card_names_dict = {
-                "card_names": new_card_name_list
+                "card_names": list(new_card_name_list)
             }
             with open('static/card_data_url.json', 'w') as fp:
                 json.dump(dict_to_file, fp, sort_keys=True, indent=4)
@@ -339,8 +336,12 @@ def read_from_file(filename: str) -> dict:
     :param filename: str() Path to file
     :return: JSON data
     """
+    # with open(file_name) as f:
+    #     return json.load(f)
+
     with open(filename, 'r') as fp:
         data = json.load(fp)
+
     return data
 
 
@@ -385,7 +386,7 @@ def get_single_card_data_from_scryfall(card: str) -> dict:
 
 def get_card_data_from_local_file(card: str) -> dict:
     # random_card_data = {}
-
+    pprint("get_card_data_from_local_file broken card - {}".format(card))
     data_api = read_from_file('static/card_data_url.json')
     card_data_scryfall = data_api['card_set']
     # card_data_mtgjson = read_from_file('static/ModernAtomic.json')
@@ -436,9 +437,9 @@ def similar_cards(card_name, not_enough=False):
         (item[card_name]['similar_cards'] for item in existing_card_data if
          card_name in item and 'similar_cards' in item[card_name].keys()),
         None)
-    pprint(card_info)
+    # pprint(card_info)
 
-    if card_info:
+    if card_info and len(card_info) > 4:
         print('card in info')
         return card_info
 
@@ -502,9 +503,13 @@ def similar_cards(card_name, not_enough=False):
                 # if card_type == 'Planeswalker':
                 # if not_enough:
                 # if len(list_similar_cards)
-                if current_subtypes == card_subtypes:
-                    # pprint(k)
-                    list_similar_cards.append(current_name)
+                if not_enough:
+                    if current_subtypes == card_subtypes:
+                        # pprint(k)
+                        list_similar_cards.append(current_name)
+                else:
+                    if current_identity == card_identity:
+                        list_similar_cards.append(current_name)
 
             if 'Land' in card_type and current_card_name not in list_similar_cards:
                 if not_enough:
@@ -538,7 +543,7 @@ def similar_cards(card_name, not_enough=False):
 
             if 'Sorcery' in card_type or 'Instant' in card_type and current_card_name not in list_similar_cards:
                 if not_enough:
-                    if current_colors == card_colors and not_enough:
+                    if current_colors == card_colors:
                         list_similar_cards.append(current_name)
                 else:
                     if current_colors == card_colors and cmc == card_cmc:
@@ -560,10 +565,16 @@ def similar_cards(card_name, not_enough=False):
 
                 elif cmc == card_cmc and current_colors == card_colors:
                     list_similar_cards.append(current_name)
+                elif current_colors == card_colors:
+                    list_similar_cards.append(current_name)
 
             if 'Enchantment' in card_type and current_card_name not in list_similar_cards:
-                if current_colors == card_colors and current_subtypes == card_subtypes and cmc == card_cmc:
-                    list_similar_cards.append(current_name)
+                if not_enough:
+                    if current_colors == card_colors:
+                        list_similar_cards.append(current_name)
+                else:
+                    if current_colors == card_colors and current_subtypes == card_subtypes and cmc == card_cmc:
+                        list_similar_cards.append(current_name)
 
             if 'Tribal' in card_type and current_card_name not in list_similar_cards:
                 if current_colors == card_colors:
@@ -613,7 +624,7 @@ def gen_new_cards(*args):
     # TODO Darksteel Citadel - Artifact land
     # random_card_name = 'Batterskull'
     # random_card_name = 'Merfolk Secretkeeper'
-    # random_card_name = 'Grafdigger\'s Cage'
+    # random_card_name = 'Thopter Foundry'
 
     correct_answer_data = get_card_data_from_local_file(random_card_name)
 
@@ -714,6 +725,7 @@ def count_words_at_url(seconds):
     print('Task completed')
     return {"result": "mn sum lud"}
 
+
 # pprint(get_single_card_data_from_scryfall('Wear'))
 # scrape_card_data()
 
@@ -722,10 +734,10 @@ def count_words_at_url(seconds):
 # for card in existing_card_data:
 #     list_card_names_with_same_type = similar_cards(list(card.keys())[0])
 #     sample_size = len(list_card_names_with_same_type)
-#
-#     # list_card_names_with_same_type.remove(random_card_name)
-#     if sample_size < 4:
-#         print('not enough cards')
-#         list_card_names_with_same_type = similar_cards(list(card.keys())[0], True)
-#     pprint(list(card.keys())[0])
+
+    #
+    # if sample_size < 4:
+    #     print('not enough cards')
+    #     list_card_names_with_same_type = similar_cards(list(card.keys())[0], True)
+# pprint(similar_cards(existing_card_data['The Royal Scions']))
 # pprint(similar_cards(list(card.keys())[0], not_enough=True))
