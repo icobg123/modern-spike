@@ -148,8 +148,8 @@ def index():
     print(new_data_obj)
 
     new_data = new_data_obj['is_new_data']
-    latest_modern_tournament_url = new_data_obj['latest_modern_tournament_url']
-    pprint(latest_modern_tournament_url)
+    # latest_modern_tournament_url = new_data_obj['latest_modern_tournament_url']
+    # pprint(latest_modern_tournament_url)
 
     job = q.fetch_job('scrape_cards')
     pprint(job)
@@ -177,7 +177,7 @@ def index():
 
         latest_modern_tournament_url = data['url']
 
-    return render_template("index.html", latest_modern_tournament_url=latest_modern_tournament_url)
+    return render_template("index.html")
 
 
 if __name__ == '__main__':
