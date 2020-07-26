@@ -59439,6 +59439,27 @@
                 "image": "https://img.scryfall.com/cards/art_crop/front/f/2/f2ef4db8-b51c-4f52-84f1-6fee31c4a14c.jpg?1562943843",
                 "name": "Warping Wail",
                 "oracle_text": "({C} represents colorless mana.)\nChoose one \u2014\n\u2022 Exile target creature with power or toughness 1 or less.\n\u2022 Counter target sorcery spell.\n\u2022 Create a 1/1 colorless Eldrazi Scion creature token. It has \"Sacrifice this creature: Add {C}.\"",
+                "similar_cards": [
+                    "Abstruse Interference",
+                    "Adverse Conditions",
+                    "Brutal Expulsion",
+                    "Complete Disregard",
+                    "Consuming Sinkhole",
+                    "Ghostfire",
+                    "Grave Birthing",
+                    "Grip of Desolation",
+                    "Horribly Awry",
+                    "Kozilek's Return",
+                    "Reality Hemorrhage",
+                    "Scour from Existence",
+                    "Spatial Contortion",
+                    "Spell Shrivel",
+                    "Titan's Presence",
+                    "Turn Against",
+                    "Unnatural Aggression",
+                    "Unnatural Endurance",
+                    "Void Shatter"
+                ],
                 "type": "Sideboard"
             }
         },

@@ -12,6 +12,7 @@ from flask import Flask
 from flask_talisman import Talisman, ALLOW_FROM
 
 app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 31536000
 sslify = SSLify(app)
 Compress(app)
 # csp = {
