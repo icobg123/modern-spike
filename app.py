@@ -140,6 +140,12 @@ def offline():
     return app.send_static_file('offline.html')
 
 
+@app.route("/about", methods=['GET', 'POST'])
+@talisman(frame_options=ALLOW_FROM, frame_options_allow_from='SAMEORIGIN', content_security_policy={'img-src': "*"}, )
+def about():
+    return render_template("about.html")
+
+
 @app.route("/", methods=['GET', 'POST'])
 # @csp_header({'img-src': "'self' https://img.scryfall.com/", 'report-uri': '', 'object-src': 'none',
 #              'require-trusted-types-for': 'script'})

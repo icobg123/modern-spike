@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block about %}
+    <main class="h-100">
+        <div class="container-fluid h-100">
+            <div class="row h-100 center-container">
+
+                <div class="col-12 col-sm-9 col-md-7 col-lg-9 col-xl-7 d-flex flex-column mx-auto justify-content-start">
+                    <h1 class="text-center my-2"><a class="text-white" href="{{ url_for('index') }}">Modern Spike</a>
+                    </h1>
+
+
+                </div>
+                <div class="col-12 col-sm-9 col-md-7 col-lg-9 col-xl-7 d-flex flex-column mx-auto justify-content-center">
+
+
+                    <div class="row my-1 ">
+                        <div class="col-12">
+                            <h2 class="text-center my-1 ">
+                                About
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="row my-1 ">
+                        <div class="col-12">
+
+                            <p class="lead">
+                                The Modern Spike is a simple guessing game that tests your knowledge of the modern card
+                                pool and helps you get familiar with the current meta by showing you cards that are
+                                being played in the top online tournaments
+                            </p>
+                            <p class="lead">It aggregates/collects the decklists information for the last seven days of
+                                MTGO
+                                tournament data for modern.
+                            </p>
+                            <p class="lead">
+                                Data collected does not include decklists from MTGO 5-0 Leagues.
+                            </p>
+                            <p class="lead">
+                                The Modern Spike presents you with the oracle text of a
+                                random card that
+                                appeared in one of those tournaments and 5 card names to choose from.
+                            </p>
+                            <p class="lead">
+                                The app tries to give you answers to chose from that are similar to the actual answer in
+                                terms of card type and subtype, converted mana cost and color.
+                            </p>
+
+                            <p class="lead">
+                                Feedback, comments or anything else: <u><a class="text-white"
+                                                                           href="mailto:hristo.meshinski@gmail.com">hristo.meshinski@gmail.com</a></u>
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row my-1 ">
+
+                    </div>
+
+
+                </div>
+                <div class="col-12 col-sm-9 col-md-7 col-lg-9 col-xl-7 d-flex flex-column mx-auto justify-content-center">
+                    <div class="row mt-auto">
+
+                        <div class="col-lg-7 col-12 mx-auto">
+                            <nav id="footer_menu" class="nav  nav-fill justify-content-between my-1">
+                                <a class="nav-item my-1 my-md-0 nav-link text-white text-center text-md-left"
+                                   href="/about">About</a>
+                                <a class="nav-item my-1 my-md-0 nav-link text-white text-center text-md-left"
+                                   rel="noopener"
+                                   id="decklists_url"
+                                   target="_blank"
+                                   href="{{ latest_modern_tournament_url }}"> Latest deck lists</a>
+                                {#                                <a class="nav-item my-1 my-md-0 nav-link text-white" href="#">Link</a>#}
+
+                                <a class="nav-item my-1 my-md-0 nav-link text-white d-flex align-items-center text-center text-md-left justify-content-center"
+                                   href="https://mtgjson.com"
+                                   target="_blank"
+                                   rel="noreferrer">
+                                    <img src="{{ url_for('static' , filename='images/logo-mtgjson-light-blue.svg') }}"
+                                         width="30px"
+                                         title="MTGJSON logo">
+                                    <p class="mb-0 ml-1"> Powered by MTGJSON</p></a>
+
+                            </nav>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="d-none" id="correct_answer">{{ correct_answer_index }}</div>
+        </div>
+
+    </main>
+{% endblock %}

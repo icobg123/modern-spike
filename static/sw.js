@@ -27,6 +27,7 @@ const filesToCache = [
     '/static/fonts/mplantin/mplantin.woff',
     '/static/fonts/mplantin/mplantin.woff2',
     '/offline.html',
+    '/about',
 ];
 
 // When the 'install' event is fired we will cache

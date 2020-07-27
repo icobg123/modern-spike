@@ -27,7 +27,7 @@ body {
     padding: 0.375rem 0.75rem;
 }
 
-h1 {
+h1, h2, h3, h5, h6 {
     font-family: Beleren-Bold, sans-serif;
 }
 
