@@ -19,7 +19,7 @@
 }
 
 body {
-    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    /*padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);*/
     font-family: "mplantin", sans-serif;
 }
 
@@ -146,3 +146,11 @@ h1, h2, h3, h5, h6 {
     }
 }
 
+@supports (padding:max(0px)) {
+    body, header, footer {
+        padding-left: min(0vmin, env(safe-area-inset-left));
+        padding-right: min(0vmin, env(safe-area-inset-right));
+        padding-top: min(0vmin, env(safe-area-inset-top));
+        padding-bottom: min(0vmin, env(safe-area-inset-bottom));
+    }
+}
