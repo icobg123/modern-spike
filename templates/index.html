@@ -4,7 +4,7 @@
     <main class="h-100">
         <div class="container-fluid h-100">
             <div class="row h-100 center-container">
-                <div class="lds-ripple mx-auto absolute-center">
+                <div class="lds-ripple mx-auto absolute-center d-none">
                     <div></div>
                     <div></div>
                 </div>
@@ -32,14 +32,68 @@
                                 {{ 0 }}
                             {% endif %}
                         </span>
+
                     </small>
                 </div>
-                <div class="col-12 col-sm-9 col-md-7 col-lg-9 col-xl-7 d-flex flex-column mx-auto justify-content-center">
+                <div class="col-12 col-sm-7 col-md-6 col-lg-7 col-xl-7 d-flex flex-column mx-auto justify-content-center">
 
 
-                    <div class="row my-1 ">
+                    <div id="card_by_image" class="row my-1  d-none">
 
-                        <div id="oracle_text" class="col-lg-7 col-12 mx-auto d-none">
+                        <div class="col-lg-7 col-12 mx-auto">
+
+                            <div class="card">
+                                <div class="card-header text-dark py-2 d-flex align-items-center justify-content-between">
+                                    Illustration
+                                    <div class="oracle-btns">
+                                        <a id="decklist_id_by_image" href="#"
+                                           target="_blank"
+                                           rel="noopener"
+                                           class="btn btn-outline-dark btn-sm mr-1"
+                                           role="button">Decklist</a>
+
+                                        <button type="button"
+                                                class="btn btn-sm btn-info float-right text-black ml-1"
+                                                data-toggle="modal"
+                                                data-target="#cardOracleText">
+                                            Hint
+                                        </button>
+                                    </div>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="cardOracleText" tabindex="-1" role="dialog"
+                                         aria-labelledby="cardOracleTextTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header py-1">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Hint</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" id="modalOracleText">
+
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body text-dark p-0">
+
+                                </div>
+                                <img loading="lazy" id="by_card_image" class="card-img-bottom"
+                                     src="{{ correct_answer_image }}"
+                                     alt="{{ correct_answer_flavor_text }}"
+                                     title="{{ correct_answer_name }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="oracle_text" class="row my-1 d-none">
+
+                        <div class="col-lg-7 col-12 mx-auto ">
 
                             <div class="card">
                                 <div class="card-header text-dark py-2 d-flex align-items-center justify-content-between">
@@ -52,10 +106,10 @@
                                            role="button">Decklist</a>
 
                                         <button type="button"
-                                                class="btn btn-sm btn-info float-right text-black ml-1"
+                                                class="btn btn-sm btn-warning float-right text-black ml-1"
                                                 data-toggle="modal"
                                                 data-target="#cardImage">
-                                            Hint: card image
+                                            Hint
                                         </button>
                                     </div>
 
@@ -65,8 +119,7 @@
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header py-1">
-                                                    <h5 class="modal-title" id="exampleModalLongTitle">Hint: card
-                                                        image</h5>
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Hint</h5>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
@@ -85,6 +138,7 @@
                                 </div>
                                 <div class="card-body text-dark py-2">
                                     {{ correct_oracle_text_answer }}
+
                                 </div>
                             </div>
                         </div>
@@ -106,11 +160,11 @@
 
                                 </div>
 
-                                <button id="next_card" type="button" name="choice"
-                                        class="mt-2 btn btn-info text-black d-none btn-lg">
+                                {# <button id="next_card" type="button" name="choice"
+                                        class="mt-2 btn btn-info text-black d-none btn-lg d-noe">
                                     Next
                                     Card
-                                </button>
+                                </button>#}
 
 
                             </form>
@@ -118,7 +172,34 @@
 
                         </div>
                     </div>
+                    <div class="row my-1 ">
+                        <div class="col-lg-7 col-12 mx-auto d-flex justify-content-center flex-column align-items-md-center">
 
+                            <h2 id="game_mode" class="text-center">Choose game mode</h2>
+                            <div id="by_btns" class="btn-group-vertical">
+                                {#                                <button type="button" class="btn btn-secondary btn-link"><a href="url_for_byimg">By#}
+                                {#                                    img</a></button>#}
+                                {#                                <button type="button" class="btn btn-secondary">2</button>#}
+
+                                <a id="by_img" class="btn btn btn-info btn-lg guess-by text-black" role="button"
+                                   aria-pressed="true"
+                                   href="#">
+                                    Card illustration
+                                </a>
+                                <a id="by_text" class="btn btn btn-warning btn-lg guess-by text-black" role="button"
+                                   aria-pressed="true"
+                                   href="#">
+                                    Card oracle text
+                                </a>
+                                {#                                <button class="btn btn-sm btn-outline-light">Change mode</button>#}
+
+                            </div>
+                            <small id="change_game_mode" class="text-center d-none mt-1">Refresh to change game
+                                mode</small>
+
+
+                        </div>
+                    </div>
 
                 </div>
                 <div class="col-12 col-sm-9 col-md-7 col-lg-9 col-xl-7 d-flex flex-column mx-auto justify-content-center">

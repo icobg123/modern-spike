@@ -2,7 +2,10 @@ $(document).ready(function () {
 
     let decklist_url = $('#decklist_url').attr('href');
     console.log(decklist_url);
-    $.ajax({
+
+
+    ////////////
+    /*$.ajax({
         type: 'POST',
         url: '/get_new_cards'
     })
@@ -25,8 +28,8 @@ $(document).ready(function () {
             $("#decklists_url").attr('href', decklists);
             // $('#next_card').removeClass('d-none');
 
-        });
-
+        });*/
+    ///////////
     console.log('icara');
     console.log($('.form-check-input:checked').val());
     console.log($('#correct_answer').text());
@@ -35,7 +38,6 @@ $(document).ready(function () {
     $('#card_holder').on('change', '.form-check-input', (function (event) {
         // $('form').on('submit', function (event) {
         // $('#answered_flag').html(1);
-        console.log('clicked');
         $(this).hide();
         // console.log();
 
@@ -100,6 +102,120 @@ $(document).ready(function () {
         event.preventDefault();
 
     }));
+    $('.guess-by').on('click', function (event) {
+        event.preventDefault();
+        let id = $(this).attr('id');
+        console.log(id);
+        console.log('guess by clicked');
+
+
+        // $('#successAlert').addClass('d-none');
+        // $('#errorAlert').addClass('d-none');
+        // $('#next_card').addClass('d-none');
+
+        $('#change_game_mode').addClass('d-none');
+        $('#game_mode').addClass('d-none');
+        $('#oracle_text').addClass('d-none');
+        $('#card_by_image').addClass('d-none');
+        $('#card_holder').addClass('d-none').removeClass('d-flex');
+        $('.lds-ripple').removeClass('d-none').addClass('d-flex mx-auto');
+        let btn_grp = $('#by_btns');
+        let by_img = $('#by_img');
+        let by_text = $('#by_text');
+        btn_grp.addClass('d-flex flex-column w-100').removeClass('btn-group-vertical')
+        by_img.addClass('d-none');
+        by_text.addClass('d-none');
+
+        flag.html('0');
+
+        if (id === 'by_text') {
+
+
+            $.ajax({
+                type: 'POST',
+                url: '/get_new_cards'
+            })
+                .done(function (data) {
+                    console.log(data.correct_answer_decklist_id);
+                    $('.lds-ripple').removeClass('d-flex').addClass('d-none');
+                    $('#card_holder').html(data.html).removeClass('d-none');
+                    $('#oracle_text').removeClass('d-none');
+                    by_img.addClass('d-none');
+                    by_text.html('Next card');
+                    by_text.removeClass('d-none');
+                    $('#change_game_mode').removeClass('d-none');
+
+                    // btn_grp.removeClass('d-none')
+                    $('#oracle_text .card-body').html(data.new_oracle_text);
+                    $('#correct_answer').html(data.correct_answer_index);
+                    $("#card_image").attr('src', data.correct_answer_image).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
+                    $("#decklist_id").attr('href', data.correct_answer_decklist_id);
+
+                    $('#next_card').removeClass('d-none');
+                    let decklists = data.correct_answer_decklist_id.split('#')[0]
+
+                    // document.getElementById("demo").innerHTML = res[0];
+                    $("#decklists_url").attr('href', decklists);
+
+                    // if (data.error) {
+                    //     console.log(data.error);
+                    //     $('#errorAlert').text(data.error).removeClass('d-none');
+                    //     $('#successAlert').addClass('d-none');
+                    // } else {
+                    //     console.log(data.choice);
+                    //     $('#successAlert').text(data.choice).removeClass('d-none');
+                    //     $('#errorAlert').addClass('d-none');
+                    // }
+
+                });
+
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: '/get_new_cards'
+            })
+                .done(function (data) {
+                    console.log(data.correct_answer_decklist_id);
+                    $('.lds-ripple').removeClass('d-flex').addClass('d-none');
+                    $('#card_holder').html(data.html).removeClass('d-none');
+
+                    // $('#oracle_text').removeClass('d-none');
+                    $('#card_by_image').removeClass('d-none');
+                    $('#change_game_mode').removeClass('d-none');
+
+                    // btn_grp.removeClass('d-none')
+                    by_text.addClass('d-none');
+                    by_img.removeClass('d-none');
+                    by_img.html('Next card');
+
+                    $('#modalOracleText').html(data.new_oracle_text);
+                    $('#correct_answer').html(data.correct_answer_index);
+                    $("#by_card_image").attr('src', data.correct_answer_image).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
+
+
+                    $("#decklist_id_by_image").attr('href', data.correct_answer_decklist_id);
+
+                    $('#next_card').removeClass('d-none');
+                    let decklists = data.correct_answer_decklist_id.split('#')[0]
+
+                    // document.getElementById("demo").innerHTML = res[0];
+                    $("#decklists_url").attr('href', decklists);
+
+                    // if (data.error) {
+                    //     console.log(data.error);
+                    //     $('#errorAlert').text(data.error).removeClass('d-none');
+                    //     $('#successAlert').addClass('d-none');
+                    // } else {
+                    //     console.log(data.choice);
+                    //     $('#successAlert').text(data.choice).removeClass('d-none');
+                    //     $('#errorAlert').addClass('d-none');
+                    // }
+
+                });
+        }
+
+
+    });
     $('#next_card').on('click', function (event) {
         $('#successAlert').addClass('d-none');
         $('#errorAlert').addClass('d-none');
@@ -108,7 +224,6 @@ $(document).ready(function () {
         $('#card_holder').addClass('d-none').removeClass('d-flex');
         $('.lds-ripple').removeClass('d-none').addClass('d-flex mx-auto');
 
-        flag.html('0');
 
         $.ajax({
             data: {
