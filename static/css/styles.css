@@ -19,6 +19,7 @@
 }
 
 body {
+    padding: env(safe-area-inset-top, 50px) env(safe-area-inset-right, 50px) env(safe-area-inset-bottom, 50px) env(SAFE-AREA-INSET-LEFT, 50px);
     font-family: "mplantin", sans-serif;
 }
 
@@ -144,3 +145,4 @@ h1, h2, h3, h5, h6 {
         width: 100%;
     }
 }
+
