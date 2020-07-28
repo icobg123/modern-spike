@@ -1,7 +1,7 @@
 {
   "name": "Modern Spike",
   "short_name": "Modern Spike",
-  "theme_color": "#343a40",
+  "theme_color": "#00FFFFFF",
   "background_color": "#fff",
   "display": "standalone",
   "orientation": "portrait",
