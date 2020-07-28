@@ -19,7 +19,7 @@
 }
 
 body {
-    padding: env(safe-area-inset-top, 50px) env(safe-area-inset-right, 50px) env(safe-area-inset-bottom, 50px) env(SAFE-AREA-INSET-LEFT, 50px);
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     font-family: "mplantin", sans-serif;
 }
 
