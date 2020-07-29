@@ -196,8 +196,8 @@ $(document).ready(function () {
                     console.log(data.correct_answer_decklist_id);
                     $("#by_card_image").attr('src', data.correct_answer_image).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
 
-                    let img = $('#by_card_image');
-                    // let img = document.getElementById('by_card_image');
+                    // let img = $('#by_card_image');
+                    let img = document.getElementById('by_card_image');
                     let img_loaded = function () {
                         // do your code here
                         // `this` refers to the img object
