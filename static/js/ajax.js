@@ -2,8 +2,24 @@ $(document).ready(function () {
 
     let decklist_url = $('#decklist_url').attr('href');
     console.log(decklist_url);
-
-
+    let h1_col = $('#h1_col');
+    let h1_col_h1 = $('#h1_col h1');
+    let btn_grp = $('#by_btns');
+    let by_img = $('#by_img');
+    let by_text = $('#by_text');
+    $('#change_game_mode a').on('click', function (event) {
+        $('#change_game_mode').addClass('d-none');
+        $('#game_mode').addClass('d-none');
+        $('#oracle_text').addClass('d-none');
+        $('#card_by_image').addClass('d-none');
+        $('#card_holder').addClass('d-none').removeClass('d-flex');
+        btn_grp.addClass('d-none');
+        by_img.addClass('d-none');
+        by_text.addClass('d-none');
+        // h1_col.addClass('d-none');
+        $('.lds-ripple').removeClass('d-none').addClass('d-flex mx-auto');
+        // h1_col_h1.removeClass();
+    });
     ////////////
     /*$.ajax({
         type: 'POST',
@@ -119,9 +135,8 @@ $(document).ready(function () {
         $('#card_by_image').addClass('d-none');
         $('#card_holder').addClass('d-none').removeClass('d-flex');
         $('.lds-ripple').removeClass('d-none').addClass('d-flex mx-auto');
-        let btn_grp = $('#by_btns');
-        let by_img = $('#by_img');
-        let by_text = $('#by_text');
+
+
         btn_grp.addClass('d-flex flex-column w-100').removeClass('btn-group-vertical')
         by_img.addClass('d-none');
         by_text.addClass('d-none');
@@ -170,6 +185,9 @@ $(document).ready(function () {
                 });
 
         } else {
+
+            h1_col_h1.addClass('h1-small');
+            h1_col.removeClass().addClass('col-12 col-sm-9 col-md-7 col-lg-9 col-xl-7 d-flex flex-row flex-sm-column mx-auto justify-content-between justify-content-sm-start align-items-start align-items-sm-center');
             $.ajax({
                 type: 'POST',
                 url: '/get_new_cards'
