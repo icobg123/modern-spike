@@ -194,30 +194,46 @@ $(document).ready(function () {
             })
                 .done(function (data) {
                     console.log(data.correct_answer_decklist_id);
-                    $('.lds-ripple').removeClass('d-flex').addClass('d-none');
-                    $('#card_holder').html(data.html).removeClass('d-none');
-
-                    // $('#oracle_text').removeClass('d-none');
-                    $('#card_by_image').removeClass('d-none');
-                    $('#change_game_mode').removeClass('d-none');
-
-                    // btn_grp.removeClass('d-none')
-                    by_text.addClass('d-none');
-                    by_img.removeClass('d-none');
-                    by_img.html('Next card');
-
-                    $('#modalOracleText').html(data.new_oracle_text);
-                    $('#correct_answer').html(data.correct_answer_index);
                     $("#by_card_image").attr('src', data.correct_answer_image).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
 
+                    let img = $('#by_card_image');
+                    // let img = document.getElementById('by_card_image');
+                    let img_loaded = function () {
+                        // do your code here
+                        // `this` refers to the img object
 
-                    $("#decklist_id_by_image").attr('href', data.correct_answer_decklist_id);
 
-                    $('#next_card').removeClass('d-none');
-                    let decklists = data.correct_answer_decklist_id.split('#')[0]
+                        $('.lds-ripple').removeClass('d-flex').addClass('d-none');
+                        $('#card_holder').html(data.html).removeClass('d-none');
 
-                    // document.getElementById("demo").innerHTML = res[0];
-                    $("#decklists_url").attr('href', decklists);
+                        // $('#oracle_text').removeClass('d-none');
+                        $('#card_by_image').removeClass('d-none');
+                        $('#change_game_mode').removeClass('d-none');
+
+                        // btn_grp.removeClass('d-none')
+                        by_text.addClass('d-none');
+                        by_img.removeClass('d-none');
+                        by_img.html('Next card');
+
+                        $('#modalOracleText').html(data.new_oracle_text);
+                        $('#correct_answer').html(data.correct_answer_index);
+
+
+                        $("#decklist_id_by_image").attr('href', data.correct_answer_decklist_id);
+
+                        $('#next_card').removeClass('d-none');
+                        let decklists = data.correct_answer_decklist_id.split('#')[0]
+
+                        // document.getElementById("demo").innerHTML = res[0];
+                        $("#decklists_url").attr('href', decklists);
+
+                    };
+                    if (img.complete) {
+                        img_loaded.call(img);
+                    } else {
+                        img.onload = img_loaded;
+                    }
+
 
                     // if (data.error) {
                     //     console.log(data.error);
