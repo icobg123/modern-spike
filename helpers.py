@@ -720,16 +720,16 @@ def gen_new_cards(*args):
     sample_size = len(list_card_names_with_same_type)
 
     # list_card_names_with_same_type.remove(random_card_name)
-    if sample_size < 4:
+    if sample_size < 5:
         list_card_names_with_same_type = similar_cards(random_card_name, True)
         # print(len(list_card_names_with_same_type))
         sample_size = len(list_card_names_with_same_type)
-        if sample_size < 4:
+        if sample_size < 5:
             sample_size = len(list_card_names_with_same_type)
         else:
-            sample_size = 4
+            sample_size = 5
     else:
-        sample_size = 4
+        sample_size = 5
     # TODO: fix for less than 4 of card type?
 
     random_cards_name_same_type = sample(list_card_names_with_same_type, sample_size)
