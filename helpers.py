@@ -19,6 +19,7 @@ def is_there_new_data() -> dict:
     Checks if new modern tournament decklist data has been published from MTGO
     :return:is_new_data :bool,latest_modern_tournament_url:str
     """
+    url_data = read_from_file('static/card_data_url.json')
     today = DT.date.today()
     week_ago = today - DT.timedelta(days=7)
     # d = DT.datetime.strptime(today, '%Y-%m-%d')
@@ -42,30 +43,35 @@ def is_there_new_data() -> dict:
     latest_modern_tournament = soup.findAll("a")
     # pprint(latest_modern_tournament)
     for a in latest_modern_tournament:
+        pprint(a['href'])
+
         if "League" not in a.text:
             tournament_urls.append('https://magic.wizards.com' + a['href'])
     # text=re.compile('\bModern\s*(League|Challenge|Preliminary)', flags=re.IGNORECASE))
     # print(latest_modern_tournament)
 
     if latest_modern_tournament is None:
-        data = read_from_file('static/card_data_url.json')
-        latest_modern_tournament_urls = data['url']
-    else:
+
+        latest_modern_tournament_urls = url_data
+    elif tournament_urls:
         # latest_modern_tournament_parent = latest_modern_tournament.parent.parent.parent
         latest_modern_tournament_urls = tournament_urls
-    #
-    # latest_modern_tournament_url = 'https://magic.wizards.com/en/articles/archive/mtgo-standings/modern-league-2020-07-21'
-    # latest_modern_tournament_url = 'https://magic.wizards.com' + latest_modern_tournament_parent['href']
-    #
-    data = read_from_file('static/card_data_url.json')
-    set_data_url = set(data['url'])
-    set_latest_modern_tournament_urls = set(latest_modern_tournament_urls)
-    pprint(set_data_url)
-    pprint(set_latest_modern_tournament_urls)
-    if set_data_url != set_latest_modern_tournament_urls:
-        # if data['url'] != latest_modern_tournament_urls:
-        is_new_data = True
-    # return tournament_urls
+        #
+        # latest_modern_tournament_url = 'https://magic.wizards.com/en/articles/archive/mtgo-standings/modern-league-2020-07-21'
+        # latest_modern_tournament_url = 'https://magic.wizards.com' + latest_modern_tournament_parent['href']
+        #
+        # data = read_from_file('static/card_data_url.json')
+        set_data_url = set(url_data['url'])
+        set_latest_modern_tournament_urls = set(latest_modern_tournament_urls)
+        pprint(set_data_url)
+        pprint(set_latest_modern_tournament_urls)
+        if set_data_url != set_latest_modern_tournament_urls:
+            # if data['url'] != latest_modern_tournament_urls:
+            is_new_data = True
+        # return tournament_urls
+    else:
+        latest_modern_tournament_urls = url_data['url']
+
     return {"is_new_data": is_new_data, "latest_modern_tournament_urls": latest_modern_tournament_urls}
 
 
