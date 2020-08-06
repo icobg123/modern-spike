@@ -201,7 +201,7 @@ $(document).ready(function () {
                     let img_loaded = function () {
                         // do your code here
                         // `this` refers to the img object
-
+                        console.log("Img finally loaded in function")
 
                         $('.lds-ripple').removeClass('d-flex').addClass('d-none');
                         $('#card_holder').html(data.html).removeClass('d-none');
@@ -229,8 +229,12 @@ $(document).ready(function () {
 
                     };
                     if (img.complete) {
+                        console.log("Img finally loaded")
+
                         img_loaded.call(img);
                     } else {
+                        console.log("Img  loading")
+
                         img.onload = img_loaded;
                     }
 
