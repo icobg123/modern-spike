@@ -1,6 +1,6 @@
 // This is based on the First Progressive Web App Tutorial by Google
 // https://codelabs.developers.google.com/codelabs/your-first-pwapp/
-const cacheName = 'flask-PWA-123';
+const cacheName = 'flask-PWA-as321';
 const filesToCache = [
     '/static/bootstrap/js/jquery-3.5.1.min.js',
     '/static/bootstrap/js/bootstrap.min.js',
@@ -103,4 +103,10 @@ self.addEventListener('fetch', function (e) {
         })
     );
 
+});
+
+addEventListener('message', e => {
+    if (e.data === 'skipWaiting') {
+        skipWaiting();
+    }
 });
