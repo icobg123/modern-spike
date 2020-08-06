@@ -476,7 +476,10 @@ def get_card_data_from_local_file(card: str) -> dict:
     # for card in card:
     # pprint(card)
 
-    card_info = next((item for item in card_data_scryfall if card in item), None)
+    card_info = list(filter(lambda x: x if card in x.keys() else None, card_data_scryfall))[0]
+    # card_info = [x for x in card_data_scryfall if card in x.keys()][0]
+    # pprint(card_info)
+    # card_info = next((item for item in card_data_scryfall if card in item), None)
 
     # card_name = next((key for key in card_data['data'].keys() if card in key), None)
     # card_name = next(
