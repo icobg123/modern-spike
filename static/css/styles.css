@@ -54,61 +54,61 @@ h1, h2, h3, h5, h6 {
     font-family: Beleren-Bold, sans-serif;
 }
 
-/*#card_holder .btn:first-of-type {*/
-/*    margin-left: -1px;*/
-/*    border-top-left-radius: 0.25rem;*/
-/*    border-top-right-radius: 0.25rem;*/
-/*}*/
-
-#card_holder .btn-border-1 {
+#card_holder .btn:first-of-type {
+    margin-left: -1px;
     border-top-left-radius: 0.25rem;
-    border-bottom: 1px solid #343a40 !important;
-    border-right: 1px solid #343a40 !important;
-    /*border-bottom-right-radius: 0.25rem;*/
-}
-
-#card_holder .btn-border-2 {
     border-top-right-radius: 0.25rem;
-    /*border-bottom-right-radius: 0.25rem;*/
-    border-bottom: 1px solid #343a40 !important;
-    border-left: 1px solid #343a40 !important;
 }
 
-#card_holder .btn-border-3 {
-    /*border-radius: 0;*/
-    border-right: 1px solid #343a40 !important;
-    border-top: 1px solid #343a40 !important;
-    border-bottom: 1px solid #343a40 !important;
-    /*border-bottom-right-radius: 0.25rem;*/
-}
-
-/**/
-#card_holder .btn-border-4 {
-    /*border-top-right-radius: 0.25rem;*/
-    border-left: 1px solid #343a40 !important;
-    border-top: 1px solid #343a40 !important;
-    border-bottom: 1px solid #343a40 !important;
-    /*border-bottom-right-radius: 0.25rem;*/
-}
-
-#card_holder .btn-border-5 {
-    border-bottom-left-radius: 0.25rem;
-    border-right: 1px solid #343a40 !important;
-    border-top: 1px solid #343a40 !important;
-    /*border-bottom-right-radius: 0.25rem;*/
-}
-
-#card_holder .btn-border-6 {
-    border-bottom-right-radius: 0.25rem;
-    border-left: 1px solid #343a40 !important;
-    border-top: 1px solid #343a40 !important;
-    /*border-bottom-right-radius: 0.25rem;*/
-}
-
-/*#card_holder .btn:last-of-type {*/
-/*    border-bottom-left-radius: 0.25rem;*/
-/*    border-bottom-right-radius: 0.25rem;*/
+/*#card_holder .btn-border-1 {*/
+/*    border-top-left-radius: 0.25rem;*/
+/*    border-bottom: 1px solid #343a40 !important;*/
+/*    border-right: 1px solid #343a40 !important;*/
+/*    !*border-bottom-right-radius: 0.25rem;*!*/
 /*}*/
+
+/*#card_holder .btn-border-2 {*/
+/*    border-top-right-radius: 0.25rem;*/
+/*    !*border-bottom-right-radius: 0.25rem;*!*/
+/*    border-bottom: 1px solid #343a40 !important;*/
+/*    border-left: 1px solid #343a40 !important;*/
+/*}*/
+
+/*#card_holder .btn-border-3 {*/
+/*    !*border-radius: 0;*!*/
+/*    border-right: 1px solid #343a40 !important;*/
+/*    border-top: 1px solid #343a40 !important;*/
+/*    border-bottom: 1px solid #343a40 !important;*/
+/*    !*border-bottom-right-radius: 0.25rem;*!*/
+/*}*/
+
+/*!**!*/
+/*#card_holder .btn-border-4 {*/
+/*    !*border-top-right-radius: 0.25rem;*!*/
+/*    border-left: 1px solid #343a40 !important;*/
+/*    border-top: 1px solid #343a40 !important;*/
+/*    border-bottom: 1px solid #343a40 !important;*/
+/*    !*border-bottom-right-radius: 0.25rem;*!*/
+/*}*/
+
+/*#card_holder .btn-border-5 {*/
+/*    border-bottom-left-radius: 0.25rem;*/
+/*    border-right: 1px solid #343a40 !important;*/
+/*    border-top: 1px solid #343a40 !important;*/
+/*    !*border-bottom-right-radius: 0.25rem;*!*/
+/*}*/
+
+/*#card_holder .btn-border-6 {*/
+/*    border-bottom-right-radius: 0.25rem;*/
+/*    border-left: 1px solid #343a40 !important;*/
+/*    border-top: 1px solid #343a40 !important;*/
+/*    !*border-bottom-right-radius: 0.25rem;*!*/
+/*}*/
+
+#card_holder .btn:last-of-type {
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
 .btn-group > .btn-group:not(:first-child) {
     margin-left: 0;
 }
