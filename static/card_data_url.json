@@ -70046,6 +70046,27 @@
                 "image": "https://img.scryfall.com/cards/art_crop/front/a/7/a706d4bb-0b44-4e43-b340-7de799c086b8.jpg?1562034880",
                 "name": "Woodland Bellower",
                 "oracle_text": "When Woodland Bellower enters the battlefield, you may search your library for a nonlegendary green creature card with converted mana cost 3 or less, put it onto the battlefield, then shuffle your library.",
+                "similar_cards": [
+                    "Affectionate Indrik",
+                    "Alpha Tyrranax",
+                    "Baloth Woodcrasher",
+                    "Carnivorous Moss-Beast",
+                    "Cavern Thoctar",
+                    "Durkwood Baloth",
+                    "Fangren Marauder",
+                    "Fangren Pathcutter",
+                    "Groffskithur",
+                    "Gruul Nodorog",
+                    "Murasa Behemoth",
+                    "Paleoloth",
+                    "Quagnoth",
+                    "Rampaging Baloths",
+                    "Rhox",
+                    "Spinebiter",
+                    "Terra Stomper",
+                    "Tusked Colossodon",
+                    "Tyrranax"
+                ],
                 "type": "Creature"
             }
         },

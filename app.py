@@ -67,7 +67,8 @@ def get_new_cards():
         new_cards = gen_new_cards()
 
     return jsonify({
-        "html": render_template('cards.html', card_info=new_cards['card_info']),
+        "html": render_template('cards.html', card_info=new_cards['card_info'],
+                                correct_answer_name=new_cards['correct_answer_name']),
         "correct_answer_index": new_cards['correct_answer_index'],
         "correct_answer_name": new_cards['correct_answer_name'],
         "correct_answer_image": new_cards['correct_answer_image'],

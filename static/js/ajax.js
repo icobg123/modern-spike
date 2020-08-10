@@ -68,17 +68,27 @@ $(document).ready(function () {
         })
             .done(function (data) {
 
-                if (data.error) {
-                    console.log(data.error);
+                    if (data.error) {
+                        console.log(data.error);
+                        if (!$('#card_holder .active').hasClass('alert-danger')) {
+                            $('#card_holder .active img').removeClass('invisible');
 
-                    $('#card_holder .active').removeClass('btn-secondary').addClass('alert-danger')
-                } else {
-                    console.log(data.choice);
-                    $('#card_holder .active').removeClass('btn-secondary').addClass('alert-success')
+                            $('#card_holder .active').removeClass('btn-secondary').addClass('alert-danger');
+                            // $('#card_holder .active').removeClass('btn-secondary').addClass('alert-danger').append('<img src="/static/images/bootstrap-icons/x.svg" alt="" width="16" height="16" title="X">');
+                        }
+                        // $('#card_holder .active').removeClass('btn-secondary').addClass('alert-danger');
+                    } else {
+                        console.log(data.choice);
+                        if (!$('#card_holder .active').hasClass('alert-success')) {
+                            $('#card_holder .active img').removeClass('invisible');
+                            $('#card_holder .active').removeClass('btn-secondary').addClass('alert-success');
+                        }
+                        // $('#card_holder .active').removeClass('btn-secondary').addClass('alert-success');
+
+                    }
 
                 }
-
-            });
+            );
         $.ajax({
             data: {
                 // choice: $(this).val(),

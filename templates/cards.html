@@ -21,12 +21,24 @@
     {#        {% set  border_classes = 'border-bottom-0 rounded-0' %}#}
     {##}
     {#    {% endif %}#}
-    <label class="btn btn-secondary btn-sm {{ border_classes }}">
+    <label class="btn btn-secondary btn-sm d-flex justify-content-center align-items-center position-relative {{ border_classes }}">
         <input class="form-check-input" type="radio" name="pickCard"
                id="{{ card_info | replace(" ", "_")|lower|escape }}"
                 {#               id="{{ card_info.name | replace(" ", "_")|lower|escape }}"#}
                value="{{ loop.index }}"
                autocomplete="off"> {{ card_info }}
+        {% if card_info == correct_answer_name %}
+            <img class="check invisible position-absolute" src="{{ url_for('static', filename='/images/bootstrap-icons/check.svg') }}" alt=""
+                 width="16"
+                 height="16"
+                 title="check">
+        {% else %}
+            <img class="x invisible position-absolute" src="{{ url_for('static', filename='/images/bootstrap-icons/x.svg') }}" alt="" width="16"
+                 height="16"
+                 title="X">
+        {% endif  %}
+
+
     </label>
     {#{% if loop.index0 % 2 !=0 %}#}
     {#    </div>#}

@@ -60,6 +60,10 @@ h1, h2, h3, h5, h6 {
     border-top-right-radius: 0.25rem;
 }
 
+.x, .check {
+    left: 5px;
+}
+
 /*#card_holder .btn-border-1 {*/
 /*    border-top-left-radius: 0.25rem;*/
 /*    border-bottom: 1px solid #343a40 !important;*/
@@ -105,10 +109,12 @@ h1, h2, h3, h5, h6 {
 /*    !*border-bottom-right-radius: 0.25rem;*!*/
 /*}*/
 
+
 #card_holder .btn:last-of-type {
     border-bottom-left-radius: 0.25rem;
     border-bottom-right-radius: 0.25rem;
 }
+
 .btn-group > .btn-group:not(:first-child) {
     margin-left: 0;
 }
