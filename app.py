@@ -87,6 +87,7 @@ def get_new_cards():
         "correct_answer_index": new_cards['correct_answer_index'],
         "correct_answer_name": new_cards['correct_answer_name'],
         "correct_answer_image": new_cards['correct_answer_image'],
+        "correct_answer_image_uri": new_cards['correct_answer_image_uri'],
         "correct_answer_decklist_id": new_cards['correct_answer_decklist_id'],
         'new_oracle_text': new_cards['correct_answer_oracle_text'],
         'new_flavor_text': new_cards['correct_answer_flavor_text'],

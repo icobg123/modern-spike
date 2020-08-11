@@ -4,8 +4,9 @@ from pprint import pprint
 from random import choice, sample
 import random
 import re
-# from PIL import Image
-# from io import BytesIO
+from PIL import Image
+from io import BytesIO
+
 import scrython
 from bs4 import BeautifulSoup
 import requests
@@ -18,6 +19,7 @@ import time
 import os
 from pymongo import UpdateOne
 from app import mongo
+
 
 # from db import mongo
 
@@ -506,7 +508,8 @@ def get_single_card_data_from_scryfall(card: str) -> dict:
         'name': card,
         'oracle_text': card_oracle_txt,
         'flavor_text': card_flavor_txt,
-        'image': card_img
+        'image': card_img,
+        'image_uri': pil2datauri(get_mtg_img_from_url(card_img))
     }
     # card_data = {
     # card: {
@@ -556,7 +559,8 @@ def get_card_data_from_local_file(card: str) -> dict:
         'oracle_text': card_info['oracle_text'],
         'flavor_text': card_info['flavor_text'],
         'decklist_id': card_info['decklist_id'],
-        'image': card_info['image']
+        'image': card_info['image'],
+        'image_uri': card_info['image_uri']
     }
 
     # pprint(random_card_data)
@@ -832,6 +836,7 @@ def gen_new_cards(*args):
     # pprint(correct_answer_oracle_text)
     correct_answer_name = correct_answer_data['name']
     correct_answer_image = correct_answer_data['image']
+    correct_answer_image_uri = correct_answer_data['image_uri']
     # pprint(correct_answer_oracle_text)
 
     if correct_answer_data['flavor_text']:
@@ -857,17 +862,26 @@ def gen_new_cards(*args):
             "correct_answer_flavor_text": correct_answer_flavor_text,
             "correct_answer_decklist_id": correct_answer_decklist_id,
             "correct_answer_image": correct_answer_image,
+            "correct_answer_image_uri": correct_answer_image_uri,
             "correct_answer_name": correct_answer_name}
 
-# def pil2datauri(img):
-#     #converts PIL image to datauri
-#     # response = requests.get(url)
-#     # img = Image.open(BytesIO(response.content))
-#
-#     data = BytesIO()
-#     img.save(data, "JPEG")
-#     data64 = base64.b64encode(data.getvalue())
-#     return u'data:img/jpeg;base64,'+data64.decode('utf-8')
+
+def get_mtg_img_from_url(url):
+    response = requests.get(url)
+    # pprint(response)
+    img = Image.open(BytesIO(response.content))
+
+    return img
+
+
+def pil2datauri(img):
+    # converts PIL image to datauri
+    # img = Image.open(BytesIO(response.content))
+
+    data = BytesIO()
+    img.save(data, "JPEG")
+    data64 = base64.b64encode(data.getvalue())
+    return u'data:img/jpeg;base64,' + data64.decode('utf-8')
 
 # pprint(get_single_card_data_from_scryfall('Wear'))
 # scrape_card_data()

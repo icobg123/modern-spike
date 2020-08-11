@@ -22207,6 +22207,25 @@
                 "image": "https://img.scryfall.com/cards/art_crop/front/f/5/f5a39379-7313-463a-9a02-e5157b9557f4.jpg?1557577065",
                 "name": "Angrath's Rampage",
                 "oracle_text": "Choose one \u2014\n\u2022 Target player sacrifices an artifact.\n\u2022 Target player sacrifices a creature.\n\u2022 Target player sacrifices a planeswalker.",
+                "similar_cards": [
+                    "Allure of the Unknown",
+                    "Angrath's Fury",
+                    "Blightning",
+                    "Demonic Dread",
+                    "Din of the Fireherd",
+                    "Dreadbore",
+                    "Morgue Burst",
+                    "Poison the Well",
+                    "Rakdos's Return",
+                    "Skull Rend",
+                    "Slaughter Games",
+                    "Thought Hemorrhage",
+                    "Torrent of Souls",
+                    "Traitor's Roar",
+                    "Tyrannize",
+                    "Void",
+                    "Widespread Brutality"
+                ],
                 "type": "Sideboard"
             }
         },
@@ -44471,6 +44490,18 @@
                 "image": "https://img.scryfall.com/cards/art_crop/front/9/3/930240dc-9c8c-4857-b6ce-85f1689c60e5.jpg?1562560126",
                 "name": "Shapers' Sanctuary",
                 "oracle_text": "Whenever a creature you control becomes the target of a spell or ability an opponent controls, you may draw a card.",
+                "similar_cards": [
+                    "Crop Sigil",
+                    "Font of Fertility",
+                    "Hardened Scales",
+                    "Helix Pinnacle",
+                    "Mana Bloom",
+                    "Oath of Nissa",
+                    "Obscuring Aether",
+                    "Root Maze",
+                    "Sylvan Echoes",
+                    "Vessel of Nascency"
+                ],
                 "type": "Sideboard"
             }
         },
