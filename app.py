@@ -7,14 +7,23 @@ from worker import conn
 from flask import Flask
 from flask_compress import Compress
 from flask_csp.csp import csp_header
-
+from flask_pymongo import PyMongo
 from flask import Flask
 from flask_talisman import Talisman, ALLOW_FROM
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 31536000
+# app.config[
+#     "MONGO_URI"] = "mongodb+srv://modern-spike-mongodb:D8kS8CmQFTvN@modern-spike.ar9xl.mongodb.net/modern-spike?retryWrites=true&w=majority"
 sslify = SSLify(app)
 Compress(app)
+# mongo = PyMongo(app)
+mongo = PyMongo(app,
+                 uri="mongodb+srv://modern-spike-mongodb:D8kS8CmQFTvN@modern-spike.ar9xl.mongodb.net/modern-spike?retryWrites=true&w=majority")
+
+
+# db = client.test
+
 # csp = {
 #     'default-src': "'self'",
 #     'img-src': '*.scryfall.com',

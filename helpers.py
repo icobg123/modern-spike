@@ -3,6 +3,7 @@ from pprint import pprint
 from random import choice, sample
 import random
 import re
+
 import scrython
 from bs4 import BeautifulSoup
 import requests
@@ -12,6 +13,8 @@ from worker import conn
 # from test import count_words_at_url
 from rq import get_current_job
 import time
+from pymongo import UpdateOne
+from app import mongo
 
 
 def is_there_new_data() -> dict:
@@ -52,7 +55,7 @@ def is_there_new_data() -> dict:
 
     if latest_modern_tournament is None:
 
-        latest_modern_tournament_urls = url_data
+        latest_modern_tournament_urls = url_data['url']
     elif tournament_urls:
         # latest_modern_tournament_parent = latest_modern_tournament.parent.parent.parent
         latest_modern_tournament_urls = tournament_urls
@@ -262,20 +265,32 @@ def scrape_card_data() -> dict:
                 "card_set": existing_card_data,
             }
 
+            urls = mongo.db.urls
+
+            insert_urls_in_db = urls.update_one({"_id": "decklists_urls"},
+                                                {"$set": {"urls": urls_to_add}},
+                                                upsert=True)
+
             set_card_names = set()
             for list_card_names in card_names_to_add:
                 for card in list_card_names:
                     set_card_names.add(card)
+
             latest_card_names_dict = {
                 "card_names": card_names_to_add,
                 "set_card_names": list(set_card_names)
             }
-
+            list_card_names = mongo.db.list_card_names
+            insert_list_card_names_in_db = list_card_names.update_one({"_id": "card_names"},
+                                                                      {"$set": {"set_card_names": list(set_card_names),
+                                                                                "card_names": card_names_to_add}},
+                                                                      upsert=True)
             # json.dump(dict_to_file, card_data_json, sort_keys=True, indent=4)
             # json.dump(latest_card_names_dict, card_names_list, sort_keys=True, indent=4)
 
             with open('static/card_data_url.json', 'w') as fp:
                 json.dump(dict_to_file, fp, sort_keys=True, indent=4)
+
             with open('static/latest_card_names.json', 'w') as fp:
                 json.dump(latest_card_names_dict, fp, sort_keys=True, indent=4)
 
@@ -523,7 +538,7 @@ def similar_cards(card_name, not_enough=False):
         None)
     # pprint(card_info)
 
-    if card_info and len(card_info) > 4:
+    if card_info and len(card_info) > 3:
         print('card in info')
         return card_info
 
