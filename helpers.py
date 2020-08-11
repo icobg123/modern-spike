@@ -19,6 +19,9 @@ import os
 from pymongo import UpdateOne
 from app import mongo
 
+# from db import mongo
+
+
 # DB_URI = os.environ['DB_URI']
 # print(DB_URI)
 

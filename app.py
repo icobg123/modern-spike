@@ -1,6 +1,7 @@
 import os
 from flask_sslify import SSLify
 from flask import Flask, render_template, request, jsonify, Markup, request, make_response
+from db import mongo
 from helpers import *
 from rq import Queue
 from worker import conn
@@ -17,15 +18,15 @@ DB_URI = os.environ['DB_URI']
 # print(DB_URI)
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 31536000
-# app.config[
-#     "MONGO_URI"] = "mongodb+srv://modern-spike-mongodb:D8kS8CmQFTvN@modern-spike.ar9xl.mongodb.net/modern-spike?retryWrites=true&w=majority"
+app.config['MONGO_URI'] = DB_URI
 sslify = SSLify(app)
 Compress(app)
 # mongo = PyMongo(app)
 # if not DB_URI:
 #     DB_URI = Config.DB_URI
+mongo.init_app(app)
 
-mongo = PyMongo(app, uri=DB_URI)
+# mongo = PyMongo(app, uri=DB_URI)
 
 # db = client.test
 
