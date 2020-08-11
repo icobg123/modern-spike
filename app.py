@@ -10,6 +10,7 @@ from flask_csp.csp import csp_header
 from flask_pymongo import PyMongo
 from flask import Flask
 from flask_talisman import Talisman, ALLOW_FROM
+from config import Config
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 31536000
@@ -18,9 +19,7 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 31536000
 sslify = SSLify(app)
 Compress(app)
 # mongo = PyMongo(app)
-mongo = PyMongo(app,
-                 uri="mongodb+srv://modern-spike-mongodb:D8kS8CmQFTvN@modern-spike.ar9xl.mongodb.net/modern-spike?retryWrites=true&w=majority")
-
+mongo = PyMongo(app, uri=Config.DB_URI)
 
 # db = client.test
 
