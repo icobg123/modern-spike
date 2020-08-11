@@ -1,9 +1,11 @@
+import base64
 import json
 from pprint import pprint
 from random import choice, sample
 import random
 import re
-
+# from PIL import Image
+# from io import BytesIO
 import scrython
 from bs4 import BeautifulSoup
 import requests
@@ -23,16 +25,21 @@ def is_there_new_data() -> dict:
     :return:is_new_data :bool,latest_modern_tournament_url:str
     """
     url_data = read_from_file('static/card_data_url.json')
+
+    urls_doc_from_db = mongo.db.urls.find_one({"_id": "decklists_urls"})
+    pprint(urls_doc_from_db)
+    urls_from_db = urls_doc_from_db['urls']
+
     today = DT.date.today()
     week_ago = today - DT.timedelta(days=7)
     # d = DT.datetime.strptime(today, '%Y-%m-%d')
     today = DT.date.strftime(today, "%m/%d/%Y")
     week_ago = DT.date.strftime(week_ago, "%m/%d/%Y")
-    print(today, week_ago)
+    # print(today, week_ago)
     is_new_data = False
     url = 'https://magic.wizards.com/en/section-articles-see-more-ajax?dateoff=&l=en&f=9041&search-result-theme=&limit=30&fromDate=' + week_ago + '&toDate=' + today + '&sort=ASC&word=modern&offset=0'
     # url = 'https://magic.wizards.com/en/content/deck-lists-magic-online-products-game-info'
-    pprint(url)
+    # pprint(url)
     response = requests.get(url)
     json_data = response.json()
     # for url in  response['data']
@@ -46,7 +53,7 @@ def is_there_new_data() -> dict:
     latest_modern_tournament = soup.findAll("a")
     # pprint(latest_modern_tournament)
     for a in latest_modern_tournament:
-        pprint(a['href'])
+        # pprint(a['href'])
 
         if "League" not in a.text:
             tournament_urls.append('https://magic.wizards.com' + a['href'])
@@ -55,7 +62,7 @@ def is_there_new_data() -> dict:
 
     if latest_modern_tournament is None:
 
-        latest_modern_tournament_urls = url_data['url']
+        latest_modern_tournament_urls = urls_from_db
     elif tournament_urls:
         # latest_modern_tournament_parent = latest_modern_tournament.parent.parent.parent
         latest_modern_tournament_urls = tournament_urls
@@ -64,16 +71,16 @@ def is_there_new_data() -> dict:
         # latest_modern_tournament_url = 'https://magic.wizards.com' + latest_modern_tournament_parent['href']
         #
         # data = read_from_file('static/card_data_url.json')
-        set_data_url = set(url_data['url'])
+        set_data_url = set(urls_from_db)
         set_latest_modern_tournament_urls = set(latest_modern_tournament_urls)
-        pprint(set_data_url)
-        pprint(set_latest_modern_tournament_urls)
+        # pprint(set_data_url)
+        # pprint(set_latest_modern_tournament_urls)
         if set_data_url != set_latest_modern_tournament_urls:
             # if data['url'] != latest_modern_tournament_urls:
             is_new_data = True
         # return tournament_urls
     else:
-        latest_modern_tournament_urls = url_data['url']
+        latest_modern_tournament_urls = urls_from_db
 
     return {"is_new_data": is_new_data, "latest_modern_tournament_urls": latest_modern_tournament_urls}
 
@@ -86,223 +93,243 @@ def scrape_card_data() -> dict:
     :return:unique_cards:Dict format card data,modern_league_url:str,cards_from:str
     """
     card_data = read_from_file('static/card_data_url.json')
-    card_names_data = read_from_file('static/latest_card_names.json')
+    # card_names_data = read_from_file('static/latest_card_names.json')
     # latest_card_names = read_from_file('static/latest_card_names.json')
-    existing_card_data = card_data['card_set']
-    existing_urls = card_data['url']
+    # existing_card_data = card_data['card_set']
+    existing_card_data = []
     urls_to_add = []
-    # urls_to_add = existing_urls
-    # urls_to_add = existing_urls[-1:]
     card_names_to_add = []
-    # card_names_to_add = card_names_data['card_names']
-    # card_names_to_add = card_names_data['card_names'][-1:]
-    # existing_card_names = card_names_data['card_names'][:-1]
-    temp_urls = []
-    if 'card_set' not in card_data or 'url' not in card_data:
-        raise ValueError("No target in given data")
-    else:
-        is_there_new_data_data = is_there_new_data()
-        is_new_data = is_there_new_data_data['is_new_data']
-        latest_modern_tournament_urls = is_there_new_data_data['latest_modern_tournament_urls']
-        if is_new_data:
-            print('update urls')
-            cards_from = 'cards from URL'
-            print(cards_from)
 
-            # get_new_url = True
-            # card_data_json = open('static/card_data_url.json', 'w')
-            #
-            # card_names_list = open('static/latest_card_names.json', 'w')
+    cards = mongo.db.cards
+    urls = mongo.db.urls
+    list_card_names_db = mongo.db.list_card_names
+    card_ids = cards.find().distinct('_id')
 
-            for url in latest_modern_tournament_urls[::-1]:
-                # if url not in existing_urls:
-                modern_league_url_from_file = url
+    # existing_urls = card_data['url']
 
-                modern_league_url = modern_league_url_from_file
-                # modern_league_url = 'https://magic.wizards.com' + modern_league_url_from_file
-                pprint(modern_league_url)
-                response_league = requests.get(modern_league_url)
-                modern_deck_lists = BeautifulSoup(response_league.text, 'html.parser')
+    is_there_new_data_data = is_there_new_data()
+    # is_new_data = True
+    is_new_data = is_there_new_data_data['is_new_data']
+    # latest_modern_tournament_urls = [
+    #     'https://magic.wizards.com/en/articles/archive/mtgo-standings/modern-preliminary-2020-08-08']
+    latest_modern_tournament_urls = is_there_new_data_data['latest_modern_tournament_urls']
+    if is_new_data:
+        print('update urls')
+        cards_from = 'cards from URL'
+        print(cards_from)
 
-                sorted_by_type = modern_deck_lists.findAll('div',
-                                                           attrs={'class': re.compile(
-                                                               '^sorted-by-(Tribal|Planeswalker|Creature|Sorcery|Land|Enchantment|Artifact|Instant|Sideboard)',
-                                                               flags=re.IGNORECASE)})
-                # pprint(sorted_by_type)
-                card_list = []  # list of dict items
+        # get_new_url = True
+        # card_data_json = open('static/card_data_url.json', 'w')
+        #
+        # card_names_list = open('static/latest_card_names.json', 'w')
+        card_list = []  # list of dict items
 
-                new_card_name_list = set()  # list of dict items
+        for url in latest_modern_tournament_urls[::-1]:
+            # if url not in existing_urls:
+            modern_league_url_from_file = url
 
-                for sorted_by_type in sorted_by_type:
-                    # print(sorted_by_type.find('h5').string)
-                    cards_in_decks = sorted_by_type.findAll('a', attrs={'class': 'deck-list-link'})
-                    for card_name_div in cards_in_decks:
-                        dict_to_add = {}
+            modern_league_url = modern_league_url_from_file
+            # modern_league_url = 'https://magic.wizards.com' + modern_league_url_from_file
+            pprint(modern_league_url)
+            response_league = requests.get(modern_league_url)
+            modern_deck_lists = BeautifulSoup(response_league.text, 'html.parser')
 
-                        card_deck_list_id = card_name_div.parent.parent.parent.parent.parent.parent.parent.get('id')
-                        if not card_deck_list_id:
-                            card_deck_list_id = card_name_div.parent.parent.parent.parent.parent.parent.get('id')
-                        # print(card_deck_list_id)
+            sorted_by_type = modern_deck_lists.findAll('div',
+                                                       attrs={'class': re.compile(
+                                                           '^sorted-by-(Tribal|Planeswalker|Creature|Sorcery|Land|Enchantment|Artifact|Instant|Sideboard)',
+                                                           flags=re.IGNORECASE)})
+            # pprint(sorted_by_type)
 
-                        card_type = card_name_div.parent.parent.parent.find('h5').string
-                        card_type = card_type[:card_type.index(" (")]
-                        card_name = card_name_div.string
+            new_card_name_list = set()  # list of dict items
+            # card_name_in_list = bool
 
-                        # print(card_name_div.string + ': ' + card_type)
-                        # print(div.string + ': ' + str(is_this_a_basic(div.string)))
-                        # if ((any(d['name'] == card_name_div.string for d in card_list)) and (
-                        #         not is_this_a_basic(card_name_div.string)) or not card_list):
-                        card_name_in_list = []
-                        # card_name_in_list = any(card_name in d for d in card_list)
+            for sorted_by_type in sorted_by_type:
+                # print(sorted_by_type.find('h5').string)
+                cards_in_decks = sorted_by_type.findAll('a', attrs={'class': 'deck-list-link'})
+                for card_name_div in cards_in_decks:
+                    dict_to_add = {}
 
-                        # card_name_in_list = any(d.get('name', 'icara') == card_name for d in card_list)
+                    card_deck_list_id = card_name_div.parent.parent.parent.parent.parent.parent.parent.get('id')
+                    if not card_deck_list_id:
+                        card_deck_list_id = card_name_div.parent.parent.parent.parent.parent.parent.get('id')
+                    # print(card_deck_list_id)
 
-                        if '//' in card_name:
+                    card_type = card_name_div.parent.parent.parent.find('h5').string
+                    # card_type = card_type[:card_type.index(" (")]
+                    card_name = card_name_div.string
 
-                            # print("// in name {} ".format(card_name))
+                    # print(card_name_div.string + ': ' + card_type)
+                    # print(div.string + ': ' + str(is_this_a_basic(div.string)))
+                    # if ((any(d['name'] == card_name_div.string for d in card_list)) and (
+                    #         not is_this_a_basic(card_name_div.string)) or not card_list):
+                    card_name_in_list = any(card_name in d for d in card_list)
+                    card_list.append(card_name)
+                    # pprint(card_list)
+                    print(card_name, card_name_in_list)
 
-                            split_str = card_name.split('//', 1)
+                    # card_name_in_list = any(d.get('name', 'icara') == card_name for d in card_list)
+                    if '//' in card_name:
 
-                            for split_card_name in split_str:
-                                split_card_name = split_card_name.rstrip().lstrip()
-                                in_existing_card_data = any(split_card_name in d for d in existing_card_data)
+                        # print("// in name {} ".format(card_name))
 
-                                if (not card_name_in_list and not in_existing_card_data and (
-                                        not is_this_a_basic(card_name))):
-                                    # print('// card not in  data')
-                                    # print("// in name {} - not in  existing data".format(split_card_name))
+                        split_str = card_name.split('//', 1)
 
-                                    dict_to_add = get_single_card_data_from_scryfall(split_card_name)
-                                    dict_to_add[split_card_name]['type'] = card_type
-                                    dict_to_add[split_card_name]['decklist_id'] = url + "#" + card_deck_list_id
-                                    existing_card_data.append(dict_to_add)
+                        for split_card_name in split_str:
+                            split_card_name = split_card_name.rstrip().lstrip()
 
-                                    existing_card_data.append(dict_to_add)
-                                    card_name_in_list.append(card_name)
-                                    new_card_name_list.add(split_card_name)
+                            # in_existing_card_data = mongo.db.cards.count_documents({'_id': split_card_name}, limit=1)
 
-                                else:
-                                    # print('// card in existing data')
-                                    # print("// in name {} - in  existing data".format(split_card_name))
-                                    card_name_in_list.append(card_name)
-                                    new_card_name_list.add(split_card_name)
+                            in_existing_card_data = any(split_card_name in d for d in card_ids)
 
-                                    for card in existing_card_data:
-                                        # pprint(card)
-                                        if split_card_name in card.keys():
-                                            # existing_card_data[card[split_card_name]['decklist_id']] = card_deck_list_id
-                                            index = existing_card_data.index(card)
-                                            existing_card_data[index][split_card_name][
-                                                'decklist_id'] = url + "#" + card_deck_list_id
-                                            # card[split_card_name]['decklist_id'] = card_deck_list_id
-                                            break
+                            if (not card_name_in_list and not in_existing_card_data and (
+                                    not is_this_a_basic(card_name))):
+                                # print('// card not in  data')
+                                print("// in name {} - not in  existing data".format(split_card_name))
 
-                            # else:
-                            #
-                            #     new_card_name_list.append(card_name)
-                            #     # existing_card_data[card_name]['decklist_id'] = card_deck_list_id
-                            #     for card in existing_card_data:
-                            #         if card_name in card.keys():
-                            #             card[card_name]['decklist_id'] = card_deck_list_id
-                            #             break
-                        else:
-                            # print('regular name')
+                                dict_to_add = get_single_card_data_from_scryfall(split_card_name)
+                                # dict_to_add[split_card_name]['type'] = card_type
+                                dict_to_add['decklist_id'] = url + "#" + card_deck_list_id
+                                # dict_to_add[split_card_name]['decklist_id'] = url + "#" + card_deck_list_id
+                                existing_card_data.append(dict_to_add)
 
-                            in_existing_card_data = any(card_name in d for d in existing_card_data)
-                            if not is_this_a_basic(card_name):
-                                if (not card_name_in_list and not in_existing_card_data):
+                                # existing_card_data.append(dict_to_add)
+                                new_card_name_list.add(split_card_name)
 
-                                    # pprint('')
-                                    # print("regular name {} - not in existing card data".format(card_name))
+                            else:
+                                # print('// card in existing data')
+                                print("// in name {} - in  existing data".format(split_card_name))
+                                # card_name_in_list.append(card_name)
+                                new_card_name_list.add(split_card_name)
 
-                                    # if (card_name_div.string not in card_list) and (not is_this_a_basic(card_name_div.string)):
+                                update_existing_decklist_url_in_db = cards.update_one({"_id": card_name},
+                                                                                      {"$set": {
+                                                                                          "decklist_id": url + "#" + card_deck_list_id}},
+                                                                                      upsert=True)
 
-                                    dict_to_add = get_single_card_data_from_scryfall(card_name)
-                                    # dict_to_add['name'] = card_name_div.string
-                                    dict_to_add[card_name]['type'] = card_type
-                                    dict_to_add[card_name]['decklist_id'] = url + "#" + card_deck_list_id
-                                    existing_card_data.append(dict_to_add)
+                                # for card in existing_card_data:
+                                #     # pprint(card)
+                                #     if split_card_name in card.keys():
+                                #         # existing_card_data[card[split_card_name]['decklist_id']] = card_deck_list_id
+                                #         index = existing_card_data.index(card)
+                                #         existing_card_data[index][split_card_name][
+                                #             'decklist_id'] = url + "#" + card_deck_list_id
+                                #         # card[split_card_name]['decklist_id'] = card_deck_list_id
+                                #         break
 
-                                    existing_card_data.append(dict_to_add)
-                                    card_name_in_list.append(card_name)
-                                    new_card_name_list.add(card_name)
+                        # else:
+                        #
+                        #     new_card_name_list.append(card_name)
+                        #     # existing_card_data[card_name]['decklist_id'] = card_deck_list_id
+                        #     for card in existing_card_data:
+                        #         if card_name in card.keys():
+                        #             card[card_name]['decklist_id'] = card_deck_list_id
+                        #             break
+                    else:
+                        # print('regular name')
 
-                                else:
-                                    # print("regular name {} In data file".format(card_name))
-                                    card_name_in_list.append(card_name)
-                                    new_card_name_list.add(card_name)
-                                    # existing_card_data[card_name]['decklist_id'] = card_deck_list_id
-                                    for card in existing_card_data:
-                                        if card_name in card.keys():
-                                            # card[card_name]['decklist_id'] = card_deck_list_idndex
-                                            index = existing_card_data.index(card)
-                                            existing_card_data[index][card_name][
-                                                'decklist_id'] = url + "#" + card_deck_list_id
-                                            break
+                        # in_existing_card_data = mongo.db.cards.count_documents({'_id': card_name}, limit=1)
+                        in_existing_card_data = any(card_name in d for d in card_ids)
+                        if not is_this_a_basic(card_name):
+                            if not card_name_in_list and not in_existing_card_data:
+
+                                # pprint('')
+                                print("regular name {} - not in existing card data".format(card_name))
+
+                                # if (card_name_div.string not in card_list) and (not is_this_a_basic(card_name_div.string)):
+
+                                dict_to_add = get_single_card_data_from_scryfall(card_name)
+                                # dict_to_add['name'] = card_name_div.string
+
+                                dict_to_add['decklist_id'] = url + "#" + card_deck_list_id
+                                # dict_to_add[card_name]['decklist_id'] = url + "#" + card_deck_list_id
+                                existing_card_data.append(dict_to_add)
+
+                                # existing_card_data.append(dict_to_add)
+                                card_list.append(card_name)
+                                new_card_name_list.add(card_name)
+
+                            else:
+                                print("regular name {} In data file".format(card_name))
+                                # card_name_in_list.append(card_name)
+                                new_card_name_list.add(card_name)
+                                # existing_card_data[card_name]['decklist_id'] = card_deck_list_id
+
+                                update_existing_decklist_url_in_db = cards.update_one({"_id": card_name},
+                                                                                      {"$set": {
+                                                                                          "decklist_id": url + "#" + card_deck_list_id}},
+                                                                                      upsert=True)
+
+                                # for card in existing_card_data:
+                                #     if card_name in card.keys():
+                                #         # card[card_name]['decklist_id'] = card_deck_list_idndex
+                                #         index = existing_card_data.index(card)
+                                #         existing_card_data[index][card_name][
+                                #             'decklist_id'] = url + "#" + card_deck_list_id
+                                #         break
                         # if dict_to_add:
 
-                    # card_list.append(dict_to_add)
-                # unique_cards = existing_card_data
-                # https://stackoverflow.com/questions/11092511/python-list-of-unique-dictionaries
-                # unique_cards = [dict(s) for s in set(frozenset(d.items()) for d in card_list)]
-                # existing_card_data.append(list_dicts_to_add)
+                # card_list.append(dict_to_add)
+            # unique_cards = existing_card_data
+            # https://stackoverflow.com/questions/11092511/python-list-of-unique-dictionaries
+            # unique_cards = [dict(s) for s in set(frozenset(d.items()) for d in card_list)]
+            # existing_card_data.append(list_dicts_to_add)
 
-                # urls_to_add.insert(0, url)
-                urls_to_add.append(url)
+            # urls_to_add.insert(0, url)
+            urls_to_add.append(url)
 
-                # card_names_to_add.insert(0, list(new_card_name_list))
-                card_names_to_add.append(list(new_card_name_list))
+            # card_names_to_add.insert(0, list(new_card_name_list))
+            card_names_to_add.append(list(new_card_name_list))
 
-                # urls_to_add.append(temp_urls)
-                # existing_card_names.append(card_names_to_add)
+            # urls_to_add.append(temp_urls)
+            # existing_card_names.append(card_names_to_add)
 
-            # existing_urls.pop(0)
-            # card_names_to_add.pop(0)
-            # pprint(card_names_to_dd)
-            # pprint(urls_to_add)
-            dict_to_file = {
-                'url': urls_to_add,
-                "card_set": existing_card_data,
-            }
+        # existing_urls.pop(0)
+        # card_names_to_add.pop(0)
+        # pprint(existing_card_data)
+        # pprint(card_names_to_add)
+        # pprint(urls_to_add)
 
-            urls = mongo.db.urls
+        # dict_to_file = {
+        #     'url': urls_to_add,
+        #     "card_set": existing_card_data,
+        # }
 
-            insert_urls_in_db = urls.update_one({"_id": "decklists_urls"},
-                                                {"$set": {"urls": urls_to_add}},
-                                                upsert=True)
+        insert_urls_in_db = urls.update_one({"_id": "decklists_urls"},
+                                            {"$set": {"urls": urls_to_add}},
+                                            upsert=True)
 
-            set_card_names = set()
-            for list_card_names in card_names_to_add:
-                for card in list_card_names:
-                    set_card_names.add(card)
+        set_card_names = set()
+        for list_card_names in card_names_to_add:
+            for card in list_card_names:
+                set_card_names.add(card)
 
-            latest_card_names_dict = {
-                "card_names": card_names_to_add,
-                "set_card_names": list(set_card_names)
-            }
-            list_card_names = mongo.db.list_card_names
-            insert_list_card_names_in_db = list_card_names.update_one({"_id": "card_names"},
-                                                                      {"$set": {"set_card_names": list(set_card_names),
-                                                                                "card_names": card_names_to_add}},
-                                                                      upsert=True)
-            # json.dump(dict_to_file, card_data_json, sort_keys=True, indent=4)
-            # json.dump(latest_card_names_dict, card_names_list, sort_keys=True, indent=4)
+        # latest_card_names_dict = {
+        #     "card_names": card_names_to_add,
+        #     "set_card_names": list(set_card_names)
+        # }
 
-            with open('static/card_data_url.json', 'w') as fp:
-                json.dump(dict_to_file, fp, sort_keys=True, indent=4)
+        insert_list_card_names_in_db = list_card_names_db.update_one({"_id": "card_names"},
+                                                                     {"$set": {"set_card_names": list(set_card_names),
+                                                                               "card_names": card_names_to_add}},
+                                                                     upsert=True)
 
-            with open('static/latest_card_names.json', 'w') as fp:
-                json.dump(latest_card_names_dict, fp, sort_keys=True, indent=4)
+        if existing_card_data:
+            upserts = [UpdateOne({'_id': x['_id']}, {'$setOnInsert': x}, upsert=True) for x in existing_card_data]
+            insert_new_cards = cards.bulk_write(upserts)
 
-            # card_data_json.close()
-            # card_names_list.close()
+        # with open('static/card_data_url.json', 'w') as fp:
+        #     json.dump(dict_to_file, fp, sort_keys=True, indent=4)
+        #
+        # with open('static/latest_card_names.json', 'w') as fp:
+        #     json.dump(latest_card_names_dict, fp, sort_keys=True, indent=4)
 
-
-        else:
-            modern_league_url = card_data['url']
-            cards_from = 'cards from file'
-            unique_cards = card_data['card_set']
-            print(cards_from)
+        # card_data_json.close()
+        # card_names_list.close()
+    else:
+        modern_league_url = card_data['url']
+        cards_from = 'cards from file'
+        unique_cards = card_data['card_set']
+        print(cards_from)
 
     return {
         "modern_league_url": 'https://magic.wizards.com',
@@ -469,12 +496,19 @@ def get_single_card_data_from_scryfall(card: str) -> dict:
             card_flavor_txt = card_info['scryfallJson']['flavor_text']
 
     card_data = {
-        card: {
-            'name': card,
-            'oracle_text': card_oracle_txt,
-            'flavor_text': card_flavor_txt,
-            'image': card_img
-        }}
+        '_id': card,
+        'name': card,
+        'oracle_text': card_oracle_txt,
+        'flavor_text': card_flavor_txt,
+        'image': card_img
+    }
+    # card_data = {
+    # card: {
+    #     'name': card,
+    #     'oracle_text': card_oracle_txt,
+    #     'flavor_text': card_flavor_txt,
+    #     'image': card_img
+    # }}
 
     # pprint(card_data.keys())
     return card_data
@@ -482,9 +516,11 @@ def get_single_card_data_from_scryfall(card: str) -> dict:
 
 def get_card_data_from_local_file(card: str) -> dict:
     # random_card_data = {}
+    cards = mongo.db.cards
+
     pprint("get_card_data_from_local_file broken card - {}".format(card))
-    data_api = read_from_file('static/card_data_url.json')
-    card_data_scryfall = data_api['card_set']
+    # data_api = read_from_file('static/card_data_url.json')
+    # card_data_scryfall = data_api['card_set']
     # card_data_mtgjson = read_from_file('static/ModernAtomic.json')
     # card_data = json.loads(open("static/ModernAtomic.json", encoding="utf8").read())
 
@@ -492,7 +528,11 @@ def get_card_data_from_local_file(card: str) -> dict:
     # pprint(card)
 
     # card_info = list(filter(lambda x: x if card in x.keys() else None, card_data_scryfall))[0]
-    card_info = [x for x in card_data_scryfall if card in x.keys()][0]
+    card_info = cards.find_one({"_id": card})
+    # pprint(card_info)
+    # card_info = [x for x in card_data_scryfall if card in x.keys()][0]
+    # card_info = [x for x in card_data_scryfall if card in x.keys()][0]
+
     # pprint(card_info)
     # card_info = next((item for item in card_data_scryfall if card in item), None)
 
@@ -507,10 +547,10 @@ def get_card_data_from_local_file(card: str) -> dict:
 
     random_card_data = {
         'name': card,
-        'oracle_text': card_info[card]['oracle_text'],
-        'flavor_text': card_info[card]['flavor_text'],
-        'decklist_id': card_info[card]['decklist_id'],
-        'image': card_info[card]['image']
+        'oracle_text': card_info['oracle_text'],
+        'flavor_text': card_info['flavor_text'],
+        'decklist_id': card_info['decklist_id'],
+        'image': card_info['image']
     }
 
     # pprint(random_card_data)
@@ -703,11 +743,14 @@ def similar_cards(card_name, not_enough=False):
 
 
 def gen_new_cards(*args):
-    data = read_from_file('static/card_data_url.json')
     # data = read_from_file('static/card_data_url.json')
-    latest_card_names = read_from_file('static/latest_card_names.json')
+    # data = read_from_file('static/card_data_url.json')
+    # latest_card_names = read_from_file('static/latest_card_names.json')
+    # latest_card_names = read_from_file('static/latest_card_names.json')
+    list_card_names = mongo.db.list_card_names
+    latest_card_names = list_card_names.find_one({"_id": "card_names"})
 
-    unique_cards = data['card_set']
+    # unique_cards = data['card_set']
 
     list_card_names = latest_card_names['set_card_names']
     # list_card_names = [list(d.keys())[0] for d in unique_cards]
@@ -810,19 +853,15 @@ def gen_new_cards(*args):
             "correct_answer_image": correct_answer_image,
             "correct_answer_name": correct_answer_name}
 
-
-def count_words_at_url(seconds):
-    job = get_current_job()
-    print('Starting task')
-    for i in range(seconds):
-        job.meta['progress'] = 100.0 * i / seconds
-        job.save_meta()
-        print(i)
-        time.sleep(1)
-    job.meta['progress'] = 100
-    job.save_meta()
-    print('Task completed')
-    return {"result": "mn sum lud"}
+# def pil2datauri(img):
+#     #converts PIL image to datauri
+#     # response = requests.get(url)
+#     # img = Image.open(BytesIO(response.content))
+#
+#     data = BytesIO()
+#     img.save(data, "JPEG")
+#     data64 = base64.b64encode(data.getvalue())
+#     return u'data:img/jpeg;base64,'+data64.decode('utf-8')
 
 # pprint(get_single_card_data_from_scryfall('Wear'))
 # scrape_card_data()

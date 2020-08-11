@@ -63,7 +63,7 @@ def get_new_cards():
             print('gen_new_cards failed')
             job.delete()
         if job.is_finished:
-            print('job done new job')
+            print('gen_new_cards job done new gen_new_cards job')
             new_cards = job.result
             result = q.enqueue(gen_new_cards, job_id="gen_new_cards", result_ttl=43200)
         else:
@@ -181,6 +181,8 @@ def index():
                 print('scraping job done ')
 
             else:
+                # job.delete()
+
                 print('scraping job not finished')
                 data = read_from_file('static/card_data_url.json')
                 latest_modern_tournament_url = data['url']
