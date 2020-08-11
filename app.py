@@ -158,7 +158,7 @@ def offline():
 
 
 @app.route("/about", methods=['GET', 'POST'])
-@talisman(frame_options=ALLOW_FROM, frame_options_allow_from='SAMEORIGIN', content_security_policy={'img-src': "*"}, )
+@talisman(frame_options=ALLOW_FROM, frame_options_allow_from='SAMEORIGIN', content_security_policy={'img-src': "'self' data:"}, )
 def about():
     return render_template("about.html")
 
@@ -166,7 +166,7 @@ def about():
 @app.route("/", methods=['GET', 'POST'])
 # @csp_header({'img-src': "'self' https://img.scryfall.com/", 'report-uri': '', 'object-src': 'none',
 #              'require-trusted-types-for': 'script'})
-@talisman(frame_options=ALLOW_FROM, frame_options_allow_from='SAMEORIGIN', content_security_policy={'img-src': "*"}, )
+@talisman(frame_options=ALLOW_FROM, frame_options_allow_from='SAMEORIGIN', content_security_policy={'img-src': "'self' data:"}, )
 def index():
     new_data_obj = is_there_new_data()
     print(new_data_obj)
