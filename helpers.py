@@ -15,9 +15,12 @@ from worker import conn
 # from test import count_words_at_url
 from rq import get_current_job
 import time
+import os
 from pymongo import UpdateOne
 from app import mongo
 
+# DB_URI = os.environ['DB_URI']
+# print(DB_URI)
 
 def is_there_new_data() -> dict:
     """

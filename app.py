@@ -13,7 +13,8 @@ from flask_talisman import Talisman, ALLOW_FROM
 from config import Config
 import os
 
-DB_URI = os.environ.get('DB_URI', None)
+DB_URI = os.environ['DB_URI']
+# print(DB_URI)
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 31536000
 # app.config[
@@ -21,8 +22,8 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 31536000
 sslify = SSLify(app)
 Compress(app)
 # mongo = PyMongo(app)
-if not DB_URI:
-    DB_URI = Config.DB_URI
+# if not DB_URI:
+#     DB_URI = Config.DB_URI
 
 mongo = PyMongo(app, uri=DB_URI)
 
