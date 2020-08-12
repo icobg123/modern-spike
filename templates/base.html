@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
+    {#    <meta charset="UTF-8">#}
+    <link rel="preload" href="{{ url_for('static' , filename='fonts/Beleren-Bold/beleren-boldP101.otf') }}" crossorigin
+          as="font">
+    <link rel="preload" href="{{ url_for('static' , filename='fonts/mplantin/mplantin.otf') }}" crossorigin as="font">
     {#    <link rel="icon" href="{{ url_for('static', filename='images/icons/icon-96x96.png') }}">#}
     <meta name="theme-color" content="#343a40">
     {#    <meta name="theme-color" content="#00FFFFFF">#}
@@ -22,9 +26,6 @@
 
     <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
 
-    <link crossorigin rel="preload" href="{{ url_for('static' , filename='fonts/Beleren-Bold/beleren-boldP101.otf') }}"
-          as="font">
-    <link crossorigin rel="preload" href="{{ url_for('static' , filename='fonts/mplantin/mplantin.otf') }}" as="font">
 
     <!-- iOS -->
     <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/icons/icon-96x96.png') }}">
