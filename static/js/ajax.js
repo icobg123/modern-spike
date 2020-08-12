@@ -206,29 +206,6 @@ $(document).ready(function () {
                     console.log(data.correct_answer_decklist_id);
                     $("#by_card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
 
-                    $('.lds-ripple').removeClass('d-flex').addClass('d-none');
-                    $('#card_holder').html(data.html).removeClass('d-none');
-
-                    // $('#oracle_text').removeClass('d-none');
-                    $('#card_by_image').removeClass('d-none');
-                    $('#change_game_mode').removeClass('d-none');
-
-                    // btn_grp.removeClass('d-none')
-                    by_text.addClass('d-none');
-                    by_img.removeClass('d-none');
-                    by_img.html('Next card');
-
-                    $('#modalOracleText').html(data.new_oracle_text);
-                    $('#correct_answer').html(data.correct_answer_index);
-
-
-                    $("#decklist_id_by_image").attr('href', data.correct_answer_decklist_id);
-
-                    $('#next_card').removeClass('d-none');
-                    let decklists = data.correct_answer_decklist_id.split('#')[0]
-
-                    // document.getElementById("demo").innerHTML = res[0];
-                    $("#decklists_url").attr('href', decklists);
                     // let img = $('#by_card_image');
                     let img = document.getElementById('by_card_image');
                     let img_loaded = function () {
@@ -236,41 +213,41 @@ $(document).ready(function () {
                         // `this` refers to the img object
                         console.log("Img finally loaded in function")
 
-                        // $('.lds-ripple').removeClass('d-flex').addClass('d-none');
-                        // $('#card_holder').html(data.html).removeClass('d-none');
-                        //
-                        // // $('#oracle_text').removeClass('d-none');
-                        // $('#card_by_image').removeClass('d-none');
-                        // $('#change_game_mode').removeClass('d-none');
-                        //
-                        // // btn_grp.removeClass('d-none')
-                        // by_text.addClass('d-none');
-                        // by_img.removeClass('d-none');
-                        // by_img.html('Next card');
-                        //
-                        // $('#modalOracleText').html(data.new_oracle_text);
-                        // $('#correct_answer').html(data.correct_answer_index);
-                        //
-                        //
-                        // $("#decklist_id_by_image").attr('href', data.correct_answer_decklist_id);
-                        //
-                        // $('#next_card').removeClass('d-none');
-                        // let decklists = data.correct_answer_decklist_id.split('#')[0]
-                        //
-                        // // document.getElementById("demo").innerHTML = res[0];
-                        // $("#decklists_url").attr('href', decklists);
+                        $('.lds-ripple').removeClass('d-flex').addClass('d-none');
+                        $('#card_holder').html(data.html).removeClass('d-none');
+
+                        // $('#oracle_text').removeClass('d-none');
+                        $('#card_by_image').removeClass('d-none');
+                        $('#change_game_mode').removeClass('d-none');
+
+                        // btn_grp.removeClass('d-none')
+                        by_text.addClass('d-none');
+                        by_img.removeClass('d-none');
+                        by_img.html('Next card');
+
+                        $('#modalOracleText').html(data.new_oracle_text);
+                        $('#correct_answer').html(data.correct_answer_index);
+
+
+                        $("#decklist_id_by_image").attr('href', data.correct_answer_decklist_id);
+
+                        $('#next_card').removeClass('d-none');
+                        let decklists = data.correct_answer_decklist_id.split('#')[0]
+
+                        // document.getElementById("demo").innerHTML = res[0];
+                        $("#decklists_url").attr('href', decklists);
 
                     };
 
-                    // if (img.complete) {
-                    //     console.log("Img finally loaded")
-                    //
-                    //     img_loaded.call(img);
-                    // } else {
-                    //     console.log("Img  loading")
-                    //
-                    //     img.onload = img_loaded;
-                    // }
+                    if (img.complete) {
+                        console.log("Img finally loaded")
+
+                        img_loaded.call(img);
+                    } else {
+                        console.log("Img  loading")
+
+                        img.onload = img_loaded;
+                    }
 
 
                     // if (data.error) {
