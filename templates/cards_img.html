@@ -43,10 +43,10 @@
             {% endif %}
 
             {% if card_info in card_info_uris %}
-                <img id="icara_cards" class="img-fluid"
+                <img class="img-fluid"
                      src="{{ card_info_uris[card_info] }}"
                      alt="{{ correct_answer_flavor_text }}"
-                     title="{{ correct_answer_name }}">
+                     title="{{ card_info }}">
             {% endif %}
 
             {% if card_info == correct_answer_name %}
