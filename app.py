@@ -82,7 +82,8 @@ def get_new_cards():
         new_cards = gen_new_cards()
 
     return jsonify({
-        "html": render_template('cards.html', card_info=new_cards['card_info'],
+        "html": render_template('card_holder.html', card_info=new_cards['card_info'],
+                                card_info_uris=new_cards['card_info_uris'],
                                 correct_answer_name=new_cards['correct_answer_name']),
         "correct_answer_index": new_cards['correct_answer_index'],
         "correct_answer_name": new_cards['correct_answer_name'],
@@ -158,7 +159,8 @@ def offline():
 
 
 @app.route("/about", methods=['GET', 'POST'])
-@talisman(frame_options=ALLOW_FROM, frame_options_allow_from='SAMEORIGIN', content_security_policy={'img-src': "'self' data:"}, )
+@talisman(frame_options=ALLOW_FROM, frame_options_allow_from='SAMEORIGIN',
+          content_security_policy={'img-src': "'self' data:"}, )
 def about():
     return render_template("about.html")
 
@@ -166,7 +168,8 @@ def about():
 @app.route("/", methods=['GET', 'POST'])
 # @csp_header({'img-src': "'self' https://img.scryfall.com/", 'report-uri': '', 'object-src': 'none',
 #              'require-trusted-types-for': 'script'})
-@talisman(frame_options=ALLOW_FROM, frame_options_allow_from='SAMEORIGIN', content_security_policy={'img-src': "'self' data:"}, )
+@talisman(frame_options=ALLOW_FROM, frame_options_allow_from='SAMEORIGIN',
+          content_security_policy={'img-src': "'self' data:"}, )
 def index():
     new_data_obj = is_there_new_data()
     print(new_data_obj)

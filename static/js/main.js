@@ -78,6 +78,7 @@ window.addEventListener('load', function () {
 
     navigator.serviceWorker.register('/sw.js')
         .then(function (registration) {
+
             // Track updates to the Service Worker.
             if (!navigator.serviceWorker.controller) {
                 // The window client isn't currently controlled so it's a new service
@@ -87,10 +88,9 @@ window.addEventListener('load', function () {
             registration.update();
 
             onNewServiceWorker(registration, function () {
-                showRefreshUI(registration);
-                // $(window).on('load', function () {
+                            console.log('Service Worker Registered');
 
-                // });
+                showRefreshUI(registration);
             });
         });
 });

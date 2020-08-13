@@ -2,11 +2,14 @@ $(document).ready(function () {
 
     let decklist_url = $('#decklist_url').attr('href');
     console.log(decklist_url);
+    let game_mode_flag = $('#game_mode_flag');
+
     let h1_col = $('#h1_col');
     let h1_col_h1 = $('#h1_col h1');
     let btn_grp = $('#by_btns');
     let by_img = $('#by_img');
     let by_text = $('#by_text');
+
     $('#change_game_mode a').on('click', function (event) {
         $('#change_game_mode').addClass('d-none');
         $('#game_mode').addClass('d-none');
@@ -20,6 +23,8 @@ $(document).ready(function () {
         $('.lds-ripple').removeClass('d-none').addClass('d-flex mx-auto');
         // h1_col_h1.removeClass();
     });
+
+
     ////////////
     /*$.ajax({
         type: 'POST',
@@ -74,14 +79,18 @@ $(document).ready(function () {
                             $('#card_holder .active img').removeClass('invisible');
 
                             $('#card_holder .active').removeClass('btn-secondary').addClass('alert-danger');
+                            $('#card_holder .active .wrong_img_class').addClass('alert-danger');
+
                             // $('#card_holder .active').removeClass('btn-secondary').addClass('alert-danger').append('<img src="/static/images/bootstrap-icons/x.svg" alt="" width="16" height="16" title="X">');
                         }
                         // $('#card_holder .active').removeClass('btn-secondary').addClass('alert-danger');
                     } else {
                         console.log(data.choice);
+
                         if (!$('#card_holder .active').hasClass('alert-success')) {
                             $('#card_holder .active img').removeClass('invisible');
                             $('#card_holder .active').removeClass('btn-secondary').addClass('alert-success');
+                            $('#card_holder .active .correct_img_class').addClass('alert-success');
                         }
                         // $('#card_holder .active').removeClass('btn-secondary').addClass('alert-success');
 
@@ -143,6 +152,8 @@ $(document).ready(function () {
         $('#game_mode').addClass('d-none');
         $('#oracle_text').addClass('d-none');
         $('#card_by_image').addClass('d-none');
+
+
         $('#card_holder').addClass('d-none').removeClass('d-flex');
         $('.lds-ripple').removeClass('d-none').addClass('d-flex mx-auto');
 
@@ -165,6 +176,11 @@ $(document).ready(function () {
                     $('.lds-ripple').removeClass('d-flex').addClass('d-none');
                     $('#card_holder').html(data.html).removeClass('d-none');
                     $('#oracle_text').removeClass('d-none');
+                    //////////
+                    $('#card_names').addClass('d-none').removeClass('d-flex');
+                    $('#card_imgs').removeClass('d-none').addClass('d-flex');
+
+
                     by_img.addClass('d-none');
                     by_text.html('Next card');
                     by_text.removeClass('d-none');
@@ -219,6 +235,9 @@ $(document).ready(function () {
                         // $('#oracle_text').removeClass('d-none');
                         $('#card_by_image').removeClass('d-none');
                         $('#change_game_mode').removeClass('d-none');
+
+                        $('#card_names').removeClass('d-none').addClass('d-flex');
+                        $('#card_imgs').removeClass("d-flex").addClass('d-none');
 
                         // btn_grp.removeClass('d-none')
                         by_text.addClass('d-none');

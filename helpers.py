@@ -35,7 +35,7 @@ def is_there_new_data() -> dict:
     url_data = read_from_file('static/card_data_url.json')
 
     urls_doc_from_db = mongo.db.urls.find_one({"_id": "decklists_urls"})
-    pprint(urls_doc_from_db)
+    # pprint(urls_doc_from_db)
     urls_from_db = urls_doc_from_db['urls']
 
     today = DT.date.today()
@@ -90,7 +90,8 @@ def is_there_new_data() -> dict:
     else:
         latest_modern_tournament_urls = urls_from_db
 
-    return {"is_new_data": is_new_data, "latest_modern_tournament_urls": latest_modern_tournament_urls}
+    return {"is_new_data": False, "latest_modern_tournament_urls": latest_modern_tournament_urls}
+    # return {"is_new_data": is_new_data, "latest_modern_tournament_urls": latest_modern_tournament_urls}
 
 
 def scrape_card_data() -> dict:
@@ -138,7 +139,7 @@ def scrape_card_data() -> dict:
 
             modern_league_url = modern_league_url_from_file
             # modern_league_url = 'https://magic.wizards.com' + modern_league_url_from_file
-            pprint(modern_league_url)
+            # pprint(modern_league_url)
             response_league = requests.get(modern_league_url)
             modern_deck_lists = BeautifulSoup(response_league.text, 'html.parser')
 
@@ -550,6 +551,12 @@ def get_card_data_from_local_file(card: str) -> dict:
     #     (key for key in card_data_mtgjson['data'].keys() if
     #      card in [key.rstrip().lstrip() for key in key.split("//") if string_found(card, key)]), None)
 
+    if card_info:
+        image_uri = card_info['image_uri']
+    else:
+        image_uri = get_single_card_data_from_scryfall(card)['image_uri']
+        update_existing_decklist_url_in_db = cards.update_one({"_id": card}, {"$set": {"image_uri": image_uri}},
+                                                              upsert=True)
     # pprint(card_info)
 
     # card_data_json = card_data_mtgjson['data'][card_name][0]
@@ -560,7 +567,7 @@ def get_card_data_from_local_file(card: str) -> dict:
         'flavor_text': card_info['flavor_text'],
         'decklist_id': card_info['decklist_id'],
         'image': card_info['image'],
-        'image_uri': card_info['image_uri']
+        'image_uri': image_uri
     }
 
     # pprint(random_card_data)
@@ -753,6 +760,7 @@ def similar_cards(card_name, not_enough=False):
 
 
 def gen_new_cards(*args):
+    cards = mongo.db.cards
     # data = read_from_file('static/card_data_url.json')
     # data = read_from_file('static/card_data_url.json')
     # latest_card_names = read_from_file('static/latest_card_names.json')
@@ -810,6 +818,19 @@ def gen_new_cards(*args):
     # pprint(random_cards_name_same_type)
 
     random.shuffle(random_cards_name_same_type)
+    dict_random_cards_name_same_typ = {}
+    for card in random_cards_name_same_type:
+        card_info = cards.find_one({"_id": card})
+        if card_info:
+            image_uri = card_info['image_uri']
+            dict_random_cards_name_same_typ[card] = image_uri
+        else:
+            image_uri = get_single_card_data_from_scryfall(card)['image_uri']
+            dict_random_cards_name_same_typ[card] = image_uri
+            update_existing_decklist_url_in_db = cards.update_one({"_id": card}, {"$set": {"image_uri": image_uri}},
+                                                                  upsert=True)
+
+    pprint(dict_random_cards_name_same_typ)
     # pprint(random_cards_name_same_type)
     # random_cards = sample(list_card_name, 5)
 
@@ -857,6 +878,7 @@ def gen_new_cards(*args):
             '<p class="card-text mb-1">' + replace_symbols_in_text(line) + '</p>')
 
     return {"card_info": random_cards_name_same_type,
+            "card_info_uris": dict_random_cards_name_same_typ,
             "correct_answer_index": correct_answer_index,
             "correct_answer_oracle_text": to_html_list_correct_answer_oracle_text,
             "correct_answer_flavor_text": correct_answer_flavor_text,

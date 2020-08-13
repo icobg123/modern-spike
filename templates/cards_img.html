@@ -1,4 +1,4 @@
-<div id="card_names" class="btn-group-vertical btn-group btn-group-toggle d-flex flex-column"
+<div id="card_imgs" class=" btn-group btn-group-toggle d-flex flex-wrap "
      data-toggle="buttons">
     {% for card_info in card_info %}
         {#    {% if loop.index == 1 %}#}
@@ -22,12 +22,13 @@
         {##}
         {#    {% endif %}#}
         <label class="btn btn-secondary btn-sm d-flex justify-content-center align-items-center position-relative {{ border_classes }}">
+
             <input class="form-check-input" type="radio" name="pickCard"
                    id="{{ card_info | replace(" ", "_")|lower|escape }}"
                     {#               id="{{ card_info.name | replace(" ", "_")|lower|escape }}"#}
                    value="{{ loop.index }}"
                    autocomplete="off">
-            {{ card_info }}
+            {#            {{ card_info }}#}
             {% if card_info == correct_answer_name %}
                 <img class="check invisible position-absolute"
                      src="{{ url_for('static', filename='/images/bootstrap-icons/check.svg') }}" alt=""
@@ -41,10 +42,25 @@
                      title="X">
             {% endif %}
 
+            {% if card_info in card_info_uris %}
+                <img id="icara_cards" class="img-fluid"
+                     src="{{ card_info_uris[card_info] }}"
+                     alt="{{ correct_answer_flavor_text }}"
+                     title="{{ correct_answer_name }}">
+            {% endif %}
+
+            {% if card_info == correct_answer_name %}
+                {% set correct_img_class = "correct_img_class" %}
+            {% else %}
+                {% set correct_img_class = "wrong_img_class" %}
+            {% endif %}
+
+            <span class="position-absolute {{ correct_img_class }} ">
+            </span>
+
         </label>
         {#{% if loop.index0 % 2 !=0 %}#}
         {#    </div>#}
         {#{% endif %}#}
     {% endfor %}
-
 </div>
