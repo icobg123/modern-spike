@@ -1,11 +1,51 @@
+<div id="card_names" class="btn-group-vertical btn-group btn-group-toggle d-flex flex-column"
+     data-toggle="buttons">
+    {% for card_info in card_info %}
+        {#    {% if loop.index == 1 %}#}
+        {#        {% set border_classes = 'btn-border-1' %}#}
+        {#    {% elif loop.index == 2 %}#}
+        {#        {% set border_classes = 'btn-border-2' %}#}
+        {#    {% elif loop.index == 3 %}#}
+        {#        {% set border_classes = 'rounded-0 btn-border-3' %}#}
+        {#    {% elif loop.index == 4 %}#}
+        {#        {% set border_classes = 'rounded-0 btn-border-4' %}#}
+        {#    {% elif loop.index == 5 %}#}
+        {#        {% set border_classes = 'btn-border-5' %}#}
+        {#    {% elif loop.index == 6 %}#}
+        {#        {% set border_classes = 'btn-border-6' %}#}
+        {#    {% endif %}#}
+        {#    {% if loop.index0 == 0 or loop.index0 % 2 ==0 %}#}
+        {#        {% set  border_classes = 'border-bottom-0 rounded-0' %}#}
+        {#        <div class="btn-group">#}
+        {#    {% else %}#}
+        {#        {% set  border_classes = 'border-bottom-0 rounded-0' %}#}
+        {##}
+        {#    {% endif %}#}
+        <label class="btn btn-secondary btn-sm d-flex justify-content-center align-items-center position-relative {{ border_classes }}">
+            <input class="form-check-input" type="radio" name="pickCard"
+                   id="{{ card_info | replace(" ", "_")|lower|escape }}"
+                    {#               id="{{ card_info.name | replace(" ", "_")|lower|escape }}"#}
+                   value="{{ loop.index }}"
+                   autocomplete="off">
+            {{ card_info }}
+            {% if card_info == correct_answer_name %}
+                <img class="check invisible position-absolute"
+                     src="{{ url_for('static', filename='/images/bootstrap-icons/check.svg') }}" alt=""
+                     width="16"
+                     height="16"
+                     title="check">
+            {% else %}
+                <img class="x invisible position-absolute"
+                     src="{{ url_for('static', filename='/images/bootstrap-icons/x.svg') }}" alt="" width="16"
+                     height="16"
+                     title="X">
 
+            {% endif %}
 
-{% for card_info in card_info %}
-    <label class="btn btn-secondary">
-        <input class="form-check-input" type="radio" name="pickCard"
-               id="{{ card_info.name | replace(" ", "_")|lower|escape }}"
-               value="{{ loop.index }}"
-               autocomplete="off"> {{ card_info.name }}
-    </label>
-{% endfor %}
+        </label>
+        {#{% if loop.index0 % 2 !=0 %}#}
+        {#    </div>#}
+        {#{% endif %}#}
+    {% endfor %}
 
+</div>

@@ -1,171 +1,247 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <main>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <h1 class="text-center mt-3">The Modern Spike</h1>
-
-                    <div class=""><h5 class="text-center ">Can you guess the card?</h5>
-                    </div>
-                    <div class="lds-ripple d-none">
-                        <div></div>
-                        <div></div>
-                    </div>
-                    <div class="row">
-
-                        <div id="oracle_text" class="col-lg-6 col-12 mx-auto">
-
-                            <div class="card mb-2">
-                                <div class="card-header text-dark py-2 d-flex align-items-center justify-content-between">
-                                    Oracle text
+    <main class="h-100">
+        <div class="container-fluid h-100">
+            <div class="row h-100 center-container align-items-start">
+                <div class="lds-ripple mx-auto absolute-center d-none">
+                    <div></div>
+                    <div></div>
+                </div>
+                <div id="h1_col"
+                     class="col-12 col-sm-9 col-md-7 col-lg-9 col-xl-7 d-flex flex-column mx-auto align-items-center justify-content-sm-start align-self-start">
+                    <h1 class="text-center my-1"><a class="text-white" href="{{ url_for('index') }}">Modern Spike</a>
+                    </h1>
 
 
-                                    <button type="button" class="text-white btn btn-sm bg-info float-right"
-                                            data-toggle="modal"
-                                            data-target="#exampleModalCenter">
-                                        Hint: card image
-                                    </button>
+                    <small class="text-center my-0§ ">
+                        Can you guess the card? Score:
+                        <span class="d-none" id="answered_flag">0</span>
+                        <span id="current_score">
+                            {% if request.cookies.get('current_score') %}
+                                {{ request.cookies.get('current_score') }}
+                            {% else %}
+                                {{ 0 }}
+                            {% endif %}
 
+                        </span>
+                        /
+                        <span id="total_score">
+                            {% if request.cookies.get('current_score') %}
+                                {{ request.cookies.get('total_score') }}
+                            {% else %}
+                                {{ 0 }}
+                            {% endif %}
+                        </span>
+
+                    </small>
+                </div>
+                <div class="col-12 col-sm-7 col-md-6 col-lg-7 col-xl-7 d-flex flex-column mx-auto justify-content-center mb-auto mb-sm-0">
+
+
+                    <div id="card_by_image" class="row my-1  d-none">
+
+                        <div class="col-lg-6 col-12 mx-auto">
+
+                            <div class="card">
+                                <div class="card-header text-dark py-1 py-sm-2 d-flex align-items-center justify-content-between">
+                                    Illustration
+                                    <div class="oracle-btns">
+                                        <a id="decklist_id_by_image" href="#"
+                                           target="_blank"
+                                           rel="noopener"
+                                           class="btn btn-outline-dark btn-sm mr-1"
+                                           role="button">Decklist</a>
+
+                                        <button type="button"
+                                                class="btn btn-sm btn-info float-right text-black ml-1"
+                                                data-toggle="modal"
+                                                data-target="#cardOracleText">
+                                            Hint
+                                        </button>
+                                    </div>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal fade" id="cardOracleText" tabindex="-1" role="dialog"
+                                         aria-labelledby="cardOracleTextTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header py-1">
-                                                    <h5 class="modal-title" id="exampleModalLongTitle">Hint: card
-                                                        image</h5>
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Hint</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" id="modalOracleText">
+
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body text-dark p-0">
+
+                                </div>
+                                <img id="by_card_image" class="card-img-bottom"
+                                     src="{{ correct_answer_image }}"
+                                     alt="{{ correct_answer_flavor_text }}"
+                                     title="{{ correct_answer_name }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="oracle_text" class="row my-1 d-none">
+
+                        <div class="col-lg-6 col-12 mx-auto ">
+
+                            <div class="card">
+                                <div class="card-header text-dark py-1 py-sm-2 d-flex align-items-center justify-content-between">
+                                    Oracle text
+                                    <div class="oracle-btns">
+                                        <a id="decklist_id" href="#"
+                                           target="_blank"
+                                           rel="noopener"
+                                           class="btn btn-outline-dark btn-sm mr-1"
+                                           role="button">Decklist</a>
+
+                                        <button type="button"
+                                                class="btn btn-sm btn-warning float-right text-black ml-1"
+                                                data-toggle="modal"
+                                                data-target="#cardImage">
+                                            Hint
+                                        </button>
+                                    </div>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="cardImage" tabindex="-1" role="dialog"
+                                         aria-labelledby="cardImageTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header py-1">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Hint</h5>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <img loading="lazy" id="card_image" class="img-fluid"
-                                                         src="{{ correct_answer_image }}"
-                                                         alt="{{ card_name }}">
+
                                                 </div>
-                                                {#<div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Close
-                                                    </button>
-                                                </div>#}
+{#                                                <img loading="lazy" id="card_image" class="img-fluid card-img-bottom"#}
+{#                                                     src="{{ correct_answer_image }}"#}
+{#                                                     alt="{{ correct_answer_flavor_text }}"#}
+{#                                                     title="{{ correct_answer_name }}">#}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body text-dark py-2">
-                                    {% set list1 = oracle_text_answer.split('\n') %}
-                                    {% for string in list1 %}
-                                        <p class="card-text mb-1">{{ string |e }}</p>
-                                    {% endfor %}
+                                    {{ correct_oracle_text_answer }}
+
                                 </div>
                             </div>
-
-
-                            {#                        {{ oracle_text_answer.split }}#}
-
                         </div>
                     </div>
 
 
-                    <div class="row">
+                    <div class="row my-1 ">
                         <div class="col-lg-6 col-12 mx-auto">
                             <form class="form-horizontal d-flex flex-column">
-                                {#            <form class="form-horizontal" method=POST action="{{ url_for('score') }}">#}
 
-
+                                {#haha#}
                                 <div id="card_holder"
                                      class="btn-group-vertical btn-group btn-group-toggle d-flex flex-column"
                                      data-toggle="buttons">
 
 
-                                    {#                    {% block cards scoped %}#}
-                                    {% include "cards.html" %}
-                                    {#                    {% endblock %}#}
+                                    {% include "card_holder.html" %}
 
 
                                 </div>
 
-                                <button id="next_card" type="button" name="choice" class="mt-2 btn btn-info">Next
+                                {# <button id="next_card" type="button" name="choice"
+                                        class="mt-2 btn btn-info text-black d-none btn-lg d-noe">
+                                    Next
                                     Card
-                                </button>
-                                {% for card_info in card_info %}
-
-                                    {#                    <div class="form-check">#}
-                                    {#                        <input class="form-check-input" type="radio" name="pickCard"#}
-                                    {#                               id="{{ card_info.name | replace(" ", "_")|lower|escape }}"#}
-                                    {#                               value="{{ loop.index }}">#}
-                                    {#                        <label class="form-check-label" for="{{ card_info.name | replace(" ", "")|lower|escape }}">#}
-                                    {#                            {{ card_info.name }}#}
-                                    {#                        </label>#}
-                                    {#                    </div>#}
-
-
-                                {% endfor %}
-
-
-                                {#                            <button id="icara" type="submit" name="choice" class="mt-2 btn btn-light">Submit</button>#}
+                                </button>#}
 
 
                             </form>
 
 
-                            <div id="successAlert" class="alert alert-success d-none mt-2 text-center"
-                                 role="alert"></div>
-                            <div id="errorAlert" class="alert alert-danger d-none mt-2 text-center" role="alert"></div>
+                        </div>
+                    </div>
+                    <div class="row my-1 ">
+                        <div class="col-lg-6 col-12 mx-auto d-flex justify-content-center flex-column align-items-md-center">
+
+                            <h2 id="game_mode" class="text-center">Choose game mode</h2>
+                            <div id="by_btns" class="btn-group-vertical">
+                                {#                                <button type="button" class="btn btn-secondary btn-link"><a href="url_for_byimg">By#}
+                                {#                                    img</a></button>#}
+                                {#                                <button type="button" class="btn btn-secondary">2</button>#}
+
+                                <a id="by_img" class="btn btn btn-info btn guess-by text-black" role="button"
+                                   aria-pressed="true"
+                                   href="#">
+                                    Card illustration
+                                </a>
+                                <a id="by_text" class="btn btn btn-warning btn guess-by text-black" role="button"
+                                   aria-pressed="true"
+                                   href="#">
+                                    Card oracle text
+                                </a>
+                                {#                                <button class="btn btn-sm btn-outline-light">Change mode</button>#}
+
+                            </div>
+                            <small id="change_game_mode" class="text-center d-none mt-1">
+                                <a href="{{ url_for('index') }}" class="text-white">
+                                    Change game mode
+                                </a>
+                            </small>
 
 
-                            {#            <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>#}
-                            {#            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">#}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-12 col-sm-9 col-md-7 col-lg-9 col-xl-7 d-flex flex-column mx-auto justify-content-center align-self-end">
+                    <div class="row mt-auto">
+
+                        <div class="col-lg-6 col-12 mx-auto">
+                            <nav id="footer_menu" class="nav  nav-fill justify-content-between my-1">
+                                <a class="nav-item my-1 my-md-0 nav-link text-white text-center text-md-left"
+                                   href="/about">About</a>
+                                <a class="nav-item my-1 my-md-0 nav-link text-white text-center text-md-left"
+                                   rel="noopener"
+                                   id="decklists_url"
+                                   target="_blank"
+                                   href="{{ latest_modern_tournament_url }}"> Latest deck lists</a>
+                                {#                                <a class="nav-item my-1 my-md-0 nav-link text-white" href="#">Link</a>#}
+
+                                <a class="nav-item my-1 my-md-0 nav-link text-white d-flex align-items-center text-center text-md-left justify-content-center"
+                                   href="https://mtgjson.com"
+                                   target="_blank"
+                                   rel="noreferrer">
+                                    <img src="{{ url_for('static' , filename='images/logo-mtgjson-light-blue.svg') }}"
+                                         width="30px"
+                                         title="MTGJSON logo">
+                                    <small class="mb-0 ml-1"> Powered by MTGJSON</small></a>
+
+                            </nav>
+
                         </div>
                     </div>
                 </div>
+
+
             </div>
             <div class="d-none" id="correct_answer">{{ correct_answer_index }}</div>
+            <div class="d-none" id="game_mode_flag"></div>
         </div>
-    </main>
-    <footer class="footer fixed-bottom px-1 py-2">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-auto">
-                    <a class="text-white" href="/about">
-                        <span class="text-muted"><u>About</u></span>
-                    </a>
-                </div>
-                <div class="col-auto">
-                    <a class="text-white" target="_blank" href="{{ modern_league_url }}">
-                        <span class="text-muted"><u>Latest deck lists</u></span>
-                    </a>
-                </div>
-                <div class="col-auto"></div>
-            </div>
-        </div>
-    </footer>
 
-    {#    <div>#}
-    {#        <p>{{ message }}</p>#}
-    {##}
-    {#        <p>{{ cards_from }}</p>#}
-    {#    <p>{{ correct_answer }}</p>#}
-    {##}
-    {#        <p>{{ card_info }}</p>#}
-    {#        <img src="{{ card_info }}">#}
-    {#        <p>My Contacts:</p>#}
-    {#        <ul>#}
-    {#            {% for card in random_cards %}#}
-    {#                <li>{{ card }}</li>#}
-    {#            {% endfor %}#}
-    {#        </ul>#}
-    {#        <ul>#}
-    {#            {% for card_info in card_info %}#}
-    {#                <li><img alt="" src="{{ card_info.image }}">{{ card_info.name }}</li>#}
-    {#            {% endfor %}#}
-    {#        </ul>#}
-    {##}
-    {##}
-    {#    </div>#}
+    </main>
+
 
 {% endblock %}

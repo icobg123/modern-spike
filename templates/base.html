@@ -1,12 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
+    {#    <meta charset="UTF-8">#}
+    <link rel="preload" href="{{ url_for('static' , filename='fonts/Beleren-Bold/beleren-boldP101.otf') }}" crossorigin
+          as="font">
+    <link rel="preload" href="{{ url_for('static' , filename='fonts/mplantin/mplantin.otf') }}" crossorigin as="font">
     {#    <link rel="icon" href="{{ url_for('static', filename='images/icons/icon-96x96.png') }}">#}
     <meta name="theme-color" content="#343a40">
+    {#    <meta name="theme-color" content="#00FFFFFF">#}
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+    <meta name="viewport"
+          content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
 
     {#    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.css" crossorigin="anonymous">#}
     {#    <link rel="stylesheet" href="../static/css/styles.css" crossorigin="anonymous">#}
@@ -19,19 +26,32 @@
 
     <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
 
+
     <!-- iOS -->
     <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/icons/icon-96x96.png') }}">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="format-detection" content="telephone=no">
 
     <title>The Modern Spike</title>
+    <meta name="description" content="Magic the Gathering game.
+    Users are given the oracle text of a card that appeared in the most recent Modern Challenge/League/Preliminary and five choices. ">
+
+    {#    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">#}
+    {#    <link rel="icon" href="/favicon.ico" type="image/x-icon">#}
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
 </head>
 
-<body class="bg-dark text-white">
+<body class="bg-dark text-white h-100">
+{#<div class="offline-notification">You are offline. Please check your connection.</div>#}
 
 {% block content %}
 {% endblock %}
+{% block about %}
+{% endblock %}
+
 
 {#<script src="../static/bootstrap/js/popper.min.js"></script>#}
 {#<script src="../static/bootstrap/js/jquery-3.4.1.min.js"></script>#}
@@ -40,16 +60,62 @@
 {#<script src="../static/js/ajax.js"></script>#}
 
 <script src="{{ url_for('static' , filename='bootstrap/js/popper.min.js') }}"></script>
-<script src="{{ url_for('static' , filename='bootstrap/js/jquery-3.4.1.min.js') }}"></script>
+<script src="{{ url_for('static' , filename='bootstrap/js/jquery-3.5.1.min.js') }}"></script>
+<script src="{{ url_for('static' , filename='bootstrap/js/bootstrap.bundle.js') }}"></script>
 <script src="{{ url_for('static' , filename='bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static' , filename='js/ajax.js') }}"></script>
 <script src="{{ url_for('static' , filename='js/main.js') }}"></script>
+
+
+{#<link rel="preload" href="{{ url_for('static' , filename='bootstrap/js/popper.min.js') }}" as="style">#}
+{#<link rel="preload" href="{{ url_for('static' , filename='bootstrap/js/jquery-3.4.1.min.js') }}" as="style">#}
+{#<link rel="preload" href="{{ url_for('static' , filename='bootstrap/js/bootstrap.min.js') }}" as="style">#}
+{#<link rel="preload" href="{{ url_for('static' , filename='js/ajax.js') }}" as="script">#}
+{#<link rel="preload" href="{{ url_for('static' , filename='js/main.js') }}" as="script">#}
+
+
+{#<link rel="preload" href="{{ url_for('static' , filename='fonts/Beleren-Bold/beleren-boldP101.eot') }}" as="font">#}
+{#<link rel="preload" href="{{ url_for('static' , filename='fonts/Beleren-Bold/beleren-boldP101.svg') }}" as="image">#}
+{#<link rel="preload" href="{{ url_for('static' , filename='fonts/Beleren-Bold/beleren-boldP101.ttf') }}" as="font">#}
+{#<link rel="preload" href="{{ url_for('static' , filename='fonts/Beleren-Bold/beleren-boldP101.woff') }}" as="font">#}
+{#<link rel="preload" href="{{ url_for('static' , filename='fonts/Beleren-Bold/beleren-boldP101.woff2') }}" as="font">#}
+{##}
+{#<link rel="preload" href="{{ url_for('static' , filename='fonts/mplantin/mplantin.eot') }}" as="font">#}
+{#<link rel="preload" href="{{ url_for('static' , filename='fonts/mplantin/mplantin.svg') }}" as="image">#}
+{#<link rel="preload" href="{{ url_for('static' , filename='fonts/mplantin/mplantin.ttf') }}" as="font">#}
+{#<link rel="preload" href="{{ url_for('static' , filename='fonts/mplantin/mplantin.woff') }}" as="font">#}
+{#<link rel="preload" href="{{ url_for('static' , filename='fonts/mplantin/mplantin.woff2') }}" as="font">#}
+
 {#<script src="../static/"></script>#}
 {#<script src="../static/bootstrap/js/jquery-3.3.1.slim.min.js"></script>#}
 {#<script src="../static/bootstrap/js/bootstrap.min.js"></script>#}
 {#<script src="../static/js/ajax.js"></script>#}
 
+
+<!-- Modal -->
+
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-black" id="exampleModalLongTitle">Update App!</h5>
+                {#                <button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+                {#                    <span aria-hidden="true">&times;</span>#}
+                {#                </button>#}
+            </div>
+            <div class="modal-body d-flex justify-content-center">
+
+            </div>
+            {#            <div class="modal-footer">#}
+            {#                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>#}
+            {#                <button type="button" class="btn btn-primary">Save changes</button>#}
+            {#            </div>#}
+        </div>
+    </div>
+</div>
 </body>
+
 
 </html>
 

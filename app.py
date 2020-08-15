@@ -1,215 +1,153 @@
-import requests
-import urllib.request
-import time
-import json
-from pprint import pprint
-from bs4 import BeautifulSoup
-from random import choice, sample
-import random
-import re
-import scrython
-from flask_sslify import SSLify
-
-import asyncio
-# from flask_bs4 import Bootstrap
-
 import os
-from flask import Flask, render_template, request, jsonify, Markup
+from flask_sslify import SSLify
+from flask import Flask, render_template, request, jsonify, Markup, request, make_response
+from db import mongo
+from helpers import *
+from rq import Queue
+from worker import conn
+from flask import Flask
+from flask_compress import Compress
+from flask_csp.csp import csp_header
+from flask_pymongo import PyMongo
+from flask import Flask
+from flask_talisman import Talisman, ALLOW_FROM
+from config import Config
+import os
 
+DB_URI = os.environ['DB_URI']
+# print(DB_URI)
 app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 31536000
+app.config['MONGO_URI'] = DB_URI
 sslify = SSLify(app)
+Compress(app)
+# mongo = PyMongo(app)
+# if not DB_URI:
+#     DB_URI = Config.DB_URI
+mongo.init_app(app)
 
+# mongo = PyMongo(app, uri=DB_URI)
 
-# app.config.from_object(os.environ['APP_SETTINGS'])
-# await asyncio.sleep(0.1)
-# card = scrython.cards.Named(fuzzy="Tear")
-#
-# card_info = vars(card)
+# db = client.test
 
+# csp = {
+#     'default-src': "'self'",
+#     'img-src': '*.scryfall.com',
+#     'object-src': 'none',
+#     'script-src': "'self'",
+#     'connect-src': '*.scryfall.com'
+# }
+csp = {
+    'default-src': [
+        '\'self\'',
+        '*.scryfall.com',
+    ],
+    'img-src': '*.scryfall.com',
+    'object-src': 'none',
+    'script-src': [
+        '\'self\'',
+        '*.scryfall.com',
+    ], 'connect-src': [
+        '\'self\'',
+        '*.scryfall.com',
+    ]
+}
+talisman = Talisman(app, content_security_policy=csp)
 
-# pprint(card_info)
+# REDIS_URL = os.environ.get('REDIS_URL') or 'redis://'
 
-
-def is_this_a_basic(potential_basic):
-    if potential_basic == 'Swamp' or \
-            potential_basic == 'Mountain' or \
-            potential_basic == 'Island' or \
-            potential_basic == 'Plains' or \
-            potential_basic == 'Forest' or \
-            'Snow-Covered' in potential_basic:
-        return True
-
-    return False
-
-
-def replace_symbols_in_text(oracle_text):
-    symbols = {
-        "{T}": "st",
-        "{Q}": "sq",
-        "{E}": "se",
-        "{0}": "s0",
-        "{1}": "s1",
-        "{2}": "s2",
-        "{3}": "s3",
-        "{4}": "s4",
-        "{5}": "s5",
-        "{6}": "s6",
-        "{7}": "s7",
-        "{8}": "s8",
-        "{9}": "s9",
-        "{10}": "s10",
-        "{11}": "s11",
-        "{12}": "s12",
-        "{13}": "s13",
-        "{14}": "s14",
-        "{15}": "s15",
-        "{16}": "s16",
-        "{17}": "s17",
-        "{18}": "s18",
-        "{19}": "s19",
-        "{20}": "s20",
-        "{W/U}": "swu",
-        "{W/B}": "swb",
-        "{B/R}": "sub",
-        "{B/G}": "sur",
-        "{U/B}": "sbr",
-        "{U/R}": "sbg",
-        "{R/G}": "srw",
-        "{R/W}": "srg",
-        "{G/W}": "sgw",
-        "{G/U}": "sgu",
-        "{2/W}": "s2w",
-        "{2/U}": "s2u",
-        "{2/B}": "s2b",
-        "{2/R}": "s2r",
-        "{2/G}": "s2g",
-        "{W/P}": "swp",
-        "{U/P}": "sup",
-        "{B/P}": "sbp",
-        "{R/P}": "srp",
-        "{G/P}": "sgp",
-        "{W}": "sw",
-        "{U}": "su",
-        "{B}": "sb",
-        "{R}": "sr",
-        "{G}": "sg",
-        "{C}": "sc",
-        "{S}": "ss",
-    }
-    for key, value in symbols.items():
-        # pprint(key)
-        if str(key) in oracle_text:
-            oracle_text = oracle_text.replace(str(key), '<span class="mana small align-middle ' + value + '"></span>')
-
-        # oracle_text = oracle_text.replace(key, )
-
-    return oracle_text
-
-
-# print('icara' + replace_symbols_in_text('{T}'))
-
-
-def read_from_file(filename):
-    with open(filename, 'r') as fp:
-        data = json.load(fp)
-    return data
-
-
-def get_card_data(random_cards):
-    random_card_data = []
-    # random_cards = ['Wear', 'Merchant of the Vale', 'Thing in the Ice']
-
-    for card in random_cards:
-        print(card)
-        card_info = scrython.cards.Named(fuzzy=card)
-        card_info = vars(card_info)
-        oracle_txt, card_img = '', ''
-
-        if 'card_faces' in card_info['scryfallJson']:
-            for card_faces in card_info['scryfallJson']['card_faces']:
-                oracle_txt = card_faces['oracle_text']
-                if "image_uris" not in card_info['scryfallJson']:
-                    card_img = card_faces['image_uris']['art_crop']
-                else:
-                    card_img = card_info['scryfallJson']['image_uris']['art_crop']
-
-        else:
-            oracle_txt = card_info['scryfallJson']['oracle_text']
-            card_img = card_info['scryfallJson']['image_uris']['art_crop']
-
-        random_card_data.append({
-            'name': card,
-            'oracle_text': oracle_txt,
-            'image': card_img
-        })
-
-    return random_card_data
-
-
-def gen_new_cards():
-    data = read_from_file('old_url.json')
-
-    unique_cards = data['card_set']
-
-    random_cards = sample(unique_cards, 5)
-    random_card_data = get_card_data(random_cards)
-
-    correct_answer = random.choice(random_card_data)
-    correct_answer_index = random_card_data.index(correct_answer) + 1
-
-    correct_answer_oracle_text = correct_answer['oracle_text']
-    correct_answer_image = correct_answer['image']
-
-    pprint(correct_answer_oracle_text)
-
-    # new_oracle_text = replace_symbols_in_text(new_oracle_text)
-    # new_oracle_text = new_oracle_text.replace()
-
-    list_correct_answer_oracle_text = correct_answer_oracle_text.split('\n')
-    to_html_list_correct_answer_oracle_text = ""
-
-    for line in list_correct_answer_oracle_text:
-        to_html_list_correct_answer_oracle_text += str(
-            '<p class="card-text mb-1">' + replace_symbols_in_text(line) + '</p>')
-
-    card_name = correct_answer['name']
-    return {"card_info": random_card_data,
-            "correct_answer": correct_answer_index,
-            "correct_answer_oracle_text": to_html_list_correct_answer_oracle_text,
-            "correct_answer_image": correct_answer_image,
-            "name": card_name}
+q = Queue(connection=conn)
 
 
 @app.route('/get_new_cards', methods=['POST'])
+@csp_header()
 def get_new_cards():
-    asd = 'asd'
-    # return jsonify({'error': 'Nope, try again.'})
-    new_cards = gen_new_cards()
+    job = q.fetch_job('gen_new_cards')
+    get_all_uris = request.form['get_all_uris']
 
-    correct_answ = new_cards['correct_answer']
-    correct_answer_oracle_text = new_cards['correct_answer_oracle_text']
-    card_name = new_cards['name']
-    correct_answer_image = new_cards['correct_answer_image']
+    if job:
+        if job.is_failed:
+            print('gen_new_cards failed')
+            job.delete()
+        if job.is_finished:
+            print('gen_new_cards job done new gen_new_cards job')
+            new_cards = job.result
+            if not new_cards['card_info_uris'] and get_all_uris == '1':
+                print("test")
+                new_cards = gen_new_cards(get_all_uris='1')
 
-    correct_answer_oracle_text = correct_answer_oracle_text.replace(card_name,
-                                                                    '<span class="badge badge-secondary align-text-top">This card</span>')
+            result = q.enqueue(gen_new_cards, kwargs={'get_all_uris': get_all_uris}, job_id="gen_new_cards",
+                               result_ttl=43200)
+        else:
+            # job.delete()
+            print('gen_new_cards job not finished')
+            new_cards = gen_new_cards(get_all_uris)
+    else:
+        print('no gen_new_cards job gen_new_cards create job now')
+        result = q.enqueue(gen_new_cards, kwargs={'get_all_uris': get_all_uris}, job_id="gen_new_cards",
+                           result_ttl=43200)
+        new_cards = gen_new_cards(get_all_uris)
 
-    new_cards = new_cards['card_info']
     return jsonify({
-        "html": render_template('cards.html', card_info=new_cards),
-        "correct_answ": correct_answ,
-        "correct_answer_image": correct_answer_image,
-        'new_oracle_text': correct_answer_oracle_text})
-    # return jsonify({'card_set': get_random_cards()})
+        "html": render_template('card_holder.html', card_info=new_cards['card_info'],
+                                card_info_uris=new_cards['card_info_uris'],
+                                correct_answer_name=new_cards['correct_answer_name']),
+        "correct_answer_index": new_cards['correct_answer_index'],
+        "correct_answer_name": new_cards['correct_answer_name'],
+        "correct_answer_image": new_cards['correct_answer_image'],
+        "correct_answer_image_uri": new_cards['correct_answer_image_uri'],
+        "correct_answer_decklist_id": new_cards['correct_answer_decklist_id'],
+        'card_info_uris': new_cards['card_info_uris'],
+        'new_oracle_text': new_cards['correct_answer_oracle_text'],
+        'new_flavor_text': new_cards['correct_answer_flavor_text'],
+    })
+
+
+@app.route('/cookie', methods=['POST'])
+# @csp_header()
+def cookie():
+    current_score = int(request.form['current_score'])
+    total_score = int(request.form['total_score'])
+
+    user_choice = request.form['choice']
+    correct_answer = request.form['correct_answer']
+
+    if user_choice == correct_answer:
+        if not request.cookies.get('current_score') and not request.cookies.get('total_score'):
+            current_score = 1
+            total_score = 1
+            res = make_response(jsonify({'current_score': current_score,
+                                         'total_score': total_score, }))
+            res.set_cookie('current_score', str(current_score), max_age=60 * 60 * 24 * 365 * 2)
+            res.set_cookie('total_score', str(total_score), max_age=60 * 60 * 24 * 365 * 2)
+        else:
+
+            current_score = current_score + 1
+            total_score = total_score + 1
+            # pprint(current_score)
+
+            res = make_response(jsonify({'current_score': current_score,
+                                         'total_score': total_score, }))
+            res.set_cookie('current_score', str(current_score), max_age=60 * 60 * 24 * 365 * 2)
+            res.set_cookie('total_score', str(total_score), max_age=60 * 60 * 24 * 365 * 2)
+    else:
+        total_score = total_score + 1
+        res = make_response(jsonify({'total_score': total_score, }))
+        res.set_cookie('total_score', str(total_score), max_age=60 * 60 * 24 * 365 * 2)
+
+    # res = make_response("Value of cookie score is {}".format(request.cookies.get('score')))
+
+    return res
 
 
 @app.route('/process', methods=['POST'])
+# @csp_header()
 def process():
     user_choice = request.form['choice']
 
     correct_answer = request.form['correct_answer']
-    print(user_choice)
-    print(correct_answer)
+    # print(user_choice)
+    # print(correct_answer)
     if user_choice == correct_answer:
         return jsonify({'choice': 'Well done!'})
 
@@ -217,119 +155,66 @@ def process():
 
 
 @app.route('/sw.js')
+# @csp_header()
 def sw():
     return app.send_static_file('sw.js')
 
 
-@app.route('/offline')
+@app.route('/offline.html')
+# @csp_header()
 def offline():
-    return render_template("static/offline.html")
+    return app.send_static_file('offline.html')
+
+
+@app.route("/about", methods=['GET', 'POST'])
+@talisman(frame_options=ALLOW_FROM, frame_options_allow_from='SAMEORIGIN',
+          content_security_policy={'img-src': "'self' data:"}, )
+def about():
+    return render_template("about.html")
 
 
 @app.route("/", methods=['GET', 'POST'])
+# @csp_header({'img-src': "'self' https://img.scryfall.com/", 'report-uri': '', 'object-src': 'none',
+#              'require-trusted-types-for': 'script'})
+@talisman(frame_options=ALLOW_FROM, frame_options_allow_from='SAMEORIGIN',
+          content_security_policy={'img-src': "'self' data:"}, )
 def index():
-    url = 'https://magic.wizards.com/en/content/deck-lists-magic-online-products-game-info'
-    response = requests.get(url)
+    new_data_obj = is_there_new_data()
+    print(new_data_obj)
 
-    soup = BeautifulSoup(response.text, 'html.parser')
+    new_data = new_data_obj['is_new_data']
+    # latest_modern_tournament_url = new_data_obj['latest_modern_tournament_url']
+    # pprint(latest_modern_tournament_url)
 
-    latest_modern_league = soup.find("h3", text=re.compile('\bMgitodern\s*(league|challenge)'))
-    if latest_modern_league is None:
-        data = read_from_file('old_url.json')
-        latest_modern_league_url = data['url']
-    else:
-        latest_modern_league_parent = latest_modern_league.parent.parent.parent
+    job = q.fetch_job('scrape_cards')
+    pprint(job)
+    # q.empty()
 
-        latest_modern_league_url = latest_modern_league_parent['href']
+    if new_data:
+        if job:
+            if job.is_failed:
+                print('scraping failed')
+                job.delete()
+            if job.is_finished:
+                print('scraping job done ')
 
-    pprint(latest_modern_league_url)
+            else:
+                # job.delete()
 
-    data = read_from_file('old_url.json')
-    if 'card_set' not in data or 'url' not in data:
-        raise ValueError("No target in given data")
-    else:
-        if data['url'] != latest_modern_league_url:
-            print('update url')
-            cards_from = 'cards from URL'
+                print('scraping job not finished')
+                data = read_from_file('static/card_data_url.json')
+                latest_modern_tournament_url = data['url']
 
-            # get_new_url = True
-            modern_league_url_from_file = latest_modern_league_url
-
-            modern_league_url = 'https://magic.wizards.com' + modern_league_url_from_file
-
-            response_league = requests.get(modern_league_url)
-            modern_deck_lists = BeautifulSoup(response_league.text, 'html.parser')
-
-            cards_in_decks = modern_deck_lists.findAll('a', attrs={'class': 'deck-list-link'})
-
-            # print(
-            #     ''.join(text for text in cards_in_decks if not is_this_a_basic(text.string)))
-
-            card_set = set()
-
-            for div in cards_in_decks:
-                # print(div.string + ': ' + str(is_this_a_basic(div.string)))
-                if (div.string not in card_set) and (not is_this_a_basic(div.string)):
-                    if '//' in div.string:
-                        split_str = div.string.split('//', 1)
-                        for card_name in split_str:
-                            card_set.add(card_name.rstrip().lstrip())
-
-                    else:
-                        card_set.add(div.string)
-
-            # new_set = {x.replace('.good', '').replace('.bad', '') for x in card_set}
-
-            unique_cards = list(sorted(card_set))
-
-            dict_to_file = {
-                'url': latest_modern_league_url,
-                "card_set": unique_cards,
-            }
-            with open('old_url.json', 'w') as fp:
-                json.dump(dict_to_file, fp, sort_keys=True, indent=4)
-
+        # result = q.enqueue(count_words_at_url, 100)
         else:
-            modern_league_url = data['url']
-            cards_from = 'cards from file'
-            unique_cards = data['card_set']
+            print('enqueueing scraping of cards')
+            result = q.enqueue(scrape_card_data, job_id="scrape_cards", job_timeout=600, result_ttl=0)
+    else:
+        data = read_from_file('static/card_data_url.json')
 
-    # n_cards = int(input())
-    # random_cards = sample(unique_cards, n_cards)
+        latest_modern_tournament_url = data['url']
 
-    # random_cards = ['Wear', 'Merchant of the Vale']
-    random_cards = sample(unique_cards, 5)
-    # pprint(random_cards)
-    random_card_data = get_card_data(random_cards)
-
-    # pprint(random_card_data)
-
-    correct_answer = random.choice(random_card_data)
-    correct_answer_index = random_card_data.index(correct_answer) + 1
-
-    # TODO: Get only oracle text of correct_answer
-    card_name = correct_answer['name']
-    correct_answer_image = correct_answer['image']
-    oracle_text_answer = correct_answer['oracle_text']
-    oracle_text_answer = replace_symbols_in_text(oracle_text_answer)
-
-    oracle_text_answer = oracle_text_answer.replace(card_name,
-                                                    '<span class="badge badge-secondary align-text-top">This card</span>')
-    # oracle_text_answer = oracle_text_answer.replace('\n', ' <br/> ')
-
-    test_new_cards = get_new_cards()
-
-    pprint('icara')
-    pprint(test_new_cards)
-
-    return render_template("index.html", correct_answer_index=correct_answer_index, correct_answer=correct_answer,
-                           card_info=random_card_data,
-                           card_name=card_name,
-                           oracle_text_answer=Markup(oracle_text_answer),
-                           correct_answer_image=correct_answer_image,
-                           random_cards=random_cards, cards_from=cards_from,
-                           modern_league_url='https://magic.wizards.com' + modern_league_url,
-                           message="Hello Flask!")
+    return render_template("index.html")
 
 
 if __name__ == '__main__':
