@@ -168,10 +168,16 @@ $(document).ready(function () {
 
 
             $.ajax({
+                data: {
+                    get_all_uris: 1,
+                    by_btn: 'by_text',
+                    // correct_answer: $('#correct_answer').text(),
+                },
                 type: 'POST',
                 url: '/get_new_cards'
             })
                 .done(function (data) {
+
                     console.log(data.correct_answer_decklist_id);
                     $('.lds-ripple').removeClass('d-flex').addClass('d-none');
                     $('#card_holder').html(data.html).removeClass('d-none');
@@ -218,6 +224,11 @@ $(document).ready(function () {
             // h1_col_h1.addClass('h1-small');
             // h1_col.removeClass().addClass('col-12 col-sm-9 col-md-7 col-lg-9 col-xl-7 d-flex flex-row flex-sm-column mx-auto justify-content-between justify-content-sm-start  align-items-center align-self-start');
             $.ajax({
+                data: {
+                    get_all_uris: 0,
+                    by_btn: 'by_img'
+                    // correct_answer: $('#correct_answer').text(),
+                },
                 type: 'POST',
                 url: '/get_new_cards'
             })

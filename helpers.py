@@ -90,8 +90,8 @@ def is_there_new_data() -> dict:
     else:
         latest_modern_tournament_urls = urls_from_db
 
-    return {"is_new_data": False, "latest_modern_tournament_urls": latest_modern_tournament_urls}
-    # return {"is_new_data": is_new_data, "latest_modern_tournament_urls": latest_modern_tournament_urls}
+    # return {"is_new_data": False, "latest_modern_tournament_urls": latest_modern_tournament_urls}
+    return {"is_new_data": is_new_data, "latest_modern_tournament_urls": latest_modern_tournament_urls}
 
 
 def scrape_card_data() -> dict:
@@ -501,8 +501,6 @@ def get_single_card_data_from_scryfall(card: str) -> dict:
     else:
         card_oracle_txt = card_info['scryfallJson']['oracle_text']
 
-
-
         card_img = card_info['scryfallJson']['image_uris']['art_crop']
         if "flavor_text" in card_info['scryfallJson']:
             card_flavor_txt = card_info['scryfallJson']['flavor_text']
@@ -542,6 +540,7 @@ def get_card_data_from_local_file(card: str) -> dict:
 
     # card_info = list(filter(lambda x: x if card in x.keys() else None, card_data_scryfall))[0]
     card_info = cards.find_one({"_id": card})
+    # card_info_count = card_info.count()
     # pprint(card_info)
     # card_info = [x for x in card_data_scryfall if card in x.keys()][0]
     # card_info = [x for x in card_data_scryfall if card in x.keys()][0]
@@ -554,7 +553,7 @@ def get_card_data_from_local_file(card: str) -> dict:
     #     (key for key in card_data_mtgjson['data'].keys() if
     #      card in [key.rstrip().lstrip() for key in key.split("//") if string_found(card, key)]), None)
 
-    if card_info:
+    if card_info is not None and 'image_uri' in card_info.keys():
         image_uri = card_info['image_uri']
     else:
         image_uri = get_single_card_data_from_scryfall(card)['image_uri']
@@ -762,7 +761,8 @@ def similar_cards(card_name, not_enough=False):
     # print(k, v)
 
 
-def gen_new_cards(*args):
+def gen_new_cards(get_all_uris):
+    pprint("get_all_uris {}".format(get_all_uris))
     cards = mongo.db.cards
     # data = read_from_file('static/card_data_url.json')
     # data = read_from_file('static/card_data_url.json')
@@ -822,16 +822,18 @@ def gen_new_cards(*args):
 
     random.shuffle(random_cards_name_same_type)
     dict_random_cards_name_same_typ = {}
-    for card in random_cards_name_same_type:
-        card_info = cards.find_one({"_id": card})
-        if card_info:
-            image_uri = card_info['image_uri']
-            dict_random_cards_name_same_typ[card] = image_uri
-        else:
-            image_uri = get_single_card_data_from_scryfall(card)['image_uri']
-            dict_random_cards_name_same_typ[card] = image_uri
-            update_existing_decklist_url_in_db = cards.update_one({"_id": card}, {"$set": {"image_uri": image_uri}},
-                                                                  upsert=True)
+
+    if get_all_uris == '1':
+        for card in random_cards_name_same_type:
+            card_info = cards.find_one({"_id": card})
+            if card_info:
+                image_uri = card_info['image_uri']
+                dict_random_cards_name_same_typ[card] = image_uri
+            else:
+                image_uri = get_single_card_data_from_scryfall(card)['image_uri']
+                dict_random_cards_name_same_typ[card] = image_uri
+                update_existing_decklist_url_in_db = cards.update_one({"_id": card}, {"$set": {"image_uri": image_uri}},
+                                                                      upsert=True)
 
     pprint(dict_random_cards_name_same_typ)
     # pprint(random_cards_name_same_type)

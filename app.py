@@ -63,6 +63,7 @@ q = Queue(connection=conn)
 @csp_header()
 def get_new_cards():
     job = q.fetch_job('gen_new_cards')
+    get_all_uris = request.form['get_all_uris']
 
     if job:
         if job.is_failed:
@@ -71,15 +72,21 @@ def get_new_cards():
         if job.is_finished:
             print('gen_new_cards job done new gen_new_cards job')
             new_cards = job.result
-            result = q.enqueue(gen_new_cards, job_id="gen_new_cards", result_ttl=43200)
+            if not new_cards['card_info_uris'] and get_all_uris == '1':
+                print("test")
+                new_cards = gen_new_cards(get_all_uris='1')
+
+            result = q.enqueue(gen_new_cards, kwargs={'get_all_uris': get_all_uris}, job_id="gen_new_cards",
+                               result_ttl=43200)
         else:
-            job.delete()
+            # job.delete()
             print('gen_new_cards job not finished')
-            new_cards = gen_new_cards()
+            new_cards = gen_new_cards(get_all_uris)
     else:
         print('no gen_new_cards job gen_new_cards create job now')
-        result = q.enqueue(gen_new_cards, job_id="gen_new_cards", result_ttl=43200)
-        new_cards = gen_new_cards()
+        result = q.enqueue(gen_new_cards, kwargs={'get_all_uris': get_all_uris}, job_id="gen_new_cards",
+                           result_ttl=43200)
+        new_cards = gen_new_cards(get_all_uris)
 
     return jsonify({
         "html": render_template('card_holder.html', card_info=new_cards['card_info'],
@@ -90,6 +97,7 @@ def get_new_cards():
         "correct_answer_image": new_cards['correct_answer_image'],
         "correct_answer_image_uri": new_cards['correct_answer_image_uri'],
         "correct_answer_decklist_id": new_cards['correct_answer_decklist_id'],
+        'card_info_uris': new_cards['card_info_uris'],
         'new_oracle_text': new_cards['correct_answer_oracle_text'],
         'new_flavor_text': new_cards['correct_answer_flavor_text'],
     })
