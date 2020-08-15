@@ -528,7 +528,7 @@ def get_single_card_data_from_scryfall(card: str) -> dict:
 def get_card_data_from_local_file(card: str) -> dict:
     # random_card_data = {}
     cards = mongo.db.cards
-
+    # TODO: Check if all keys are persent in card_info before getting oracle text etc from it, not only for URIs
     pprint("get_card_data_from_local_file broken card - {}".format(card))
     # data_api = read_from_file('static/card_data_url.json')
     # card_data_scryfall = data_api['card_set']
@@ -826,10 +826,12 @@ def gen_new_cards(get_all_uris):
     if get_all_uris == '1':
         for card in random_cards_name_same_type:
             card_info = cards.find_one({"_id": card})
-            if card_info:
+            if card_info is not None and 'image_uri' in card_info.keys():
+                print("uri_form_db -", card)
                 image_uri = card_info['image_uri']
                 dict_random_cards_name_same_typ[card] = image_uri
             else:
+                print("uri_scryfall_pai -", card)
                 image_uri = get_single_card_data_from_scryfall(card)['image_uri']
                 dict_random_cards_name_same_typ[card] = image_uri
                 update_existing_decklist_url_in_db = cards.update_one({"_id": card}, {"$set": {"image_uri": image_uri}},
