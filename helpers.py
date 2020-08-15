@@ -837,7 +837,7 @@ def gen_new_cards(get_all_uris):
                 update_existing_decklist_url_in_db = cards.update_one({"_id": card}, {"$set": {"image_uri": image_uri}},
                                                                       upsert=True)
 
-    pprint(dict_random_cards_name_same_typ)
+    # pprint(dict_random_cards_name_same_typ)
     # pprint(random_cards_name_same_type)
     # random_cards = sample(list_card_name, 5)
 
