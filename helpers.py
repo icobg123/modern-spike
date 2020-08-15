@@ -554,10 +554,28 @@ def get_card_data_from_local_file(card: str) -> dict:
     #      card in [key.rstrip().lstrip() for key in key.split("//") if string_found(card, key)]), None)
 
     if card_info is not None and 'image_uri' in card_info.keys():
-        image_uri = card_info['image_uri']
+        card_info['image_uri'] = card_info['image_uri']
     else:
-        image_uri = get_single_card_data_from_scryfall(card)['image_uri']
-        update_existing_decklist_url_in_db = cards.update_one({"_id": card}, {"$set": {"image_uri": image_uri}},
+        print("update card with no image_uri from scryfall api ")
+        new_card_info = get_single_card_data_from_scryfall(card)
+        card_info['oracle_text'] = new_card_info['oracle_text']
+        card_info['flavor_text'] = new_card_info['flavor_text']
+        # card_info['decklist_id'] = new_card_info['decklist_id']
+        card_info['image'] = new_card_info['image']
+        card_info['image_uri'] = new_card_info['image_uri']
+        # oracle_text = new_card_info['oracle_text']
+        # image_uri = get_single_card_data_from_scryfall(card)['image_uri']
+
+        update_existing_decklist_url_in_db = cards.update_one({"_id": card},
+                                                              {"$set":
+                                                                  {
+                                                                      "oracle_text": card_info['oracle_text'],
+                                                                      "flavor_text": card_info['flavor_text'],
+                                                                      "decklist_id": card_info['decklist_id'],
+                                                                      "image": card_info['image'],
+                                                                      "image_uri": card_info['image_uri'],
+                                                                  },
+                                                              },
                                                               upsert=True)
     # pprint(card_info)
 
@@ -569,7 +587,7 @@ def get_card_data_from_local_file(card: str) -> dict:
         'flavor_text': card_info['flavor_text'],
         'decklist_id': card_info['decklist_id'],
         'image': card_info['image'],
-        'image_uri': image_uri
+        'image_uri': card_info['image_uri']
     }
 
     # pprint(random_card_data)
@@ -831,7 +849,7 @@ def gen_new_cards(get_all_uris):
                 image_uri = card_info['image_uri']
                 dict_random_cards_name_same_typ[card] = image_uri
             else:
-                print("uri_scryfall_pai -", card)
+                print("uri_scryfall_api -", card)
                 image_uri = get_single_card_data_from_scryfall(card)['image_uri']
                 dict_random_cards_name_same_typ[card] = image_uri
                 update_existing_decklist_url_in_db = cards.update_one({"_id": card}, {"$set": {"image_uri": image_uri}},
