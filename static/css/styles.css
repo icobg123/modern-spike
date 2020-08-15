@@ -70,8 +70,13 @@ h1, h2, h3, h5, h6 {
     border-top-right-radius: 0.25rem;
 }
 
-.card_names .x,
+.card_img .x,
 .card_names .check {
+    left: 5px;
+}
+
+.card_imgs .x,
+.card_imgs .check {
     /*left: 5px;*/
     left: 37%;
     /* font-size: 2rem; */
@@ -80,9 +85,6 @@ h1, h2, h3, h5, h6 {
     z-index: 1;
 }
 
-.x, .check {
-    left: 5px;
-}
 
 /*#card_holder .btn-border-1 {*/
 /*    border-top-left-radius: 0.25rem;*/

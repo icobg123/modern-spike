@@ -31,14 +31,15 @@
             {#            {{ card_info }}#}
             {% if card_info == correct_answer_name %}
                 <img class="check invisible position-absolute"
-                     src="{{ url_for('static', filename='/images/bootstrap-icons/check.svg') }}" alt=""
-                     width="16"
-                     height="16"
+                     src="{{ url_for('static', filename='/images/bootstrap-icons/check-circle.svg') }}" alt=""
+                     width="100"
+                     height="100"
                      title="check">
             {% else %}
                 <img class="x invisible position-absolute"
-                     src="{{ url_for('static', filename='/images/bootstrap-icons/x.svg') }}" alt="" width="16"
-                     height="16"
+                     src="{{ url_for('static', filename='/images/bootstrap-icons/x-circle.svg') }}" alt=""
+                     width="100"
+                     height="100"
                      title="X">
             {% endif %}
 
@@ -55,8 +56,7 @@
                 {% set correct_img_class = "wrong_img_class" %}
             {% endif %}
 
-            <span class="position-absolute {{ correct_img_class }} ">
-            </span>
+            {#            <span class="position-absolute {{ correct_img_class }} "></span>#}
 
         </label>
         {#{% if loop.index0 % 2 !=0 %}#}

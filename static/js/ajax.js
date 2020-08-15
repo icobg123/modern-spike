@@ -189,7 +189,10 @@ $(document).ready(function () {
                     // btn_grp.removeClass('d-none')
                     $('#oracle_text .card-body').html(data.new_oracle_text);
                     $('#correct_answer').html(data.correct_answer_index);
-                    $("#card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
+                    console.log(data.correct_answer_name);
+                    $('#cardImage .modal-body').html(data.correct_answer_name);
+                    // $("#card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
+                    // $("#card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
                     $("#decklist_id").attr('href', data.correct_answer_decklist_id);
 
                     $('#next_card').removeClass('d-none');

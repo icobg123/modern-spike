@@ -500,6 +500,9 @@ def get_single_card_data_from_scryfall(card: str) -> dict:
 
     else:
         card_oracle_txt = card_info['scryfallJson']['oracle_text']
+
+
+
         card_img = card_info['scryfallJson']['image_uris']['art_crop']
         if "flavor_text" in card_info['scryfallJson']:
             card_flavor_txt = card_info['scryfallJson']['flavor_text']
