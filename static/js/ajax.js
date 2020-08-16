@@ -60,7 +60,7 @@ $(document).ready(function () {
         // $('form').on('submit', function (event) {
         // $('#answered_flag').html(1);
         $(this).hide();
-        // console.log();
+        console.log($('.guess-by:not(.d-none)').attr('id'));
 
         $.ajax({
             data: {
@@ -105,6 +105,8 @@ $(document).ready(function () {
                 correct_answer: $('#correct_answer').text(),
                 current_score: $('#current_score').text(),
                 total_score: $('#total_score').text(),
+                game_mode_id: $('.guess-by:not(.d-none)').attr('id'),
+                flag: flag.text(),
             },
             type: 'POST',
             url: '/cookie'

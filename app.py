@@ -111,8 +111,13 @@ def cookie():
 
     user_choice = request.form['choice']
     correct_answer = request.form['correct_answer']
+    game_mode_id = request.form['game_mode_id']
+    flag = request.form['flag']
 
     if user_choice == correct_answer:
+        if flag != '1':
+            increment_game_mode(game_mode_id, True)
+
         if not request.cookies.get('current_score') and not request.cookies.get('total_score'):
             current_score = 1
             total_score = 1
@@ -131,6 +136,8 @@ def cookie():
             res.set_cookie('current_score', str(current_score), max_age=60 * 60 * 24 * 365 * 2)
             res.set_cookie('total_score', str(total_score), max_age=60 * 60 * 24 * 365 * 2)
     else:
+        if flag != '1':
+            increment_game_mode(game_mode_id, False)
         total_score = total_score + 1
         res = make_response(jsonify({'total_score': total_score, }))
         res.set_cookie('total_score', str(total_score), max_age=60 * 60 * 24 * 365 * 2)
@@ -144,8 +151,8 @@ def cookie():
 # @csp_header()
 def process():
     user_choice = request.form['choice']
-
     correct_answer = request.form['correct_answer']
+    # game_mode_id = request.form['game_mode']
     # print(user_choice)
     # print(correct_answer)
     if user_choice == correct_answer:

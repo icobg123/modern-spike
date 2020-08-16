@@ -937,6 +937,18 @@ def gen_new_cards(get_all_uris):
             "correct_answer_name": correct_answer_name}
 
 
+def increment_game_mode(game_mode_id, correct):
+    # TODO: Update corresponding game mode document fields
+    #       total_count, correct/wrong guesses
+    game_modes = mongo.db.game_modes
+    field_to_increment = "wrong"
+    if correct:
+        field_to_increment = "correct"
+    update_game_modes = game_modes.update_one({"_id": game_mode_id},
+                                              {"$inc": {"total_count": 1, field_to_increment: 1}},
+                                              upsert=True)
+
+
 def get_mtg_img_from_url(url):
     response = requests.get(url)
     # pprint(response)
