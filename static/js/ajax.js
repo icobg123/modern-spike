@@ -177,6 +177,8 @@ $(document).ready(function () {
                 url: '/get_new_cards'
             })
                 .done(function (data) {
+                    // let img = document.querySelector('#card_imgs_1');
+                    // let img_loaded = function () {
 
                     console.log(data.correct_answer_decklist_id);
                     $('.lds-ripple').removeClass('d-flex').addClass('d-none');
@@ -216,7 +218,16 @@ $(document).ready(function () {
                     //     $('#successAlert').text(data.choice).removeClass('d-none');
                     //     $('#errorAlert').addClass('d-none');
                     // }
-
+                    // };
+                    // if (img.complete) {
+                    //     console.log("Img finally loaded")
+                    //
+                    //     img_loaded.call(img);
+                    // } else {
+                    //     console.log("Img  loading")
+                    //
+                    //     img.onload = img_loaded;
+                    // }
                 });
 
         } else {

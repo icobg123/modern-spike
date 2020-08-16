@@ -540,31 +540,13 @@ def get_card_data_from_local_file(card: str) -> dict:
 
     # card_info = list(filter(lambda x: x if card in x.keys() else None, card_data_scryfall))[0]
     card_info = cards.find_one({"_id": card})
-    # card_info_count = card_info.count()
-    # pprint(card_info)
-    # card_info = [x for x in card_data_scryfall if card in x.keys()][0]
-    # card_info = [x for x in card_data_scryfall if card in x.keys()][0]
 
-    # pprint(card_info)
-    # card_info = next((item for item in card_data_scryfall if card in item), None)
-
-    # card_name = next((key for key in card_data['data'].keys() if card in key), None)
-    # card_name = next(
-    #     (key for key in card_data_mtgjson['data'].keys() if
-    #      card in [key.rstrip().lstrip() for key in key.split("//") if string_found(card, key)]), None)
-
-    if card_info is not None and 'image_uri' in card_info.keys():
-        card_info['image_uri'] = card_info['image_uri']
-    else:
-        print("update card with no image_uri from scryfall api ")
+    if 'oracle_text' not in card_info.keys():
         new_card_info = get_single_card_data_from_scryfall(card)
         card_info['oracle_text'] = new_card_info['oracle_text']
         card_info['flavor_text'] = new_card_info['flavor_text']
-        # card_info['decklist_id'] = new_card_info['decklist_id']
         card_info['image'] = new_card_info['image']
         card_info['image_uri'] = new_card_info['image_uri']
-        # oracle_text = new_card_info['oracle_text']
-        # image_uri = get_single_card_data_from_scryfall(card)['image_uri']
 
         update_existing_decklist_url_in_db = cards.update_one({"_id": card},
                                                               {"$set":
@@ -577,6 +559,48 @@ def get_card_data_from_local_file(card: str) -> dict:
                                                                   },
                                                               },
                                                               upsert=True)
+    elif card_info is not None and 'image_uri' in card_info.keys():
+        card_info['image_uri'] = card_info['image_uri']
+    else:
+        card_info['image_uri'] = pil2datauri(get_mtg_img_from_url(card))
+
+    # card_info_count = card_info.count()
+    # pprint(card_info)
+    # card_info = [x for x in card_data_scryfall if card in x.keys()][0]
+    # card_info = [x for x in card_data_scryfall if card in x.keys()][0]
+
+    # pprint(card_info)
+    # card_info = next((item for item in card_data_scryfall if card in item), None)
+
+    # card_name = next((key for key in card_data['data'].keys() if card in key), None)
+    # card_name = next(
+    #     (key for key in card_data_mtgjson['data'].keys() if
+    #      card in [key.rstrip().lstrip() for key in key.split("//") if string_found(card, key)]), None)
+    # TODO FIX ME PLEASE check for each field if it is in card then create vars
+    # if card_info is not None and 'image_uri' in card_info.keys():
+    #     card_info['image_uri'] = card_info['image_uri']
+    # else:
+    #     print("update card with no image_uri from scryfall api ")
+    #     new_card_info = get_single_card_data_from_scryfall(card)
+    #     card_info['oracle_text'] = new_card_info['oracle_text']
+    #     card_info['flavor_text'] = new_card_info['flavor_text']
+    #     # card_info['decklist_id'] = new_card_info['decklist_id']
+    #     card_info['image'] = new_card_info['image']
+    #     card_info['image_uri'] = new_card_info['image_uri']
+    #     # oracle_text = new_card_info['oracle_text']
+    #     # image_uri = get_single_card_data_from_scryfall(card)['image_uri']
+    #
+    #     update_existing_decklist_url_in_db = cards.update_one({"_id": card},
+    #                                                           {"$set":
+    #                                                               {
+    #                                                                   "oracle_text": card_info['oracle_text'],
+    #                                                                   "flavor_text": card_info['flavor_text'],
+    #                                                                   "decklist_id": card_info['decklist_id'],
+    #                                                                   "image": card_info['image'],
+    #                                                                   "image_uri": card_info['image_uri'],
+    #                                                               },
+    #                                                           },
+    #                                                           upsert=True)
     # pprint(card_info)
 
     # card_data_json = card_data_mtgjson['data'][card_name][0]
