@@ -45,7 +45,7 @@
             {% endif %}
 
             {% if card_info in card_info_uris %}
-                <img class="img-fluid"
+                <img id="card_imgs_{{ loop.index }}" class="img-fluid"
                      src="{{ card_info_uris[card_info] }}"
                      alt="{{ correct_answer_flavor_text }}"
                      title="{{ card_info }}">

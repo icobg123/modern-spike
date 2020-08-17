@@ -18,7 +18,7 @@ DB_URI = os.environ['DB_URI']
 # print(DB_URI)
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 31536000
-app.config['MONGO_URI'] = DB_URI
+app.config['MONGO_URI'] = Config.MONGO_URI
 sslify = SSLify(app)
 Compress(app)
 # mongo = PyMongo(app)
