@@ -14,8 +14,8 @@
                     </h1>
 
 
-                    <small class="text-center my-0§ ">
-                        Can you guess the card? Score:
+                    <small id="score" class="text-center my-0 d-none">
+                        Score:
                         <span class="d-none" id="answered_flag">0</span>
                         <span id="current_score">
                             {% if request.cookies.get('current_score') %}

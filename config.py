@@ -11,7 +11,6 @@ class Config(object):
     MONGO_URI = os.environ['DB_URI']
 
 
-
 class ProductionConfig(Config):
     DEBUG = False
 
