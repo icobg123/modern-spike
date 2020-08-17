@@ -18,6 +18,7 @@ from rq import get_current_job
 import time
 import os
 from pymongo import UpdateOne
+# from flask import current_app as app
 from app import mongo
 
 
