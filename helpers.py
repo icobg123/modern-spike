@@ -512,7 +512,8 @@ def get_single_card_data_from_scryfall(card: str) -> dict:
         'oracle_text': card_oracle_txt,
         'flavor_text': card_flavor_txt,
         'image': card_img,
-        'image_uri': pil2datauri(get_mtg_img_from_url(card_img))
+        # 'image_url': pil2datauri(get_mtg_img_from_url(card_img))
+        # 'image_uri': pil2datauri(get_mtg_img_from_url(card_img))
     }
     # card_data = {
     # card: {
@@ -547,7 +548,7 @@ def get_card_data_from_local_file(card: str) -> dict:
         card_info['oracle_text'] = new_card_info['oracle_text']
         card_info['flavor_text'] = new_card_info['flavor_text']
         card_info['image'] = new_card_info['image']
-        card_info['image_uri'] = new_card_info['image_uri']
+        # card_info['image_uri'] = new_card_info['image_uri']
 
         update_existing_decklist_url_in_db = cards.update_one({"_id": card},
                                                               {"$set":
@@ -556,14 +557,15 @@ def get_card_data_from_local_file(card: str) -> dict:
                                                                       "flavor_text": card_info['flavor_text'],
                                                                       "decklist_id": card_info['decklist_id'],
                                                                       "image": card_info['image'],
-                                                                      "image_uri": card_info['image_uri'],
+                                                                      # "image_uri": card_info['image_uri'],
                                                                   },
                                                               },
                                                               upsert=True)
-    elif card_info is not None and 'image_uri' in card_info.keys():
-        card_info['image_uri'] = card_info['image_uri']
-    else:
-        card_info['image_uri'] = pil2datauri(get_mtg_img_from_url(card))
+    # elif card_info is not None and 'image_url' in card_info.keys():
+    #     card_info['image_uri'] = pil2datauri(get_mtg_img_from_url(card_info['image_url']))
+        # card_info['image_uri'] = card_info['image_uri']
+    # else:
+    #     card_info['image_uri'] = pil2datauri(get_mtg_img_from_url(card))
 
     # card_info_count = card_info.count()
     # pprint(card_info)
@@ -612,7 +614,7 @@ def get_card_data_from_local_file(card: str) -> dict:
         'flavor_text': card_info['flavor_text'],
         'decklist_id': card_info['decklist_id'],
         'image': card_info['image'],
-        'image_uri': card_info['image_uri']
+        # 'image_uri': card_info['image_uri']
     }
 
     # pprint(random_card_data)
@@ -623,6 +625,62 @@ def string_found(string1, string2):
     if re.search(r"\b" + re.escape(string1) + r"\b", string2):
         return True
     return False
+
+
+def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not_enough, card_name):
+    modern_atomic = mongo.db.modern_atomic
+    count = modern_atomic.count()
+
+    find_all = modern_atomic.aggregate([{"$sample": {"size": count}}])
+    # find_all = modern_atomic.find({})
+    # print(type(find_all))
+
+    list_similar_cards = []
+    for card in find_all:
+        if card_name != card['_id'] and '//' not in card['_id']:
+
+            current_type = card['type']
+            current_subtypes = card['subtypes']
+            current_colors = card['colors']
+            current_identity = card['colorIdentity']
+            current_id = card['_id']
+            current_name = card['name']
+
+            current_cmc = card['convertedManaCost'] if 'convertedManaCost' in card.keys() else ""
+            # if current_type != card_type:
+            #     continue
+            if is_this_a_basic(current_id):
+                # pprint(k)
+                continue
+            if 'Creature' in card_type:
+                if not_enough:
+                    if card_subtypes[
+                        0] in current_subtypes and current_colors == card_colors and current_cmc == card_cmc:
+                        list_similar_cards.append(current_id)
+                    elif card_subtypes[0] in current_subtypes and current_cmc == card_cmc:
+                        list_similar_cards.append(current_id)
+                    elif card_subtypes[0] in current_subtypes and current_colors == card_colors:
+                        list_similar_cards.append(current_id)
+                #
+                else:
+                    if card_subtypes[
+                        0] in current_subtypes and current_colors == card_colors and current_cmc == card_cmc:
+                        # if subtypes == card_subtypes and colors == card_colors and cmc == card_cmc:
+                        list_similar_cards.append(current_id)
+            if 'Artifact' in card_type:
+                if not_enough:
+                    if current_cmc == card_cmc and current_colors == card_colors:
+                        list_similar_cards.append(current_name)
+                    elif current_colors == card_colors:
+                        list_similar_cards.append(current_name)
+
+                else:
+                    if current_colors == card_colors and \
+                            current_cmc == card_cmc and \
+                            (card_subtypes and current_subtypes == card_subtypes) and not not_enough:
+                        list_similar_cards.append(current_name)
+
+    return list_similar_cards
 
 
 def similar_cards(card_name, not_enough=False):
@@ -653,7 +711,7 @@ def similar_cards(card_name, not_enough=False):
     card_name_full = ""
     for name in all_card_names:
         if '//' in name:
-            if name.split("//")[0].rstrip().lstrip() == card_name:
+            if name.split("//")[0].rstrip().lstrip() == card_name or name.split("//")[1].rstrip().lstrip():
                 card_name_full = name
                 break
         elif name == card_name:
@@ -719,6 +777,7 @@ def similar_cards(card_name, not_enough=False):
                 else:
                     if (card_subtypes and current_subtypes == card_subtypes) or current_identity == card_identity:
                         list_similar_cards.append(current_name)
+
             # if 'Land' in card_type:
             #     if not_enough:
             #         if identity == card_identity:
@@ -804,6 +863,147 @@ def similar_cards(card_name, not_enough=False):
     # print(k, v)
 
 
+def similar_cards_2(card_name, not_enough=False):
+    # TODO: fix similar cards for split cards cause converted CMC is combined and not per card
+    modern_atomic = mongo.db.modern_atomic
+    cards = mongo.db.cards
+    pprint("working in similar_cards_2")
+    pprint(card_name)
+
+    card_modern_atomic = modern_atomic.find_one({'_id': card_name})
+    # if "similar_cards" in card_modern_atomic.keys():
+    #     pprint(card_modern_atomic['similar_cards'])
+    #     len_sim_cards = len(card_modern_atomic['similar_cards'])
+    #     print("len sim cards",len_sim_cards)
+    #     if len_sim_cards >= 3:
+    #         print("similar_cards from db")
+    #         return card_modern_atomic['similar_cards']
+
+    list_similar_cards = []
+    card_name_atomic = card_modern_atomic['_id']
+    # card_info = cards.find_one({'_id': card_name})
+    # card_name = card_info['name']
+
+    card_colors = card_modern_atomic['colors']
+    card_type = card_modern_atomic['type']
+    card_type_s = card_modern_atomic['types']
+    # pprint(card_type)
+
+    card_subtypes = card_modern_atomic['subtypes']
+    card_identity = card_modern_atomic['colorIdentity']
+    card_cmc = card_modern_atomic['convertedManaCost'] if 'convertedManaCost' in card_modern_atomic.keys() else ""
+
+    if 'Planeswalker' in card_type:
+        if not_enough:
+            # similar_cards = modern_atomic.find(
+            #     {"types": card_type_s, "colorIdentity": card_identity, "subtypes": card_subtypes}, limit=10)
+
+            similar_cards = modern_atomic.aggregate([
+                {"$match": {"_id": {"$ne": card_name_atomic}, "types": card_type_s, "colorIdentity": card_identity}},
+                {"$sample": {"size": 10}}])
+
+
+        else:
+            # similar_cards = modern_atomic.find(
+            #     {"types": card_type_s, "subtypes": card_subtypes}, limit=10)
+            similar_cards = modern_atomic.aggregate([
+                {"$match": {"_id": {"$ne": card_name_atomic}, "types": card_type_s, "subtypes": card_subtypes}},
+                {"$sample": {"size": 10}}])
+
+        list_similar_cards = set([card['_id'] for card in similar_cards])
+
+    # if current_identity == card_identity:
+    # list_similar_cards.append(current_name)
+    elif 'Tribal' in card_type:
+        similar_cards = modern_atomic.find({"types": {"$in": ["Tribal"]},
+                                            'subtypes': card_subtypes})
+        list_similar_cards = set([card['_id'] for card in similar_cards])
+    elif 'Land' in card_type:
+        if not_enough:
+            similar_cards = modern_atomic.aggregate([
+                {"$match": {"_id": {"$ne": card_name_atomic}, "types": card_type_s, "colorIdentity": card_identity}},
+                {"$sample": {"size": 15}}])
+
+            # similar_cards = modern_atomic.find(
+            #     {"type": card_type, "colorIdentity": card_identity}, limit=15)
+        else:
+
+            similar_cards = modern_atomic.aggregate([
+                {"$match": {"_id": {"$ne": card_name_atomic},
+                            "$or": [{"type": card_type, "colorIdentity": card_identity},
+                                    {"$and": [{"type": card_type, 'subtypes': card_subtypes},
+                                              {"type": card_type, 'subtypes': {"$ne": []}}]}]}},
+                {"$sample": {"size": 15}}])
+
+        list_similar_cards = set([card['_id'] for card in similar_cards])
+
+    elif 'Creature' in card_type:
+        list_similar_cards = find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc,
+                                      not_enough, card_name)
+    #
+    elif 'Sorcery' in card_type or 'Instant' in card_type:
+        pprint("instant is here")
+        if not_enough:
+            similar_cards = modern_atomic.aggregate([
+                {"$match": {"_id": {"$ne": card_name_atomic}, "type": card_type, "colors": card_colors}},
+                {"$sample": {"size": 20}}])
+        # if current_colors == card_colors:
+        #     list_similar_cards.append(current_name)
+        else:
+            # print(card_type)
+            similar_cards = modern_atomic.aggregate(
+                [
+                    {"$match": {"_id": {"$ne": card_name_atomic}, "type": card_type, "convertedManaCost": card_cmc,
+                                "colors": card_colors}},
+                    # {"$match": {"_id": { "$ne": card_name_atomic},"$and": [{"types": card_type, "colors": card_colors},
+                    #                      {"types": card_type, "convertedManaCost": card_cmc}]}},
+                    {"$sample": {"size": 20}}
+                ]
+            )
+        list_similar_cards = set([card['_id'] for card in similar_cards])
+
+    elif 'Artifact' in card_type:
+        list_similar_cards = find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc,
+                                      not_enough, card_name)
+    # similar_cards = modern_atomic.find(
+    #     {"$and": [{"types": card_type, "colors": card_colors},
+    #               {"types": card_type, "convertedManaCost": card_cmc}]},
+    #     limit=15)
+
+    elif 'Enchantment' in card_type:
+        if not_enough:
+            similar_cards = modern_atomic.modern_atomic.aggregate([
+                {"$match": {"_id": {"$ne": card_name_atomic}, "type": card_type, "colors": card_colors}},
+                {"$sample": {"size": 20}}])
+        # if current_colors == card_colors:
+        #     list_similar_cards.append(current_name)
+        else:
+            similar_cards = modern_atomic.aggregate(
+                [
+                    {
+                        "$match":
+                            {
+                                "_id": {"$ne": card_name_atomic},
+                                "$and": [{"type": card_type, "colors": card_colors},
+                                         {"type": card_type, "convertedManaCost": card_cmc}, ]
+                            }
+                    },
+                    {"$sample": {"size": 10}}
+                ]
+            )
+            # if current_colors == card_colors and current_subtypes == card_subtypes and cmc == card_cmc:
+            #     list_similar_cards.append(current_name)
+        list_similar_cards = set([card['_id'] for card in similar_cards])
+    # list_similar_cards.discard(card_name)
+    # if card_name in list_similar_cards:
+    list_similar_cards = list(list_similar_cards)
+    cards.update_one({"_id": card_name_atomic},
+                     {"$set": {"similar_cards": list_similar_cards}},
+                     upsert=True)
+
+    return list_similar_cards
+
+
 def gen_new_cards(get_all_uris):
     pprint("get_all_uris {}".format(get_all_uris))
     cards = mongo.db.cards
@@ -831,10 +1031,14 @@ def gen_new_cards(get_all_uris):
     # random_card_name = 'Batterskull'
     # random_card_name = 'Merfolk Secretkeeper'
     # random_card_name = 'Thopter Foundry'
+    # random_card_name = 'Ramunap Ruins'
+    # random_card_name = 'Breeding Pool'
+    # random_card_name = 'Sakura-Tribe Scout'
 
     correct_answer_data = get_card_data_from_local_file(random_card_name)
 
-    list_card_names_with_same_type = similar_cards(random_card_name)
+    list_card_names_with_same_type = similar_cards_2(random_card_name)
+
     # random_card_type = [d[random_card_name]['type'] for d in unique_cards if
     #                     random_card_name in list(d.keys())[0]][0]
     #
@@ -842,11 +1046,13 @@ def gen_new_cards(get_all_uris):
     #                                   random_card_type in d[list(d.keys())[0]]['type']]
     #
     #
+
     sample_size = len(list_card_names_with_same_type)
 
     # list_card_names_with_same_type.remove(random_card_name)
     if sample_size < 3:
-        list_card_names_with_same_type = similar_cards(random_card_name, True)
+        list_card_names_with_same_type = similar_cards_2(random_card_name, True)
+        # print(list_card_names_with_same_type)
         # print(len(list_card_names_with_same_type))
         sample_size = len(list_card_names_with_same_type)
         if sample_size < 3:
@@ -869,15 +1075,17 @@ def gen_new_cards(get_all_uris):
     if get_all_uris == '1':
         for card in random_cards_name_same_type:
             card_info = cards.find_one({"_id": card})
-            if card_info is not None and 'image_uri' in card_info.keys():
-                print("uri_form_db -", card)
-                image_uri = card_info['image_uri']
+            if card_info is not None and 'image' in card_info.keys():
+                print("uri_form_db url -", card)
+                image_url = card_info['image']
+                image_uri = pil2datauri(get_mtg_img_from_url(image_url))
                 dict_random_cards_name_same_typ[card] = image_uri
             else:
                 print("uri_scryfall_api -", card)
-                image_uri = get_single_card_data_from_scryfall(card)['image_uri']
+                image_url = get_single_card_data_from_scryfall(card)['image']
+                image_uri = pil2datauri(get_mtg_img_from_url(image_url))
                 dict_random_cards_name_same_typ[card] = image_uri
-                update_existing_decklist_url_in_db = cards.update_one({"_id": card}, {"$set": {"image_uri": image_uri}},
+                update_existing_decklist_url_in_db = cards.update_one({"_id": card}, {"$set": {"image": image_url}},
                                                                       upsert=True)
 
     # pprint(dict_random_cards_name_same_typ)
@@ -907,7 +1115,8 @@ def gen_new_cards(get_all_uris):
     # pprint(correct_answer_oracle_text)
     correct_answer_name = correct_answer_data['name']
     correct_answer_image = correct_answer_data['image']
-    correct_answer_image_uri = correct_answer_data['image_uri']
+
+    correct_answer_image_uri = pil2datauri(get_mtg_img_from_url(correct_answer_image))
     # pprint(correct_answer_oracle_text)
 
     if correct_answer_data['flavor_text']:
