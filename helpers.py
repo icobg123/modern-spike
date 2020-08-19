@@ -746,9 +746,14 @@ def similar_cards_2(card_name, not_enough=False):
                                             'subtypes': card_subtypes})
         list_similar_cards = set([card['_id'] for card in similar_cards])
     elif 'Land' in card_type:
+
+        lands = ['Swamp', 'Mountain', 'Island', 'Plains', 'Forest', 'Wastes',
+                 'Snow-Covered Swamp', 'Snow-Covered Mountain', 'Snow-Covered Island', 'Snow-Covered Plains',
+                 'Snow-Covered Forest', card_name_atomic]
         if not_enough:
             similar_cards = modern_atomic.aggregate([
-                {"$match": {"_id": {"$ne": card_name_atomic}, "types": card_type_s, "colorIdentity": card_identity}},
+                {"$match": {
+                    "$and": [{"_id": {"$nin": lands}, "types": card_type_s, "colorIdentity": card_identity}]}},
                 {"$sample": {"size": 15}}])
 
             # similar_cards = modern_atomic.find(
@@ -862,6 +867,7 @@ def gen_new_cards(get_all_uris):
     # random_card_name = 'Breeding Pool'
     # random_card_name = 'Sakura-Tribe Scout'
     # random_card_name = "Uro, Titan of Nature's Wrath"
+    # random_card_name = "On Thin Ice"
 
     correct_answer_data = get_card_data_from_local_file(random_card_name)
 
