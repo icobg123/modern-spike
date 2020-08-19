@@ -631,12 +631,15 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
     modern_atomic = mongo.db.modern_atomic
     count = modern_atomic.count()
 
+    # pprint()
     find_all = modern_atomic.aggregate([{"$sample": {"size": count}}])
     # find_all = modern_atomic.find({})
     # print(type(find_all))
 
     list_similar_cards = []
     for card in find_all:
+        if len(list_similar_cards) > 15:
+            break
         if card_name != card['_id'] and '//' not in card['_id']:
 
             current_type = card['type']
@@ -653,7 +656,8 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
             if is_this_a_basic(current_id):
                 # pprint(k)
                 continue
-            if 'Creature' in card_type and 'Creature' in current_type and current_id not in list_similar_cards:
+            if 'Creature' in card_type and 'Creature' in current_type and 'Artifact' in card_type and 'Artifact' in current_type:
+                # print('creature artifact')
                 if not_enough:
                     if card_subtypes[
                         0] in current_subtypes and current_colors == card_colors and current_cmc == card_cmc:
@@ -664,24 +668,44 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
                         list_similar_cards.append(current_id)
                     elif card_supertypes == current_supertypes and current_cmc == card_cmc and current_colors == card_colors:
                         list_similar_cards.append(current_id)
-                #
                 else:
                     if card_subtypes[
                         0] in current_subtypes and current_colors == card_colors and current_cmc == card_cmc:
                         # if subtypes == card_subtypes and colors == card_colors and cmc == card_cmc:
                         list_similar_cards.append(current_id)
-            if 'Artifact' in card_type and 'Artifact' in current_type and current_id not in list_similar_cards:
+            elif 'Creature' in card_type and 'Creature' in current_type and current_id not in list_similar_cards and 'Artifact' not in card_type and 'Artifact' not in current_type:
                 if not_enough:
-                    if current_cmc == card_cmc and current_colors == card_colors:
-                        list_similar_cards.append(current_name)
+                    if card_subtypes[
+                        0] in current_subtypes and current_colors == card_colors and current_cmc == card_cmc:
+                        list_similar_cards.append(current_id)
+                    elif card_subtypes[0] in current_subtypes and current_cmc == card_cmc:
+                        list_similar_cards.append(current_id)
+                    elif card_subtypes[0] in current_subtypes and current_colors == card_colors:
+                        list_similar_cards.append(current_id)
+                    elif card_supertypes == current_supertypes and current_cmc == card_cmc and current_colors == card_colors and \
+                            card_subtypes[0] in current_subtypes:
+                        list_similar_cards.append(current_id)
+                #
+                else:
+                    if card_subtypes == current_subtypes and current_colors == card_colors and current_cmc == card_cmc and card_supertypes == current_supertypes:
+                        # if subtypes == card_subtypes and colors == card_colors and cmc == card_cmc:
+                        list_similar_cards.append(current_id)
+            elif 'Artifact' in card_type and 'Artifact' in current_type and current_id not in list_similar_cards and 'Creature' not in current_type and 'Creature' not in card_type:
+                if not_enough:
+                    if current_cmc == card_cmc and current_identity == card_identity:
+                        list_similar_cards.append(current_id)
                     elif current_colors == card_colors:
-                        list_similar_cards.append(current_name)
+                        list_similar_cards.append(current_id)
 
                 else:
-                    if current_colors == card_colors and \
+                    if current_identity == card_identity and \
                             current_cmc == card_cmc and \
-                            (card_subtypes and current_subtypes == card_subtypes) and not not_enough:
-                        list_similar_cards.append(current_name)
+                            (card_subtypes and current_subtypes == card_subtypes):
+                        list_similar_cards.append(current_id)
+                    elif current_identity == card_identity and \
+                            current_cmc == card_cmc and \
+                            current_subtypes == card_subtypes:
+                        list_similar_cards.append(current_id)
 
     return list_similar_cards
 
@@ -769,7 +793,7 @@ def similar_cards_2(card_name, not_enough=False):
 
         list_similar_cards = set([card['_id'] for card in similar_cards])
 
-    elif 'Creature' in card_type:
+    elif 'Creature' in card_type or 'Artifact' in card_type:
         list_similar_cards = find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc,
                                       not_enough, card_name, card_supertypes)
     #
@@ -794,9 +818,9 @@ def similar_cards_2(card_name, not_enough=False):
             )
         list_similar_cards = set([card['_id'] for card in similar_cards])
 
-    elif 'Artifact' in card_type:
-        list_similar_cards = find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc,
-                                      not_enough, card_name, card_supertypes)
+    # elif 'Artifact' in card_type:
+    # list_similar_cards = find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc,
+    #                               not_enough, card_name, card_supertypes)
     # similar_cards = modern_atomic.find(
     #     {"$and": [{"types": card_type, "colors": card_colors},
     #               {"types": card_type, "convertedManaCost": card_cmc}]},
