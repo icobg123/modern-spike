@@ -653,7 +653,7 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
             if is_this_a_basic(current_id):
                 # pprint(k)
                 continue
-            if 'Creature' in card_type and 'Creature' in current_type:
+            if 'Creature' in card_type and 'Creature' in current_type and current_id not in list_similar_cards:
                 if not_enough:
                     if card_subtypes[
                         0] in current_subtypes and current_colors == card_colors and current_cmc == card_cmc:
@@ -670,7 +670,7 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
                         0] in current_subtypes and current_colors == card_colors and current_cmc == card_cmc:
                         # if subtypes == card_subtypes and colors == card_colors and cmc == card_cmc:
                         list_similar_cards.append(current_id)
-            if 'Artifact' in card_type and 'Artifact' in current_type:
+            if 'Artifact' in card_type and 'Artifact' in current_type and current_id not in list_similar_cards:
                 if not_enough:
                     if current_cmc == card_cmc and current_colors == card_colors:
                         list_similar_cards.append(current_name)
