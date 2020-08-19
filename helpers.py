@@ -563,7 +563,7 @@ def get_card_data_from_local_file(card: str) -> dict:
                                                               upsert=True)
     # elif card_info is not None and 'image_url' in card_info.keys():
     #     card_info['image_uri'] = pil2datauri(get_mtg_img_from_url(card_info['image_url']))
-        # card_info['image_uri'] = card_info['image_uri']
+    # card_info['image_uri'] = card_info['image_uri']
     # else:
     #     card_info['image_uri'] = pil2datauri(get_mtg_img_from_url(card))
 
@@ -627,7 +627,7 @@ def string_found(string1, string2):
     return False
 
 
-def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not_enough, card_name):
+def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not_enough, card_name, card_supertypes):
     modern_atomic = mongo.db.modern_atomic
     count = modern_atomic.count()
 
@@ -641,6 +641,7 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
 
             current_type = card['type']
             current_subtypes = card['subtypes']
+            current_supertypes = card['supertypes']
             current_colors = card['colors']
             current_identity = card['colorIdentity']
             current_id = card['_id']
@@ -652,7 +653,7 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
             if is_this_a_basic(current_id):
                 # pprint(k)
                 continue
-            if 'Creature' in card_type:
+            if 'Creature' in card_type and 'Creature' in current_type:
                 if not_enough:
                     if card_subtypes[
                         0] in current_subtypes and current_colors == card_colors and current_cmc == card_cmc:
@@ -661,13 +662,15 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
                         list_similar_cards.append(current_id)
                     elif card_subtypes[0] in current_subtypes and current_colors == card_colors:
                         list_similar_cards.append(current_id)
+                    elif card_supertypes == current_supertypes and current_cmc == card_cmc and current_colors == card_colors:
+                        list_similar_cards.append(current_id)
                 #
                 else:
                     if card_subtypes[
                         0] in current_subtypes and current_colors == card_colors and current_cmc == card_cmc:
                         # if subtypes == card_subtypes and colors == card_colors and cmc == card_cmc:
                         list_similar_cards.append(current_id)
-            if 'Artifact' in card_type:
+            if 'Artifact' in card_type and 'Artifact' in current_type:
                 if not_enough:
                     if current_cmc == card_cmc and current_colors == card_colors:
                         list_similar_cards.append(current_name)
@@ -683,186 +686,6 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
     return list_similar_cards
 
 
-def similar_cards(card_name, not_enough=False):
-    # TODO: Fix lands same identity and creature identity
-    pprint(card_name)
-    list_similar_cards = []
-    cards = read_from_file('static/ModernAtomic.json')
-
-    local_card_data = read_from_file('static/card_data_url.json')
-    existing_card_data = local_card_data['card_set']
-
-    card_info = next(
-        (item[card_name]['similar_cards'] for item in existing_card_data if
-         card_name in item and 'similar_cards' in item[card_name].keys()),
-        None)
-    # pprint(card_info)
-
-    if card_info and len(card_info) > 3:
-        print('card in info')
-        return card_info
-
-    all_card_names = cards['data'].keys()
-
-    # card_name = next(
-    #     (key for key in cards['data'].keys() if
-    #      card_name in [key.rstrip().lstrip() for key in key.split("//") if string_found(card_name, key)]), None)
-
-    card_name_full = ""
-    for name in all_card_names:
-        if '//' in name:
-            if name.split("//")[0].rstrip().lstrip() == card_name or name.split("//")[1].rstrip().lstrip():
-                card_name_full = name
-                break
-        elif name == card_name:
-            card_name_full = name
-            break
-    card_name = card_name_full
-
-    # pprint(card_name)
-    #  card_name = next(
-    #     (key for key in cards['data'].keys() if card_name in [key.rstrip().lstrip() for key in key.split("//")]), None)
-    #
-    # # cards = json.loads(open("static/ModernAtomic.json", encoding="utf8").read())
-
-    card_info = cards['data'][card_name][0]
-    card_colors = card_info['colors']
-    card_type = card_info['types']
-    card_subtypes = card_info['subtypes']
-    card_identity = card_info['colorIdentity']
-    card_cmc = card_info['convertedManaCost'] if 'convertedManaCost' in card_info else ""
-
-    # card_subtypes.sort()
-    # pprint(card_info)
-
-    for current_card_name, current_card_data in cards['data'].items():
-        # result = all(elem in card_subtypes for elem in v[0]['subtypes'])
-        # if len(list_similar_cards) > 15:
-        #     break
-
-        if current_card_name != card_name:
-            current_type = current_card_data[0]['types']
-            current_subtypes = current_card_data[0]['subtypes']
-            current_colors = current_card_data[0]['colors']
-            current_identity = current_card_data[0]['colorIdentity']
-            current_name = current_card_data[0]['name']
-            if '//' in current_name:
-                current_name = current_name[:current_name.index("/")]
-
-            # if this_type != 'Land':
-            cmc = current_card_data[0]['convertedManaCost'] if 'convertedManaCost' in current_card_data[
-                0].keys() else ""
-            if current_type != card_type:
-                continue
-            if is_this_a_basic(current_card_name):
-                # pprint(k)
-                continue
-
-            if 'Planeswalker' in card_type:
-                # if card_type == 'Planeswalker':
-                # if not_enough:
-                # if len(list_similar_cards)
-                if not_enough:
-                    if current_subtypes == card_subtypes:
-                        # pprint(k)
-                        list_similar_cards.append(current_name)
-                else:
-                    if current_identity == card_identity:
-                        list_similar_cards.append(current_name)
-
-            if 'Land' in card_type and current_card_name not in list_similar_cards:
-                if not_enough:
-                    if current_identity == card_identity:
-                        list_similar_cards.append(current_name)
-                else:
-                    if (card_subtypes and current_subtypes == card_subtypes) or current_identity == card_identity:
-                        list_similar_cards.append(current_name)
-
-            # if 'Land' in card_type:
-            #     if not_enough:
-            #         if identity == card_identity:
-            #             list_similar_cards.append(k)
-            #     else:
-            #         if identity == card_identity:
-            #             list_similar_cards.append(k)
-
-            if 'Creature' in card_type and current_card_name not in list_similar_cards:
-                if not_enough:
-                    if current_colors == card_colors and cmc == card_cmc:
-                        list_similar_cards.append(current_name)
-                    elif card_subtypes[0] in current_subtypes and cmc == card_cmc:
-                        list_similar_cards.append(current_name)
-                    elif card_subtypes[0] in current_subtypes and current_colors == card_colors:
-                        list_similar_cards.append(current_name)
-
-
-                else:
-                    if card_subtypes[0] in current_subtypes and current_colors == card_colors and cmc == card_cmc:
-                        # if subtypes == card_subtypes and colors == card_colors and cmc == card_cmc:
-                        list_similar_cards.append(current_name)
-
-            if 'Sorcery' in card_type or 'Instant' in card_type and current_card_name not in list_similar_cards:
-                if not_enough:
-                    if current_colors == card_colors:
-                        list_similar_cards.append(current_name)
-                else:
-                    if current_colors == card_colors and cmc == card_cmc:
-                        list_similar_cards.append(current_name)
-                # if colors == card_colors and cmc == card_cmc:
-                #     # print(cmc, card_cmc)
-                #     list_similar_cards.append(k)
-                #     continue
-                # elif colors == card_colors and not_enough:
-                #     list_similar_cards.append(k)
-                # else:
-                #     continue
-
-            if 'Artifact' in card_type and current_card_name not in list_similar_cards:
-                if current_colors == card_colors and \
-                        cmc == card_cmc and \
-                        (card_subtypes and current_subtypes == card_subtypes) and not not_enough:
-                    list_similar_cards.append(current_name)
-
-                elif cmc == card_cmc and current_colors == card_colors:
-                    list_similar_cards.append(current_name)
-                elif current_colors == card_colors:
-                    list_similar_cards.append(current_name)
-
-            if 'Enchantment' in card_type and current_card_name not in list_similar_cards:
-                if not_enough:
-                    if current_colors == card_colors:
-                        list_similar_cards.append(current_name)
-                else:
-                    if current_colors == card_colors and current_subtypes == card_subtypes and cmc == card_cmc:
-                        list_similar_cards.append(current_name)
-
-            if 'Tribal' in card_type and current_card_name not in list_similar_cards:
-                if current_colors == card_colors:
-                    list_similar_cards.append(current_name)
-
-    # pprint(list_similar_cards)
-    # if len(list_similar_cards) < 5:
-    #     similar_cards(card_name, True)
-    for card in existing_card_data:
-        if card_name in card.keys():
-            card[card_name]['similar_cards'] = list_similar_cards
-            break
-
-    local_card_data['card_set'] = existing_card_data
-    with open('static/card_data_url.json', 'w') as fp:
-        json.dump(local_card_data, fp, sort_keys=True, indent=4)
-
-    return list_similar_cards
-
-    # elif colors == card_colors:
-    #     # print(subtypes)
-    #     list_similar_subtype.add(k)
-
-    # if result:
-    #     list_similar_subtype.append(k)
-    # print(k, v)
-
-
 def similar_cards_2(card_name, not_enough=False):
     # TODO: fix similar cards for split cards cause converted CMC is combined and not per card
     modern_atomic = mongo.db.modern_atomic
@@ -871,13 +694,15 @@ def similar_cards_2(card_name, not_enough=False):
     pprint(card_name)
 
     card_modern_atomic = modern_atomic.find_one({'_id': card_name})
-    # if "similar_cards" in card_modern_atomic.keys():
-    #     pprint(card_modern_atomic['similar_cards'])
-    #     len_sim_cards = len(card_modern_atomic['similar_cards'])
-    #     print("len sim cards",len_sim_cards)
-    #     if len_sim_cards >= 3:
-    #         print("similar_cards from db")
-    #         return card_modern_atomic['similar_cards']
+    try:
+        card_from_cards = cards.find_one({'_id': card_name, "similar_cards": {"$exists": True, "$ne": None}})
+        similar_cards = card_from_cards['similar_cards']
+        len_sim_cards = len(similar_cards)
+        if len_sim_cards >= 3:
+            print("similar_cards from db")
+            return similar_cards
+    except TypeError:
+        print("Card does not have similar_cards")
 
     list_similar_cards = []
     card_name_atomic = card_modern_atomic['_id']
@@ -887,6 +712,8 @@ def similar_cards_2(card_name, not_enough=False):
     card_colors = card_modern_atomic['colors']
     card_type = card_modern_atomic['type']
     card_type_s = card_modern_atomic['types']
+    card_supertypes = card_modern_atomic['supertypes']
+
     # pprint(card_type)
 
     card_subtypes = card_modern_atomic['subtypes']
@@ -939,7 +766,7 @@ def similar_cards_2(card_name, not_enough=False):
 
     elif 'Creature' in card_type:
         list_similar_cards = find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc,
-                                      not_enough, card_name)
+                                      not_enough, card_name, card_supertypes)
     #
     elif 'Sorcery' in card_type or 'Instant' in card_type:
         pprint("instant is here")
@@ -964,7 +791,7 @@ def similar_cards_2(card_name, not_enough=False):
 
     elif 'Artifact' in card_type:
         list_similar_cards = find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc,
-                                      not_enough, card_name)
+                                      not_enough, card_name, card_supertypes)
     # similar_cards = modern_atomic.find(
     #     {"$and": [{"types": card_type, "colors": card_colors},
     #               {"types": card_type, "convertedManaCost": card_cmc}]},
@@ -972,7 +799,7 @@ def similar_cards_2(card_name, not_enough=False):
 
     elif 'Enchantment' in card_type:
         if not_enough:
-            similar_cards = modern_atomic.modern_atomic.aggregate([
+            similar_cards = modern_atomic.aggregate([
                 {"$match": {"_id": {"$ne": card_name_atomic}, "type": card_type, "colors": card_colors}},
                 {"$sample": {"size": 20}}])
         # if current_colors == card_colors:
@@ -1034,6 +861,7 @@ def gen_new_cards(get_all_uris):
     # random_card_name = 'Ramunap Ruins'
     # random_card_name = 'Breeding Pool'
     # random_card_name = 'Sakura-Tribe Scout'
+    # random_card_name = "Uro, Titan of Nature's Wrath"
 
     correct_answer_data = get_card_data_from_local_file(random_card_name)
 
