@@ -629,18 +629,23 @@ def string_found(string1, string2):
 
 def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not_enough, card_name, card_supertypes):
     modern_atomic = mongo.db.modern_atomic
-    count = modern_atomic.count()
+    # count = modern_atomic.count()
 
     # pprint()
-    find_all = modern_atomic.aggregate([{"$sample": {"size": count}}])
-    # find_all = modern_atomic.find({})
+    # find_all = modern_atomic.aggregate([{"$sample": {"size": count}}], batchSize=100)
+    # find_all = modern_atomic.aggregate([{"$sample": {"size": count}}])
+    find_all = modern_atomic.find({})
     # print(type(find_all))
+    # pprint(find_all.count())
 
     list_similar_cards = []
+    counter = 0
     for card in find_all:
         if len(list_similar_cards) > 15:
             break
         if card_name != card['_id'] and '//' not in card['_id']:
+            counter += 1
+            print(counter, ' ', card['_id'])
 
             current_type = card['type']
             current_subtypes = card['subtypes']
@@ -648,11 +653,12 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
             current_colors = card['colors']
             current_identity = card['colorIdentity']
             current_id = card['_id']
+            # print(current_id,card_name)
             current_name = card['name']
 
             current_cmc = card['convertedManaCost'] if 'convertedManaCost' in card.keys() else ""
-            # if current_type != card_type:
-            #     continue
+            if current_type != card_type:
+                continue
             if is_this_a_basic(current_id):
                 # pprint(k)
                 continue
@@ -676,6 +682,9 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
             elif 'Creature' in card_type and 'Creature' in current_type and current_id not in list_similar_cards and 'Artifact' not in card_type and 'Artifact' not in current_type:
                 if not_enough:
                     if card_subtypes[
+                        0] in current_subtypes and current_colors == card_colors and card_supertypes == current_supertypes:
+                        list_similar_cards.append(current_id)
+                    elif card_subtypes[
                         0] in current_subtypes and current_colors == card_colors and current_cmc == card_cmc:
                         list_similar_cards.append(current_id)
                     elif card_subtypes[0] in current_subtypes and current_cmc == card_cmc:
@@ -690,6 +699,7 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
                     if card_subtypes == current_subtypes and current_colors == card_colors and current_cmc == card_cmc and card_supertypes == current_supertypes:
                         # if subtypes == card_subtypes and colors == card_colors and cmc == card_cmc:
                         list_similar_cards.append(current_id)
+
             elif 'Artifact' in card_type and 'Artifact' in current_type and current_id not in list_similar_cards and 'Creature' not in current_type and 'Creature' not in card_type:
                 if not_enough:
                     if current_cmc == card_cmc and current_identity == card_identity:
@@ -715,7 +725,7 @@ def similar_cards_2(card_name, not_enough=False):
     modern_atomic = mongo.db.modern_atomic
     cards = mongo.db.cards
     pprint("working in similar_cards_2")
-    pprint(card_name)
+    # pprint(card_name)
 
     card_modern_atomic = modern_atomic.find_one({'_id': card_name})
     try:
@@ -853,10 +863,13 @@ def similar_cards_2(card_name, not_enough=False):
     # list_similar_cards.discard(card_name)
     # if card_name in list_similar_cards:
     list_similar_cards = list(list_similar_cards)
+    print("stuck here")
+
     cards.update_one({"_id": card_name_atomic},
                      {"$set": {"similar_cards": list_similar_cards}},
                      upsert=True)
 
+    print("and here stuck here")
     return list_similar_cards
 
 
