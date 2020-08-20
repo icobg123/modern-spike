@@ -14,10 +14,18 @@ from flask_talisman import Talisman, ALLOW_FROM
 from config import Config
 import os
 
-DB_URI = os.environ['DB_URI']
+DB_URI = os.environ['mlab_DB_URI']
+# DB_URI = os.environ['DB_URI']
 # print(DB_URI)
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 31536000
+
+app.config['MONGO_HOST'] = Config.MONGO_HOST
+app.config['MONGO_PORT'] = Config.MONGO_PORT
+app.config['MONGO_DB'] = Config.MONGO_DB
+app.config['MONGO_USER'] = Config.MONGO_USER
+app.config['MONGO_PASS'] = Config.MONGO_PASS
+app.config['MONGO_AUTH_SOURCE'] = 'admin'
 app.config['MONGO_URI'] = Config.MONGO_URI
 sslify = SSLify(app)
 Compress(app)
