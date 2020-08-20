@@ -911,7 +911,7 @@ def gen_new_cards(get_all_uris):
     # random_card_name = 'Breeding Pool'
     # random_card_name = 'Sakura-Tribe Scout'
     # random_card_name = "Uro, Titan of Nature's Wrath"
-    random_card_name = "Wurmcoil Engine"
+    # random_card_name = "Wurmcoil Engine"
 
     correct_answer_data = get_card_data_from_local_file(random_card_name)
 
