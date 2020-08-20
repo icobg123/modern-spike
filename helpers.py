@@ -632,20 +632,22 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
     # count = modern_atomic.count()
 
     # pprint()
-    # find_all = modern_atomic.aggregate([{"$sample": {"size": count}}], batchSize=100)
+    # find_all = modern_atomic.aggregate([{"$sample": {"size": 14000}}], batchSize=14000)
     # find_all = modern_atomic.aggregate([{"$sample": {"size": count}}])
     find_all = modern_atomic.find({})
-    # print(type(find_all))
+    print(type(find_all))
     # pprint(find_all.count())
 
     list_similar_cards = []
-    counter = 0
+    # counter = 0
     for card in find_all:
-        if len(list_similar_cards) > 15:
-            break
-        if card_name != card['_id'] and '//' not in card['_id']:
-            counter += 1
-            print(counter, ' ', card['_id'])
+
+        # if len(list_similar_cards) > 15:
+        #     break
+        # if card['_id'] == "Walking Ballista":
+        if card_name != card['_id']:
+            # counter += 1
+            # print(counter, ' ', card['_id'])
 
             current_type = card['type']
             current_subtypes = card['subtypes']
@@ -656,19 +658,24 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
             # print(current_id,card_name)
             current_name = card['name']
 
+            # pprint(current_name)
+
             current_cmc = card['convertedManaCost'] if 'convertedManaCost' in card.keys() else ""
-            if current_type != card_type:
-                continue
+            # if current_type != card_type:
+            #     continue
             if is_this_a_basic(current_id):
                 # pprint(k)
                 continue
+            # if 'Creature' in card_type and \
+            #         'Creature' in current_type and \
+            #         'Artifact' in card_type and \
+            #         'Artifact' in current_type:
+            #     print("wurm here")
             if 'Creature' in card_type and 'Creature' in current_type and 'Artifact' in card_type and 'Artifact' in current_type:
                 # print('creature artifact')
                 if not_enough:
-                    if card_subtypes[
-                        0] in current_subtypes and current_colors == card_colors and current_cmc == card_cmc:
-                        list_similar_cards.append(current_id)
-                    elif card_subtypes[0] in current_subtypes and current_cmc == card_cmc:
+                    print("not enough wurms")
+                    if card_subtypes[0] in current_subtypes and current_cmc == card_cmc:
                         list_similar_cards.append(current_id)
                     elif card_subtypes[0] in current_subtypes and current_colors == card_colors:
                         list_similar_cards.append(current_id)
@@ -748,7 +755,7 @@ def similar_cards_2(card_name, not_enough=False):
     card_type_s = card_modern_atomic['types']
     card_supertypes = card_modern_atomic['supertypes']
 
-    # pprint(card_type)
+    pprint(card_type)
 
     card_subtypes = card_modern_atomic['subtypes']
     card_identity = card_modern_atomic['colorIdentity']
@@ -863,13 +870,13 @@ def similar_cards_2(card_name, not_enough=False):
     # list_similar_cards.discard(card_name)
     # if card_name in list_similar_cards:
     list_similar_cards = list(list_similar_cards)
-    print("stuck here")
+    # print("stuck here")
 
     cards.update_one({"_id": card_name_atomic},
                      {"$set": {"similar_cards": list_similar_cards}},
                      upsert=True)
 
-    print("and here stuck here")
+    # print("and here stuck here")
     return list_similar_cards
 
 
@@ -904,7 +911,7 @@ def gen_new_cards(get_all_uris):
     # random_card_name = 'Breeding Pool'
     # random_card_name = 'Sakura-Tribe Scout'
     # random_card_name = "Uro, Titan of Nature's Wrath"
-    # random_card_name = "On Thin Ice"
+    random_card_name = "Wurmcoil Engine"
 
     correct_answer_data = get_card_data_from_local_file(random_card_name)
 
