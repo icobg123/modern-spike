@@ -627,7 +627,8 @@ def string_found(string1, string2):
     return False
 
 
-def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not_enough, card_name, card_supertypes):
+def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not_enough, card_name, card_supertypes,
+             not_enough_for_real):
     modern_atomic = mongo.db.modern_atomic
     # count = modern_atomic.count()
 
@@ -687,20 +688,26 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
                         # if subtypes == card_subtypes and colors == card_colors and cmc == card_cmc:
                         list_similar_cards.append(current_id)
             elif 'Creature' in card_type and 'Creature' in current_type and current_id not in list_similar_cards and 'Artifact' not in card_type and 'Artifact' not in current_type:
-                if not_enough:
-                    if card_subtypes[
-                        0] in current_subtypes and current_colors == card_colors and card_supertypes == current_supertypes:
-                        list_similar_cards.append(current_id)
-                    elif card_subtypes[
-                        0] in current_subtypes and current_colors == card_colors and current_cmc == card_cmc:
-                        list_similar_cards.append(current_id)
-                    elif card_subtypes[0] in current_subtypes and current_cmc == card_cmc:
-                        list_similar_cards.append(current_id)
-                    elif card_subtypes[0] in current_subtypes and current_colors == card_colors:
-                        list_similar_cards.append(current_id)
-                    elif card_supertypes == current_supertypes and current_cmc == card_cmc and current_colors == card_colors and \
-                            card_subtypes[0] in current_subtypes:
-                        list_similar_cards.append(current_id)
+                if not_enough and not not_enough_for_real:
+                    if card_subtypes[0] in current_subtypes:
+                        if current_colors == card_colors and card_supertypes == current_supertypes and current_cmc == card_cmc:
+                            list_similar_cards.append(current_id)
+                            # continue
+                        elif current_colors == card_colors and current_cmc == card_cmc:
+                            list_similar_cards.append(current_id)
+                            # continue
+                        elif card_supertypes == current_supertypes and current_cmc == card_cmc and current_colors == card_colors and \
+                                card_subtypes[0] in current_subtypes:
+                            list_similar_cards.append(current_id)
+
+                elif not_enough_for_real:
+                    if card_subtypes[0] in current_subtypes:
+                        if current_cmc == card_cmc:
+                            list_similar_cards.append(current_id)
+                            # continue
+                        elif current_colors == card_colors:
+                            list_similar_cards.append(current_id)
+
                 #
                 else:
                     if card_subtypes == current_subtypes and current_colors == card_colors and current_cmc == card_cmc and card_supertypes == current_supertypes:
@@ -727,7 +734,7 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
     return list_similar_cards
 
 
-def similar_cards_2(card_name, not_enough=False):
+def similar_cards_2(card_name, not_enough=False, not_enough_for_real=False):
     # TODO: fix similar cards for split cards cause converted CMC is combined and not per card
     modern_atomic = mongo.db.modern_atomic
     cards = mongo.db.cards
@@ -738,6 +745,7 @@ def similar_cards_2(card_name, not_enough=False):
     try:
         card_from_cards = cards.find_one({'_id': card_name, "similar_cards": {"$exists": True, "$ne": None}})
         similar_cards = card_from_cards['similar_cards']
+
         len_sim_cards = len(similar_cards)
         if len_sim_cards >= 3:
             print("similar_cards from db")
@@ -812,7 +820,7 @@ def similar_cards_2(card_name, not_enough=False):
 
     elif 'Creature' in card_type or 'Artifact' in card_type:
         list_similar_cards = find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc,
-                                      not_enough, card_name, card_supertypes)
+                                      not_enough, card_name, card_supertypes, not_enough_for_real)
     #
     elif 'Sorcery' in card_type or 'Instant' in card_type:
         pprint("instant is here")
@@ -912,6 +920,7 @@ def gen_new_cards(get_all_uris):
     # random_card_name = 'Sakura-Tribe Scout'
     # random_card_name = "Uro, Titan of Nature's Wrath"
     # random_card_name = "Wurmcoil Engine"
+    # random_card_name = "Yorion, Sky Nomad"
 
     correct_answer_data = get_card_data_from_local_file(random_card_name)
 
@@ -934,9 +943,11 @@ def gen_new_cards(get_all_uris):
         # print(len(list_card_names_with_same_type))
         sample_size = len(list_card_names_with_same_type)
         if sample_size < 3:
+            # sample_size = len(list_card_names_with_same_type)
+            print("for real not enough")
+            list_card_names_with_same_type = similar_cards_2(random_card_name, not_enough=True,
+                                                             not_enough_for_real=True)
             sample_size = len(list_card_names_with_same_type)
-        else:
-            sample_size = 3
     else:
         sample_size = 3
     # TODO: fix for less than 4 of card type?
