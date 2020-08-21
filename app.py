@@ -49,7 +49,7 @@ csp = {
     'default-src': [
         '\'self\'',
         '*.scryfall.com',
-        '*.gatherer.wizards.com',
+        'gatherer.wizards.com',
 
     ],
     'img-src': '*.scryfall.com *.gatherer.wizards.com',
