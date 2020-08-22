@@ -150,7 +150,7 @@ $(document).ready(function () {
         // $('#errorAlert').addClass('d-none');
         // $('#next_card').addClass('d-none');
 
-        $('#change_game_mode').addClass('d-none');
+        // $('#change_game_mode').addClass('d-none');
         $('#game_mode').addClass('d-none');
         $('#oracle_text').addClass('d-none');
         $('#card_by_image').addClass('d-none');
