@@ -982,7 +982,8 @@ def gen_new_cards(get_all_uris):
                 sample_size = len(list_card_names_with_same_type)
             else:
                 sample_size = 3
-        sample_size = 3
+        else:
+            sample_size = 3
     else:
         sample_size = 3
     # TODO: fix for less than 4 of card type?
