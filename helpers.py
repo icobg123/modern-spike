@@ -826,7 +826,7 @@ def similar_cards_2(card_name, not_enough=False, last_chance=False):
         lands = ['Swamp', 'Mountain', 'Island', 'Plains', 'Forest', 'Wastes',
                  'Snow-Covered Swamp', 'Snow-Covered Mountain', 'Snow-Covered Island', 'Snow-Covered Plains',
                  'Snow-Covered Forest', card_name_atomic]
-        if not_enough:
+        if not_enough or last_chance:
             similar_cards = modern_atomic.aggregate([
                 {"$match": {
                     "$and": [{"_id": {"$nin": lands}, "types": card_type_s, "colorIdentity": card_identity}]}},
@@ -851,7 +851,7 @@ def similar_cards_2(card_name, not_enough=False, last_chance=False):
     #
     elif 'Sorcery' in card_type or 'Instant' in card_type:
         pprint("instant is here")
-        if not_enough:
+        if not_enough or last_chance:
             similar_cards = modern_atomic.aggregate([
                 {"$match": {"_id": {"$ne": card_name_atomic}, "type": card_type, "colors": card_colors}},
                 {"$sample": {"size": 20}}])
@@ -879,7 +879,7 @@ def similar_cards_2(card_name, not_enough=False, last_chance=False):
     #     limit=15)
 
     elif 'Enchantment' in card_type:
-        if not_enough:
+        if not_enough or last_chance:
             similar_cards = modern_atomic.aggregate([
                 {"$match": {"_id": {"$ne": card_name_atomic}, "type": card_type, "colors": card_colors}},
                 {"$sample": {"size": 20}}])
