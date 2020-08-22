@@ -949,7 +949,8 @@ def gen_new_cards(get_all_uris):
     # random_card_name = "Narset, Parter of Veils"
     # random_card_name = "Wurmcoil Engine"
     # random_card_name = "Yorion, Sky Nomad"
-    # random_card_name = "Azusa, Lost but Seeking"
+    # random_card_name = "Renegade Rallier"
+    # random_card_name = "Cranial Plating"
     # random_card_name = "Golos, Tireless Pilgrim"
 
     correct_answer_data = get_card_data_from_local_file(random_card_name)
@@ -981,6 +982,7 @@ def gen_new_cards(get_all_uris):
                 sample_size = len(list_card_names_with_same_type)
             else:
                 sample_size = 3
+        sample_size = 3
     else:
         sample_size = 3
     # TODO: fix for less than 4 of card type?
