@@ -764,16 +764,16 @@ def similar_cards_2(card_name, not_enough=False, last_chance=False):
     # pprint(card_name)
 
     card_modern_atomic = modern_atomic.find_one({'_id': card_name})
-    # try:
-    #     card_from_cards = cards.find_one({'_id': card_name, "similar_cards": {"$exists": True, "$ne": None}})
-    #     similar_cards = card_from_cards['similar_cards']
-    #
-    #     len_sim_cards = len(similar_cards)
-    #     if len_sim_cards >= 3:
-    #         print("similar_cards from db")
-    #         return similar_cards
-    # except TypeError:
-    #     print("Card does not have similar_cards")
+    try:
+        card_from_cards = cards.find_one({'_id': card_name, "similar_cards": {"$exists": True, "$ne": None}})
+        similar_cards = card_from_cards['similar_cards']
+
+        len_sim_cards = len(similar_cards)
+        if len_sim_cards >= 3:
+            print("similar_cards from db")
+            return similar_cards
+    except TypeError:
+        print("Card does not have similar_cards")
 
     list_similar_cards = []
     card_name_atomic = card_modern_atomic['_id']
@@ -908,9 +908,9 @@ def similar_cards_2(card_name, not_enough=False, last_chance=False):
     # print("stuck here")
 
     pprint(list_similar_cards)
-    # cards.update_one({"_id": card_name_atomic},
-    #                  {"$set": {"similar_cards": list_similar_cards}},
-    #                  upsert=True)
+    cards.update_one({"_id": card_name_atomic},
+                     {"$set": {"similar_cards": list_similar_cards}},
+                     upsert=True)
 
     # print("and here stuck here")
     return list_similar_cards
@@ -977,7 +977,10 @@ def gen_new_cards(get_all_uris):
             print("for real not enough")
             list_card_names_with_same_type = similar_cards_2(random_card_name, last_chance=True)
             # pprint(list_card_names_with_same_type)
-            sample_size = len(list_card_names_with_same_type)
+            if sample_size < 3:
+                sample_size = len(list_card_names_with_same_type)
+            else:
+                sample_size = 3
     else:
         sample_size = 3
     # TODO: fix for less than 4 of card type?
