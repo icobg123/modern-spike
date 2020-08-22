@@ -645,7 +645,7 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
 
         # if len(list_similar_cards) > 15:
         #     break
-        # if card['_id'] == "Walking Ballista":
+        # if card['_id'] == "Aven Flock":
         if card_name != card['_id']:
             # counter += 1
             # print(counter, ' ', card['_id'])
@@ -705,8 +705,13 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
                             # continue
                         elif card_supertypes == current_supertypes and current_cmc == card_cmc and current_colors == card_colors:
                             list_similar_cards.append(current_id)
-                        elif card_supertypes and card_supertypes == current_supertypes and current_cmc == card_cmc:
-                            list_similar_cards.append(current_id)
+                        if current_colors:
+                            if card_supertypes and card_supertypes == current_supertypes and current_cmc == card_cmc and \
+                                    current_colors[0] in card_colors:
+                                list_similar_cards.append(current_id)
+                            elif card_subtypes[0] in current_subtypes and current_colors[
+                                0] in card_colors and current_cmc == card_cmc:
+                                list_similar_cards.append(current_id)
 
 
                 elif last_chance:
@@ -716,12 +721,15 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
                             # continue
                         elif current_colors == card_colors:
                             list_similar_cards.append(current_id)
-                    elif card_supertypes == current_supertypes:
+                    elif card_supertypes and card_supertypes == current_supertypes and current_cmc == card_cmc:
+                        list_similar_cards.append(current_id)
+                    elif card_supertypes and card_supertypes == current_supertypes:
                         if current_cmc == card_cmc and current_colors == card_colors:
                             list_similar_cards.append(current_id)
-                            # continue
-                        # elif current_colors == card_colors:
-                        #     list_similar_cards.append(current_id)
+
+                        # continue
+                    # elif current_colors == card_colors:
+                    #     list_similar_cards.append(current_id)
                 #
                 else:
                     if card_subtypes == current_subtypes and current_colors == card_colors and current_cmc == card_cmc and card_supertypes == current_supertypes:
@@ -756,16 +764,16 @@ def similar_cards_2(card_name, not_enough=False, last_chance=False):
     # pprint(card_name)
 
     card_modern_atomic = modern_atomic.find_one({'_id': card_name})
-    try:
-        card_from_cards = cards.find_one({'_id': card_name, "similar_cards": {"$exists": True, "$ne": None}})
-        similar_cards = card_from_cards['similar_cards']
-
-        len_sim_cards = len(similar_cards)
-        if len_sim_cards >= 3:
-            print("similar_cards from db")
-            return similar_cards
-    except TypeError:
-        print("Card does not have similar_cards")
+    # try:
+    #     card_from_cards = cards.find_one({'_id': card_name, "similar_cards": {"$exists": True, "$ne": None}})
+    #     similar_cards = card_from_cards['similar_cards']
+    #
+    #     len_sim_cards = len(similar_cards)
+    #     if len_sim_cards >= 3:
+    #         print("similar_cards from db")
+    #         return similar_cards
+    # except TypeError:
+    #     print("Card does not have similar_cards")
 
     list_similar_cards = []
     card_name_atomic = card_modern_atomic['_id']
@@ -789,15 +797,20 @@ def similar_cards_2(card_name, not_enough=False, last_chance=False):
             #     {"types": card_type_s, "colorIdentity": card_identity, "subtypes": card_subtypes}, limit=10)
 
             similar_cards = modern_atomic.aggregate([
-                {"$match": {"_id": {"$ne": card_name_atomic}, "types": card_type_s, "colorIdentity": card_identity}},
+                {"$match": {"_id": {"$ne": card_name_atomic}, "types": card_type_s, "subtypes": card_subtypes}},
                 {"$sample": {"size": 10}}])
 
-
+        elif last_chance:
+            similar_cards = modern_atomic.aggregate([
+                {"$match": {"_id": {"$ne": card_name_atomic}, "types": card_type_s, "colorIdentity": card_identity,
+                            "convertedManaCost": card_cmc, }},
+                {"$sample": {"size": 10}}])
         else:
             # similar_cards = modern_atomic.find(
             #     {"types": card_type_s, "subtypes": card_subtypes}, limit=10)
             similar_cards = modern_atomic.aggregate([
-                {"$match": {"_id": {"$ne": card_name_atomic}, "types": card_type_s, "subtypes": card_subtypes}},
+                {"$match": {"_id": {"$ne": card_name_atomic}, "types": card_type_s, "subtypes": card_subtypes,
+                            "colorIdentity": card_identity}},
                 {"$sample": {"size": 10}}])
 
         list_similar_cards = set([card['_id'] for card in similar_cards])
@@ -805,7 +818,7 @@ def similar_cards_2(card_name, not_enough=False, last_chance=False):
     # if current_identity == card_identity:
     # list_similar_cards.append(current_name)
     elif 'Tribal' in card_type:
-        similar_cards = modern_atomic.find({"_id": {"$ne": card_name_atomic},"types": {"$in": ["Tribal"]},
+        similar_cards = modern_atomic.find({"_id": {"$ne": card_name_atomic}, "types": {"$in": ["Tribal"]},
                                             'subtypes': card_subtypes})
         list_similar_cards = set([card['_id'] for card in similar_cards])
     elif 'Land' in card_type:
@@ -894,9 +907,10 @@ def similar_cards_2(card_name, not_enough=False, last_chance=False):
     list_similar_cards = list(list_similar_cards)
     # print("stuck here")
 
-    cards.update_one({"_id": card_name_atomic},
-                     {"$set": {"similar_cards": list_similar_cards}},
-                     upsert=True)
+    pprint(list_similar_cards)
+    # cards.update_one({"_id": card_name_atomic},
+    #                  {"$set": {"similar_cards": list_similar_cards}},
+    #                  upsert=True)
 
     # print("and here stuck here")
     return list_similar_cards
@@ -932,9 +946,10 @@ def gen_new_cards(get_all_uris):
     # random_card_name = 'Ramunap Ruins'
     # random_card_name = 'Breeding Pool'
     # random_card_name = 'Sakura-Tribe Scout'
-    # random_card_name = "Uro, Titan of Nature's Wrath"
+    # random_card_name = "Narset, Parter of Veils"
     # random_card_name = "Wurmcoil Engine"
     # random_card_name = "Yorion, Sky Nomad"
+    # random_card_name = "Azusa, Lost but Seeking"
     # random_card_name = "Golos, Tireless Pilgrim"
 
     correct_answer_data = get_card_data_from_local_file(random_card_name)
@@ -953,15 +968,15 @@ def gen_new_cards(get_all_uris):
 
     # list_card_names_with_same_type.remove(random_card_name)
     if sample_size < 3:
-        list_card_names_with_same_type = similar_cards_2(random_card_name, True)
-        # print(list_card_names_with_same_type)
+        list_card_names_with_same_type = similar_cards_2(random_card_name, not_enough=True)
+        print(list_card_names_with_same_type)
         # print(len(list_card_names_with_same_type))
         sample_size = len(list_card_names_with_same_type)
         if sample_size < 3:
             # sample_size = len(list_card_names_with_same_type)
             print("for real not enough")
-            list_card_names_with_same_type = similar_cards_2(random_card_name, not_enough=True,
-                                                             last_chance=True)
+            list_card_names_with_same_type = similar_cards_2(random_card_name, last_chance=True)
+            # pprint(list_card_names_with_same_type)
             sample_size = len(list_card_names_with_same_type)
     else:
         sample_size = 3
