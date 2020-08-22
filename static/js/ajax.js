@@ -197,7 +197,7 @@ $(document).ready(function () {
                         by_img.addClass('d-none');
                         by_text.html('Next card');
                         by_text.removeClass('d-none');
-                        $('#change_game_mode').removeClass('d-none');
+                        $('#change_game_mode').removeClass('d-none').addClass('d-flex');
                         $('#score').removeClass('d-none');
 
                         // btn_grp.removeClass('d-none')
@@ -256,7 +256,7 @@ $(document).ready(function () {
 
                         // $('#oracle_text').removeClass('d-none');
                         $('#card_by_image').removeClass('d-none');
-                        $('#change_game_mode').removeClass('d-none');
+                        $('#change_game_mode').removeClass('d-none').addClass('d-flex');
                         $('#score').removeClass('d-none');
 
                         $('#card_names').removeClass('d-none').addClass('d-flex');

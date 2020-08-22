@@ -13,12 +13,25 @@
 
                     <h1 class="text-center my-1"><a class="text-white" href="{{ url_for('index') }}">Modern Spike</a>
                     </h1>
+                    <div class="row w-100 justify-content-center align-items-center">
+                        <div class="col-12 col-12 col-sm-10">
+                            <div class="d-flex justify-content-between align-items-center">
 
+                                <small id="change_game_mode" class="w-50 align-items-center text-center d-none">
+                                    <a href="{{ url_for('index') }}" class="d-flex text-white align-items-center">
+                                        <img
+                                                class="mr-1"
+                                                alt="Back"
+                                                width="15"
+                                                height="15"
+                                                src="{{ url_for('static', filename='/images/bootstrap-icons/arrow-left-circle.svg') }}">
+                                        Change game mode</a>
+                                </small>
 
-                    <small id="score" class="text-center my-0 d-none">
-                        Score:
-                        <span class="d-none" id="answered_flag">0</span>
-                        <span id="current_score">
+                                <small id="score" class="text-center my-0 d-none">
+                                    Score:
+                                    <span class="d-none" id="answered_flag">0</span>
+                                    <span id="current_score">
                             {% if request.cookies.get('current_score') %}
                                 {{ request.cookies.get('current_score') }}
                             {% else %}
@@ -26,8 +39,8 @@
                             {% endif %}
 
                         </span>
-                        /
-                        <span id="total_score">
+                                    /
+                                    <span id="total_score">
                             {% if request.cookies.get('current_score') %}
                                 {{ request.cookies.get('total_score') }}
                             {% else %}
@@ -35,7 +48,10 @@
                             {% endif %}
                         </span>
 
-                    </small>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-12 col-sm-7 col-md-6 col-lg-7 col-xl-7 d-flex flex-column mx-auto justify-content-center mb-auto mb-sm-0">
 
@@ -196,11 +212,6 @@
                                 {#                                <button class="btn btn-sm btn-outline-light">Change mode</button>#}
 
                             </div>
-                            <small id="change_game_mode" class="text-center d-none mt-1">
-                                <a href="{{ url_for('index') }}" class="text-white">
-                                    Change game mode
-                                </a>
-                            </small>
 
 
                         </div>
@@ -213,7 +224,12 @@
                         <div class="col-lg-6 col-12 mx-auto">
                             <nav id="footer_menu" class="nav  nav-fill justify-content-between my-1">
                                 <a class="nav-item my-1 my-md-0 nav-link text-white text-center text-md-left"
-                                   href="/about">About</a>
+                                   href="/about">
+                                    <img alt="About"
+                                         width="25"
+                                         height="25"
+                                         src="{{ url_for('static', filename='/images/bootstrap-icons/info-circle.svg') }}">
+                                </a>
                                 <a class="nav-item my-1 my-md-0 nav-link text-white text-center text-md-left"
                                    rel="noopener"
                                    id="decklists_url"
