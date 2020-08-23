@@ -188,7 +188,18 @@ $(document).ready(function () {
         flag.html('0');
 
         if (id === 'by_text') {
-
+            $('#change_game_mode').addClass('invisible');
+            $('#score').addClass('invisible');
+            // if (link_text == "Next card") {
+            //
+            // } else {
+            //     by_img.addClass('d-none');
+            //     by_text.addClass('d-none');
+            //     $('#card_by_image').addClass('d-none');
+            //     $('#card_holder').addClass('d-none').removeClass('d-flex');
+            //     $('#oracle_text').addClass('d-none');
+            //
+            // }
 
             $.ajax({
                 data: {
@@ -223,6 +234,8 @@ $(document).ready(function () {
                         } else {
                             $('#oracle_text').removeClass('invisible');
                             $('#card_holder').removeClass('invisible');
+                            $('#change_game_mode').removeClass('invisible');
+                            $('#score').removeClass('invisible');
                             by_text.removeClass('invisible');
 
                         }
