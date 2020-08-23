@@ -260,7 +260,7 @@ $(document).ready(function () {
                         let decklists = data.correct_answer_decklist_id.split('#')[0]
 
                         // document.getElementById("demo").innerHTML = res[0];
-                        $("#decklists_url").attr('href', decklists);
+                        $(".decklists_url").attr('href', decklists);
                     };
                     if (img.complete) {
                         console.log("Img finally loaded")
@@ -337,7 +337,7 @@ $(document).ready(function () {
                         let decklists = data.correct_answer_decklist_id.split('#')[0]
 
                         // document.getElementById("demo").innerHTML = res[0];
-                        $("#decklists_url").attr('href', decklists);
+                        $(".decklists_url").attr('href', decklists);
 
                     };
 
@@ -399,7 +399,7 @@ $(document).ready(function () {
                 let decklists = data.correct_answer_decklist_id.split('#')[0]
 
                 // document.getElementById("demo").innerHTML = res[0];
-                $("#decklists_url").attr('href', decklists);
+                $(".decklists_url").attr('href', decklists);
 
                 // if (data.error) {
                 //     console.log(data.error);
