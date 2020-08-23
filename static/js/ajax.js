@@ -15,6 +15,8 @@ $(document).ready(function () {
         $('#game_mode').addClass('d-none');
         $('#oracle_text').addClass('d-none');
         $('#card_by_image').addClass('d-none');
+        $('#change_game_mode img').addClass('d-none');
+        $('#score').addClass('d-none');
         $('#card_holder').addClass('d-none').removeClass('d-flex');
         btn_grp.addClass('d-none');
         by_img.addClass('d-none');
@@ -142,6 +144,7 @@ $(document).ready(function () {
     $('.guess-by').on('click', function (event) {
         event.preventDefault();
         let id = $(this).attr('id');
+        let link_text = $(this).text();
         console.log(id);
         console.log('guess by clicked');
 
@@ -151,17 +154,30 @@ $(document).ready(function () {
         // $('#next_card').addClass('d-none');
 
         // $('#change_game_mode').addClass('d-none');
+        // $('#middle_container').removeClass('flex-grow-1').addClass('flex-grow-0');
+        $('.stuff_container').removeClass('my-auto').addClass('my-sm-auto');
+
+
         $('#game_mode').addClass('d-none');
         $('#oracle_text').addClass('d-none');
-        $('#card_by_image').addClass('d-none');
 
 
-        $('#card_holder').addClass('d-none').removeClass('d-flex');
+        if (link_text == "Next card") {
+            $('#card_by_image').addClass('invisible');
+            $('#card_holder').addClass('invisible');
+            by_img.addClass('invisible');
+        } else {
+            by_img.addClass('d-none');
+            $('#card_by_image').addClass('d-none');
+            $('#card_holder').addClass('d-none').removeClass('d-flex');
+        }
+
+
         $('.lds-ripple').removeClass('d-none').addClass('d-flex mx-auto');
 
 
         btn_grp.addClass('d-flex flex-column w-100').removeClass('btn-group-vertical')
-        by_img.addClass('d-none');
+        // by_img.addClass('d-none');
         by_text.addClass('d-none');
 
         flag.html('0');
@@ -255,7 +271,20 @@ $(document).ready(function () {
                         $('#card_holder').html(data.html).removeClass('d-none');
 
                         // $('#oracle_text').removeClass('d-none');
-                        $('#card_by_image').removeClass('d-none');
+                        if ($('#card_by_image').hasClass('d-none')) {
+                            console.log('has d-none');
+                            $('#card_by_image').removeClass('d-none');
+                            $('#card_holder').removeClass('d-none');
+                            by_img.removeClass('d-none');
+
+                        } else {
+                            $('#card_by_image').removeClass('invisible');
+                            $('#card_holder').removeClass('invisible');
+                            by_img.removeClass('invisible');
+
+                        }
+
+
                         $('#change_game_mode').removeClass('d-none').addClass('d-flex');
                         $('#score').removeClass('d-none');
 

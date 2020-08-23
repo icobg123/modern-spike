@@ -236,6 +236,9 @@ h1, h2, h3, h5, h6 {
     font-family: sans-serif;
 }
 
+.flex-basis-0 {
+    flex-basis: 0 !important;
+}
 
 @media (max-width: 767px) {
     #footer_menu .nav-link {
@@ -250,6 +253,12 @@ h1, h2, h3, h5, h6 {
 
     .haha {
         display: none;
+    }
+}
+
+@media (min-width: 576px) {
+    .col-auto {
+        width: 100%;
     }
 }
 
