@@ -150,6 +150,12 @@ h1, h2, h3, h5, h6 {
     width: 49%;
 }
 
+#card_imgs.three_imgs label {
+    /*flex: 1 0 calc(25% - 10px);*/
+    /*flex-basis: 33.333333%*/
+    width: 33%;
+}
+
 .btn-group > .btn-group:not(:first-child) {
     margin-left: 0;
 }

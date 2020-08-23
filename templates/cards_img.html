@@ -1,6 +1,10 @@
-<div id="card_imgs" class=" btn-group btn-group-toggle d-flex flex-wrap "
+{% if card_info_uris|length == 3 %}
+    {#    {{ card_info_uris|length }}#}
+    {% set three_imgs = "three_imgs" %}
+{% endif %}
+<div id="card_imgs" class=" btn-group btn-group-toggle d-flex flex-wrap {{ three_imgs }} "
      data-toggle="buttons">
-{#    {{ card_info_uris }}#}
+    {#    {{ card_info_uris }}#}
     {% for card_info in card_info %}
         {#    {% if loop.index == 1 %}#}
         {#        {% set border_classes = 'btn-border-1' %}#}

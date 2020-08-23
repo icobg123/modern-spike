@@ -952,6 +952,7 @@ def gen_new_cards(get_all_uris):
     # random_card_name = "Renegade Rallier"
     # random_card_name = "Cranial Plating"
     # random_card_name = "Golos, Tireless Pilgrim"
+    random_card_name = "Oath of Nissa"
 
     correct_answer_data = get_card_data_from_local_file(random_card_name)
 
