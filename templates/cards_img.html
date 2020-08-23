@@ -1,6 +1,9 @@
 {% if card_info_uris|length == 3 %}
     {#    {{ card_info_uris|length }}#}
     {% set three_imgs = "three_imgs" %}
+    {% set size = 85 %}
+{% else %}
+    {% set size = 100 %}
 {% endif %}
 <div id="card_imgs" class=" btn-group btn-group-toggle d-flex flex-wrap {{ three_imgs }} "
      data-toggle="buttons">
@@ -37,14 +40,14 @@
             {% if card_info == correct_answer_name %}
                 <img class="check invisible position-absolute"
                      src="{{ url_for('static', filename='/images/bootstrap-icons/check-circle.svg') }}" alt=""
-                     width="100"
-                     height="100"
+                     width="{{ size }}"
+                     height="{{ size }}"
                      title="check">
             {% else %}
                 <img class="x invisible position-absolute"
                      src="{{ url_for('static', filename='/images/bootstrap-icons/x-circle.svg') }}" alt=""
-                     width="100"
-                     height="100"
+                     width="{{ size }}"
+                     height="{{ size }}"
                      title="X">
             {% endif %}
 
