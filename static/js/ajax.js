@@ -271,6 +271,7 @@ $(document).ready(function () {
 
                         img.onload = img_loaded;
                     }
+                    window.history.pushState("object or string", "Guess the card name", "/guess-name");
 
                 });
 
@@ -350,6 +351,7 @@ $(document).ready(function () {
 
                         img.onload = img_loaded;
                     }
+                    window.history.pushState("object or string", "Guess the card artwork", "/guess-artwork");
 
 
                     // if (data.error) {

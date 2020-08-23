@@ -9,7 +9,7 @@ from flask import Flask
 from flask_compress import Compress
 from flask_csp.csp import csp_header
 from flask_pymongo import PyMongo
-from flask import Flask
+from flask import Flask, url_for, redirect
 from flask_talisman import Talisman, ALLOW_FROM
 from config import Config
 import os
@@ -191,6 +191,16 @@ def about():
     return render_template("about.html")
 
 
+@app.route("/guess-name", methods=['GET'])
+def guess_name():
+    return redirect(url_for('index'), code=302)
+
+
+@app.route("/guess-artwork", methods=['GET'])
+def guess_artwork():
+    return redirect(url_for('index'), code=302)
+
+
 @app.route("/", methods=['GET', 'POST'])
 # @csp_header({'img-src': "'self' https://img.scryfall.com/", 'report-uri': '', 'object-src': 'none',
 #              'require-trusted-types-for': 'script'})
@@ -228,9 +238,14 @@ def index():
             print('enqueueing scraping of cards')
             result = q.enqueue(scrape_card_data, job_id="scrape_cards", job_timeout=600, result_ttl=0)
     else:
-        data = read_from_file('static/card_data_url.json')
+        urls = mongo.db.urls
 
-        latest_modern_tournament_url = data['url']
+        # data = read_from_file('static/card_data_url.json')
+        # data = urls.find_one({})
+        urls_doc_from_db = mongo.db.urls.find_one({"_id": "decklists_urls"})
+        # pprint(urls_doc_from_db)
+        urls_from_db = urls_doc_from_db['urls']
+        latest_modern_tournament_url = urls_from_db
 
     return render_template("index.html")
 
