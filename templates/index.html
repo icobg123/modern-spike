@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <main class="h-100">
-        <div class="container-fluid h-100">
-            <div class="row h-100 center-container align-items-start flex-column flex-nowrap">
+    <main class="height_100_js">
+        {#    <main class="h-100">#}
+        <div class="container-fluid height_100_js">
+            {#        <div class="container-fluid h-100">#}
+            <div class="row height_100_js center-container align-items-start flex-column flex-nowrap">
+                {#            <div class="row h-100 center-container align-items-start flex-column flex-nowrap">#}
                 <div class="lds-ripple mx-auto absolute-center d-none">
                     <div></div>
                     <div></div>
@@ -68,19 +71,20 @@
                                 <div class="card">
                                     <div class="card-header text-dark p-1 py-sm-2 d-flex align-items-center justify-content-between">
                                         <span class="ml-1"> Illustration</span>
-                                        <div class="oracle-btns">
-                                            <a class="btn btn-outline-dark btn-sm decklists_url"
-                                               rel="noopener"
-                                                    {#                                               id="decklists_url"#}
-                                               target="_blank"
-                                               href="{{ latest_modern_tournament_url }}"> Tournament</a>
+                                        <div class="oracle-btns d-flex">
+                                            <div class="deck-list-btns animate__animated d-none">
+                                                <a class="btn btn-outline-dark btn-sm decklists_url"
+                                                   rel="noopener"
+                                                        {#                                               id="decklists_url"#}
+                                                   target="_blank"
+                                                   href="{{ latest_modern_tournament_url }}"> Tournament</a>
 
-                                            <a id="decklist_id_by_image" href="#"
-                                               target="_blank"
-                                               rel="noopener"
-                                               class="btn btn-outline-dark btn-sm"
-                                               role="button">Decklist</a>
-
+                                                <a id="decklist_id_by_image" href="#"
+                                                   target="_blank"
+                                                   rel="noopener"
+                                                   class="btn btn-outline-dark btn-sm"
+                                                   role="button">Decklist</a>
+                                            </div>
                                             <button type="button"
                                                     class="btn btn-sm btn-info float-right text-black ml-1"
                                                     data-toggle="modal"
@@ -127,18 +131,20 @@
                                 <div class="card">
                                     <div class="card-header text-dark p-1 py-sm-2 d-flex align-items-center justify-content-between">
                                         <span class="ml-1"> Oracle text</span>
-                                        <div class="oracle-btns">
-                                            <a class="btn btn-outline-dark btn-sm decklists_url"
-                                               rel="noopener"
-                                                    {#                                               id="decklists_url"#}
-                                               target="_blank"
-                                               href="{{ latest_modern_tournament_url }}"> Tournament</a>
-                                            <a id="decklist_id" href="#"
-                                               target="_blank"
-                                               rel="noopener"
-                                               class="btn btn-outline-dark btn-sm"
-                                               role="button">Decklist</a>
+                                        <div class="oracle-btns d-flex">
+                                            <div class="deck-list-btns animate__animated d-none">
 
+                                                <a class="btn btn-outline-dark btn-sm decklists_url"
+                                                   rel="noopener"
+                                                        {#                                               id="decklists_url"#}
+                                                   target="_blank"
+                                                   href="{{ latest_modern_tournament_url }}"> Tournament</a>
+                                                <a id="decklist_id" href="#"
+                                                   target="_blank"
+                                                   rel="noopener"
+                                                   class="btn btn-outline-dark btn-sm"
+                                                   role="button">Decklist</a>
+                                            </div>
                                             <button type="button"
                                                     class="btn btn-sm btn-warning float-right text-black ml-1"
                                                     data-toggle="modal"
@@ -273,10 +279,10 @@
         </div>
 
     </main>
-{#    <script>#}
-{#        window.addEventListener('popstate', () => {#}
-{#            location.reload();#}
-{#        }, false);#}
-{#    </script>#}
+    {#    <script>#}
+    {#        window.addEventListener('popstate', () => {#}
+    {#            location.reload();#}
+    {#        }, false);#}
+    {#    </script>#}
 
 {% endblock %}

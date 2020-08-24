@@ -115,13 +115,14 @@ $(document).ready(function () {
         })
             .done(function (data) {
                 console.log(data);
+                // $('.deck-list-btns').removeClass('d-none');
+                $('.deck-list-btns').removeClass('d-none').addClass('animate__fadeIn');
                 if (flag.text() !== '1') {
                     if (data.current_score) {
                         $('#current_score').html(data.current_score)
                     }
                     if (data.total_score) {
                         $('#total_score').html(data.total_score);
-
                     }
                     flag.html('1');
                 }
@@ -147,6 +148,7 @@ $(document).ready(function () {
         let link_text = $(this).text();
         console.log(id);
         console.log('guess by clicked');
+        $('.deck-list-btns').addClass('d-none').removeClass('animate__fadeIn');
 
 
         // $('#successAlert').addClass('d-none');
