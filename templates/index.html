@@ -269,9 +269,14 @@
             </div>
             <div class="d-none" id="correct_answer">{{ correct_answer_index }}</div>
             <div class="d-none" id="game_mode_flag"></div>
+
         </div>
 
     </main>
-
+    <script>
+        window.addEventListener('popstate', () => {
+            location.reload();
+        }, false);
+    </script>
 
 {% endblock %}
