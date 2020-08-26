@@ -16,7 +16,7 @@ import os
 
 DB_URI = os.environ['mlab_DB_URI']
 # DB_URI = os.environ['DB_URI']
-print(Config.DB_URI)
+# print(Config.DB_URI)
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 31536000
 
