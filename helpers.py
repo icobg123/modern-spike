@@ -820,19 +820,25 @@ def similar_cards(card_name, not_enough=False, last_chance=False):
             #     {"types": card_type_s, "colorIdentity": card_identity, "subtypes": card_subtypes}, limit=10)
 
             similar_cards = modern_atomic.aggregate([
-                {"$match": {"_id": {"$ne": card_id_atomic}, "types": card_type_s, "subtypes": card_subtypes}},
+                {"$match": {"$and": [{"_id": {"$ne": card_id_atomic}},
+                                     {"_id": {"$nin": card_names_atomic}}], "types": card_type_s,
+                            "subtypes": card_subtypes}},
                 {"$sample": {"size": 10}}])
 
         elif last_chance:
             similar_cards = modern_atomic.aggregate([
-                {"$match": {"_id": {"$ne": card_id_atomic}, "types": card_type_s, "colorIdentity": card_identity,
+                {"$match": {"$and": [{"_id": {"$ne": card_id_atomic}},
+                                     {"_id": {"$nin": card_names_atomic}}], "types": card_type_s,
+                            "colorIdentity": card_identity,
                             "convertedManaCost": card_cmc, }},
                 {"$sample": {"size": 10}}])
         else:
             # similar_cards = modern_atomic.find(
             #     {"types": card_type_s, "subtypes": card_subtypes}, limit=10)
             similar_cards = modern_atomic.aggregate([
-                {"$match": {"_id": {"$ne": card_id_atomic}, "types": card_type_s, "subtypes": card_subtypes,
+                {"$match": {"$and": [{"_id": {"$ne": card_id_atomic}},
+                                     {"_id": {"$nin": card_names_atomic}}], "types": card_type_s,
+                            "subtypes": card_subtypes,
                             "colorIdentity": card_identity}},
                 {"$sample": {"size": 10}}])
 
