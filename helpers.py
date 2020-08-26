@@ -657,9 +657,9 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
     # counter = 0
     for card in find_all:
 
-        # if len(list_similar_cards) > 15:
+        # if len(list_similar_cards) > 20:
         #     break
-        # if card['_id'] == "Aven Flock":
+        # if card['_id'] == "Nylea, God of the Hunt":
         if card_name != card['_id'] and card['_id'] not in card_names_atomic:
             # counter += 1
             # print(counter, ' ', card['_id'])
@@ -710,35 +710,49 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
                         list_similar_cards.append(current_id)
             elif 'Creature' in card_type and 'Creature' in current_type and current_id not in list_similar_cards and 'Artifact' not in card_type and 'Artifact' not in current_type:
                 if not_enough:
-                    if card_subtypes[0] in current_subtypes:
-                        if card_supertypes == current_supertypes and current_colors == card_colors and current_cmc == card_cmc:
+                    if card_subtypes[0] in current_subtypes and card_colors:
+                        if card_supertypes and card_supertypes == current_supertypes and current_colors == card_colors and current_cmc == card_cmc:
                             list_similar_cards.append(current_id)
                             # continue
-                        elif card_supertypes == current_supertypes and current_colors == card_colors and current_cmc == card_cmc:
+                        elif card_supertypes and card_supertypes == current_supertypes and current_colors[
+                            0] in card_colors:
                             list_similar_cards.append(current_id)
                             # continue
-                        elif card_supertypes == current_supertypes and current_cmc == card_cmc and current_colors == card_colors:
+                        elif card_supertypes and card_supertypes == current_supertypes and current_cmc == card_cmc:
                             list_similar_cards.append(current_id)
-                        if current_colors:
+                        elif current_colors:
                             if card_supertypes and card_supertypes == current_supertypes and current_cmc == card_cmc and \
                                     current_colors[0] in card_colors:
                                 list_similar_cards.append(current_id)
                             elif card_subtypes[0] in current_subtypes and current_colors[
                                 0] in card_colors and current_cmc == card_cmc:
                                 list_similar_cards.append(current_id)
+                    elif card_subtypes[0] in current_subtypes:
+                        if card_supertypes and card_supertypes == current_supertypes and current_colors == card_colors and current_cmc == card_cmc:
+                            list_similar_cards.append(current_id)
+                            # continue
+                        elif card_supertypes and card_supertypes == current_supertypes and current_cmc == card_cmc:
+                            list_similar_cards.append(current_id)
+                        elif current_cmc == card_cmc:
+                            list_similar_cards.append(current_id)
+
 
 
                 elif last_chance:
-                    if card_subtypes[0] in current_subtypes:
-                        if current_cmc == card_cmc:
-                            list_similar_cards.append(current_id)
-                            # continue
-                        elif current_colors == card_colors:
-                            list_similar_cards.append(current_id)
+
+                    if card_supertypes and card_supertypes == current_supertypes and current_cmc == card_cmc and \
+                            card_subtypes[0] in current_subtypes:
+                        list_similar_cards.append(current_id)
                     elif card_supertypes and card_supertypes == current_supertypes and current_cmc == card_cmc:
                         list_similar_cards.append(current_id)
                     elif card_supertypes and card_supertypes == current_supertypes:
                         if current_cmc == card_cmc and current_colors == card_colors:
+                            list_similar_cards.append(current_id)
+                    elif card_subtypes[0] in current_subtypes:
+                        if current_cmc == card_cmc:
+                            list_similar_cards.append(current_id)
+                            # continue
+                        elif current_colors == card_colors:
                             list_similar_cards.append(current_id)
 
                         # continue
@@ -770,7 +784,7 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
     return list_similar_cards
 
 
-def similar_cards(card_name, not_enough=False, last_chance=False):
+def similar_cards(card_name, not_enough=False, last_chance=False, force=False):
     # TODO: fix similar cards for split cards cause converted CMC is combined and not per card
     modern_atomic = mongo.db.modern_atomic
     cards = mongo.db.cards
@@ -778,6 +792,7 @@ def similar_cards(card_name, not_enough=False, last_chance=False):
     # pprint(card_name)
 
     card_modern_atomic = modern_atomic.find_one({'_id': card_name})
+    # if not force:
 
     try:
         card_from_cards = cards.find_one({'_id': card_name, "similar_cards": {"$exists": True, "$ne": None}})
@@ -800,6 +815,8 @@ def similar_cards(card_name, not_enough=False, last_chance=False):
         split_card_name_atomic = card_name_atomic.split('//', 1)
         for name in split_card_name_atomic:
             card_names_atomic.append(name.lstrip().rstrip())
+    else:
+        card_names_atomic = ['icara e super', ' lud']
 
     # card_info = cards.find_one({'_id': card_name})
     # card_name = card_info['name']
@@ -809,8 +826,9 @@ def similar_cards(card_name, not_enough=False, last_chance=False):
     card_type_s = card_modern_atomic['types']
     card_supertypes = card_modern_atomic['supertypes']
 
-    # if 'Planeswalker' not in card_type:
-    #     return "not a PW"
+    if 'Planeswalker' not in card_type:
+        pprint("not a Planeswalker")
+        return "1"
 
     pprint(card_type)
 
@@ -832,7 +850,8 @@ def similar_cards(card_name, not_enough=False, last_chance=False):
             similar_cards = modern_atomic.aggregate([
                 {"$match": {"_id": {"$ne": card_id_atomic}, "types": card_type_s,
                             "colorIdentity": card_identity,
-                            "convertedManaCost": card_cmc, }},
+                            # "convertedManaCost": card_cmc,
+                            }},
                 {"$sample": {"size": 10}}])
         else:
             # similar_cards = modern_atomic.find(
@@ -970,7 +989,7 @@ def similar_cards(card_name, not_enough=False, last_chance=False):
     list_similar_cards = list(list_similar_cards)
     # print("stuck here")
 
-    pprint(list_similar_cards)
+    # pprint(list_similar_cards)
     cards.update_one({"_id": card_id_atomic},
                      {"$set": {"similar_cards": list_similar_cards}},
                      upsert=True)
