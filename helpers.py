@@ -91,7 +91,7 @@ def is_there_new_data() -> dict:
     else:
         latest_modern_tournament_urls = urls_from_db
 
-    # return {"is_new_data": False, "latest_modern_tournament_urls": latest_modern_tournament_urls}
+    # return {"is_new_data": True, "latest_modern_tournament_urls": latest_modern_tournament_urls}
     return {"is_new_data": is_new_data, "latest_modern_tournament_urls": latest_modern_tournament_urls}
 
 
@@ -188,8 +188,19 @@ def scrape_card_data() -> dict:
                             split_card_name = split_card_name.rstrip().lstrip()
 
                             # in_existing_card_data = mongo.db.cards.count_documents({'_id': split_card_name}, limit=1)
+                            if "Tear" in split_card_name:
+                                in_existing_card_data = True if cards.count_documents({'_id': "Tear"},
+                                                                                      limit=1) else False
 
-                            in_existing_card_data = any(split_card_name in d for d in card_ids)
+                                try:
+                                    pprint(cards.find_one({'_id': "Tear"})['_id'])
+                                except TypeError:
+                                    print("nema takoa jivotno")
+                            else:
+                                in_existing_card_data = True if cards.count_documents({'_id': split_card_name},
+                                                                                      limit=1) else False
+
+                            # in_existing_card_data = any(split_card_name in d for d in card_ids)
 
                             if (not card_name_in_list and not in_existing_card_data and (
                                     not is_this_a_basic(card_name))):
@@ -211,10 +222,10 @@ def scrape_card_data() -> dict:
                                 # card_name_in_list.append(card_name)
                                 new_card_name_list.add(split_card_name)
 
-                                update_existing_decklist_url_in_db = cards.update_one({"_id": card_name},
-                                                                                      {"$set": {
-                                                                                          "decklist_id": url + "#" + card_deck_list_id}},
-                                                                                      upsert=True)
+                                # update_existing_decklist_url_in_db = cards.update_one({"_id": split_card_name},
+                                #                                                       {"$set": {
+                                #                                                           "decklist_id": url + "#" + card_deck_list_id}},
+                                #                                                       upsert=True)
 
                                 # for card in existing_card_data:
                                 #     # pprint(card)
@@ -238,7 +249,10 @@ def scrape_card_data() -> dict:
                         # print('regular name')
 
                         # in_existing_card_data = mongo.db.cards.count_documents({'_id': card_name}, limit=1)
-                        in_existing_card_data = any(card_name in d for d in card_ids)
+                        # in_existing_card_data = any(card_name in d for d in card_ids)
+
+                        in_existing_card_data = True if cards.count_documents({'_id': card_name},
+                                                                              limit=1) else False
                         if not is_this_a_basic(card_name):
                             if not card_name_in_list and not in_existing_card_data:
 
@@ -628,7 +642,7 @@ def string_found(string1, string2):
 
 
 def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not_enough, card_name, card_supertypes,
-             last_chance):
+             last_chance, card_names_atomic):
     modern_atomic = mongo.db.modern_atomic
     # count = modern_atomic.count()
 
@@ -646,7 +660,7 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
         # if len(list_similar_cards) > 15:
         #     break
         # if card['_id'] == "Aven Flock":
-        if card_name != card['_id']:
+        if card_name != card['_id'] and card['_id'] not in card_names_atomic:
             # counter += 1
             # print(counter, ' ', card['_id'])
 
@@ -756,7 +770,7 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
     return list_similar_cards
 
 
-def similar_cards_2(card_name, not_enough=False, last_chance=False):
+def similar_cards(card_name, not_enough=False, last_chance=False):
     # TODO: fix similar cards for split cards cause converted CMC is combined and not per card
     modern_atomic = mongo.db.modern_atomic
     cards = mongo.db.cards
@@ -776,7 +790,16 @@ def similar_cards_2(card_name, not_enough=False, last_chance=False):
         print("Card does not have similar_cards")
 
     list_similar_cards = []
-    card_name_atomic = card_modern_atomic['_id']
+    card_id_atomic = card_modern_atomic['_id']
+    card_name_atomic = card_modern_atomic['name']
+    card_names_atomic = []
+
+    if '//' in card_name_atomic:
+        # card_names_atomic = []
+        split_card_name_atomic = card_name_atomic.split('//', 1)
+        for name in split_card_name_atomic:
+            card_names_atomic.append(name.lstrip().rstrip())
+
     # card_info = cards.find_one({'_id': card_name})
     # card_name = card_info['name']
 
@@ -797,19 +820,19 @@ def similar_cards_2(card_name, not_enough=False, last_chance=False):
             #     {"types": card_type_s, "colorIdentity": card_identity, "subtypes": card_subtypes}, limit=10)
 
             similar_cards = modern_atomic.aggregate([
-                {"$match": {"_id": {"$ne": card_name_atomic}, "types": card_type_s, "subtypes": card_subtypes}},
+                {"$match": {"_id": {"$ne": card_id_atomic}, "types": card_type_s, "subtypes": card_subtypes}},
                 {"$sample": {"size": 10}}])
 
         elif last_chance:
             similar_cards = modern_atomic.aggregate([
-                {"$match": {"_id": {"$ne": card_name_atomic}, "types": card_type_s, "colorIdentity": card_identity,
+                {"$match": {"_id": {"$ne": card_id_atomic}, "types": card_type_s, "colorIdentity": card_identity,
                             "convertedManaCost": card_cmc, }},
                 {"$sample": {"size": 10}}])
         else:
             # similar_cards = modern_atomic.find(
             #     {"types": card_type_s, "subtypes": card_subtypes}, limit=10)
             similar_cards = modern_atomic.aggregate([
-                {"$match": {"_id": {"$ne": card_name_atomic}, "types": card_type_s, "subtypes": card_subtypes,
+                {"$match": {"_id": {"$ne": card_id_atomic}, "types": card_type_s, "subtypes": card_subtypes,
                             "colorIdentity": card_identity}},
                 {"$sample": {"size": 10}}])
 
@@ -818,18 +841,25 @@ def similar_cards_2(card_name, not_enough=False, last_chance=False):
     # if current_identity == card_identity:
     # list_similar_cards.append(current_name)
     elif 'Tribal' in card_type:
-        similar_cards = modern_atomic.find({"_id": {"$ne": card_name_atomic}, "types": {"$in": ["Tribal"]},
+        similar_cards = modern_atomic.find({"_id": {"$ne": card_id_atomic}, "types": {"$in": ["Tribal"]},
                                             'subtypes': card_subtypes})
         list_similar_cards = set([card['_id'] for card in similar_cards])
     elif 'Land' in card_type:
 
         lands = ['Swamp', 'Mountain', 'Island', 'Plains', 'Forest', 'Wastes',
                  'Snow-Covered Swamp', 'Snow-Covered Mountain', 'Snow-Covered Island', 'Snow-Covered Plains',
-                 'Snow-Covered Forest', card_name_atomic]
+                 'Snow-Covered Forest', card_id_atomic]
         if not_enough or last_chance:
             similar_cards = modern_atomic.aggregate([
                 {"$match": {
-                    "$and": [{"_id": {"$nin": lands}, "types": card_type_s, "colorIdentity": card_identity}]}},
+                    "$and": [
+                        {"$and": [{"_id": {"$nin": lands}},
+                                  {"_id": {"$ne": card_id_atomic}},
+                                  {"_id": {"$nin": card_names_atomic}}]},
+                        {"types": card_type_s,
+                         "colorIdentity": card_identity}
+                    ]
+                }},
                 {"$sample": {"size": 15}}])
 
             # similar_cards = modern_atomic.find(
@@ -837,35 +867,50 @@ def similar_cards_2(card_name, not_enough=False, last_chance=False):
         else:
 
             similar_cards = modern_atomic.aggregate([
-                {"$match": {"_id": {"$ne": card_name_atomic},
-                            "$or": [{"type": card_type, "colorIdentity": card_identity},
-                                    {"$and": [{"type": card_type, 'subtypes': card_subtypes},
-                                              {"type": card_type, 'subtypes': {"$ne": []}}]}]}},
+                {"$match": {"$and": [
+                    {"_id": {"$ne": card_id_atomic}},
+                    {"_id": {"$nin": card_names_atomic}}],
+                    "$or": [{"type": card_type, "colorIdentity": card_identity},
+                            {"$and": [{"type": card_type, 'subtypes': card_subtypes},
+                                      {"type": card_type, 'subtypes': {"$ne": []}}]}]}},
                 {"$sample": {"size": 15}}])
 
         list_similar_cards = set([card['_id'] for card in similar_cards])
 
     elif 'Creature' in card_type or 'Artifact' in card_type:
         list_similar_cards = find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc,
-                                      not_enough, card_name, card_supertypes, last_chance)
+                                      not_enough, card_name, card_supertypes, last_chance, card_names_atomic)
     #
     elif 'Sorcery' in card_type or 'Instant' in card_type:
         pprint("instant is here")
         if not_enough or last_chance:
             similar_cards = modern_atomic.aggregate([
-                {"$match": {"_id": {"$ne": card_name_atomic}, "type": card_type, "colors": card_colors}},
-                {"$sample": {"size": 20}}])
+                # {"$match": {"_id": {"$nin": [card_id_atomic, card_name_atomic]}, "type": card_type,
+                #             "colors": card_colors}},
+                {"$match": {"$and": [{"_id": {"$ne": card_id_atomic}},
+                                     {"_id": {"$nin": card_names_atomic}}],
+
+                            "type": card_type, "colors": card_colors}},
+                {"$sample": {"size": 100}}])
         # if current_colors == card_colors:
         #     list_similar_cards.append(current_name)
         else:
             # print(card_type)
             similar_cards = modern_atomic.aggregate(
                 [
-                    {"$match": {"_id": {"$ne": card_name_atomic}, "type": card_type, "convertedManaCost": card_cmc,
-                                "colors": card_colors}},
+                    {"$match":
+
+                         {"$and": [{"_id": {"$ne": card_id_atomic}},
+                                   {"_id": {"$nin": card_names_atomic}}],
+                          "type": card_type, "convertedManaCost": card_cmc, "colors": card_colors
+                          }
+                     },
+                    # {"$match": {"_id": {"$ne": card_id_atomic}, "type": card_type, "convertedManaCost": card_cmc,
+                    # "colors": card_colors}},
                     # {"$match": {"_id": { "$ne": card_name_atomic},"$and": [{"types": card_type, "colors": card_colors},
                     #                      {"types": card_type, "convertedManaCost": card_cmc}]}},
-                    {"$sample": {"size": 20}}
+                    {"$sample": {"size": 100}}
+                    # {"$sample": {"size": 20}}
                 ]
             )
         list_similar_cards = set([card['_id'] for card in similar_cards])
@@ -881,7 +926,9 @@ def similar_cards_2(card_name, not_enough=False, last_chance=False):
     elif 'Enchantment' in card_type:
         if not_enough or last_chance:
             similar_cards = modern_atomic.aggregate([
-                {"$match": {"_id": {"$ne": card_name_atomic}, "type": card_type, "colors": card_colors}},
+                {"$match": {"$and": [
+                    {"_id": {"$ne": card_id_atomic}},
+                    {"_id": {"$nin": card_names_atomic}}], "type": card_type, "colors": card_colors}},
                 {"$sample": {"size": 20}}])
         # if current_colors == card_colors:
         #     list_similar_cards.append(current_name)
@@ -891,9 +938,17 @@ def similar_cards_2(card_name, not_enough=False, last_chance=False):
                     {
                         "$match":
                             {
-                                "_id": {"$ne": card_name_atomic},
-                                "$and": [{"type": card_type, "colors": card_colors},
-                                         {"type": card_type, "convertedManaCost": card_cmc}, ]
+                                # "_id": {"$ne": card_id_atomic},
+                                # {"$and": [{"_id": {"$ne": card_id_atomic}},
+                                #           {"_id": {"$nin": card_names_atomic}}],
+                                "$and": [
+                                    {"$and": [
+                                        {"_id": {"$ne": card_id_atomic}},
+                                        {"_id": {"$nin": card_names_atomic}}]
+                                    }
+                                    ,
+                                    {"type": card_type, "colors": card_colors},
+                                    {"type": card_type, "convertedManaCost": card_cmc}, ]
                             }
                     },
                     {"$sample": {"size": 10}}
@@ -908,7 +963,7 @@ def similar_cards_2(card_name, not_enough=False, last_chance=False):
     # print("stuck here")
 
     pprint(list_similar_cards)
-    cards.update_one({"_id": card_name_atomic},
+    cards.update_one({"_id": card_id_atomic},
                      {"$set": {"similar_cards": list_similar_cards}},
                      upsert=True)
 
@@ -956,7 +1011,7 @@ def gen_new_cards(get_all_uris):
 
     correct_answer_data = get_card_data_from_local_file(random_card_name)
 
-    list_card_names_with_same_type = similar_cards_2(random_card_name)
+    list_card_names_with_same_type = similar_cards(random_card_name)
 
     # random_card_type = [d[random_card_name]['type'] for d in unique_cards if
     #                     random_card_name in list(d.keys())[0]][0]
@@ -970,14 +1025,14 @@ def gen_new_cards(get_all_uris):
 
     # list_card_names_with_same_type.remove(random_card_name)
     if sample_size < 3:
-        list_card_names_with_same_type = similar_cards_2(random_card_name, not_enough=True)
+        list_card_names_with_same_type = similar_cards(random_card_name, not_enough=True)
         print(list_card_names_with_same_type)
         # print(len(list_card_names_with_same_type))
         sample_size = len(list_card_names_with_same_type)
         if sample_size < 3:
             # sample_size = len(list_card_names_with_same_type)
             print("for real not enough")
-            list_card_names_with_same_type = similar_cards_2(random_card_name, last_chance=True)
+            list_card_names_with_same_type = similar_cards(random_card_name, last_chance=True)
             # pprint(list_card_names_with_same_type)
             if sample_size < 3:
                 sample_size = len(list_card_names_with_same_type)
