@@ -826,9 +826,9 @@ def similar_cards(card_name, not_enough=False, last_chance=False, force=False):
     card_type_s = card_modern_atomic['types']
     card_supertypes = card_modern_atomic['supertypes']
 
-    if 'Planeswalker' not in card_type:
-        pprint("not a Planeswalker")
-        return "1"
+    # if 'Planeswalker' not in card_type:
+    #     pprint("not a Planeswalker")
+    #     return "1"
 
     pprint(card_type)
 
