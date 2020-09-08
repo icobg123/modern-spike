@@ -198,6 +198,13 @@ def about():
     return render_template("about.html")
 
 
+@app.route("/privacy", methods=['GET', 'POST'])
+@talisman(frame_options=ALLOW_FROM, frame_options_allow_from='SAMEORIGIN',
+          content_security_policy={'img-src': "'self' *.gatherer.wizards.com data:"}, )
+def privacy():
+    return render_template("privacy_policy.html")
+
+
 @app.route("/guess-name", methods=['GET'])
 def guess_name():
     return redirect(url_for('index'), code=302)
