@@ -179,6 +179,12 @@ def sw():
     return app.send_static_file('sw.js')
 
 
+@app.route('/.well-known/assetlinks.json')
+# @csp_header()
+def assetlinks():
+    return app.send_static_file('assetlinks.json')
+
+
 @app.route('/offline.html')
 # @csp_header()
 def offline():
