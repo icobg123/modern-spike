@@ -157,6 +157,7 @@ def scrape_card_data() -> dict:
                 # print(sorted_by_type.find('h5').string)
                 cards_in_decks = sorted_by_type.findAll('a', attrs={'class': 'deck-list-link'})
                 for card_name_div in cards_in_decks:
+
                     dict_to_add = {}
 
                     card_deck_list_id = card_name_div.parent.parent.parent.parent.parent.parent.parent.get('id')
@@ -167,7 +168,7 @@ def scrape_card_data() -> dict:
                     card_type = card_name_div.parent.parent.parent.find('h5').string
                     # card_type = card_type[:card_type.index(" (")]
                     card_name = card_name_div.string
-
+                    # if "Snapcaster Mage" in card_name:
                     # print(card_name_div.string + ': ' + card_type)
                     # print(div.string + ': ' + str(is_this_a_basic(div.string)))
                     # if ((any(d['name'] == card_name_div.string for d in card_list)) and (
@@ -199,6 +200,7 @@ def scrape_card_data() -> dict:
                             else:
                                 in_existing_card_data = True if cards.count_documents({'_id': split_card_name},
                                                                                       limit=1) else False
+                                # in_existing_card_data = False
 
                             # in_existing_card_data = any(split_card_name in d for d in card_ids)
 
@@ -253,6 +255,7 @@ def scrape_card_data() -> dict:
 
                         in_existing_card_data = True if cards.count_documents({'_id': card_name},
                                                                               limit=1) else False
+                        # in_existing_card_data = False
                         if not is_this_a_basic(card_name):
                             if not card_name_in_list and not in_existing_card_data:
 
@@ -262,6 +265,8 @@ def scrape_card_data() -> dict:
                                 # if (card_name_div.string not in card_list) and (not is_this_a_basic(card_name_div.string)):
 
                                 dict_to_add = get_single_card_data_from_scryfall(card_name)
+                                # pprint(dict_to_add)
+
                                 # dict_to_add['name'] = card_name_div.string
 
                                 dict_to_add['decklist_id'] = url + "#" + card_deck_list_id
@@ -338,7 +343,9 @@ def scrape_card_data() -> dict:
                                                                      upsert=True)
 
         if existing_card_data:
-            upserts = [UpdateOne({'_id': x['_id']}, {'$setOnInsert': x}, upsert=True) for x in existing_card_data]
+            upserts = [UpdateOne({'_id': x['_id']}, {'$set': x}, upsert=True) for x in existing_card_data]
+            # upserts = [UpdateOne({'_id': x['_id']}, {'$setOnInsert': x}, upsert=True) for x in existing_card_data]
+
             insert_new_cards = cards.bulk_write(upserts)
 
         # with open('static/card_data_url.json', 'w') as fp:
@@ -500,7 +507,10 @@ def get_single_card_data_from_scryfall(card: str) -> dict:
     """
     card_info = scrython.cards.Named(fuzzy=card)
     card_info = vars(card_info)
-    card_data, card_oracle_txt, card_img, card_flavor_txt = {}, '', '', card
+    # pprint(card_info['scryfallJson'])
+    # pprint(card_info['scryfallJson']['mana_cost'])
+    # pprint(replace_symbols_in_text(card_info['scryfallJson']['mana_cost']))
+    card_data, card_oracle_txt, card_mana_cost, card_img, card_flavor_txt = {}, '', '', '', card
 
     if 'card_faces' in card_info['scryfallJson']:
         for card_faces in card_info['scryfallJson']['card_faces']:
@@ -508,6 +518,9 @@ def get_single_card_data_from_scryfall(card: str) -> dict:
                 card_oracle_txt = card_faces['oracle_text']
                 if "flavor_text" in card_faces:
                     card_flavor_txt = card_faces['flavor_text']
+                if "mana_cost" in card_faces:
+                    card_mana_cost = card_faces['mana_cost']
+                    # card_mana_cost = replace_symbols_in_text(card_faces['mana_cost'])
                 if "image_uris" not in card_info['scryfallJson']:
                     card_img = card_faces['image_uris']['art_crop']
                 else:
@@ -515,7 +528,8 @@ def get_single_card_data_from_scryfall(card: str) -> dict:
 
     else:
         card_oracle_txt = card_info['scryfallJson']['oracle_text']
-
+        card_mana_cost = card_info['scryfallJson']['mana_cost']
+        # card_mana_cost = replace_symbols_in_text(card_info['scryfallJson']['mana_cost'])
         card_img = card_info['scryfallJson']['image_uris']['art_crop']
         if "flavor_text" in card_info['scryfallJson']:
             card_flavor_txt = card_info['scryfallJson']['flavor_text']
@@ -524,6 +538,7 @@ def get_single_card_data_from_scryfall(card: str) -> dict:
         '_id': card,
         'name': card,
         'oracle_text': card_oracle_txt,
+        'mana_cost': card_mana_cost,
         'flavor_text': card_flavor_txt,
         'image': card_img,
         # 'image_url': pil2datauri(get_mtg_img_from_url(card_img))
@@ -627,6 +642,7 @@ def get_card_data_from_local_file(card: str) -> dict:
         'oracle_text': card_info['oracle_text'],
         'flavor_text': card_info['flavor_text'],
         'decklist_id': card_info['decklist_id'],
+        'mana_cost': card_info['mana_cost'],
         'image': card_info['image'],
         # 'image_uri': card_info['image_uri']
     }
@@ -1034,7 +1050,7 @@ def gen_new_cards(get_all_uris):
     # random_card_name = "Renegade Rallier"
     # random_card_name = "Cranial Plating"
     # random_card_name = "Golos, Tireless Pilgrim"
-    # random_card_name = "Oath of Nissa"
+    # random_card_name = "Aria of Flame"
 
     correct_answer_data = get_card_data_from_local_file(random_card_name)
 
@@ -1119,6 +1135,8 @@ def gen_new_cards(get_all_uris):
 
     correct_answer_oracle_text = correct_answer_data['flavor_text'] if not correct_answer_data['oracle_text'] else \
         correct_answer_data['oracle_text']
+    correct_answer_mana_cost = "" if not correct_answer_data['mana_cost'] else replace_symbols_in_text(
+        correct_answer_data['mana_cost'])
     correct_answer_decklist_id = correct_answer_data['decklist_id']
     # pprint(correct_answer_oracle_text)
     correct_answer_name = correct_answer_data['name']
@@ -1151,6 +1169,7 @@ def gen_new_cards(get_all_uris):
             "correct_answer_flavor_text": correct_answer_flavor_text,
             "correct_answer_decklist_id": correct_answer_decklist_id,
             "correct_answer_image": correct_answer_image,
+            "correct_answer_mana_cost": correct_answer_mana_cost,
             "correct_answer_image_uri": correct_answer_image_uri,
             "correct_answer_name": correct_answer_name}
 

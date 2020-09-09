@@ -254,6 +254,7 @@ $(document).ready(function () {
                         $('#correct_answer').html(data.correct_answer_index);
                         console.log(data.correct_answer_name);
                         $('#cardImage .modal-body').html(data.correct_answer_name);
+                        $('#cardImage .mana_cost').html(data.correct_answer_mana_cost);
                         // $("#card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
                         // $("#card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
                         $("#decklist_id").attr('href', data.correct_answer_decklist_id);
@@ -331,6 +332,7 @@ $(document).ready(function () {
                         by_img.html('Next card');
 
                         $('#modalOracleText').html(data.new_oracle_text);
+                        $('#cardOracleText .mana_cost').html(data.correct_answer_mana_cost);
                         $('#correct_answer').html(data.correct_answer_index);
 
 
