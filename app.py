@@ -12,6 +12,8 @@ from flask_pymongo import PyMongo
 from flask import Flask, url_for, redirect
 from flask_talisman import Talisman, ALLOW_FROM
 from config import Config
+from flask_cache_buster import CacheBuster
+
 import os
 
 DB_URI = os.environ['mlab_DB_URI']
@@ -30,6 +32,13 @@ app.config['MONGO_URI'] = Config.MONGO_URI
 # app.config['MONGO_URI'] = Config.MONGO_URI
 sslify = SSLify(app)
 Compress(app)
+cache_config = {
+    'extensions': ['.js', '.css', '.csv'],
+    'hash_size': 10
+}
+cache_buster = CacheBuster(config=cache_config)
+cache_buster.register_cache_buster(app)
+
 # mongo = PyMongo(app)
 # if not DB_URI:
 #     DB_URI = Config.DB_URI
@@ -178,6 +187,12 @@ def process():
 # @csp_header()
 def sw():
     return app.send_static_file('sw.js')
+
+
+@app.route('/workbox-sw.js')
+# @csp_header()
+def wb():
+    return app.send_static_file('js//workbox-sw.js')
 
 
 @app.route('/.well-known/assetlinks.json')

@@ -252,6 +252,28 @@ h1, h2, h3, h5, h6 {
 }
 
 
+#installModal .modal-dialog {
+    /*text-align: left; !* you'll likely want this *!*/
+    /*max-width: 100%;*/
+    /*width: auto !important;*/
+    /*display: inline-block;*/
+    width: fit-content;
+}
+
+#btnAdd {
+    /*background-color: blue;*/
+    /*background-color: red;*/
+    /*border: 1px solid black;*/
+    /*color: white;*/
+    /*display: inline-block;*/
+    /*visibility: hidden;*/
+    /*text-decoration: none;*/
+    /*font-weight: 600;*/
+    /*padding: .5rem 1rem;*/
+    /*margin: 0 auto;*/
+}
+
+
 @media (max-width: 767px) {
     #footer_menu .nav-link {
         /*width: 100%;*/

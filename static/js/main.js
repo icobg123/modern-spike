@@ -103,3 +103,49 @@ window.addEventListener('load', function () {
             });
         });
 });
+
+
+let deferredPrompt;
+let btnAdd = document.querySelector('#btnAdd');
+
+function showInstall() {
+    $('#installModal').modal('show');
+}
+
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    console.log('beforeinstallprompt event fired');
+    e.preventDefault();
+    deferredPrompt = e;
+
+
+    // btnAdd.style.visibility = 'visible';
+    $('#installModal').modal('show');
+
+    // showInstall();
+    // $('#updateModal .modal-body').append(button);
+
+});
+
+$(document).on('click', '#btnAdd', function (e) {
+    e.preventDefault();
+
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice
+        .then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the A2HS prompt');
+            } else {
+                console.log('User dismissed the A2HS prompt');
+            }
+            deferredPrompt = null;
+        });
+});
+
+// btnAdd.addEventListener('click', (e) => {
+//     btnAdd.style.visibility = 'hidden';
+// });
+
+window.addEventListener('appinstalled', (evt) => {
+    app.logEvent('app', 'installed');
+});
