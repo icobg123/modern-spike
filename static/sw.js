@@ -68,9 +68,22 @@ self.addEventListener('activate', function (e) {
 // This is a just basic example, a better solution is to use the
 // Service Worker Precache module https://github.com/GoogleChromeLabs/sw-precache
 self.addEventListener('fetch', function (e) {
+    // fetch(e.request.clone()).catch(error => {
+    //
+    // });
+    if (e.request.method !== 'GET') {
+        return;
+    }
+
+    // if (e.request.method !== "GET") {
+    //     return Promise.reject('no-match')
+    //     // return Promise.reject('no-match')
+    // }
     console.log('[ServiceWorker] Fetch', e.request.url);
+    // if (e.request.method === "POST") {
     e.respondWith(fromCache(e.request));
     e.waitUntil(update(e.request));
+    // }
 });
 
 function fromCache(request) {
@@ -89,6 +102,7 @@ function update(request) {
     return caches.open(cacheName).then(function (cache) {
         return fetch(request).then(function (response) {
             // console.log('URL OF REQUEST ' + request.url);
+
 
             if (request.url == self.location.origin + "/") {
                 self.console.log(self.location.origin + "/");
