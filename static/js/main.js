@@ -108,8 +108,17 @@ window.addEventListener('load', function () {
 let deferredPrompt;
 let btnAdd = document.querySelector('#btnAdd');
 
+/*Show install button once ever 24hrs*/
 function showInstall() {
-    $('#installModal').modal('show');
+    var twentyFourHoursInMs = 24 * 60 * 60 * 1000;
+    var lastTimestamp = Number(localStorage.getItem("last-showed-at"));
+    var currentTimestamp = Date.now();
+    if ((currentTimestamp - lastTimestamp) >= twentyFourHoursInMs) {
+        localStorage.setItem("last-showed-at", currentTimestamp);
+        if (!$('#updateModal').hasClass('show')) {
+            $('#installModal').modal('show');
+        }
+    }
 }
 
 
@@ -117,14 +126,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
     console.log('beforeinstallprompt event fired');
     e.preventDefault();
     deferredPrompt = e;
-
-
-    // btnAdd.style.visibility = 'visible';
-    $('#installModal').modal('show');
-
-    // showInstall();
-    // $('#updateModal .modal-body').append(button);
-
+    showInstall();
 });
 
 $(document).on('click', '#btnAdd', function (e) {
