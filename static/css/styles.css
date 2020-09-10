@@ -18,11 +18,22 @@
 
 }
 
+/*body {*/
+/*    min-height: 100vh;*/
+/*    !* mobile viewport bug fix *!*/
+/*    min-height: -webkit-fill-available;*/
+/*}*/
+
+/*html {*/
+/*    height: -webkit-fill-available;*/
+/*}*/
+
 body {
     /*padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);*/
     font-family: "mplantin", sans-serif;
     /*background: red !important;*/
     /* Disables pull-to-refresh but allows overscroll glow effects. */
+    min-height: 100vh;
 
     overscroll-behavior-y: contain;
 
@@ -243,12 +254,15 @@ h1, h2, h3, h5, h6 {
 }
 
 .flex-basis-0 {
-    flex-basis: 0 !important;
+    flex-basis: auto !important;
+    /*flex-basis: 0 !important;*/
 }
 
 .height_100_js {
     height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
     height: calc(var(--vh, 1vh) * 100);
+    /*height: -webkit-fill-available;*/
+    /*min-height: -webkit-fill-available;*/
 }
 
 
