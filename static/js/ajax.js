@@ -148,9 +148,11 @@ $(document).ready(function () {
     $('.guess-by').on('click', function (event) {
         event.preventDefault();
         let id = $(this).attr('id');
+        let guess_btn = $(this);
         let link_text = $(this).text();
         console.log(id);
         console.log('guess by clicked');
+        guess_btn.removeClass('py-3')
         $('.deck-list-btns').addClass('d-none').removeClass('animate__fadeIn');
 
 
