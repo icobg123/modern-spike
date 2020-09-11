@@ -293,7 +293,8 @@ $(document).ready(function () {
             })
                 .done(function (data) {
                     console.log(data.correct_answer_decklist_id);
-                    $("#by_card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
+                    $("#by_card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text);
+                    // $("#by_card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
 
                     // let img = $('#by_card_image');
                     let img = document.getElementById('by_card_image');
