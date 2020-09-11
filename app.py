@@ -94,7 +94,7 @@ def get_new_cards():
             print('gen_new_cards job done new gen_new_cards job')
             new_cards = job.result
             if not new_cards['card_info_uris'] and get_all_uris == '1':
-                print("test")
+                # print("test")
                 new_cards = gen_new_cards(get_all_uris='1')
 
             result = q.enqueue(gen_new_cards, kwargs={'get_all_uris': get_all_uris}, job_id="gen_new_cards",
