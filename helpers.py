@@ -676,11 +676,13 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
         # if len(list_similar_cards) > 20:
         #     break
         # if card['_id'] == "Nylea, God of the Hunt":
-        if card_name != card['_id'] and card['_id'] not in card_names_atomic:
+        if card_name != card['_id'] and card['_id'] not in card_names_atomic and "//" not in card['_id']:
             # counter += 1
             # print(counter, ' ', card['_id'])
-
-            current_type = card['type']
+            try:
+                current_type = card['type']
+            except KeyError:
+                print("No card type for - {0}".format(card['_id']))
             current_subtypes = card['subtypes']
             current_supertypes = card['supertypes']
             current_colors = card['colors']
@@ -1014,8 +1016,8 @@ def similar_cards(card_name, not_enough=False, last_chance=False, force=False):
     return list_similar_cards
 
 
-def gen_new_cards(get_all_uris):
-    pprint("get_all_uris {}".format(get_all_uris))
+def gen_new_cards(get_all_uris, get_oracle_texts=0):
+    pprint("get_all_uris {}".format(get_all_uris, get_oracle_texts))
     cards = mongo.db.cards
     # data = read_from_file('static/card_data_url.json')
     # data = read_from_file('static/card_data_url.json')
@@ -1051,7 +1053,8 @@ def gen_new_cards(get_all_uris):
     # random_card_name = "Cranial Plating"
     # random_card_name = "Golos, Tireless Pilgrim"
     # random_card_name = "Aria of Flame"
-
+    random_card_name = "Plague Engineer"
+    #
     correct_answer_data = get_card_data_from_local_file(random_card_name)
 
     list_card_names_with_same_type = similar_cards(random_card_name)
@@ -1095,6 +1098,7 @@ def gen_new_cards(get_all_uris):
 
     random.shuffle(random_cards_name_same_type)
     dict_random_cards_name_same_typ = {}
+    dict_random_cards_name_same_type_oracle_texts = {}
 
     if get_all_uris == '1':
         for card in random_cards_name_same_type:
@@ -1164,6 +1168,7 @@ def gen_new_cards(get_all_uris):
 
     return {"card_info": random_cards_name_same_type,
             "card_info_uris": dict_random_cards_name_same_typ,
+            "card_info_oracle_texts": dict_random_cards_name_same_type_oracle_texts,
             "correct_answer_index": correct_answer_index,
             "correct_answer_oracle_text": to_html_list_correct_answer_oracle_text,
             "correct_answer_flavor_text": correct_answer_flavor_text,
