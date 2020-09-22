@@ -802,7 +802,7 @@ def find_all(card_type, card_colors, card_subtypes, card_identity, card_cmc, not
     return list_similar_cards
 
 
-def similar_cards(card_name, not_enough=False, last_chance=False, force=False):
+def similar_cards(card_name, not_enough=False, last_chance=False):
     # TODO: fix similar cards for split cards cause converted CMC is combined and not per card
     modern_atomic = mongo.db.modern_atomic
     cards = mongo.db.cards
@@ -1016,9 +1016,10 @@ def similar_cards(card_name, not_enough=False, last_chance=False, force=False):
     return list_similar_cards
 
 
-def gen_new_cards(get_all_uris, get_oracle_texts=0):
+def gen_new_cards(get_all_uris=0, get_oracle_texts=0):
     pprint("get_all_uris {}".format(get_all_uris, get_oracle_texts))
     cards = mongo.db.cards
+    modern_atomic = mongo.db.modern_atomic
     # data = read_from_file('static/card_data_url.json')
     # data = read_from_file('static/card_data_url.json')
     # latest_card_names = read_from_file('static/latest_card_names.json')
@@ -1053,7 +1054,7 @@ def gen_new_cards(get_all_uris, get_oracle_texts=0):
     # random_card_name = "Cranial Plating"
     # random_card_name = "Golos, Tireless Pilgrim"
     # random_card_name = "Aria of Flame"
-    random_card_name = "Plague Engineer"
+    # random_card_name = "Plague Engineer"
     #
     correct_answer_data = get_card_data_from_local_file(random_card_name)
 
@@ -1099,6 +1100,16 @@ def gen_new_cards(get_all_uris, get_oracle_texts=0):
     random.shuffle(random_cards_name_same_type)
     dict_random_cards_name_same_typ = {}
     dict_random_cards_name_same_type_oracle_texts = {}
+    # get_oracle_texts = '1'
+    if get_oracle_texts == '1':
+        for card in random_cards_name_same_type:
+            print(card)
+            card_info = modern_atomic.find_one({"_id": card})
+            if card_info is not None and 'oracle_text' in card_info.keys():
+                dict_random_cards_name_same_type_oracle_texts[card] = card_info['oracle_text']
+
+    pprint("dict_racle+_text")
+    pprint(dict_random_cards_name_same_type_oracle_texts)
 
     if get_all_uris == '1':
         for card in random_cards_name_same_type:
