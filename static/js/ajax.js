@@ -158,6 +158,9 @@ $(document).ready(function () {
         let id = $(this).attr('id');
         let guess_btn = $(this);
         let link_text = $(this).text();
+        // h1_col.addClass('mt-2 mt-md-0');
+        // h1_col_h1.addClass('d-none d-md-block');
+
         console.log(id);
         console.log('guess by clicked');
         guess_btn.removeClass('py-3')

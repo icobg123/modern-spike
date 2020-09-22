@@ -332,6 +332,7 @@ h1, h2, h3, h5, h6 {
 
 
 @media (max-width: 767px) {
+
     #footer_menu .nav-link {
         /*width: 100%;*/
     }

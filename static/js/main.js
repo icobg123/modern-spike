@@ -110,7 +110,7 @@ let btnAdd = document.querySelector('#btnAdd');
 
 /*Show install button once ever 24hrs*/
 function showInstall() {
-    var twentyFourHoursInMs = 24 * 60 * 60 * 1000;
+    var twentyFourHoursInMs = 24 * 60 * 60 * 1000 * 7;
     var lastTimestamp = Number(localStorage.getItem("last-showed-at"));
     var currentTimestamp = Date.now();
     if ((currentTimestamp - lastTimestamp) >= twentyFourHoursInMs) {
