@@ -1,0 +1,86 @@
+<div id="card_oracle_text" class="btn-group-vertical btn-group btn-group-toggle d-flex flex-column"
+     data-toggle="buttons">
+    {#<pre></pre>#}
+    {#    {{ card_info_oracle_texts }}#}
+
+    {% for card_info in card_info %}
+        {#        {% if loop.index == 1 %}#}
+        {#            {% set border_classes = 'btn-border-1' %}#}
+        {#        {% elif loop.index == 2 %}#}
+        {#            {% set border_classes = 'btn-border-2' %}#}
+        {#        {% elif loop.index == 3 %}#}
+        {#            {% set border_classes = 'rounded-0 btn-border-3' %}#}
+        {#        {% elif loop.index == 4 %}#}
+        {#            {% set border_classes = 'rounded-0 btn-border-4' %}#}
+        {#        {% elif loop.index == 5 %}#}
+        {#            {% set border_classes = 'btn-border-5' %}#}
+        {#        {% elif loop.index == 6 %}#}
+        {#            {% set border_classes = 'btn-border-6' %}#}
+        {#        {% endif %}#}
+        {#        {% if loop.index0 == 0 or loop.index0 % 2 ==0 %}#}
+        {#            {% set  border_classes = 'border-bottom-0 rounded-0' %}#}
+        {#            <div class="btn-group">#}
+        {#        {% else %}#}
+        {#            {% set  border_classes = 'border-bottom-0 rounded-0' %}#}
+        {##}
+        {#        {% endif %}#}
+        <label class="btn btn-light btn-sm  border-dark text-dark text-left d-flex flex-column justify-content-center align-items-start position-relative p-2 oracle-text ">
+            <input class="form-check-input" type="radio" name="pickCard"
+                   id="{{ card_info | replace(" ", "_")|lower|escape }}"
+                   id="{{ card_info.name | replace(" ", "_")|lower|escape }}"
+                   value="{{ loop.index }}"
+                   autocomplete="off">
+            {#        {{ card_info }}#}
+            {% if card_info in card_info_oracle_texts %}
+                {{ card_info_oracle_texts[card_info]|safe }}
+            {% endif %}
+            {% if card_info == correct_answer_name %}
+                {#                <img class="check invisible position-absolute"#}
+                {#                     src="{{ url_for('static', filename='/images/bootstrap-icons/check-circle.svg') }}" alt=""#}
+                {#                     width="30"#}
+                {#                     height="30"#}
+                {#                     title="check">#}
+
+                <svg class="check invisible position-absolute bi bi-check-circle text-black"
+
+                     width="32" height="32" viewBox="0 0 20 20" fill="currentColor"
+                     xmlns="http://www.w3.org/2000/svg">
+
+                    {#                <svg class="bi bi-alert-triangle text-danger" width="32" height="32" viewBox="0 0 20 20"#}
+                    {#                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">#}
+
+                    <path fill-rule="evenodd"
+                          d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path fill-rule="evenodd"
+                          d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
+                </svg>
+
+
+            {% else %}
+
+                <svg class="x invisible position-absolute bi bi-x-circle text-black" width="32" height="32" viewBox="0 0 20 20"  fill="currentColor"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                          d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path fill-rule="evenodd"
+                          d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
+                    <path fill-rule="evenodd"
+                          d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
+                </svg>
+
+
+{#                <img class="x invisible position-absolute"#}
+                {#                     src="{{ url_for('static', filename='/images/bootstrap-icons/x-circle.svg') }}" alt=""#}
+                {#                     width="30"#}
+                {#                     height="30"#}
+                {#                     title="X">#}
+
+            {% endif %}
+
+        </label>
+        {#    {% if loop.index0 % 2 !=0 %}#}
+        {#        </div>#}
+        {#    {% endif %}#}
+    {% endfor %}
+
+</div>

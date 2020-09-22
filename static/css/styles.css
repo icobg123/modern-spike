@@ -70,15 +70,44 @@ h1, h2, h3, h5, h6 {
 
 #card_holder .btn {
     /*border-radius: 0;*/
-
+    /*padding: 0.1rem 0.1rem;*/
     padding: 0.1rem 0.1rem;
     font-family: Beleren-Bold, sans-serif;
+}
+
+#card_holder .btn. {
+    z-index: 0;
+}
+
+#card_holder .btn.oracle-text p {
+    /*border-radius: 0;*/
+    font-family: mplantin, sans-serif;
+}
+
+#card_oracle_text .btn:hover,
+#card_oracle_text .btn.active {
+    border-color: #343a40;
+    z-index: 0;
 }
 
 #card_holder .btn:first-of-type {
     /*margin-left: -1px;*/
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
+    border-left: none;
+    border-right: none;
+    /*border-bottom: 1px solid;*/
+}
+
+#card_oracle_text .btn:not(:first-child) {
+    /*margin-left: -1px;*/
+    /*border-top-left-radius: 0.25rem;*/
+    /*border-top-right-radius: 0.25rem;*/
+    border-top: 1px solid;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+
 }
 
 .btn-group-vertical > .btn:not(:first-child),
@@ -91,6 +120,20 @@ h1, h2, h3, h5, h6 {
 #card_names .x,
 #card_names .check {
     left: 5px;
+}
+
+#card_oracle_text .x,
+#card_oracle_text .check {
+    /*width: 128px;*/
+    /*height: 128px;*/
+    overflow: auto;
+    margin: auto;
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    bottom: 0;
+    right: 0;
+    opacity: 0.5;
 }
 
 #card_imgs .x,
@@ -311,7 +354,7 @@ h1, h2, h3, h5, h6 {
 }
 
 @media (max-width: 346px) {
-    .decklists_url {
+    .decklists_tournament_url {
         display: none;
     }
 }

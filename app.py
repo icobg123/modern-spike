@@ -84,34 +84,51 @@ q = Queue(connection=conn)
 @csp_header()
 def get_new_cards():
     job = q.fetch_job('gen_new_cards')
-    get_all_uris = request.form['get_all_uris']
+    get_all_uris = 0
+    get_oracle_texts = 0
+    try:
+        get_all_uris = request.form['get_all_uris']
+    except KeyError:
+        print("don't get image uris")
+    try:
+        get_oracle_texts = request.form['get_oracle_texts']
+    except KeyError:
+        print("don't get get_oracle_texts")
+
+    pprint(request.form)
 
     if job:
         if job.is_failed:
-            print('gen_new_cards failed')
+            # print('gen_new_cards failed')
             job.delete()
         if job.is_finished:
-            print('gen_new_cards job done new gen_new_cards job')
+            # print('gen_new_cards job done new gen_new_cards job')
             new_cards = job.result
             if not new_cards['card_info_uris'] and get_all_uris == '1':
                 # print("test")
                 new_cards = gen_new_cards(get_all_uris='1')
+            elif not new_cards['card_info_oracle_texts'] and get_oracle_texts == '1':
+                new_cards = gen_new_cards(get_oracle_texts='1')
 
-            result = q.enqueue(gen_new_cards, kwargs={'get_all_uris': get_all_uris}, job_id="gen_new_cards",
+            result = q.enqueue(gen_new_cards,
+                               kwargs={'get_all_uris': get_all_uris, 'get_oracle_texts': get_oracle_texts},
+                               job_id="gen_new_cards",
                                result_ttl=43200)
         else:
             # job.delete()
-            print('gen_new_cards job not finished')
-            new_cards = gen_new_cards(get_all_uris)
+            # print('gen_new_cards job not finished')
+            new_cards = gen_new_cards(get_all_uris=get_all_uris, get_oracle_texts=get_oracle_texts)
     else:
-        print('no gen_new_cards job gen_new_cards create job now')
-        result = q.enqueue(gen_new_cards, kwargs={'get_all_uris': get_all_uris}, job_id="gen_new_cards",
+        # print('no gen_new_cards job gen_new_cards create job now')
+        result = q.enqueue(gen_new_cards, kwargs={'get_all_uris': get_all_uris, 'get_oracle_texts': get_oracle_texts},
+                           job_id="gen_new_cards",
                            result_ttl=43200)
         new_cards = gen_new_cards(get_all_uris)
 
     return jsonify({
         "html": render_template('card_holder.html', card_info=new_cards['card_info'],
                                 card_info_uris=new_cards['card_info_uris'],
+                                card_info_oracle_texts=new_cards['card_info_oracle_texts'],
                                 correct_answer_name=new_cards['correct_answer_name']),
         "correct_answer_index": new_cards['correct_answer_index'],
         "correct_answer_name": new_cards['correct_answer_name'],
@@ -120,6 +137,7 @@ def get_new_cards():
         "correct_answer_mana_cost": new_cards['correct_answer_mana_cost'],
         "correct_answer_decklist_id": new_cards['correct_answer_decklist_id'],
         'card_info_uris': new_cards['card_info_uris'],
+        'card_info_oracle_texts': new_cards['card_info_oracle_texts'],
         'new_oracle_text': new_cards['correct_answer_oracle_text'],
         'new_flavor_text': new_cards['correct_answer_flavor_text'],
     })
