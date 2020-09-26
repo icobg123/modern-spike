@@ -1,0 +1,55 @@
+<div class="modal fade" id="card_type_filters_modal" tabindex="-1" role="dialog"
+     aria-labelledby="card_type_filters_modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header py-1 d-flex justify-content-between align-items-center border-bottom-0">
+                <h5 class="modal-title text-dark" id="exampleModalLongTitle">Filters</h5>
+                <small class="text-dark">All filters are selected by default</small>
+                {#                                                        <button type="button" class="close" data-dismiss="modal"#}
+                {#                                                                aria-label="Close">#}
+                {#                                                            <span aria-hidden="true">&times;</span>#}
+                {#                                                        </button>#}
+            </div>
+            <div class="modal-body py-0">
+                <div class="d-flex btn-group btn-group-toggle my-1" data-toggle="buttons">
+                    <label class="btn  btn-success ">
+                        <input type="checkbox" name="planeswalker" checked autocomplete="off"> Planeswalker
+                    </label>
+                    <label class="btn  btn-success ">
+                        <input type="checkbox" name="creature" checked autocomplete="off"> Creature
+                    </label>
+                </div>
+                <div class="d-flex btn-group btn-group-toggle my-1" data-toggle="buttons">
+                    <label class="btn  btn-success ">
+                        <input type="checkbox" name="sorcery" checked autocomplete="off"> Sorcery
+                    </label>
+                    <label class="btn  btn-success ">
+                        <input type="checkbox" name="tribal" checked autocomplete="off"> Tribal
+                    </label>
+                </div>
+                <div class="d-flex btn-group btn-group-toggle my-1" data-toggle="buttons">
+                    <label class="btn  btn-success ">
+                        <input type="checkbox" name="artifact" checked autocomplete="off"> Artifact
+                    </label>
+                    <label class="btn  btn-success ">
+                        <input type="checkbox" name="instant" checked autocomplete="off"> Instant
+                    </label>
+                </div>
+                <div class="d-flex btn-group btn-group-toggle my-1" data-toggle="buttons">
+                    <label class="btn  btn-success ">
+                        <input type="checkbox" name="enchantment" checked autocomplete="off"> Enchantment
+                    </label>
+                    <label class="btn  btn-success ">
+                        <input type="checkbox" name="land" checked autocomplete="off"> Land
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer pt-0 pb-1">
+                <button id="close_filter_btn" type="button" class="btn btn-outline-secondary w-100"
+                        data-dismiss="modal">
+                    Apply
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

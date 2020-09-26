@@ -112,9 +112,11 @@ def scrape_card_data() -> dict:
 
     cards = mongo.db.cards
     urls = mongo.db.urls
+    modern_atomic = mongo.db.modern_atomic
     list_card_names_db = mongo.db.list_card_names
-    card_ids = cards.find().distinct('_id')
-
+    card_types_sets = mongo.db.card_types_sets
+    # card_ids = cards.find().distinct('_id')
+    card_types_dict = {}
     # existing_urls = card_data['url']
 
     is_there_new_data_data = is_there_new_data()
@@ -146,7 +148,7 @@ def scrape_card_data() -> dict:
 
             sorted_by_type = modern_deck_lists.findAll('div',
                                                        attrs={'class': re.compile(
-                                                           '^sorted-by-(Tribal|Planeswalker|Creature|Sorcery|Land|Enchantment|Artifact|Instant|Sideboard)',
+                                                           '^sorted-by-(Tribal|Planeswalker|Creature|Sorcery|Land|Enchantment|Artifact|Instant|Sideboard|Other)',
                                                            flags=re.IGNORECASE)})
             # pprint(sorted_by_type)
 
@@ -166,7 +168,7 @@ def scrape_card_data() -> dict:
                     # print(card_deck_list_id)
 
                     card_type = card_name_div.parent.parent.parent.find('h5').string
-                    # card_type = card_type[:card_type.index(" (")]
+                    card_type = card_type[:card_type.index(" (")]
                     card_name = card_name_div.string
                     # if "Snapcaster Mage" in card_name:
                     # print(card_name_div.string + ': ' + card_type)
@@ -176,7 +178,7 @@ def scrape_card_data() -> dict:
                     card_name_in_list = any(card_name in d for d in card_list)
                     card_list.append(card_name)
                     # pprint(card_list)
-                    # print(card_name, card_name_in_list)
+                    print(card_name, card_name_in_list)
 
                     # card_name_in_list = any(d.get('name', 'icara') == card_name for d in card_list)
                     if '//' in card_name:
@@ -218,14 +220,20 @@ def scrape_card_data() -> dict:
                                 # existing_card_data.append(dict_to_add)
                                 pprint("new_card_name_list adding split card - {}".format(split_card_name))
                                 new_card_name_list.add(split_card_name)
+                                type_from_atomic = modern_atomic.find_one({"_id": split_card_name})['types'][0]
+
+                                add_to_type_list(split_card_name, type_from_atomic, card_types_dict)
 
                             else:
                                 # print('// card in existing data')
-                                print("// in name {} - in  existing data".format(split_card_name))
+                                print("{} - // in name and in  existing data".format(split_card_name))
                                 # card_name_in_list.append(card_name)
                                 pprint("new_card_name_list adding split card - {}".format(split_card_name))
 
                                 new_card_name_list.add(split_card_name)
+                                type_from_atomic = modern_atomic.find_one({"_id": split_card_name})['types'][0]
+
+                                add_to_type_list(split_card_name, type_from_atomic, card_types_dict)
 
                                 # update_existing_decklist_url_in_db = cards.update_one({"_id": split_card_name},
                                 #                                                       {"$set": {
@@ -263,7 +271,7 @@ def scrape_card_data() -> dict:
                             if not card_name_in_list and not in_existing_card_data:
 
                                 # pprint('')
-                                # print("regular name {} - not in existing card data".format(card_name))
+                                print("{} - regular name - not in existing card data".format(card_name))
 
                                 # if (card_name_div.string not in card_list) and (not is_this_a_basic(card_name_div.string)):
 
@@ -279,9 +287,13 @@ def scrape_card_data() -> dict:
                                 # existing_card_data.append(dict_to_add)
                                 card_list.append(card_name)
                                 new_card_name_list.add(card_name)
+                                type_from_atomic = modern_atomic.find_one({"_id": card_name})['types'][0]
+
+                                add_to_type_list(card_name, type_from_atomic, card_types_dict)
+
 
                             else:
-                                # print("regular name {} In data file".format(card_name))
+                                print("{} - regular name - In data file".format(card_name))
                                 # card_name_in_list.append(card_name)
                                 new_card_name_list.add(card_name)
                                 # existing_card_data[card_name]['decklist_id'] = card_deck_list_id
@@ -290,7 +302,9 @@ def scrape_card_data() -> dict:
                                                                                       {"$set": {
                                                                                           "decklist_id": url + "#" + card_deck_list_id}},
                                                                                       upsert=True)
+                                type_from_atomic = modern_atomic.find_one({"_id": card_name})['types'][0]
 
+                                add_to_type_list(card_name, type_from_atomic, card_types_dict)
                                 # for card in existing_card_data:
                                 #     if card_name in card.keys():
                                 #         # card[card_name]['decklist_id'] = card_deck_list_idndex
@@ -325,7 +339,6 @@ def scrape_card_data() -> dict:
         #     'url': urls_to_add,
         #     "card_set": existing_card_data,
         # }
-
         insert_urls_in_db = urls.update_one({"_id": "decklists_urls"},
                                             {"$set": {"urls": urls_to_add}},
                                             upsert=True)
@@ -335,11 +348,16 @@ def scrape_card_data() -> dict:
             for card in list_card_names:
                 set_card_names.add(card)
 
-
         # latest_card_names_dict = {
         #     "card_names": card_names_to_add,
         #     "set_card_names": list(set_card_names)
         # }
+
+        for type in card_types_dict.keys():
+            insert_card_types_sets_in_db = card_types_sets.update_one({"_id": type},
+                                                                      {"$set": {
+                                                                          "set_card_names": card_types_dict[type]}},
+                                                                      upsert=True)
 
         insert_list_card_names_in_db = list_card_names_db.update_one({"_id": "card_names"},
                                                                      {"$set": {"set_card_names": list(set_card_names),
@@ -366,6 +384,7 @@ def scrape_card_data() -> dict:
         unique_cards = card_data['card_set']
         print(cards_from)
 
+    pprint(card_types_dict)
     return {
         "modern_league_url": 'https://magic.wizards.com',
         # "modern_league_url": 'https://magic.wizards.com' + modern_league_url,
@@ -512,7 +531,7 @@ def get_single_card_data_from_scryfall(card: str) -> dict:
     """
     card_info = scrython.cards.Named(fuzzy=card)
     card_info = vars(card_info)
-    # pprint(card_info['scryfallJson'])
+    pprint(card_info['scryfallJson'])
     # pprint(card_info['scryfallJson']['mana_cost'])
     # pprint(replace_symbols_in_text(card_info['scryfallJson']['mana_cost']))
     card_data, card_oracle_txt, card_mana_cost, card_img, card_flavor_txt = {}, '', '', '', card
@@ -1025,24 +1044,39 @@ def similar_cards(card_name, not_enough=False, last_chance=False):
     return list_similar_cards
 
 
-def gen_new_cards(get_all_uris=0, get_oracle_texts=0):
+def gen_new_cards(card_type_filters=None, get_all_uris=0, get_oracle_texts=0, ):
+    if card_type_filters is None:
+        card_type_filters = ['planeswalker', 'land',
+                             'enchantment', 'instant',
+                             'artifact', 'tribal',
+                             'sorcery', 'creature', ]
+
     pprint("get_all_uris {} and oracles texts {}".format(get_all_uris, get_oracle_texts))
     cards = mongo.db.cards
     modern_atomic = mongo.db.modern_atomic
-    # data = read_from_file('static/card_data_url.json')
-    # data = read_from_file('static/card_data_url.json')
-    # latest_card_names = read_from_file('static/latest_card_names.json')
-    # latest_card_names = read_from_file('static/latest_card_names.json')
-    list_card_names = mongo.db.list_card_names
-    latest_card_names = list_card_names.find_one({"_id": "card_names"})
+    card_types_sets = mongo.db.card_types_sets
 
-    # unique_cards = data['card_set']
+    # if there is only 1 filter option selected perform a single ID search
 
-    list_card_names = latest_card_names['set_card_names']
+    if len(card_type_filters) == 1:
+        all_card_names_sets = card_types_sets.find({"_id": card_type_filters[0]})
+    else:
+        all_card_names_sets = card_types_sets.find({"_id": {"$in": card_type_filters}})
+
+    list_combined_set_card_names = []
+
+    for card_names_set in all_card_names_sets:
+        pprint(card_names_set)
+        card_type_set = card_names_set['set_card_names']
+        list_combined_set_card_names += card_type_set
+
+    # pprint(list_combined_set_card_names)
+
+    # list_card_names = latest_card_names['set_card_names']
     # list_card_names = [list(d.keys())[0] for d in unique_cards]
 
     # random.shuffle(list_card_names)
-    random_card_name = sample(list_card_names, 1)[0]
+    random_card_name = sample(list_combined_set_card_names, 1)[0]
 
     # random_card_name = 'Ugin, the Ineffable'
     # random_card_name = 'Klothys, God of Destiny'
@@ -1244,6 +1278,7 @@ def pil2datauri(img):
     data64 = base64.b64encode(data.getvalue())
     return u'data:img/jpeg;base64,' + data64.decode('utf-8')
 
+
 # pprint(get_single_card_data_from_scryfall('Wear'))
 # scrape_card_data()
 
@@ -1259,3 +1294,10 @@ def pil2datauri(img):
 #     list_card_names_with_same_type = similar_cards(list(card.keys())[0], True)
 # pprint(similar_cards(existing_card_data['The Royal Scions']))
 # pprint(similar_cards(list(card.keys())[0], not_enough=True))
+
+def add_to_type_list(card, card_type, card_types_dict):
+    if card_type.lower() not in card_types_dict:
+        card_types_dict[card_type.lower()] = [card]
+    else:
+        if card not in card_types_dict[card_type.lower()]:
+            card_types_dict[card_type.lower()].append(card)

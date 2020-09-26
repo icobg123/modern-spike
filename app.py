@@ -86,6 +86,10 @@ def get_new_cards():
     job = q.fetch_job('gen_new_cards')
     get_all_uris = 0
     get_oracle_texts = 0
+    card_type_filters = None
+
+    # pprint("form")
+    # pprint(request.form)
     try:
         get_all_uris = request.form['get_all_uris']
     except KeyError:
@@ -94,8 +98,19 @@ def get_new_cards():
         get_oracle_texts = request.form['get_oracle_texts']
     except KeyError:
         print("don't get get_oracle_texts")
+    try:
+        if not request.form.getlist('filters[]') or request.form.getlist('filters[]') == []:
+            card_type_filters = None
+        else:
+            card_type_filters = request.form.getlist('filters[]')
+        # card_type_filters = request.form.getlist('filters[]')
+    except KeyError:
+        print("don't get filters")
 
     pprint(request.form)
+    pprint("form")
+
+    pprint(card_type_filters)
 
     if job:
         if job.is_failed:
@@ -106,24 +121,27 @@ def get_new_cards():
             new_cards = job.result
             if not new_cards['card_info_uris'] and get_all_uris == '1':
                 # print("test")
-                new_cards = gen_new_cards(get_all_uris='1')
+                new_cards = gen_new_cards(get_all_uris='1', card_type_filters=card_type_filters)
             elif not new_cards['card_info_oracle_texts'] and get_oracle_texts == '1':
-                new_cards = gen_new_cards(get_oracle_texts='1')
+                new_cards = gen_new_cards(get_oracle_texts='1', card_type_filters=card_type_filters)
 
             result = q.enqueue(gen_new_cards,
-                               kwargs={'get_all_uris': get_all_uris, 'get_oracle_texts': get_oracle_texts},
+                               kwargs={'get_all_uris': get_all_uris, 'get_oracle_texts': get_oracle_texts,
+                                       'card_type_filters': card_type_filters},
                                job_id="gen_new_cards",
                                result_ttl=43200)
         else:
             # job.delete()
             # print('gen_new_cards job not finished')
-            new_cards = gen_new_cards(get_all_uris=get_all_uris, get_oracle_texts=get_oracle_texts)
+            new_cards = gen_new_cards(get_all_uris=get_all_uris, get_oracle_texts=get_oracle_texts,
+                                      card_type_filters=card_type_filters)
     else:
         # print('no gen_new_cards job gen_new_cards create job now')
-        result = q.enqueue(gen_new_cards, kwargs={'get_all_uris': get_all_uris, 'get_oracle_texts': get_oracle_texts},
+        result = q.enqueue(gen_new_cards, kwargs={'get_all_uris': get_all_uris, 'get_oracle_texts': get_oracle_texts,
+                                                  'card_type_filters': card_type_filters},
                            job_id="gen_new_cards",
                            result_ttl=43200)
-        new_cards = gen_new_cards(get_all_uris)
+        new_cards = gen_new_cards(get_all_uris=get_all_uris, card_type_filters=card_type_filters)
 
     return jsonify({
         "html": render_template('card_holder.html', card_info=new_cards['card_info'],
@@ -141,6 +159,25 @@ def get_new_cards():
         'new_oracle_text': new_cards['correct_answer_oracle_text'],
         'new_flavor_text': new_cards['correct_answer_flavor_text'],
     })
+
+
+# @app.route('/filters', methods=['POST'])
+# # @csp_header()
+# def filters():
+#     card_type_filters = None
+#     try:
+#         if not request.form.getlist('filters[]') or request.form.getlist('filters[]') == []:
+#             card_type_filters = None
+#         else:
+#             card_type_filters = request.form.getlist('filters[]')
+#         # card_type_filters = request.form.getlist('filters[]')
+#     except KeyError:
+#         print("don't get filters")
+#
+#     res = make_response()
+#     res.set_cookie('card_type_filters', card_type_filters, max_age=60 * 60 * 24 * 365 * 2)
+#
+#     return res
 
 
 @app.route('/cookie', methods=['POST'])

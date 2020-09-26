@@ -21,6 +21,24 @@ window.addEventListener('resize', () => {
 });
 
 
+function prop_checkboxes() {
+    let filters = JSON.parse(localStorage["card_type_filters"]);
+    console.log(filters);
+
+    $('#card_type_filters_modal input').each(function () {
+        console.log($(this).attr('name'));
+
+        if ($.inArray($(this).attr('name'), filters)) {
+            $(this).prop("checked", false).parent().removeClass('btn-success').addClass('btn-danger');
+        } else {
+            $(this).prop("checked", true).parent().removeClass('btn-danger').addClass('btn-success');
+        }
+        // filters.push($(this).attr('name'));
+    });
+
+    return filters;
+}
+
 function showRefreshUI(registration) {
     // TODO: Display a toast or refresh UI.
 
@@ -102,6 +120,9 @@ window.addEventListener('load', function () {
                 showRefreshUI(registration);
             });
         });
+    prop_checkboxes();
+
+
 });
 
 
@@ -151,3 +172,21 @@ $(document).on('click', '#btnAdd', function (e) {
 window.addEventListener('appinstalled', (evt) => {
     app.logEvent('app', 'installed');
 });
+
+
+$('#card_type_filters_modal [data-toggle="buttons"] .btn').on('click', function () {
+    // toggle style
+    $(this).toggleClass('btn-success btn-danger');
+
+    // toggle checkbox
+    var $chk = $(this).find('[type=checkbox]');
+    $chk.prop('checked', !$chk.prop('checked'));
+
+    return false;
+});
+
+// $('form').on('submit', function (e) {
+//     // watch form values
+//     $('#formValues').html(($('form').serialize()));
+//     e.preventDefault();
+// });
