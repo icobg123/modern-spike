@@ -1,6 +1,6 @@
 // This is based on the First Progressive Web App Tutorial by Google
 // https://codelabs.developers.google.com/codelabs/your-first-pwapp/
-const cacheName = 'modern-spike-PWA-31321pl';
+const cacheName = 'modern-spike-PWA-31221321pl';
 const filesToCache = [
     '/static/bootstrap/js/jquery-3.5.1.min.js',
     '/static/bootstrap/js/bootstrap.min.js',
@@ -35,9 +35,9 @@ const filesToCache = [
 // the html, javascript, css, images and any other files important
 // to the operation of the application shell
 self.addEventListener('install', function (e) {
-    console.log('[ServiceWorker] Install');
+    // console.log('[ServiceWorker] Install');
     e.waitUntil(caches.open(cacheName).then(function (cache) {
-            console.log('[ServiceWorker] Caching app shell');
+            // console.log('[ServiceWorker] Caching app shell');
             return cache.addAll(filesToCache);
         })
     );
@@ -47,12 +47,12 @@ self.addEventListener('install', function (e) {
 // ensures that your service worker updates its cache whenever any of the app shell files change.
 // In order for this to work, you'd need to increment the cacheName variable at the top of this service worker file.
 self.addEventListener('activate', function (e) {
-    console.log('[ServiceWorker] Activate');
+    // console.log('[ServiceWorker] Activate');
     e.waitUntil(
         caches.keys().then(function (keyList) {
             return Promise.all(keyList.map(function (key) {
                 if (key !== cacheName) {
-                    console.log('[ServiceWorker] Removing old cache', key);
+                    // console.log('[ServiceWorker] Removing old cache', key);
                     return caches.delete(key);
                 }
             }));
@@ -79,7 +79,7 @@ self.addEventListener('fetch', function (e) {
     //     return Promise.reject('no-match')
     //     // return Promise.reject('no-match')
     // }
-    console.log('[ServiceWorker] Fetch', e.request.url);
+    // console.log('[ServiceWorker] Fetch', e.request.url);
     // if (e.request.method === "POST") {
     e.respondWith(fromCache(e.request));
     e.waitUntil(update(e.request));
@@ -90,7 +90,7 @@ function fromCache(request) {
     return caches.open(cacheName).then(function (cache) {
         return cache.match(request).then(function (matching) {
             return matching || fetch(request.clone()).catch(error => {
-                console.log('Fetch failed; returning offline page instead.', error);
+                // console.log('Fetch failed; returning offline page instead.', error);
                 // location.reload();
                 return caches.match('offline.html');
             });
@@ -105,7 +105,7 @@ function update(request) {
 
 
             if (request.url == self.location.origin + "/") {
-                self.console.log(self.location.origin + "/");
+                // self.console.log(self.location.origin + "/");
 
                 // return response;
             } else {

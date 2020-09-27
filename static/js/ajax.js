@@ -1,7 +1,6 @@
 $(document).ready(function () {
 
     let decklist_url = $('#decklist_url').attr('href');
-    console.log(decklist_url);
     let game_mode_flag = $('#game_mode_flag');
 
     let h1_col = $('#h1_col');
@@ -25,6 +24,7 @@ $(document).ready(function () {
         $('#change_game_mode img').addClass('d-none');
         $('#card_oracle_text').removeClass("d-flex").addClass('d-none');
         $('#score').addClass('d-none');
+        $('#toggle_filters').addClass('d-none');
         card_holder.addClass('d-none').removeClass('d-flex');
         btn_grp.addClass('d-none');
         by_img.addClass('d-none');
@@ -37,6 +37,56 @@ $(document).ready(function () {
         // h1_col_h1.removeClass();
     });
 
+    // let clicked = false;
+    // $(".checkall").on("click", function () {
+    //     $(".checkhour").prop("checked", !clicked);
+    //     clicked = !clicked;
+    //     this.innerHTML = clicked ? 'Deselect' : 'Select';
+    // });
+    let select_all_is_checked = false;
+    $("#select_all").click(function () {
+        console.log('select all clicked');
+        console.log(select_all_is_checked);
+        select_all_is_checked = $("#select_all input:checkbox").is(':checked');
+
+
+        if (select_all_is_checked) {
+            console.log('select all is checked');
+            $("#select_all span").text("Deselect all");
+
+            $('#card_type_filters_modal .modal-header label').removeClass('btn-secondary').addClass('btn-primary');
+
+            $('#card_type_filters_modal .modal-body input:checkbox').each(function () {
+                // $(this).prop("checked", !clicked).parent().removeClass('btn-secondary').addClass('btn-primary');
+                $(this).prop("checked", select_all_is_checked).parent().removeClass('btn-secondary').addClass('btn-primary');
+                console.log($(this).is(':checked'));
+
+                // $(this).prop("checked", !clicked).parent().removeClass('btn-secondary').addClass('btn-primary');
+
+            });
+            // clicked = !clicked;
+            // clicked = !clicked;
+
+        } else {
+            $("#select_all span").text("Select all");
+            console.log('select all NOT checked');
+
+            $('#card_type_filters_modal .modal-header label').removeClass('btn-primary').addClass('btn-secondary');
+
+            $('#card_type_filters_modal .modal-body input:checkbox').each(function () {
+                // console.log($(this).attr('name'));
+
+                $(this).prop("checked", select_all_is_checked).parent().removeClass('btn-primary').addClass('btn-secondary');
+                console.log($(this).is(':checked'));
+
+                // $(this).prop("checked", !clicked).parent().removeClass('btn-primary').addClass('btn-secondary');
+
+            });
+
+
+        }
+
+    });
 
     ////////////
     /*$.ajax({
@@ -64,29 +114,45 @@ $(document).ready(function () {
 
         });*/
     ///////////
-    console.log($('.form-check-input:checked').val());
-    console.log($('#correct_answer').text());
+    // console.log($('.form-check-input:checked').val());
+    // console.log($('#correct_answer').text());
     let flag = $('#answered_flag');
 
 
     function get_filters() {
         let filters = [];
+        // let filters = ["0"];
 
-        $('#card_type_filters_modal input:checked').each(function () {
+        $('#card_type_filters_modal .modal-body input:checked').each(function () {
+            console.log("collecting filter")
             filters.push($(this).attr('name'));
         });
 
         return filters;
     }
 
+    function arraysEqual(a, b) {
+        if (a === b) return true;
+        if (a == null || b == null) return false;
+        if (a.length !== b.length) return false;
 
-
+        // If you don't care about the order of the elements inside
+        // the array, you should sort both arrays here.
+        // Please note that calling sort on an array will modify that array.
+        // you might want to clone your array first.
+        a.sort()
+        b.sort()
+        for (var i = 0; i < a.length; ++i) {
+            if (a[i] !== b[i]) return false;
+        }
+        return true;
+    }
 
     // close_filter_btn.on('click', function () {
     //     console.log(get_filters());
     //     filters = get_filters();
     // });
-    function gen_new_cards(guess_btn, id, link_text, filters) {
+    function gen_new_cards(guess_btn, id, link_text, filters, filters_local_storage = []) {
         guess_btn.removeClass('py-3');
         $('.deck-list-btns').addClass('d-none').removeClass('animate__fadeIn');
 
@@ -157,6 +223,7 @@ $(document).ready(function () {
         if (id === 'by_text') {
             $('#change_game_mode').addClass('invisible');
             $('#score').addClass('invisible');
+            $('#toggle_filters').addClass('invisible');
             // if (link_text == "Next card") {
             //
             // } else {
@@ -172,7 +239,8 @@ $(document).ready(function () {
                 data: {
                     get_all_uris: 1,
                     by_btn: 'by_text',
-                    filters: filters
+                    filters: filters,
+                    filters_local_storage: filters_local_storage,
                     // correct_answer: $('#correct_answer').text(),
                 },
                 type: 'POST',
@@ -204,6 +272,7 @@ $(document).ready(function () {
                             card_holder.removeClass('invisible');
                             $('#change_game_mode').removeClass('invisible');
                             $('#score').removeClass('invisible');
+                            $('#toggle_filters').removeClass('invisible');
                             by_text.removeClass('invisible');
 
                         }
@@ -215,6 +284,7 @@ $(document).ready(function () {
                         by_text.removeClass('d-none');
                         $('#change_game_mode').removeClass('d-none').addClass('d-flex');
                         $('#score').removeClass('d-none');
+                        $('#toggle_filters').removeClass('d-none');
                         $('#card_oracle_text').removeClass("d-flex").addClass('d-none');
 
                         // btn_grp.removeClass('d-none')
@@ -249,11 +319,14 @@ $(document).ready(function () {
         } else if (id === "name_from_text") {
             $('#change_game_mode').addClass('invisible');
             $('#score').addClass('invisible');
+            $('#toggle_filters').addClass('invisible');
 
             $.ajax({
                 data: {
                     by_btn: 'name_from_text',
-                    filters: filters
+                    filters: filters,
+                    filters_local_storage: filters_local_storage,
+
                     // correct_answer: $('#correct_answer').text(),
                 },
                 type: 'POST',
@@ -289,6 +362,7 @@ $(document).ready(function () {
 
                             $('#change_game_mode').removeClass('invisible');
                             $('#score').removeClass('invisible');
+                            $('#toggle_filters').removeClass('invisible');
                             name_from_text.removeClass('invisible');
 
                         }
@@ -296,6 +370,7 @@ $(document).ready(function () {
 
                         $('#change_game_mode').removeClass('d-none').addClass('d-flex');
                         $('#score').removeClass('d-none');
+                        $('#toggle_filters').removeClass('d-none');
 
                         $('#card_oracle_text').removeClass("d-flex").addClass('d-none');
                         $('#card_names').removeClass('d-none').addClass('d-flex');
@@ -345,7 +420,9 @@ $(document).ready(function () {
             $.ajax({
                 data: {
                     by_btn: 'by_img',
-                    filters: filters
+                    filters: filters,
+                    filters_local_storage: filters_local_storage,
+
                     // correct_answer: $('#correct_answer').text(),
                 },
                 type: 'POST',
@@ -383,6 +460,7 @@ $(document).ready(function () {
 
                         $('#change_game_mode').removeClass('d-none').addClass('d-flex');
                         $('#score').removeClass('d-none');
+                        $('#toggle_filters').removeClass('d-none');
 
                         $('#card_names').removeClass('d-none').addClass('d-flex');
                         $('#card_imgs').removeClass("d-flex").addClass('d-none');
@@ -439,7 +517,9 @@ $(document).ready(function () {
                 data: {
                     get_oracle_texts: 1,
                     by_btn: 'text_from_img_gm_btn',
-                    filters: filters
+                    filters: filters,
+                    filters_local_storage: filters_local_storage,
+
                     // correct_answer: $('#correct_answer').text(),
                 },
                 type: 'POST',
@@ -478,6 +558,7 @@ $(document).ready(function () {
 
                         $('#change_game_mode').removeClass('d-none').addClass('d-flex');
                         $('#score').removeClass('d-none');
+                        $('#toggle_filters').removeClass('d-none');
 
                         $('#card_oracle_text').removeClass('d-none').addClass('d-flex');
                         $('#card_names').removeClass("d-flex").addClass('d-none');
@@ -535,15 +616,25 @@ $(document).ready(function () {
     $("#card_type_filters_modal").on("hidden.bs.modal", function () {
         // console.log(get_filters());
         filters = get_filters();
+        let filters_local_storage = JSON.parse(localStorage["card_type_filters"]);
 
 
         let guess_btn = $('#by_btns .guess-by').not('.d-none');
 
         let id = guess_btn.attr('id');
         let link_text = guess_btn.text();
-        console.log(id);
-        console.log(filters)
-        gen_new_cards(guess_btn, id, link_text, filters);
+        console.log(filters);
+
+
+        // arraysEqual
+
+        // gen_new_cards(guess_btn, id, link_text, filters);
+
+        if (!arraysEqual(filters, filters_local_storage)) {
+            console.log("new filters  " + filters + filters_local_storage);
+
+            gen_new_cards(guess_btn, id, link_text, filters, filters_local_storage);
+        }
     });
 
     card_holder.on('change', '.form-check-input', (function (event) {

@@ -22,19 +22,33 @@ window.addEventListener('resize', () => {
 
 
 function prop_checkboxes() {
+
+
     let filters = JSON.parse(localStorage["card_type_filters"]);
+    console.log("filters from localStorage: ");
     console.log(filters);
 
-    $('#card_type_filters_modal input').each(function () {
-        console.log($(this).attr('name'));
+    $('#card_type_filters_modal .modal-body input').each(function () {
 
-        if ($.inArray($(this).attr('name'), filters)) {
-            $(this).prop("checked", false).parent().removeClass('btn-success').addClass('btn-danger');
-        } else {
-            $(this).prop("checked", true).parent().removeClass('btn-danger').addClass('btn-success');
+
+            if (filters.includes($(this).attr('name'))) {
+                // console.log($(this).attr('name') + " in filters");
+                $(this).prop("checked", true).parent().removeClass('btn-secondary').addClass('btn-primary');
+            } else {
+                // console.log("prop to false:" + $(this).attr('name'));
+                $(this).prop("checked", false).parent().removeClass('btn-primary').addClass('btn-secondary');
+            }
+
+            // if ($.inArray($(this).attr('name'), filters)) {
+            // console.log("prop to true:" + $(this).attr('name'));
+            // } else {
+            // console.log("prop to false:" + $(this).attr('name'));
+            // $(this).prop("checked", false).parent().removeClass('btn-success').addClass('btn-danger');
+            // }
+            // filters.push($(this).attr('name'));
         }
-        // filters.push($(this).attr('name'));
-    });
+    )
+    ;
 
     return filters;
 }
@@ -120,6 +134,12 @@ window.addEventListener('load', function () {
                 showRefreshUI(registration);
             });
         });
+
+    if (localStorage.getItem("card_type_filters") === null) {
+        console.log("setting all filters for the first time");
+        localStorage["card_type_filters"] = JSON.stringify(["sorcery", "creature", "tribal", "artifact", "instant", "enchantment", "land", "planeswalker"]);
+        // localStorage["card_type_filters"] = JSON.stringify(["0", "sorcery", "creature", "tribal", "artifact", "instant", "enchantment", "land", "planeswalker"]);
+    }
     prop_checkboxes();
 
 
@@ -176,7 +196,7 @@ window.addEventListener('appinstalled', (evt) => {
 
 $('#card_type_filters_modal [data-toggle="buttons"] .btn').on('click', function () {
     // toggle style
-    $(this).toggleClass('btn-success btn-danger');
+    $(this).toggleClass('btn-primary btn-secondary');
 
     // toggle checkbox
     var $chk = $(this).find('[type=checkbox]');

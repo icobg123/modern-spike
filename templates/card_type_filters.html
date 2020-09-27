@@ -4,7 +4,13 @@
         <div class="modal-content">
             <div class="modal-header py-1 d-flex justify-content-between align-items-center border-bottom-0">
                 <h5 class="modal-title text-dark" id="exampleModalLongTitle">Filters</h5>
-                <small class="text-dark">All filters are selected by default</small>
+                {#                <small class="text-dark">All filters are selected by default</small>#}
+                <div class="d-flex btn-group btn-group-toggle my-1">
+                    {#                <div class="d-flex btn-group btn-group-toggle my-1" data-toggle="buttons">#}
+                    <label id="select_all" class="btn btn-primary">
+                        <input type="checkbox" checked name="all"> <span>Deselect all</span>
+                    </label>
+                </div>
                 {#                                                        <button type="button" class="close" data-dismiss="modal"#}
                 {#                                                                aria-label="Close">#}
                 {#                                                            <span aria-hidden="true">&times;</span>#}
@@ -12,35 +18,36 @@
             </div>
             <div class="modal-body py-0">
                 <div class="d-flex btn-group btn-group-toggle my-1" data-toggle="buttons">
-                    <label class="btn  btn-success ">
-                        <input type="checkbox" name="planeswalker" checked autocomplete="off"> Planeswalker
+                    <label class="btn  btn-primary w-50 ">
+                        <input type="checkbox" name="creature"> Creature
                     </label>
-                    <label class="btn  btn-success ">
-                        <input type="checkbox" name="creature" checked autocomplete="off"> Creature
+                    <label class="btn  btn-primary w-50 ">
+                        <input type="checkbox" name="planeswalker"> Planeswalker
+                    </label>
+                </div>
+
+                <div class="d-flex btn-group btn-group-toggle my-1" data-toggle="buttons">
+                    <label class="btn  btn-primary w-50 ">
+                        <input type="checkbox" name="sorcery"> Sorcery
+                    </label>
+                    <label class="btn  btn-primary w-50 ">
+                        <input type="checkbox" name="tribal"> Tribal
                     </label>
                 </div>
                 <div class="d-flex btn-group btn-group-toggle my-1" data-toggle="buttons">
-                    <label class="btn  btn-success ">
-                        <input type="checkbox" name="sorcery" checked autocomplete="off"> Sorcery
+                    <label class="btn  btn-primary w-50 ">
+                        <input type="checkbox" name="artifact"> Artifact
                     </label>
-                    <label class="btn  btn-success ">
-                        <input type="checkbox" name="tribal" checked autocomplete="off"> Tribal
-                    </label>
-                </div>
-                <div class="d-flex btn-group btn-group-toggle my-1" data-toggle="buttons">
-                    <label class="btn  btn-success ">
-                        <input type="checkbox" name="artifact" checked autocomplete="off"> Artifact
-                    </label>
-                    <label class="btn  btn-success ">
-                        <input type="checkbox" name="instant" checked autocomplete="off"> Instant
+                    <label class="btn  btn-primary w-50 ">
+                        <input type="checkbox" name="instant"> Instant
                     </label>
                 </div>
                 <div class="d-flex btn-group btn-group-toggle my-1" data-toggle="buttons">
-                    <label class="btn  btn-success ">
-                        <input type="checkbox" name="enchantment" checked autocomplete="off"> Enchantment
+                    <label class="btn  btn-primary w-50 ">
+                        <input type="checkbox" name="enchantment"> Enchantment
                     </label>
-                    <label class="btn  btn-success ">
-                        <input type="checkbox" name="land" checked autocomplete="off"> Land
+                    <label class="btn  btn-primary w-50 ">
+                        <input type="checkbox" name="land"> Land
                     </label>
                 </div>
             </div>

@@ -87,6 +87,7 @@ def get_new_cards():
     get_all_uris = 0
     get_oracle_texts = 0
     card_type_filters = None
+    filters_local_storage = None
 
     # pprint("form")
     # pprint(request.form)
@@ -106,6 +107,14 @@ def get_new_cards():
         # card_type_filters = request.form.getlist('filters[]')
     except KeyError:
         print("don't get filters")
+    try:
+        if not request.form.getlist('filters_local_storage[]') or request.form.getlist('filters_local_storage[]') == []:
+            filters_local_storage = None
+        else:
+            filters_local_storage = request.form.getlist('filters_local_storage[]')
+        # card_type_filters = request.form.getlist('filters[]')
+    except KeyError:
+        print("don't get filters")
 
     pprint(request.form)
     pprint("form")
@@ -113,6 +122,10 @@ def get_new_cards():
     pprint(card_type_filters)
 
     if job:
+        if filters_local_storage != card_type_filters:
+            job.delete()
+            new_cards = gen_new_cards(get_all_uris=get_all_uris, get_oracle_texts=get_oracle_texts,
+                                      card_type_filters=card_type_filters)
         if job.is_failed:
             # print('gen_new_cards failed')
             job.delete()

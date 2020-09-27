@@ -1066,7 +1066,7 @@ def gen_new_cards(card_type_filters=None, get_all_uris=0, get_oracle_texts=0, ):
     list_combined_set_card_names = []
 
     for card_names_set in all_card_names_sets:
-        pprint(card_names_set)
+        # pprint(card_names_set)
         card_type_set = card_names_set['set_card_names']
         list_combined_set_card_names += card_type_set
 
