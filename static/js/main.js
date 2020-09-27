@@ -25,8 +25,17 @@ function prop_checkboxes() {
 
 
     let filters = JSON.parse(localStorage["card_type_filters"]);
+    let select_all_text = JSON.parse(localStorage["select_all_btn_local_storage"])
+    $("#select_all span").text(select_all_text);
     console.log("filters from localStorage: ");
     console.log(filters);
+
+
+    if (select_all_text === "Select all") {
+        $("#select_all input:checkbox").prop("checked", false).parent().removeClass('btn-primary').addClass('btn-secondary');
+    } else {
+        $("#select_all input:checkbox").prop("checked", true).parent().removeClass('btn-secondary').addClass('btn-primary');
+    }
 
     $('#card_type_filters_modal .modal-body input').each(function () {
 
@@ -47,8 +56,7 @@ function prop_checkboxes() {
             // }
             // filters.push($(this).attr('name'));
         }
-    )
-    ;
+    );
 
     return filters;
 }
@@ -138,6 +146,7 @@ window.addEventListener('load', function () {
     if (localStorage.getItem("card_type_filters") === null) {
         console.log("setting all filters for the first time");
         localStorage["card_type_filters"] = JSON.stringify(["sorcery", "creature", "tribal", "artifact", "instant", "enchantment", "land", "planeswalker"]);
+        localStorage["select_all_btn_local_storage"] = JSON.stringify($("#select_all span").text());
         // localStorage["card_type_filters"] = JSON.stringify(["0", "sorcery", "creature", "tribal", "artifact", "instant", "enchantment", "land", "planeswalker"]);
     }
     prop_checkboxes();

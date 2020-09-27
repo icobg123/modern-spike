@@ -206,6 +206,7 @@ $(document).ready(function () {
 
 
         localStorage["card_type_filters"] = JSON.stringify(filters);
+        localStorage["select_all_btn_local_storage"] = JSON.stringify($("#select_all span").text());
 
 
         /*$.ajax({
@@ -619,6 +620,7 @@ $(document).ready(function () {
         // console.log(get_filters());
         filters = get_filters();
         let filters_local_storage = JSON.parse(localStorage["card_type_filters"]);
+        let select_all_btn_local_storage = JSON.parse(localStorage["select_all_btn_local_storage"]);
 
 
         let guess_btn = $('#by_btns .guess-by').not('.d-none');

@@ -274,7 +274,8 @@ h1, h2, h3, h5, h6 {
     }
 }
 
-.btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active, .show > .btn-secondary.dropdown-toggle {
+.btn-secondary:not(:disabled):not(.disabled):not(#card_type_filters_modal .btn-secondary):active,
+.btn-secondary:not(:disabled):not(.disabled):not(#card_type_filters_modal .btn-secondary).active, .show > .btn-secondary.dropdown-toggle {
     color: inherit;
     background-color: inherit;
     border-color: inherit;
