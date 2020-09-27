@@ -53,7 +53,7 @@
 
                         </span>
                                         /
-                                        <span id="total_score" >
+                                        <span id="total_score">
                             {% if request.cookies.get('current_score') %}
                                 {{ request.cookies.get('total_score') }}
                             {% else %}
@@ -470,7 +470,8 @@
                                    rel="noreferrer">
                                     <img src="{{ url_for('static' , filename='images/logo-mtgjson-light-blue.svg') }}"
                                          width="30px"
-                                         title="MTGJSON logo">
+                                         title="MTGJSON logo"
+                                         alt="MTGJSON logo">
                                     <small class="mb-0 ml-1 d-none d-sm-block"> Powered by MTGJSON</small></a>
 
                             </nav>
