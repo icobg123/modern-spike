@@ -419,6 +419,7 @@ $(document).ready(function () {
             // h1_col.removeClass().addClass('col-12 col-sm-9 col-md-7 col-lg-9 col-xl-7 d-flex flex-row flex-sm-column mx-auto justify-content-between justify-content-sm-start  align-items-center align-self-start');
             $.ajax({
                 data: {
+
                     by_btn: 'by_img',
                     filters: filters,
                     filters_local_storage: filters_local_storage,
