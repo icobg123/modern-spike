@@ -60,6 +60,7 @@ csp = {
         '\'self\'',
         '*.scryfall.com',
         'gatherer.wizards.com',
+        'www.googletagmanager.com',
 
     ],
     'img-src': '*.scryfall.com *.gatherer.wizards.com',
@@ -67,10 +68,12 @@ csp = {
     'script-src': [
         '\'self\'',
         '*.scryfall.com',
+        'www.googletagmanager.com',
     ], 'connect-src': [
         '\'self\'',
         '*.scryfall.com',
         '*.gatherer.wizards.com',
+        'www.googletagmanager.com',
     ]
 }
 talisman = Talisman(app, content_security_policy=csp)

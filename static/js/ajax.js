@@ -614,6 +614,7 @@ $(document).ready(function () {
 
     }
 
+
     $("#card_type_filters_modal").on("hidden.bs.modal", function () {
         // console.log(get_filters());
         filters = get_filters();
