@@ -292,8 +292,8 @@ $(document).ready(function () {
                         $('#oracle_text .card-body').html(data.new_oracle_text);
                         $('#correct_answer').html(data.correct_answer_index);
                         // console.log(data.correct_answer_name);
-                        $('#cardImage .modal-body').html(data.correct_answer_name);
-                        $('#cardImage .mana_cost').html(data.correct_answer_mana_cost);
+                        $('#hint_image_from_oracle .modal-body').html(data.correct_answer_name);
+                        $('#hint_image_from_oracle .mana_cost').html(data.correct_answer_mana_cost);
                         // $("#card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
                         // $("#card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
                         $(".decklist_specific_url").attr('href', data.correct_answer_decklist_id);
@@ -474,7 +474,7 @@ $(document).ready(function () {
                         by_img.html('Next card');
 
                         $('#modalOracleText').html(data.new_oracle_text);
-                        $('#cardOracleText .mana_cost').html(data.correct_answer_mana_cost);
+                        $('#hint_oracle_text_from_image .mana_cost').html(data.correct_answer_mana_cost);
                         $('#correct_answer').html(data.correct_answer_index);
 
 
@@ -574,7 +574,7 @@ $(document).ready(function () {
 
                         $('#modalOracleText').html(data.new_oracle_text);
                         $('#text_from_img .mana_cost').html(data.correct_answer_mana_cost);
-                        $('#text_from_img_modal .modal-body').html(data.correct_answer_name);
+                        $('#hint_text_from_img_modal .modal-body').html(data.correct_answer_name);
                         $('#correct_answer').html(data.correct_answer_index);
 
 
@@ -862,8 +862,8 @@ $(document).ready(function () {
                          $('#oracle_text .card-body').html(data.new_oracle_text);
                          $('#correct_answer').html(data.correct_answer_index);
                          // console.log(data.correct_answer_name);
-                         $('#cardImage .modal-body').html(data.correct_answer_name);
-                         $('#cardImage .mana_cost').html(data.correct_answer_mana_cost);
+                         $('#hint_image_from_oracle .modal-body').html(data.correct_answer_name);
+                         $('#hint_image_from_oracle .mana_cost').html(data.correct_answer_mana_cost);
                          // $("#card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
                          // $("#card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
                          $(".decklist_specific_url").attr('href', data.correct_answer_decklist_id);
@@ -1033,7 +1033,7 @@ $(document).ready(function () {
                          by_img.html('Next card');
 
                          $('#modalOracleText').html(data.new_oracle_text);
-                         $('#cardOracleText .mana_cost').html(data.correct_answer_mana_cost);
+                         $('#hint_oracle_text_from_image .mana_cost').html(data.correct_answer_mana_cost);
                          $('#correct_answer').html(data.correct_answer_index);
 
 
@@ -1129,7 +1129,7 @@ $(document).ready(function () {
 
                          $('#modalOracleText').html(data.new_oracle_text);
                          $('#text_from_img .mana_cost').html(data.correct_answer_mana_cost);
-                         $('#text_from_img_modal .modal-body').html(data.correct_answer_name);
+                         $('#hint_text_from_img_modal .modal-body').html(data.correct_answer_name);
                          $('#correct_answer').html(data.correct_answer_index);
 
 

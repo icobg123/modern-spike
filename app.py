@@ -311,7 +311,7 @@ def guess_artwork():
 # @csp_header({'img-src': "'self' https://img.scryfall.com/", 'report-uri': '', 'object-src': 'none',
 #              'require-trusted-types-for': 'script'})
 @talisman(frame_options=ALLOW_FROM, frame_options_allow_from='SAMEORIGIN',
-          content_security_policy={'img-src': "'self' *.gatherer.wizards.com data:"}, )
+          content_security_policy={'img-src': "'self' www.google-analytics.com *.gatherer.wizards.com data:"}, )
 def index():
     new_data_obj = is_there_new_data()
     print(new_data_obj)
