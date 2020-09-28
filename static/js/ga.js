@@ -11,7 +11,7 @@ $(document).ready(function () {
     });
 
     $("#card_type_filters_modal .modal-body label").click(function () {
-        let uniqueID = $(this).attr("id");
+        let uniqueID = $(this).find("input:checkbox").attr("name");
         console.log("filter clicked " + uniqueID);
         gtag('event', 'click', {
             'event_category': 'Filter clicked',
