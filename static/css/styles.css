@@ -110,11 +110,19 @@ h1, h2, h3, h5, h6 {
 
 }
 
+
+
 .btn-group-vertical > .btn:not(:first-child),
 .btn-group-vertical > .btn-group:not(:first-child) {
     margin-left: 0;
     /*border-top-left-radius: 0.25rem;*/
     /*border-top-right-radius: 0.25rem;*/
+}
+
+#card_holder #card_imgs .btn {
+    border-radius: 0;
+    margin-left: 0;
+
 }
 
 #card_names .x,
