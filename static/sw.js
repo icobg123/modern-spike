@@ -1,6 +1,6 @@
 // This is based on the First Progressive Web App Tutorial by Google
 // https://codelabs.developers.google.com/codelabs/your-first-pwapp/
-const cacheName = 'modern-spike-PWA-412';
+const cacheName = 'modern-spike-PWA-3121';
 const filesToCache = [
     '/static/bootstrap/js/jquery-3.5.1.min.js',
     '/static/bootstrap/js/bootstrap.min.js',
@@ -109,7 +109,13 @@ function update(request) {
                 // self.console.log(self.location.origin + "/");
 
                 // return response;
+            } else if (request.url.indexOf("google-analytics") > -1) {
+                self.console.log("google analytics not cached");
+
+                // return response;
             } else {
+                // self.console.log(request,response.clone());
+
                 return cache.put(request, response.clone()).then(function () {
                     return response;
                 });
