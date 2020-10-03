@@ -1,10 +1,14 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
-      "package_name": "xyz.appmaker.bhyydh",
-      "sha256_cert_fingerprints": ["01:B9:17:1A:3D:1B:E3:A2:56:CB:15:AD:CD:C1:6D:30:C8:1F:64:3C:DC:AA:5B:76:72:EB:55:88:87:55:4B:DE"]
+      "package_name": "com.modern.spike.android.app",
+      "sha256_cert_fingerprints": [
+        "SHA256: 1A:0B:AE:E3:32:16:52:22:07:5C:B6:98:AD:0A:5C:E5:81:E0:AC:B8:3B:11:40:F8:39:87:39:39:68:BF:2D:91"
+      ]
     }
   }
 ]
