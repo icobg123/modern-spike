@@ -435,7 +435,7 @@ $(document).ready(function () {
                 .done(function (data) {
                     // console.log(data.correct_answer_decklist_id);
                     $("#by_card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text);
-                    card_holder.html(data.html);
+                    // card_holder.html(data.html);
 
                     // $("#by_card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
 
