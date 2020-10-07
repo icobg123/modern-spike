@@ -1,6 +1,6 @@
 // This is based on the First Progressive Web App Tutorial by Google
 // https://codelabs.developers.google.com/codelabs/your-first-pwapp/
-const cacheName = 'modern-spike-PWA-3121';
+const cacheName = 'modern-spike-PWA-3121w3';
 const filesToCache = [
     '/static/bootstrap/js/jquery-3.5.1.min.js',
     '/static/bootstrap/js/bootstrap.min.js',
@@ -13,6 +13,13 @@ const filesToCache = [
     '/static/css/styles.css',
     '/static/css/animate.min.css',
     '/static/images/logo-mtgjson-light-blue.svg',
+    '/static//images/bootstrap-icons/arrow-left-circle.svg',
+    '/static//images/bootstrap-icons/check-circle.svg',
+    '/static//images/bootstrap-icons/check.svg',
+    '/static//images/bootstrap-icons/filter-circle.svg',
+    '/static//images/bootstrap-icons/info-circle.svg',
+    '/static//images/bootstrap-icons/x-circle.svg',
+    '/static//images/bootstrap-icons/x.svg',
     '/static/images/mana.svg',
     '/static/favicon.ico',
     '/static/fonts/Beleren-Bold/beleren-boldP101.otf',

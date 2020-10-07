@@ -115,7 +115,7 @@ def scrape_card_data() -> dict:
     modern_atomic = mongo.db.modern_atomic
     list_card_names_db = mongo.db.list_card_names
     card_types_sets = mongo.db.card_types_sets
-    # card_ids = cards.find().distinct('_id')
+    card_ids = cards.find().distinct('_id')
     card_types_dict = {}
     # existing_urls = card_data['url']
 
@@ -183,7 +183,7 @@ def scrape_card_data() -> dict:
                     # card_name_in_list = any(d.get('name', 'icara') == card_name for d in card_list)
                     if '//' in card_name:
 
-                        # print("// in name {} ".format(card_name))
+                        print("// in name {} ".format(card_name))
 
                         split_str = card_name.split('//', 1)
 
@@ -191,20 +191,21 @@ def scrape_card_data() -> dict:
                             split_card_name = split_card_name.rstrip().lstrip()
 
                             # in_existing_card_data = mongo.db.cards.count_documents({'_id': split_card_name}, limit=1)
-                            if "Tear" in split_card_name:
-                                in_existing_card_data = True if cards.count_documents({'_id': "Tear"},
-                                                                                      limit=1) else False
+                            # if "Tear" in split_card_name:
+                            #     in_existing_card_data = True if cards.count_documents({'_id': "Tear"},
+                            #                                                           limit=1) else False
+                            #
+                            #     try:
+                            #         pprint(cards.find_one({'_id': "Tear"})['_id'])
+                            #     except TypeError:
+                            #         print("nema takoa jivotno")
+                            # else:
+                            #     in_existing_card_data = True if cards.count_documents({'_id': split_card_name},
+                            #                                                           limit=1) else False
+                            # in_existing_card_data = False
 
-                                try:
-                                    pprint(cards.find_one({'_id': "Tear"})['_id'])
-                                except TypeError:
-                                    print("nema takoa jivotno")
-                            else:
-                                in_existing_card_data = True if cards.count_documents({'_id': split_card_name},
-                                                                                      limit=1) else False
-                                # in_existing_card_data = False
-
-                            # in_existing_card_data = any(split_card_name in d for d in card_ids)
+                            # in_existing_card_data = False
+                            in_existing_card_data = any(split_card_name in d for d in card_ids)
 
                             if (not card_name_in_list and not in_existing_card_data and (
                                     not is_this_a_basic(card_name))):
@@ -271,7 +272,7 @@ def scrape_card_data() -> dict:
                             if not card_name_in_list and not in_existing_card_data:
 
                                 # pprint('')
-                                print("{} - regular name - not in existing card data".format(card_name))
+                                # print("{} - regular name - not in existing card data".format(card_name))
 
                                 # if (card_name_div.string not in card_list) and (not is_this_a_basic(card_name_div.string)):
 
@@ -293,7 +294,7 @@ def scrape_card_data() -> dict:
 
 
                             else:
-                                print("{} - regular name - In data file".format(card_name))
+                                # print("{} - regular name - In data file".format(card_name))
                                 # card_name_in_list.append(card_name)
                                 new_card_name_list.add(card_name)
                                 # existing_card_data[card_name]['decklist_id'] = card_deck_list_id
@@ -605,13 +606,19 @@ def get_card_data_from_local_file(card: str) -> dict:
         card_info['image'] = new_card_info['image']
         card_info['mana_cost'] = new_card_info['mana_cost']
         # card_info['image_uri'] = new_card_info['image_uri']
-
+        try:
+            if "decklist_id" in card_info.keys():
+                decklist_id = card_info['decklist_id']
+            else:
+                decklist_id = ""
+        except KeyError:
+            print("decklist missing")
         update_existing_decklist_url_in_db = cards.update_one({"_id": card},
                                                               {"$set":
                                                                   {
                                                                       "oracle_text": card_info['oracle_text'],
                                                                       "flavor_text": card_info['flavor_text'],
-                                                                      "decklist_id": card_info['decklist_id'],
+                                                                      "decklist_id": decklist_id,
                                                                       "image": card_info['image'],
                                                                       "mana_cost": card_info['mana_cost'],
                                                                       # "image_uri": card_info['image_uri'],
@@ -1044,7 +1051,7 @@ def similar_cards(card_name, not_enough=False, last_chance=False):
     return list_similar_cards
 
 
-def gen_new_cards(card_type_filters=None, get_all_uris=0, get_oracle_texts=0, ):
+def gen_new_cards(card_type_filters=None, get_all_uris=0, get_oracle_texts=1, ):
     if card_type_filters is None:
         card_type_filters = ['planeswalker', 'land',
                              'enchantment', 'instant',
@@ -1100,6 +1107,9 @@ def gen_new_cards(card_type_filters=None, get_all_uris=0, get_oracle_texts=0, ):
     # random_card_name = "Plague Engineer"
     # random_card_name = "Lord of Atlantis"
     # random_card_name = "Goblin Charbelcher"
+    # random_card_name = "Bala Ged Recovery"
+    # random_card_name = "Hanweir Battlements"
+    # random_card_name = "Flesh // Blood"
     #
     correct_answer_data = get_card_data_from_local_file(random_card_name)
 

@@ -116,14 +116,36 @@ function onNewServiceWorker(registration, callback) {
 }
 
 window.addEventListener('load', function () {
-    var refreshing;
-    // When the user asks to refresh the UI, we'll need to reload the window
-    navigator.serviceWorker.addEventListener('controllerchange', function (event) {
-        if (refreshing) return; // prevent infinite refresh loop when you use "Update on Reload"
-        refreshing = true;
-        console.log('Controller loaded');
-        window.location.reload();
-    });
+    // var refreshing;
+    // // When the user asks to refresh the UI, we'll need to reload the window
+    // navigator.serviceWorker.addEventListener('controllerchange', function (event) {
+    //     if (refreshing) return; // prevent infinite refresh loop when you use "Update on Reload"
+    //     refreshing = true;
+    //     console.log('Controller loaded');
+    //     window.location.reload();
+    // });
+
+
+    async function handleUpdate() {
+        if ("serviceWorker" in navigator) {
+            let refreshing;
+
+            const oldSw = (await navigator.serviceWorker.getRegistration())?.active?.state;
+
+            navigator.serviceWorker.addEventListener('controllerchange', async () => {
+                if (refreshing) return;
+
+                const newSw = (await navigator.serviceWorker.getRegistration())?.active?.state;
+
+                if (oldSw === 'activated' && newSw === 'activating') {
+                    refreshing = true;
+                    window.location.reload();
+                }
+            });
+        }
+    }
+
+    handleUpdate();
 
     navigator.serviceWorker.register('/sw.js')
         .then(function (registration) {
@@ -213,6 +235,7 @@ $('#card_type_filters_modal [data-toggle="buttons"] .btn').on('click', function 
 
     return false;
 });
+
 
 // $('form').on('submit', function (e) {
 //     // watch form values

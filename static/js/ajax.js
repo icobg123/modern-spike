@@ -336,6 +336,8 @@ $(document).ready(function () {
                 .done(function (data) {
                     // console.log(data.correct_answer_decklist_id);
                     $("#name_from_oracle_text_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text);
+                    card_holder.html(data.html);
+
                     // $("#by_card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
 
                     // let img = $('#by_card_image');
@@ -433,6 +435,8 @@ $(document).ready(function () {
                 .done(function (data) {
                     // console.log(data.correct_answer_decklist_id);
                     $("#by_card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text);
+                    card_holder.html(data.html);
+
                     // $("#by_card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
 
                     // let img = $('#by_card_image');
@@ -529,6 +533,8 @@ $(document).ready(function () {
             })
                 .done(function (data) {
                     console.log(data.correct_answer_decklist_id);
+                    card_holder.html(data.html);
+
                     $('#text_from_img_image').attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text);
                     // $("#by_card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
 
