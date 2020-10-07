@@ -7,9 +7,31 @@
       "namespace": "android_app",
       "package_name": "com.modern.spike.android.app",
       "sha256_cert_fingerprints": [
-        "1A:0B:AE:E3:32:16:52:22:07:5C:B6:98:AD:0A:5C:E5:81:E0:AC:B8:3B:11:40:F8:39:87:39:39:68:BF:2D:91",
-        "96:08:31:15:0A:97:02:77:BA:93:3F:0A:72:B3:2D:76:1C:57:F4:4E:F5:5E:FF:7D:F6:75:CA:45:E6:D7:F9:9C",
+        "1A:0B:AE:E3:32:16:52:22:07:5C:B6:98:AD:0A:5C:E5:81:E0:AC:B8:3B:11:40:F8:39:87:39:39:68:BF:2D:91"
+      ]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.modern.spike.android.app",
+      "sha256_cert_fingerprints": [
         "CF:47:38:D5:E5:98:F9:7E:36:5B:71:AF:49:12:11:B6:7E:D9:13:12:68:D1:76:FC:DA:E6:CD:9D:3B:0E:82:2F"
+      ]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.modern.spike.android.app",
+      "sha256_cert_fingerprints": [
+        "96:08:31:15:0A:97:02:77:BA:93:3F:0A:72:B3:2D:76:1C:57:F4:4E:F5:5E:FF:7D:F6:75:CA:45:E6:D7:F9:9C"
       ]
     }
   }
