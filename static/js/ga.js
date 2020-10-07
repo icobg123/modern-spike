@@ -28,6 +28,14 @@ $(document).ready(function () {
             'event_label': uniqueID
         });
     });
+    $("#btnAdd").click(function () {
+        // let uniqueID = $(this).attr("id");
+        // let text = $(this).text();
+        gtag('event', 'install', {
+            'event_category': "Installed on Android",
+            'event_label': "Installed on Android"
+        });
+    });
     $("button").click(function () {
         let uniqueID = $(this).attr("id");
         // let text = $(this).text();
