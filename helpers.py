@@ -288,8 +288,11 @@ def scrape_card_data() -> dict:
                                 # existing_card_data.append(dict_to_add)
                                 card_list.append(card_name)
                                 new_card_name_list.add(card_name)
-                                type_from_atomic = modern_atomic.find_one({"_id": card_name})['types'][0]
+                                try:
 
+                                    type_from_atomic = modern_atomic.find_one({"_id": card_name})['types'][0]
+                                except TypeError:
+                                    print("type not found for - ", card_name)
                                 add_to_type_list(card_name, type_from_atomic, card_types_dict)
 
 
@@ -303,8 +306,10 @@ def scrape_card_data() -> dict:
                                                                                       {"$set": {
                                                                                           "decklist_id": url + "#" + card_deck_list_id}},
                                                                                       upsert=True)
-                                type_from_atomic = modern_atomic.find_one({"_id": card_name})['types'][0]
-
+                                try:
+                                    type_from_atomic = modern_atomic.find_one({"_id": card_name})['types'][0]
+                                except TypeError:
+                                    print("type not found for - ", card_name)
                                 add_to_type_list(card_name, type_from_atomic, card_types_dict)
                                 # for card in existing_card_data:
                                 #     if card_name in card.keys():
