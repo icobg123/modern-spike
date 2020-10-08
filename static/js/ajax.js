@@ -741,13 +741,15 @@ $(document).ready(function () {
         let guess_btn = $(this);
         let id = $(this).attr('id');
         let link_text = $(this).text();
+        let filters_local_storage = JSON.parse(localStorage["card_type_filters"]);
+
         filters = get_filters();
         // h1_col.addClass('mt-2 mt-md-0');
         // h1_col_h1.addClass('d-none d-md-block');
 
         console.log(filters)
 
-        gen_new_cards(guess_btn, id, link_text, filters);
+        gen_new_cards(guess_btn, id, link_text, filters, filters_local_storage);
 
         /* console.log(id);
          console.log('guess by clicked');

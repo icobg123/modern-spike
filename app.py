@@ -135,11 +135,14 @@ def get_new_cards():
         if job.is_finished:
             # print('gen_new_cards job done new gen_new_cards job')
             if filters_local_storage != card_type_filters:
+                print("deleting job because filters were different")
                 job.delete()
                 new_cards = gen_new_cards(get_all_uris=get_all_uris, get_oracle_texts=get_oracle_texts,
                                           card_type_filters=card_type_filters)
             else:
                 new_cards = job.result
+
+
             if not new_cards['card_info_uris'] and get_all_uris == '1':
                 # print("test")
                 new_cards = gen_new_cards(get_all_uris='1', card_type_filters=card_type_filters)
