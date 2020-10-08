@@ -248,7 +248,7 @@ $(document).ready(function () {
                 url: '/get_new_cards'
             })
                 .done(function (data) {
-                    // card_holder.html(data.html);
+                    card_holder.html(data.html);
 
                     let img = document.querySelector('#card_imgs_1');
                     let img_loaded = function () {
