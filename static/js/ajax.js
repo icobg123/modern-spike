@@ -21,6 +21,17 @@ function default_state() {
 
 }
 
+function send_page_view_ga(page) {
+    if ("ga" in window) {
+        tracker = ga.getAll()[0];
+        if (tracker) {
+            console.log("sending to GA: " + page);
+            tracker.set("page", page);
+            tracker.send("pageview");
+        }
+    }
+}
+
 $(document).ready(function () {
 
 
@@ -340,7 +351,7 @@ $(document).ready(function () {
                         img.onload = img_loaded;
                     }
                     window.history.pushState("object or string", "Guess the art from the oracle text", "/guess-art-from-oracle-text");
-
+                    send_page_view_ga("/guess-art-from-oracle-text");
                 });
 
         } else if (id === "name_from_text") {
@@ -437,7 +448,7 @@ $(document).ready(function () {
                         img.onload = img_loaded;
                     }
                     window.history.pushState("object or string", "Guess the name from the oracle text", "/guess-name-from-oracle-text");
-
+                    send_page_view_ga("/guess-name-from-oracle-text");
 
                 });
 
@@ -531,7 +542,7 @@ $(document).ready(function () {
                         img.onload = img_loaded;
                     }
                     window.history.pushState("object or string", "Guess the name from the art", "/guess-name-from-art");
-
+                    send_page_view_ga("/guess-name-from-art");
 
                     // if (data.error) {
                     //     console.log(data.error);
@@ -633,7 +644,7 @@ $(document).ready(function () {
                         img.onload = img_loaded;
                     }
                     window.history.pushState("object or string", "Guess the oracle text from the art", "/guess-oracle-text-from-art");
-
+                    send_page_view_ga("/guess-oracle-text-from-art");
                     // if (data.error) {
                     //     console.log(data.error);
                     //     $('#errorAlert').text(data.error).removeClass('d-none');
