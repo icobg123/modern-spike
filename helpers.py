@@ -422,6 +422,11 @@ def replace_card_name_in_oracle(name: str, oracle_text: str) -> str:
             if name_before_comma in oracle_text:
                 # pprint('name_before_comma in oracle')
                 oracle_text = oracle_text.replace(name_before_comma, html)
+        if 'the' in name:
+            name_before_the = name[:name.index("the")]
+            if name_before_the in oracle_text:
+                # pprint('name_before_comma in oracle')
+                oracle_text = oracle_text.replace(name_before_the, html + " ")
     oracle_text = oracle_text.replace('−', '<span class="minus">−</span>')
     return oracle_text
 
@@ -1114,7 +1119,7 @@ def gen_new_cards(card_type_filters=None, get_all_uris=0, get_oracle_texts=1, ):
     # random_card_name = "Goblin Charbelcher"
     # random_card_name = "Bala Ged Recovery"
     # random_card_name = "Hanweir Battlements"
-    # random_card_name = "Flesh // Blood"
+    random_card_name = "Hazoret the Fervent"
     #
     correct_answer_data = get_card_data_from_local_file(random_card_name)
 
