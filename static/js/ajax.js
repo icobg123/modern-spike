@@ -435,7 +435,15 @@ $(document).ready(function () {
                 .done(function (data) {
                     // console.log(data.correct_answer_decklist_id);
                     $("#by_card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text);
-                    // card_holder.html(data.html);
+                    card_holder.html(data.html);
+                    $('#modalOracleText').html(data.new_oracle_text);
+                    $('#hint_oracle_text_from_image .mana_cost').html(data.correct_answer_mana_cost);
+                    $('#correct_answer').html(data.correct_answer_index);
+
+
+                    $(".decklist_specific_url").attr('href', data.correct_answer_decklist_id);
+
+                    let decklists = data.correct_answer_decklist_id.split('#')[0]
 
                     // $("#by_card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text).attr('title', data.correct_answer_name);
 
@@ -477,15 +485,8 @@ $(document).ready(function () {
                         by_img.removeClass('d-none');
                         by_img.html('Next card');
 
-                        $('#modalOracleText').html(data.new_oracle_text);
-                        $('#hint_oracle_text_from_image .mana_cost').html(data.correct_answer_mana_cost);
-                        $('#correct_answer').html(data.correct_answer_index);
-
-
-                        $(".decklist_specific_url").attr('href', data.correct_answer_decklist_id);
 
                         $('#next_card').removeClass('d-none');
-                        let decklists = data.correct_answer_decklist_id.split('#')[0]
 
                         // document.getElementById("demo").innerHTML = res[0];
                         $(".decklists_tournament_url").attr('href', decklists);
