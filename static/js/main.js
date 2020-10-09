@@ -180,7 +180,8 @@ window.addEventListener('popstate', (event) => {
     console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
     // location.reload();
     default_state();
-    history.go();
+    // history.go();
+    window.location.href = "/"
 
 });
 
