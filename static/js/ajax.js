@@ -53,25 +53,10 @@ $(document).ready(function () {
 
     $('#change_game_mode a').on('click', function (event) {
         default_state();
-        // $('#change_game_mode').addClass('d-none');
-        // $('#game_mode').addClass('d-none');
-        // $('#oracle_text').addClass('d-none');
-        // $('#name_from_oracle_text').addClass('d-none');
-        // $('#card_by_image').addClass('d-none');
-        // $('#change_game_mode img').addClass('d-none');
-        // $('#card_oracle_text').removeClass("d-flex").addClass('d-none');
-        // $('#score').addClass('d-none');
-        // $('#toggle_filters').addClass('d-none');
-        // card_holder.addClass('d-none').removeClass('d-flex');
-        // btn_grp.addClass('d-none');
-        // by_img.addClass('d-none');
-        // by_text.addClass('d-none');
-        // name_from_text.addClass('d-none');
-        // text_from_img_gm_btn.addClass('d-none');
-        // text_from_img.addClass('d-none');
-        // // h1_col.addClass('d-none');
-        // $('.lds-ripple').removeClass('d-none').addClass('d-flex mx-auto');
-        // // h1_col_h1.removeClass();
+
+    });
+    $('#h1_col a').on('click', function (event) {
+        default_state();
     });
 
     // let clicked = false;
