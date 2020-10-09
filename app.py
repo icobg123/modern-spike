@@ -142,7 +142,6 @@ def get_new_cards():
             else:
                 new_cards = job.result
 
-
             if not new_cards['card_info_uris'] and get_all_uris == '1':
                 # print("test")
                 new_cards = gen_new_cards(get_all_uris='1', card_type_filters=card_type_filters)
@@ -300,13 +299,23 @@ def privacy():
     return render_template("privacy_policy.html")
 
 
-@app.route("/guess-name", methods=['GET'])
-def guess_name():
+@app.route("/guess-art-from-oracle-text", methods=['GET'])
+def guess_art_from_oracle_text():
     return redirect(url_for('index'), code=302)
 
 
-@app.route("/guess-artwork", methods=['GET'])
-def guess_artwork():
+@app.route("/guess-name-from-oracle-text", methods=['GET'])
+def guess_name_from_oracle_text():
+    return redirect(url_for('index'), code=302)
+
+
+@app.route("/guess-name-from-art", methods=['GET'])
+def guess_name_from_art():
+    return redirect(url_for('index'), code=302)
+
+
+@app.route("/guess-oracle-text-from-art", methods=['GET'])
+def guess_oracle_text_from_art():
     return redirect(url_for('index'), code=302)
 
 
