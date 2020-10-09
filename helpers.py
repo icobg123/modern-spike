@@ -1279,12 +1279,11 @@ def increment_game_mode(game_mode_id, correct):
 def get_mtg_img_from_url(url):
     response = requests.get(url)
     # pprint(response)
-    try:
-        img = Image.open(BytesIO(response.content))
-    except:
-        print("img not found")
-        return False
-
+    # try:
+    img = Image.open(BytesIO(response.content))
+    # except:
+    #     print("img not found")
+    #     return False
     return img
 
 
