@@ -435,7 +435,7 @@ $(document).ready(function () {
                 .done(function (data) {
                     // console.log(data.html);
                     $("#by_card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text);
-                    card_holder.html(data.html);
+
                     $('#modalOracleText').html(data.new_oracle_text);
                     $('#hint_oracle_text_from_image .mana_cost').html(data.correct_answer_mana_cost);
                     $('#correct_answer').html(data.correct_answer_index);
@@ -450,11 +450,13 @@ $(document).ready(function () {
                     // let img = $('#by_card_image');
                     let img = document.getElementById('by_card_image');
                     let img_loaded = function () {
+
                         // do your code here
                         // `this` refers to the img object
                         // console.log("Img finally loaded in function")
 
                         $('.lds-ripple').removeClass('d-flex').addClass('d-none');
+                        card_holder.html(data.html);
                         card_holder.removeClass('d-none');
 
                         // $('#oracle_text').removeClass('d-none');
