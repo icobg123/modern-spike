@@ -176,6 +176,13 @@ window.addEventListener('load', function () {
 
 });
 
+window.addEventListener('popstate', (event) => {
+    console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+    // location.reload();
+    default_state();
+    history.go();
+
+});
 
 let deferredPrompt;
 let btnAdd = document.querySelector('#btnAdd');

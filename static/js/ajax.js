@@ -1,4 +1,28 @@
+function default_state() {
+    $('#change_game_mode').addClass('d-none');
+    $('#game_mode').addClass('d-none');
+    $('#oracle_text').addClass('d-none');
+    $('#name_from_oracle_text').addClass('d-none');
+    $('#card_by_image').addClass('d-none');
+    $('#change_game_mode img').addClass('d-none');
+    $('#card_oracle_text').removeClass("d-flex").addClass('d-none');
+    $('#score').addClass('d-none');
+    $('#toggle_filters').addClass('d-none');
+    $('#card_holder').addClass('d-none').removeClass('d-flex');
+    $('#by_btns').addClass('d-none');
+    $('#by_img').addClass('d-none');
+    $('#by_text').addClass('d-none');
+    $('#name_from_text').addClass('d-none');
+    $('#text_from_img_gm_btn').addClass('d-none');
+    $('#text_from_img').addClass('d-none');
+    // h1_col.addClass('d-none');
+    $('.lds-ripple').removeClass('d-none').addClass('d-flex mx-auto');
+    // h1_col_h1.removeClass();
+
+}
+
 $(document).ready(function () {
+
 
     let decklist_url = $('#decklist_url').attr('href');
     let game_mode_flag = $('#game_mode_flag');
@@ -15,26 +39,28 @@ $(document).ready(function () {
     let close_filter_btn = $('#close_filter_btn');
     let filters = [];
 
+
     $('#change_game_mode a').on('click', function (event) {
-        $('#change_game_mode').addClass('d-none');
-        $('#game_mode').addClass('d-none');
-        $('#oracle_text').addClass('d-none');
-        $('#name_from_oracle_text').addClass('d-none');
-        $('#card_by_image').addClass('d-none');
-        $('#change_game_mode img').addClass('d-none');
-        $('#card_oracle_text').removeClass("d-flex").addClass('d-none');
-        $('#score').addClass('d-none');
-        $('#toggle_filters').addClass('d-none');
-        card_holder.addClass('d-none').removeClass('d-flex');
-        btn_grp.addClass('d-none');
-        by_img.addClass('d-none');
-        by_text.addClass('d-none');
-        name_from_text.addClass('d-none');
-        text_from_img_gm_btn.addClass('d-none');
-        text_from_img.addClass('d-none');
-        // h1_col.addClass('d-none');
-        $('.lds-ripple').removeClass('d-none').addClass('d-flex mx-auto');
-        // h1_col_h1.removeClass();
+        default_state();
+        // $('#change_game_mode').addClass('d-none');
+        // $('#game_mode').addClass('d-none');
+        // $('#oracle_text').addClass('d-none');
+        // $('#name_from_oracle_text').addClass('d-none');
+        // $('#card_by_image').addClass('d-none');
+        // $('#change_game_mode img').addClass('d-none');
+        // $('#card_oracle_text').removeClass("d-flex").addClass('d-none');
+        // $('#score').addClass('d-none');
+        // $('#toggle_filters').addClass('d-none');
+        // card_holder.addClass('d-none').removeClass('d-flex');
+        // btn_grp.addClass('d-none');
+        // by_img.addClass('d-none');
+        // by_text.addClass('d-none');
+        // name_from_text.addClass('d-none');
+        // text_from_img_gm_btn.addClass('d-none');
+        // text_from_img.addClass('d-none');
+        // // h1_col.addClass('d-none');
+        // $('.lds-ripple').removeClass('d-none').addClass('d-flex mx-auto');
+        // // h1_col_h1.removeClass();
     });
 
     // let clicked = false;
@@ -313,7 +339,7 @@ $(document).ready(function () {
 
                         img.onload = img_loaded;
                     }
-                    // window.history.pushState("object or string", "Guess the card name", "/guess-name");
+                    window.history.pushState("object or string", "Guess the art from the oracle text", "/guess-art-from-oracle-text");
 
                 });
 
@@ -410,7 +436,7 @@ $(document).ready(function () {
 
                         img.onload = img_loaded;
                     }
-                    // window.history.pushState("object or string", "Guess the card artwork", "/guess-artwork");
+                    window.history.pushState("object or string", "Guess the name from the oracle text", "/guess-name-from-oracle-text");
 
 
                 });
@@ -504,7 +530,7 @@ $(document).ready(function () {
 
                         img.onload = img_loaded;
                     }
-                    // window.history.pushState("object or string", "Guess the card artwork", "/guess-artwork");
+                    window.history.pushState("object or string", "Guess the name from the art", "/guess-name-from-art");
 
 
                     // if (data.error) {
@@ -606,8 +632,7 @@ $(document).ready(function () {
 
                         img.onload = img_loaded;
                     }
-                    // window.history.pushState("object or string", "Guess the card artwork", "/guess-artwork");
-
+                    window.history.pushState("object or string", "Guess the oracle text from the art", "/guess-oracle-text-from-art");
 
                     // if (data.error) {
                     //     console.log(data.error);
