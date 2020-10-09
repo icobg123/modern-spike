@@ -96,7 +96,7 @@ $(document).ready(function () {
         .done(function (data) {
             // console.log(data.correct_answer);
             $('.lds-ripple').removeClass('d-flex').addClass('d-none');
-           card_holder.html(data.html).removeClass('d-none');
+           card_holder.removeClass('d-none');
             $('#oracle_text').removeClass('d-none');
 
             $('#oracle_text .card-body').html(data.new_oracle_text);
@@ -350,7 +350,7 @@ $(document).ready(function () {
                         $('#name_from_oracle_text').removeClass('d-none');
 
                         $('.lds-ripple').removeClass('d-flex').addClass('d-none');
-                        card_holder.html(data.html).removeClass('d-none');
+                        card_holder.removeClass('d-none');
 
                         // $('#oracle_text').removeClass('d-none');
                         if ($('#name_from_oracle_text').hasClass('d-none')) {
@@ -433,9 +433,9 @@ $(document).ready(function () {
                 url: '/get_new_cards'
             })
                 .done(function (data) {
-                    // console.log(data.correct_answer_decklist_id);
+                    // console.log(data.html);
                     $("#by_card_image").attr('src', data.correct_answer_image_uri).attr('alt', data.new_flavor_text);
-                    // card_holder.html(data.html);
+                    card_holder.html(data.html);
                     $('#modalOracleText').html(data.new_oracle_text);
                     $('#hint_oracle_text_from_image .mana_cost').html(data.correct_answer_mana_cost);
                     $('#correct_answer').html(data.correct_answer_index);
@@ -455,7 +455,7 @@ $(document).ready(function () {
                         // console.log("Img finally loaded in function")
 
                         $('.lds-ripple').removeClass('d-flex').addClass('d-none');
-                        card_holder.html(data.html).removeClass('d-none');
+                        card_holder.removeClass('d-none');
 
                         // $('#oracle_text').removeClass('d-none');
                         if ($('#card_by_image').hasClass('d-none')) {
@@ -547,7 +547,7 @@ $(document).ready(function () {
                         console.log("Img finally loaded in function")
 
                         $('.lds-ripple').removeClass('d-flex').addClass('d-none');
-                        card_holder.html(data.html).removeClass('d-none');
+                        card_holder.removeClass('d-none');
 
                         // $('#oracle_text').removeClass('d-none');
                         if (text_from_img_gm_btn.hasClass('d-none')) {
@@ -923,7 +923,7 @@ $(document).ready(function () {
                          $('#name_from_oracle_text').removeClass('d-none');
 
                          $('.lds-ripple').removeClass('d-flex').addClass('d-none');
-                         card_holder.html(data.html).removeClass('d-none');
+                         card_holder.removeClass('d-none');
 
                          // $('#oracle_text').removeClass('d-none');
                          if ($('#name_from_oracle_text').hasClass('d-none')) {
@@ -1012,7 +1012,7 @@ $(document).ready(function () {
                          // console.log("Img finally loaded in function")
 
                          $('.lds-ripple').removeClass('d-flex').addClass('d-none');
-                         card_holder.html(data.html).removeClass('d-none');
+                         card_holder.removeClass('d-none');
 
                          // $('#oracle_text').removeClass('d-none');
                          if ($('#card_by_image').hasClass('d-none')) {
@@ -1105,7 +1105,7 @@ $(document).ready(function () {
                          console.log("Img finally loaded in function")
 
                          $('.lds-ripple').removeClass('d-flex').addClass('d-none');
-                         card_holder.html(data.html).removeClass('d-none');
+                         card_holder.removeClass('d-none');
 
                          // $('#oracle_text').removeClass('d-none');
                          if (text_from_img_gm_btn.hasClass('d-none')) {
@@ -1199,7 +1199,7 @@ $(document).ready(function () {
             .done(function (data) {
                 console.log(data.correct_answer_decklist_id);
                 $('.lds-ripple').removeClass('d-flex').addClass('d-none');
-                card_holder.html(data.html).removeClass('d-none');
+                card_holder.removeClass('d-none');
                 $('#oracle_text').removeClass('d-none');
 
                 $('#oracle_text .card-body').html(data.new_oracle_text);
