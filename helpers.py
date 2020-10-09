@@ -1119,7 +1119,7 @@ def gen_new_cards(card_type_filters=None, get_all_uris=0, get_oracle_texts=1, ):
     # random_card_name = "Goblin Charbelcher"
     # random_card_name = "Bala Ged Recovery"
     # random_card_name = "Hanweir Battlements"
-    random_card_name = "Hazoret the Fervent"
+    # random_card_name = "Hazoret the Fervent"
     #
     correct_answer_data = get_card_data_from_local_file(random_card_name)
 
