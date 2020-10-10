@@ -167,7 +167,8 @@ def get_new_cards():
         new_cards = gen_new_cards(get_all_uris=get_all_uris, card_type_filters=card_type_filters)
 
     return jsonify({
-        "html": render_template('card_holder.html', card_info=new_cards['card_info'],
+        "html": render_template('card_holder.html',
+                                card_info=new_cards['card_info'],
                                 card_info_uris=new_cards['card_info_uris'],
                                 card_info_oracle_texts=new_cards['card_info_oracle_texts'],
                                 correct_answer_name=new_cards['correct_answer_name']),
