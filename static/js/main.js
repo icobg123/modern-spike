@@ -70,7 +70,7 @@ function showRefreshUI(registration) {
     // button.style.position = 'absolute';
     // button.style.bottom = '24px';
     // button.style.left = '24px';
-    button.textContent = 'The Modern Spike has been updated. \n Please click here to see changes.';
+    button.textContent = 'Please click here to apply changes.';
 
     button.addEventListener('click', function () {
         if (!registration.waiting) {
