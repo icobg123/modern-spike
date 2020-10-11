@@ -244,7 +244,12 @@ $('#card_type_filters_modal [data-toggle="buttons"] .btn').on('click', function 
     return false;
 });
 
-
+$('.btn').on('mousedown',
+    /** @param {!jQuery.Event} event */
+    function (event) {
+        event.preventDefault();
+    }
+);
 // $('form').on('submit', function (e) {
 //     // watch form values
 //     $('#formValues').html(($('form').serialize()));
