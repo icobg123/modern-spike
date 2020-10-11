@@ -250,12 +250,12 @@ $('.btn').on('mousedown',
         event.preventDefault();
     }
 );
-$('.btn').on('touchend',
-    /** @param {!jQuery.Event} event */
-    function (event) {
-        event.preventDefault();
-    }
-);
+// $('.btn').on('touchend',
+//     /** @param {!jQuery.Event} event */
+//     function (event) {
+//         event.preventDefault();
+//     }
+// );
 // $('form').on('submit', function (e) {
 //     // watch form values
 //     $('#formValues').html(($('form').serialize()));
