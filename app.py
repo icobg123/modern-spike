@@ -94,6 +94,7 @@ def get_new_cards():
     get_oracle_texts = 0
     card_type_filters = None
     filters_local_storage = None
+    game_mode_id = request.form['by_btn']
 
     # pprint("form")
     # pprint(request.form)
@@ -122,10 +123,10 @@ def get_new_cards():
     except KeyError:
         print("don't get filters")
 
-    pprint(request.form)
-    pprint("form")
+    # pprint(request.form)
+    # pprint("form")
 
-    pprint(card_type_filters)
+    pprint(game_mode_id)
 
     if job:
 
@@ -138,37 +139,58 @@ def get_new_cards():
                 print("deleting job because filters were different")
                 job.delete()
                 new_cards = gen_new_cards(get_all_uris=get_all_uris, get_oracle_texts=get_oracle_texts,
-                                          card_type_filters=card_type_filters)
+                                          card_type_filters=card_type_filters, game_mode_id=game_mode_id)
             else:
                 new_cards = job.result
 
             if not new_cards['card_info_uris'] and get_all_uris == '1':
+                print("test")
+                get_all_uris = '1'
+                # new_cards = gen_new_cards(get_all_uris='1', card_type_filters=card_type_filters,
+                #                           game_mode_id=game_mode_id)
+
+            if new_cards['game_mode_id'] != game_mode_id:
+                if game_mode_id == "by_text":
+                    print("game_id = by_text")
+                    new_cards = gen_new_cards(get_all_uris=get_all_uris, get_oracle_texts=get_oracle_texts,
+                                              card_type_filters=card_type_filters, game_mode_id=game_mode_id)
+                else:
+                    print("game_id = {}".format(game_mode_id))
+                    new_cards['game_mode_id'] = game_mode_id
                 # print("test")
-                new_cards = gen_new_cards(get_all_uris='1', card_type_filters=card_type_filters)
+                # new_cards = gen_new_cards(get_all_uris='1', card_type_filters=card_type_filters,
+                #                           game_mode_id=game_mode_id)
             elif not new_cards['card_info_oracle_texts'] and get_oracle_texts == '1':
-                new_cards = gen_new_cards(get_oracle_texts='1', card_type_filters=card_type_filters)
+                new_cards = gen_new_cards(get_oracle_texts='1', card_type_filters=card_type_filters,
+                                          game_mode_id=game_mode_id)
 
             result = q.enqueue(gen_new_cards,
-                               kwargs={'get_all_uris': get_all_uris, 'get_oracle_texts': get_oracle_texts,
-                                       'card_type_filters': card_type_filters},
+                               kwargs={'get_all_uris': get_all_uris,
+                                       'get_oracle_texts': get_oracle_texts,
+                                       'card_type_filters': card_type_filters,
+                                       'game_mode_id': game_mode_id},
                                job_id="gen_new_cards",
                                result_ttl=43200)
         else:
             # job.delete()
             # print('gen_new_cards job not finished')
             new_cards = gen_new_cards(get_all_uris=get_all_uris, get_oracle_texts=get_oracle_texts,
-                                      card_type_filters=card_type_filters)
+                                      card_type_filters=card_type_filters, game_mode_id=game_mode_id)
     else:
         # print('no gen_new_cards job gen_new_cards create job now')
-        result = q.enqueue(gen_new_cards, kwargs={'get_all_uris': get_all_uris, 'get_oracle_texts': get_oracle_texts,
-                                                  'card_type_filters': card_type_filters},
+        result = q.enqueue(gen_new_cards, kwargs={'get_all_uris': get_all_uris,
+                                                  'get_oracle_texts': get_oracle_texts,
+                                                  'card_type_filters': card_type_filters,
+                                                  'game_mode_id': game_mode_id},
                            job_id="gen_new_cards",
                            result_ttl=43200)
-        new_cards = gen_new_cards(get_all_uris=get_all_uris, card_type_filters=card_type_filters)
+        new_cards = gen_new_cards(get_all_uris=get_all_uris, card_type_filters=card_type_filters,
+                                  game_mode_id=game_mode_id)
 
     return jsonify({
         "html": render_template('card_holder.html',
                                 card_info=new_cards['card_info'],
+                                game_mode_id=new_cards['game_mode_id'],
                                 card_info_uris=new_cards['card_info_uris'],
                                 card_info_oracle_texts=new_cards['card_info_oracle_texts'],
                                 correct_answer_name=new_cards['correct_answer_name']),

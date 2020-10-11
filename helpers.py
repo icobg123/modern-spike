@@ -1061,7 +1061,7 @@ def similar_cards(card_name, not_enough=False, last_chance=False):
     return list_similar_cards
 
 
-def gen_new_cards(card_type_filters=None, get_all_uris=0, get_oracle_texts=1, ):
+def gen_new_cards(card_type_filters=None, get_all_uris=0, get_oracle_texts=1, game_mode_id=''):
     if card_type_filters is None:
         card_type_filters = ['planeswalker', 'land',
                              'enchantment', 'instant',
@@ -1259,6 +1259,7 @@ def gen_new_cards(card_type_filters=None, get_all_uris=0, get_oracle_texts=1, ):
     return {"card_info": random_cards_name_same_type,
             "card_info_uris": dict_random_cards_name_same_typ,
             "card_info_oracle_texts": dict_random_cards_name_same_type_oracle_texts,
+            "game_mode_id": game_mode_id,
             "correct_answer_index": correct_answer_index,
             "correct_answer_oracle_text": to_html_list_correct_answer_oracle_text,
             "correct_answer_flavor_text": correct_answer_flavor_text,
