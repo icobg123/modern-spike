@@ -1118,7 +1118,7 @@ def gen_new_cards(card_type_filters=None, get_all_uris=0, get_oracle_texts=1, ga
     # random_card_name = "Lord of Atlantis"
     # random_card_name = "Goblin Charbelcher"
     # random_card_name = "Bala Ged Recovery"
-    # random_card_name = "Hanweir Battlements"
+    random_card_name = "Hanweir Battlements"
     # random_card_name = "Hazoret the Fervent"
     #
     correct_answer_data = get_card_data_from_local_file(random_card_name)
@@ -1168,13 +1168,14 @@ def gen_new_cards(card_type_filters=None, get_all_uris=0, get_oracle_texts=1, ga
     # get_oracle_texts = '1'
     if get_oracle_texts == '1':
         for card in random_cards_name_same_type:
-            # print(card)
+            print(card)
             card_info = modern_atomic.find_one({"_id": card})
-            if card_info is not None and 'oracle_text' in card_info.keys():
+            print(card_info)
+            if card_info is not None and 'text' in card_info.keys():
 
                 oracle_text = "This card has no oracle text"
-                if card_info['oracle_text']:
-                    oracle_text = card_info['oracle_text']
+                if card_info['text']:
+                    oracle_text = card_info['text']
 
                 replace_card_name = replace_card_name_in_oracle(card, oracle_text)
                 split_oracle_text = replace_card_name.split('\n')
@@ -1185,8 +1186,8 @@ def gen_new_cards(card_type_filters=None, get_all_uris=0, get_oracle_texts=1, ga
 
                 dict_random_cards_name_same_type_oracle_texts[card] = to_html
 
-    # pprint("dict_racle+_text")
-    # pprint(dict_random_cards_name_same_type_oracle_texts)
+    pprint("dict_oracle_text")
+    pprint(dict_random_cards_name_same_type_oracle_texts)
 
     if get_all_uris == '1':
         for card in random_cards_name_same_type:
