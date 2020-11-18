@@ -377,7 +377,7 @@ def index():
         # result = q.enqueue(count_words_at_url, 100)
         else:
             print('enqueueing scraping of cards')
-            result = q.enqueue(scrape_card_data, job_id="scrape_cards", job_timeout=600, result_ttl=0)
+            result = q.enqueue(scrape_card_data, job_id="scrape_cards", job_timeout=1200, result_ttl=0)
     else:
         urls = mongo.db.urls
 
