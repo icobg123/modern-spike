@@ -177,8 +177,7 @@ window.addEventListener('load', function () {
     if (refer) {
         $('#middle_container').css("background-color", "red");
     } else {
-        $('#middle_container').css("background-color", "yellow");
-
+        $('#middle_container').text(document.referrer);
     }
     prop_checkboxes();
 
