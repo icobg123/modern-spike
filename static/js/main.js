@@ -177,12 +177,13 @@ window.addEventListener('load', function () {
 });
 
 window.addEventListener('popstate', (event) => {
-    console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
-    // location.reload();
-    default_state();
-    // history.go();
-    window.location.href = "/"
-
+    if (window.location.href !== "/") {
+        console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+        // location.reload();
+        default_state();
+        // history.go();
+        window.location.href = "/"
+    }
 });
 
 let deferredPrompt;
@@ -244,12 +245,12 @@ $('#card_type_filters_modal [data-toggle="buttons"] .btn').on('click', function 
     return false;
 });
 
-$('.btn').on('mousedown',
-    /** @param {!jQuery.Event} event */
-    function (event) {
-        event.preventDefault();
-    }
-);
+// $('.btn').on('mousedown',
+//     /** @param {!jQuery.Event} event */
+//     function (event) {
+//         event.preventDefault();
+//     }
+// );
 // $('.btn').on('touchend',
 //     /** @param {!jQuery.Event} event */
 //     function (event) {
