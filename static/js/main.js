@@ -198,8 +198,7 @@ window.addEventListener('popstate', (event) => {
         default_state();
         // history.go();
         if (sessionStorage.getItem("isTWA")) {
-            //TODO:
-            window.history.go(-1)
+            window.history.go(-numberOfEntries)
         }
         window.location.href = "/"
     }
