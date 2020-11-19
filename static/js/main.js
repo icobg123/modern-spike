@@ -171,12 +171,23 @@ window.addEventListener('load', function () {
         localStorage["select_all_btn_local_storage"] = JSON.stringify($("#select_all span").text());
         // localStorage["card_type_filters"] = JSON.stringify(["0", "sorcery", "creature", "tribal", "artifact", "instant", "enchantment", "land", "planeswalker"]);
     }
+    let refer = document.referrer.includes('android-app://<com.modern.spike.android.app>');
+    console.log(refer);
+    console.log(document.referrer);
+    if (refer) {
+        $('#middle_container').css("background-color", "red");
+    } else {
+        $('#middle_container').css("background-color", "yellow");
+
+    }
     prop_checkboxes();
 
 
 });
 
 window.addEventListener('popstate', (event) => {
+    let numberOfEntries = window.history.length
+    console.log(numberOfEntries);
     if (window.location.href !== "/") {
         console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
         // location.reload();
@@ -184,6 +195,8 @@ window.addEventListener('popstate', (event) => {
         // history.go();
         window.location.href = "/"
     }
+
+
 });
 
 let deferredPrompt;
