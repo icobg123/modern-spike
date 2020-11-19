@@ -197,11 +197,11 @@ window.addEventListener('popstate', (event) => {
         // location.reload();
         default_state();
         // history.go();
-        window.location.href = "/"
         if (sessionStorage.getItem("isTWA")) {
             //TODO:
             window.history.go(-1)
         }
+        window.location.href = "/"
     }
 
 
