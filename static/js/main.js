@@ -175,7 +175,6 @@ window.addEventListener('load', function () {
     console.log(refer);
     console.log(document.referrer);
     if (refer) {
-
         sessionStorage.setItem('isTWA', '1');
         // $('#middle_container').text(document.referrer);
         // $('#middle_container').css("background-color", "red");
@@ -199,12 +198,13 @@ window.addEventListener('popstate', (event) => {
         // history.go();
 
         window.location.href = "/"
-    } else {
-        if (sessionStorage.getItem("isTWA")) {
-            //TODO: check if Session Storage and
-            window.history.go(-numberOfEntries);
-        }
     }
+    // else {
+    //     if (sessionStorage.getItem("isTWA")) {
+    //         //TODO: check if Session Storage and
+    //         window.history.go(-numberOfEntries);
+    //     }
+    // }
 
 
 });
