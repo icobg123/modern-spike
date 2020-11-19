@@ -197,10 +197,13 @@ window.addEventListener('popstate', (event) => {
         // location.reload();
         default_state();
         // history.go();
-        if (sessionStorage.getItem("isTWA")) {
-            window.history.go(-numberOfEntries)
-        }
+
         window.location.href = "/"
+    } else {
+        if (sessionStorage.getItem("isTWA")) {
+            //TODO: check if Session Storage and
+            window.history.go(-numberOfEntries);
+        }
     }
 
 
