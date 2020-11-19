@@ -255,7 +255,7 @@ $(document).ready(function () {
                     let decklists = data.correct_answer_decklist_id.split('#')[0]
 
                     hide_show_ui_elements("card_imgs_1", $('#oracle_text'), by_text, decklists);
-                    if (window.location.href !== "/guess-art-from-oracle-text") {
+                    if (window.location.pathname !== "/guess-art-from-oracle-text") {
                         window.history.pushState("object or string", "Guess the art from the oracle text", "/guess-art-from-oracle-text");
                     }
                     send_page_view_ga("/guess-art-from-oracle-text");
@@ -293,7 +293,7 @@ $(document).ready(function () {
 
 
                     hide_show_ui_elements("name_from_oracle_text_image", $('#name_from_oracle_text'), name_from_text, decklists);
-                    if (window.location.href !== "/guess-name-from-oracle-text") {
+                    if (window.location.pathname !== "/guess-name-from-oracle-text") {
 
                         window.history.pushState("object or string", "Guess the name from the oracle text", "/guess-name-from-oracle-text");
                     }
@@ -331,7 +331,7 @@ $(document).ready(function () {
                     card_holder.html(data.html);
 
                     hide_show_ui_elements("by_card_image", $('#card_by_image'), by_img, decklists);
-                    if (window.location.href !== "/guess-name-from-art") {
+                    if (window.location.pathname !== "/guess-name-from-art") {
 
                         window.history.pushState("object or string", "Guess the name from the art", "/guess-name-from-art");
                     }
@@ -372,7 +372,7 @@ $(document).ready(function () {
 
 
                     // }
-                    if (window.location.href !== "/guess-oracle-text-from-art") {
+                    if (window.location.pathname !== "/guess-oracle-text-from-art") {
 
                         window.history.pushState("object or string", "Guess the oracle text from the art", "/guess-oracle-text-from-art");
                     }
@@ -405,8 +405,10 @@ $(document).ready(function () {
 
         if (!arraysEqual(filters, filters_local_storage)) {
             console.log("new filters  " + filters + filters_local_storage);
-
+            console.log(window.location.pathname);
             gen_new_cards(guess_btn, id, link_text, filters, filters_local_storage);
+
+
         }
     });
 
@@ -510,8 +512,8 @@ $(document).ready(function () {
         // h1_col.addClass('mt-2 mt-md-0');
         // h1_col_h1.addClass('d-none d-md-block');
 
-        console.log(filters)
-
+        // console.log(filters);
+        console.log(window.location.pathname);
         gen_new_cards(guess_btn, id, link_text, filters, filters_local_storage);
 
 
