@@ -230,7 +230,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
     console.log('beforeinstallprompt event fired');
     e.preventDefault();
     deferredPrompt = e;
-    showInstall();
+    // showInstall();
 });
 
 $(document).on('click', '#btnAdd', function (e) {
