@@ -32,13 +32,13 @@
             {{ card_info }}
             {% if card_info == correct_answer_name %}
                 <img class="check invisible position-absolute"
-                     src="{{ url_for('static', filename='/images/bootstrap-icons/check.svg') }}" alt=""
+                     src="{{ url_for('static', filename='/images/bootstrap-icons/check.svg') }}" alt="check mark"
                      width="16"
                      height="16"
                      title="check">
             {% else %}
                 <img class="x invisible position-absolute"
-                     src="{{ url_for('static', filename='/images/bootstrap-icons/x.svg') }}" alt="" width="16"
+                     src="{{ url_for('static', filename='/images/bootstrap-icons/x.svg') }}" alt="cross mark" width="16"
                      height="16"
                      title="X">
 
