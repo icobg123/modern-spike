@@ -1,2 +1,7 @@
-{% include "cards.html" %}
-{% include "cards_img.html" %}
+{% if game_mode_id == "by_img" or game_mode_id =="name_from_text" %}
+    {% include "cards.html" %}
+{% elif game_mode_id == "by_text" %}
+    {% include "cards_img.html" %}
+{% elif game_mode_id == "text_from_img_gm_btn" %}
+    {% include "cards_oracle_text.html" %}
+{% endif %}

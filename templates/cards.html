@@ -1,4 +1,6 @@
-<div id="card_names" class="btn-group-vertical btn-group btn-group-toggle d-flex flex-column"
+<div id="card_names"
+     class="btn-group-vertical btn-group btn-group-toggle d-flex flex-column"
+{#     class="btn-group-vertical btn-group btn-group-toggle d-flex flex-column"#}
      data-toggle="buttons">
     {% for card_info in card_info %}
         {#    {% if loop.index == 1 %}#}
@@ -21,22 +23,22 @@
         {#        {% set  border_classes = 'border-bottom-0 rounded-0' %}#}
         {##}
         {#    {% endif %}#}
-        <label class="btn btn-secondary btn-sm d-flex justify-content-center align-items-center position-relative {{ border_classes }}">
+        <label class="btn btn-secondary btn-lg  d-flex justify-content-center align-items-center position-relative {{ border_classes }}">
             <input class="form-check-input" type="radio" name="pickCard"
-                   id="{{ card_info | replace(" ", "_")|lower|escape }}"
+                   id="card_names_{{ card_info | replace(" ", "_")|lower|escape }}"
                     {#               id="{{ card_info.name | replace(" ", "_")|lower|escape }}"#}
                    value="{{ loop.index }}"
                    autocomplete="off">
             {{ card_info }}
             {% if card_info == correct_answer_name %}
                 <img class="check invisible position-absolute"
-                     src="{{ url_for('static', filename='/images/bootstrap-icons/check.svg') }}" alt=""
+                     src="{{ url_for('static', filename='/images/bootstrap-icons/check.svg') }}" alt="check mark"
                      width="16"
                      height="16"
                      title="check">
             {% else %}
                 <img class="x invisible position-absolute"
-                     src="{{ url_for('static', filename='/images/bootstrap-icons/x.svg') }}" alt="" width="16"
+                     src="{{ url_for('static', filename='/images/bootstrap-icons/x.svg') }}" alt="cross mark" width="16"
                      height="16"
                      title="X">
 

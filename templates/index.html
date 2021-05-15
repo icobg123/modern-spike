@@ -1,23 +1,50 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <main class="h-100">
-        <div class="container-fluid h-100">
-            <div class="row h-100 center-container align-items-start">
+    <main class="height_100_js">
+        {#    <main class="h-100">#}
+        <div class="container-fluid height_100_js">
+            {#        <div class="container-fluid h-100">#}
+            <div class="row height_100_js center-container align-items-start flex-column flex-nowrap">
+                {#            <div class="row h-100 center-container align-items-start flex-column flex-nowrap">#}
                 <div class="lds-ripple mx-auto absolute-center d-none">
                     <div></div>
                     <div></div>
                 </div>
-                <div id="h1_col"
-                     class="col-12 col-sm-9 col-md-7 col-lg-9 col-xl-7 d-flex flex-column mx-auto align-items-center justify-content-sm-start align-self-start">
-                    <h1 class="text-center my-1"><a class="text-white" href="{{ url_for('index') }}">Modern Spike</a>
+                <div class="flex-basis-0 col col-sm-8 col-md-7 col-lg-9 col-xl-7  mx-auto  flex-shrink-1 flex-grow-0"
+                     id="h1_col">
+                    {#                     class="col-12 col-sm-9 col-md-7 col-lg-9 col-xl-7 d-flex flex-column mx-auto align-items-center justify-content-sm-start align-self-start">#}
+
+                    <h1 class="text-center mt-1 mt-sm-3 mb-0">
+                        <a class="text-white" href="{{ url_for('index') }}">
+                            Modern Spike
+                        </a>
+
                     </h1>
 
+                </div>
+                <div id="middle_container"
+                     class="col col-sm-8 col-md-7 col-lg-9 col-xl-7 mx-auto d-flex flex-column flex-shrink-1 flex-grow-1">
+                    <div class="d-flex flex-column my-auto">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-12 col-lg-7">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
 
-                    <small class="text-center my-0§ ">
-                        Can you guess the card? Score:
-                        <span class="d-none" id="answered_flag">0</span>
-                        <span id="current_score">
+                                    <small id="change_game_mode" class=" align-items-center text-center d-none">
+                                        <a href="{{ url_for('index') }}" class="d-flex text-white align-items-center">
+                                            <img
+                                                    class="mr-1"
+                                                    alt="Back"
+                                                    width="25"
+                                                    height="25"
+                                                    src="{{ url_for('static', filename='/images/bootstrap-icons/arrow-left-circle.svg') }}">
+                                            {#                                        Change game mode#}
+                                        </a>
+                                    </small>
+                                    <small id="score" class="text-center my-0 d-none">
+                                        Score:
+                                        <span class="d-none" id="answered_flag">0</span>
+                                        <span id="current_score">
                             {% if request.cookies.get('current_score') %}
                                 {{ request.cookies.get('current_score') }}
                             {% else %}
@@ -25,8 +52,8 @@
                             {% endif %}
 
                         </span>
-                        /
-                        <span id="total_score">
+                                        /
+                                        <span id="total_score">
                             {% if request.cookies.get('current_score') %}
                                 {{ request.cookies.get('total_score') }}
                             {% else %}
@@ -34,191 +61,413 @@
                             {% endif %}
                         </span>
 
-                    </small>
-                </div>
-                <div class="col-12 col-sm-7 col-md-6 col-lg-7 col-xl-7 d-flex flex-column mx-auto justify-content-center mb-auto mb-sm-0">
+                                    </small>
+                                    <small id="toggle_filters" class=" align-items-center text-center d-none">
+                                        <a href="" class="d-flex text-white align-items-center"
+
+                                           data-toggle="modal"
+                                           data-target="#card_type_filters_modal"
+
+                                        >
+
+                                            <img
+                                                    {#                                                    class="mr-1"#}
+                                                    alt="Filters"
+                                                    width="25"
+                                                    height="25"
+                                                    src="{{ url_for('static', filename='/images/bootstrap-icons/filter-circle.svg') }}">
+                                            {#                                            <svg class="bi bi-filter-circle text-white"#}
+                                            {##}
+                                            {#                                                 width="32" height="32" viewBox="0 0 20 20" fill="currentColor"#}
+                                            {#                                                 xmlns="http://www.w3.org/2000/svg">#}
+                                            {#                                                <path fill-rule="evenodd"#}
+                                            {#                                                      d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>#}
+                                            {#                                                <path fill-rule="evenodd"#}
+                                            {#                                                      d="M7 11.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>#}
+                                            {#                                            </svg>#}
 
 
-                    <div id="card_by_image" class="row my-1  d-none">
+                                        </a>
+                                    </small>
 
-                        <div class="col-lg-6 col-12 mx-auto">
-
-                            <div class="card">
-                                <div class="card-header text-dark py-1 py-sm-2 d-flex align-items-center justify-content-between">
-                                    Illustration
-                                    <div class="oracle-btns">
-                                        <a id="decklist_id_by_image" href="#"
-                                           target="_blank"
-                                           rel="noopener"
-                                           class="btn btn-outline-dark btn-sm mr-1"
-                                           role="button">Decklist</a>
-
-                                        <button type="button"
-                                                class="btn btn-sm btn-info float-right text-black ml-1"
-                                                data-toggle="modal"
-                                                data-target="#cardOracleText">
-                                            Hint
-                                        </button>
-                                    </div>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="cardOracleText" tabindex="-1" role="dialog"
-                                         aria-labelledby="cardOracleTextTitle" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header py-1">
-                                                    <h5 class="modal-title" id="exampleModalLongTitle">Hint</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body" id="modalOracleText">
-
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body text-dark p-0">
-
-                                </div>
-                                <img id="by_card_image" class="card-img-bottom"
-                                     src="{{ correct_answer_image }}"
-                                     alt="{{ correct_answer_flavor_text }}"
-                                     title="{{ correct_answer_name }}">
-                            </div>
-                        </div>
-                    </div>
-                    <div id="oracle_text" class="row my-1 d-none">
-
-                        <div class="col-lg-6 col-12 mx-auto ">
-
-                            <div class="card">
-                                <div class="card-header text-dark py-1 py-sm-2 d-flex align-items-center justify-content-between">
-                                    Oracle text
-                                    <div class="oracle-btns">
-                                        <a id="decklist_id" href="#"
-                                           target="_blank"
-                                           rel="noopener"
-                                           class="btn btn-outline-dark btn-sm mr-1"
-                                           role="button">Decklist</a>
-
-                                        <button type="button"
-                                                class="btn btn-sm btn-warning float-right text-black ml-1"
-                                                data-toggle="modal"
-                                                data-target="#cardImage">
-                                            Hint
-                                        </button>
-                                    </div>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="cardImage" tabindex="-1" role="dialog"
-                                         aria-labelledby="cardImageTitle" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header py-1">
-                                                    <h5 class="modal-title" id="exampleModalLongTitle">Hint</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-
-                                                </div>
-{#                                                <img loading="lazy" id="card_image" class="img-fluid card-img-bottom"#}
-{#                                                     src="{{ correct_answer_image }}"#}
-{#                                                     alt="{{ correct_answer_flavor_text }}"#}
-{#                                                     title="{{ correct_answer_name }}">#}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body text-dark py-2">
-                                    {{ correct_oracle_text_answer }}
 
                                 </div>
                             </div>
                         </div>
-                    </div>
+
+                        <div id="text_from_img" class="row my-1  d-none">
+
+                            <div class="col-12 col-lg-7  mx-auto">
+
+                                <div class="card">
+                                    <div class="card-header text-dark p-1 py-sm-2 d-flex align-items-center justify-content-between">
+                                        <span class="ml-1"> Artwork</span>
+                                        <div class="oracle-btns d-flex">
+                                            <div class="deck-list-btns animate__animated animate__faster d-none">
+                                                <a class="btn btn-outline-dark btn-sm decklists_tournament_url"
+                                                   rel="noopener"
+                                                        {#                                               id="decklists_tournament_url"#}
+                                                   target="_blank"
+                                                   href="{{ latest_modern_tournament_url }}"> Tournament</a>
+
+                                                <a href="#"
+                                                   target="_blank"
+                                                   rel="noopener"
+                                                   class="btn btn-dark btn-sm decklist_specific_url"
+                                                   role="button">Decklist</a>
+                                            </div>
+                                            <button type="button"
+                                                    class="btn btn-sm btn-primary float-right text-black ml-1"
+                                                    data-toggle="modal"
+                                                    data-target="#hint_text_from_img_modal"
+                                            >
+                                                Hint
+                                            </button>
+                                        </div>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="hint_text_from_img_modal" tabindex="-1"
+                                             role="dialog"
+                                             aria-labelledby="cardOracleTextTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header py-1 d-flex justify-content-between align-items-center border-bottom-0">
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">Hint</h5>
+
+                                                        <div class="mana_cost">
+
+                                                        </div>
+
+                                                        {#                                                        <button type="button" class="close" data-dismiss="modal"#}
+                                                        {#                                                                aria-label="Close">#}
+                                                        {#                                                            <span aria-hidden="true">&times;</span>#}
+                                                        {#                                                        </button>#}
+                                                    </div>
+                                                    <div class="modal-body ">
 
 
-                    <div class="row my-1 ">
-                        <div class="col-lg-6 col-12 mx-auto">
-                            <form class="form-horizontal d-flex flex-column">
+                                                    </div>
 
-                                {#haha#}
-                                <div id="card_holder"
-                                     class="btn-group-vertical btn-group btn-group-toggle d-flex flex-column"
-                                     data-toggle="buttons">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body text-dark p-0">
 
-
-                                    {% include "card_holder.html" %}
-
-
+                                    </div>
+                                    <img id="text_from_img_image" class="card-img-bottom"
+                                         src="{{ correct_answer_image }}"
+                                         alt="{{ correct_answer_flavor_text }}"
+                                            {#                                         title="{{ correct_answer_name }}"#}
+                                         title="Card artwork"
+                                    >
                                 </div>
+                            </div>
+                        </div>
+                        <div id="card_by_image" class="row my-1  d-none">
 
-                                {# <button id="next_card" type="button" name="choice"
+                            <div class="col-12 col-lg-7  mx-auto">
+
+                                <div class="card">
+                                    <div class="card-header text-dark p-1 py-sm-2 d-flex align-items-center justify-content-between">
+                                        <span class="ml-1"> Artwork</span>
+                                        <div class="oracle-btns d-flex">
+                                            <div class="deck-list-btns animate__animated animate__faster d-none">
+                                                <a class="btn btn-outline-dark btn-sm decklists_tournament_url"
+                                                   rel="noopener"
+                                                        {#                                               id="decklists_tournament_url"#}
+                                                   target="_blank"
+                                                   href="{{ latest_modern_tournament_url }}"> Tournament</a>
+
+                                                <a href="#"
+                                                   target="_blank"
+                                                   rel="noopener"
+                                                   class="btn btn-dark btn-sm decklist_specific_url"
+                                                   role="button">Decklist</a>
+                                            </div>
+                                            <button type="button"
+                                                    class="btn btn-sm btn-info float-right text-black ml-1"
+                                                    data-toggle="modal"
+                                                    data-target="#hint_oracle_text_from_image">
+                                                Hint
+                                            </button>
+                                        </div>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="hint_oracle_text_from_image" tabindex="-1"
+                                             role="dialog"
+                                             aria-labelledby="cardOracleTextTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header py-1 d-flex justify-content-between align-items-center">
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">Hint</h5>
+
+                                                        <div class="mana_cost">
+
+                                                        </div>
+
+                                                        {#                                                        <button type="button" class="close" data-dismiss="modal"#}
+                                                        {#                                                                aria-label="Close">#}
+                                                        {#                                                            <span aria-hidden="true">&times;</span>#}
+                                                        {#                                                        </button>#}
+                                                    </div>
+                                                    <div class="modal-body" id="modalOracleText">
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body text-dark p-0">
+
+                                    </div>
+                                    <img id="by_card_image" class="card-img-bottom"
+                                         src="{{ correct_answer_image }}"
+                                         alt="{{ correct_answer_flavor_text }}"
+                                            {#                                         title="{{ correct_answer_name }}"#}
+                                         title="Card artwork"
+
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div id="oracle_text" class="row my-1 d-none">
+
+                            <div class="col-12 col-lg-7  mx-auto ">
+
+                                <div class="card">
+                                    <div class="card-header text-dark p-1 py-sm-2 d-flex align-items-center justify-content-between">
+                                        <span class="ml-1"> Oracle text</span>
+                                        <div class="oracle-btns d-flex">
+                                            <div class="deck-list-btns animate__faster animate__animated d-none">
+
+                                                <a class="btn btn-outline-dark btn-sm decklists_tournament_url"
+                                                   rel="noopener"
+                                                        {#                                               id="decklists_tournament_url"#}
+                                                   target="_blank"
+                                                   href="{{ latest_modern_tournament_url }}"> Tournament</a>
+                                                <a href="#"
+                                                   target="_blank"
+                                                   rel="noopener"
+                                                   class="btn btn-dark btn-sm decklist_specific_url"
+                                                   role="button">Decklist</a>
+                                            </div>
+                                            <button type="button"
+                                                    class="btn btn-sm btn-warning float-right text-black ml-1"
+                                                    data-toggle="modal"
+                                                    data-target="#hint_image_from_oracle">
+                                                Hint
+                                            </button>
+                                        </div>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="hint_image_from_oracle" tabindex="-1" role="dialog"
+                                             aria-labelledby="cardImageTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header py-1 d-flex justify-content-between align-items-center">
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">Hint</h5>
+
+                                                        <div class="mana_cost">
+
+                                                        </div>
+                                                        {#                                                        <button type="button" class="close" data-dismiss="modal"#}
+                                                        {#                                                                aria-label="Close">#}
+                                                        {#                                                            <span aria-hidden="true">&times;</span>#}
+                                                        {#                                                        </button>#}
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                    </div>
+                                                    {#                                                <img loading="lazy" id="card_image" class="img-fluid card-img-bottom"#}
+                                                    {#                                                     src="{{ correct_answer_image }}"#}
+                                                    {#                                                     alt="{{ correct_answer_flavor_text }}"#}
+                                                    {#                                                     title="{{ correct_answer_name }}">#}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body text-dark p-2">
+                                        {{ correct_oracle_text_answer }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="name_from_oracle_text" class="row my-1 d-none">
+
+                            <div class="col-12 col-lg-7  mx-auto ">
+
+                                <div class="card">
+                                    <div class="card-header text-dark p-1 py-sm-2 d-flex align-items-center justify-content-between">
+                                        <span class="ml-1"> Oracle text</span>
+                                        <div class="oracle-btns d-flex">
+                                            <div class="deck-list-btns animate__faster animate__animated d-none">
+
+                                                <a class="btn btn-outline-dark btn-sm decklists_tournament_url"
+                                                   rel="noopener"
+                                                        {#                                               id="decklists_tournament_url"#}
+                                                   target="_blank"
+                                                   href="{{ latest_modern_tournament_url }}"> Tournament</a>
+                                                <a href="#"
+                                                   target="_blank"
+                                                   rel="noopener"
+                                                   class="btn btn-dark btn-sm decklist_specific_url"
+                                                   role="button">Decklist</a>
+                                            </div>
+                                            <button type="button"
+                                                    class="btn btn-sm btn-danger float-right text-black ml-1"
+                                                    data-toggle="modal"
+                                                    data-target="#hint_cardName_from_oracle_text">
+                                                Hint
+                                            </button>
+                                        </div>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="hint_cardName_from_oracle_text" tabindex="-1"
+                                             role="dialog"
+                                             aria-labelledby="cardImageTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header py-1 d-flex justify-content-between align-items-center">
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">Hint</h5>
+
+                                                        <div class="mana_cost">
+
+                                                        </div>
+                                                        {#                                                        <button type="button" class="close" data-dismiss="modal"#}
+                                                        {#                                                                aria-label="Close">#}
+                                                        {#                                                            <span aria-hidden="true">&times;</span>#}
+                                                        {#                                                        </button>#}
+                                                    </div>
+                                                    <div class="modal-body p-0">
+
+                                                    </div>
+                                                    {#                                                <img loading="lazy" id="card_image" class="img-fluid card-img-bottom"#}
+                                                    {#                                                     src="{{ correct_answer_image }}"#}
+                                                    {#                                                     alt="{{ correct_answer_flavor_text }}"#}
+                                                    {#                                                     title="{{ correct_answer_name }}">#}
+                                                    <img id="name_from_oracle_text_image" class="card-img-bottom"
+                                                         src="{{ correct_answer_image }}"
+                                                         alt="{{ correct_answer_flavor_text }}"
+                                                            {#                                         title="{{ correct_answer_name }}"#}
+                                                         title="Card artwork"
+
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body text-dark p-2">
+                                        {{ correct_oracle_text_answer }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row my-1 ">
+                            <div class="col-12 col-lg-7  mx-auto">
+                                <fieldset class="form-horizontal d-flex flex-column">
+
+                                    {#haha#}
+                                    <div id="card_holder"
+                                         class="btn-group-vertical btn-group btn-group-toggle d-flex flex-column"
+                                         data-toggle="buttons">
+
+
+                                        {% include "card_holder.html" %}
+
+
+                                    </div>
+
+                                    {# <button id="next_card" type="button" name="choice"
                                         class="mt-2 btn btn-info text-black d-none btn-lg d-noe">
                                     Next
                                     Card
                                 </button>#}
 
 
-                            </form>
+                                </fieldset>
 
-
-                        </div>
-                    </div>
-                    <div class="row my-1 ">
-                        <div class="col-lg-6 col-12 mx-auto d-flex justify-content-center flex-column align-items-md-center">
-
-                            <h2 id="game_mode" class="text-center">Choose game mode</h2>
-                            <div id="by_btns" class="btn-group-vertical">
-                                {#                                <button type="button" class="btn btn-secondary btn-link"><a href="url_for_byimg">By#}
-                                {#                                    img</a></button>#}
-                                {#                                <button type="button" class="btn btn-secondary">2</button>#}
-
-                                <a id="by_img" class="btn btn btn-info btn guess-by text-black" role="button"
-                                   aria-pressed="true"
-                                   href="#">
-                                    Card illustration
-                                </a>
-                                <a id="by_text" class="btn btn btn-warning btn guess-by text-black" role="button"
-                                   aria-pressed="true"
-                                   href="#">
-                                    Card oracle text
-                                </a>
-                                {#                                <button class="btn btn-sm btn-outline-light">Change mode</button>#}
 
                             </div>
-                            <small id="change_game_mode" class="text-center d-none mt-1">
-                                <a href="{{ url_for('index') }}" class="text-white">
-                                    Change game mode
-                                </a>
-                            </small>
+                        </div>
+                        <div class="row my-1 ">
+                            <div class="col-12 col-lg-7  mx-auto d-flex justify-content-center flex-column align-items-md-center">
+                                <div id="game_mode">
+                                    <h2 class="text-center">Test your knowledge of the Modern Metagame</h2>
+                                    <hr class="bg-white">
+                                    <h3 class="text-center">Game modes</h3>
+                                </div>
+                                <div id="by_btns" class="btn-group-vertical">
+                                    {#                                <button type="button" class="btn btn-secondary btn-link"><a href="url_for_byimg">By#}
+                                    {#                                    img</a></button>#}
+                                    {#                                <button type="button" class="btn btn-secondary">2</button>#}
+                                    <a id="text_from_img_gm_btn"
+                                       class="py-3 btn btn btn-primary btn guess-by text-black" role="button"
+                                            {#                                       aria-pressed="true"#}
+                                       href="#">
+                                        Guess the oracle text from the art
+                                    </a>
+                                    <a id="name_from_text" class="py-3 btn btn btn-danger btn guess-by text-black"
+                                       role="button"
+                                            {#                                       aria-pressed="true"#}
+                                       href="#">
+                                        Guess the name from the oracle text
+                                    </a>
+                                    <a id="by_text" class="py-3 btn btn btn-warning btn guess-by text-black"
+                                       role="button"
+                                            {#                                       aria-pressed="true"#}
+                                       href="#">
+                                        Guess the art from the oracle text
+                                    </a>
+
+                                    <a id="by_img" class="py-3 btn btn btn-info btn guess-by text-black" role="button"
+                                            {#                                       aria-pressed="true"#}
+                                       href="#">
+                                        Guess the name from the art
+                                    </a>
 
 
+                                    {#                                <button class="btn btn-sm btn-outline-light">Change mode</button>#}
+
+                                </div>
+
+
+                            </div>
                         </div>
                     </div>
-
                 </div>
-                <div class="col-12 col-sm-9 col-md-7 col-lg-9 col-xl-7 d-flex flex-column mx-auto justify-content-center align-self-end">
+                <div class="flex-basis-0 col col-sm-8 col-md-7 col-lg-9 col-xl-7 mx-auto d-flex flex-column flex-grow-0 flex-shrink-1 flex-lg-grow-0 mt-auto">
+                    {#                <div class="col-12 col-sm-8 col-md-7 col-lg-9 col-xl-7 d-flex flex-column mx-auto justify-content-center align-self-end">#}
                     <div class="row mt-auto">
 
-                        <div class="col-lg-6 col-12 mx-auto">
-                            <nav id="footer_menu" class="nav  nav-fill justify-content-between my-1">
+                        <div class="col-12 col-lg-7  mx-auto">
+                            <nav id="footer_menu" class="nav  nav-fill justify-content-between align-items-center mb-2">
                                 <a class="nav-item my-1 my-md-0 nav-link text-white text-center text-md-left"
-                                   href="/about">About</a>
-                                <a class="nav-item my-1 my-md-0 nav-link text-white text-center text-md-left"
-                                   rel="noopener"
-                                   id="decklists_url"
-                                   target="_blank"
-                                   href="{{ latest_modern_tournament_url }}"> Latest deck lists</a>
+                                   href="/about">
+                                    <img alt="About"
+                                         width="25"
+                                         height="25"
+                                         src="{{ url_for('static', filename='/images/bootstrap-icons/info-circle.svg') }}">
+                                </a>
+
                                 {#                                <a class="nav-item my-1 my-md-0 nav-link text-white" href="#">Link</a>#}
+                                <a class="nav-item nav-link text-warning"
+                                        {#                                   href="https://forms.gle/DaNmcJ8Cs6Ro6TNp6"#}
+                                   href="https://play.google.com/store/apps/details?id=com.modern.spike.android.app"
+
+                                   target="_blank"
+                                   rel="noreferrer">
+                                    <img class="mr-1"
+                                         src="{{ url_for('static' , filename='images/bootstrap-icons/chat-square-text.svg') }}"
+                                         width="25"
+                                         height="25"
+                                         alt="Feedback form"> Rate me!
+                                </a>
+
 
                                 <a class="nav-item my-1 my-md-0 nav-link text-white d-flex align-items-center text-center text-md-left justify-content-center"
                                    href="https://mtgjson.com"
@@ -226,8 +475,9 @@
                                    rel="noreferrer">
                                     <img src="{{ url_for('static' , filename='images/logo-mtgjson-light-blue.svg') }}"
                                          width="30px"
-                                         title="MTGJSON logo">
-                                    <small class="mb-0 ml-1"> Powered by MTGJSON</small></a>
+                                         title="MTGJSON logo"
+                                         alt="MTGJSON logo">
+                                    <small class="mb-0 ml-1 d-none d-sm-block"> Powered by MTGJSON</small></a>
 
                             </nav>
 
@@ -239,9 +489,16 @@
             </div>
             <div class="d-none" id="correct_answer">{{ correct_answer_index }}</div>
             <div class="d-none" id="game_mode_flag"></div>
+
         </div>
 
     </main>
+    {% include "card_type_filters.html" %}
 
+    {#    <script>#}
+    {#        window.addEventListener('popstate', () => {#}
+    {#            location.reload();#}
+    {#        }, false);#}
+    {#    </script>#}
 
 {% endblock %}

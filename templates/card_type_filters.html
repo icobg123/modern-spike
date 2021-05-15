@@ -1,0 +1,65 @@
+<div class="modal fade" id="card_type_filters_modal" tabindex="-1" role="dialog"
+     aria-labelledby="card_type_filters_modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header py-1 d-flex flex-column justify-content-between align-items-center border-bottom-0">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <h5 class="modal-title text-dark" id="exampleModalLongTitle">Filters</h5>
+                    <div class="d-flex btn-group btn-group-toggle my-1">
+                        {#                <div class="d-flex btn-group btn-group-toggle my-1" data-toggle="buttons">#}
+                        <label id="select_all" class="btn btn-primary">
+                            <input type="checkbox" checked name="all"> <span>Deselect all</span>
+                        </label>
+                    </div>
+                </div>
+
+                <small class="text-dark align-self-start">All filters are selected by default</small>
+                {#                                                        <button type="button" class="close" data-dismiss="modal"#}
+                {#                                                                aria-label="Close">#}
+                {#                                                            <span aria-hidden="true">&times;</span>#}
+                {#                                                        </button>#}
+            </div>
+            <div class="modal-body py-0">
+                <div class="d-flex btn-group btn-group-toggle my-1" data-toggle="buttons">
+                    <label class="btn  btn-primary w-50 ">
+                        <input type="checkbox" name="creature"> Creature
+                    </label>
+                    <label class="btn  btn-primary w-50 ">
+                        <input type="checkbox" name="planeswalker"> Planeswalker
+                    </label>
+                </div>
+
+                <div class="d-flex btn-group btn-group-toggle my-1" data-toggle="buttons">
+                    <label class="btn  btn-primary w-50 ">
+                        <input type="checkbox" name="sorcery"> Sorcery
+                    </label>
+                    <label class="btn  btn-primary w-50 ">
+                        <input type="checkbox" name="tribal"> Tribal
+                    </label>
+                </div>
+                <div class="d-flex btn-group btn-group-toggle my-1" data-toggle="buttons">
+                    <label class="btn  btn-primary w-50 ">
+                        <input type="checkbox" name="artifact"> Artifact
+                    </label>
+                    <label class="btn  btn-primary w-50 ">
+                        <input type="checkbox" name="instant"> Instant
+                    </label>
+                </div>
+                <div class="d-flex btn-group btn-group-toggle my-1" data-toggle="buttons">
+                    <label class="btn  btn-primary w-50 ">
+                        <input type="checkbox" name="enchantment"> Enchantment
+                    </label>
+                    <label class="btn  btn-primary w-50 ">
+                        <input type="checkbox" name="land"> Land
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer pt-0 pb-1">
+                <button id="close_filter_btn" type="button" class="btn btn-outline-secondary w-100"
+                        data-dismiss="modal">
+                    Apply
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

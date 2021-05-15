@@ -4,8 +4,10 @@
         <div class="container-fluid h-100">
             <div class="row h-100 center-container">
 
-                <div class="col-12 col-sm-9 col-md-7 col-lg-9 col-xl-7 d-flex flex-column mx-auto justify-content-start">
-                    <h1 class="text-center my-2"><a class="text-white" href="{{ url_for('index') }}">Modern Spike</a>
+                <div id="h1_col"
+                     class="col-12 col-sm-9 col-md-7 col-lg-9 col-xl-7 d-flex flex-column mx-auto align-items-center justify-content-sm-start align-self-start">
+                    <h1 class="text-center mt-1 mt-sm-3 mb-0"><a class="text-white" href="{{ url_for('index') }}">Modern
+                        Spike</a>
                     </h1>
 
 
@@ -22,39 +24,110 @@
                     </div>
                     <div class="row my-1 ">
                         <div class="col-12">
+                            <p class="lead">
+                                The Modern Spike is a simple flashcard game that tests your knowledge of the Magic the
+                                Gathering Modern format card pool. The app helps you get familiar with the current
+                                Metagame by showing you cards that have been played in the most successful decks in the
+                                last seven days.
+                            </p>
+                            <p class="lead">
+                                It can benefit both veterans of the format by solidifying their knowledge and new
+                                players by introducing them to staples of the Modern Metagame.
+                            </p>
+                            <p class="lead">The Modern Spike aggregates the decklists from the last week of Magic: The
+                                Gathering Online
+                                tournament data for the Modern format on a daily basis.
+                            </p>
+                            <p class="lead">
+                                Data collected does not include 5-0 decklists from Magic: The Gathering Online Leagues.
+                            </p>
+                            <p class="lead">
+                                The Modern Spike features the following game modes:
+                            </p>
+                            <p class="lead">
+
+                                <i>Guess the name from the oracle text</i>
+                                in which you are presented with the oracle text of a random MTG
+                                card that appeared in one of those tournaments and four card names to choose form.
+                            </p>
 
                             <p class="lead">
-                                The Modern Spike is a simple guessing game that tests your knowledge of the modern card
-                                pool and helps you get familiar with the current meta by showing you cards that are
-                                being played in the most successful decks.
-                            </p>
-                            <p class="lead">It aggregates the decklists for the last seven days of MTGO
-                                tournament data for the modern format.
-                            </p>
-                            <p class="lead">
-                                Data collected does not include decklists from MTGO 5-0 Leagues.
-                            </p>
-                            <p class="lead">
-                                The Modern Spike features two game modes: <i>Card illustration</i> and <i>Card oracle
-                                text</i>
-                                in which you are either presented with the illustration or oracle text of a random
-                                card that
-                                appeared in one of those tournaments and 5 card names to choose from.
 
+                                <i>Guess the art from the oracle text</i>
+                                in which you are presented with the oracle text of a random MTG
+                                card that appeared in one of those tournaments and four artworks to choose form.
                             </p>
                             <p class="lead">
-                                The app tries to give you answers to chose from that are similar to the actual answer in
+
+                                <i>Guess the name from the art</i> in which you are presented with the artwork of a
+                                random MTG
+                                card that appeared in one of those tournaments and four card names to choose from.
+                            </p>
+                            <p class="lead">
+
+                                <i>Guess the oracle text from the art</i> in which you are presented with the artwork of
+                                a
+                                random MTG
+                                card that appeared in one of those tournaments and four different oracle texts to choose
+                                from.
+                            </p>
+
+                            <p class="lead">
+                                The app tries to give you choices that are similar to the actual answer in
                                 terms of card type and subtype, converted mana cost and color.
                             </p>
+                            <p class="lead">
+                                Download the app from Google Play Store or leave a review:
+                            </p>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <p class="lead">
+
+                                        {#                                <a class="text-warning"#}
+                                        {#                                   href="https://forms.gle/DaNmcJ8Cs6Ro6TNp6"#}
+                                        {#                                   href="https://play.google.com/store/apps/details?id=com.modern.spike.android.app"#}
+                                        {##}
+                                        {#                                   target="_blank"#}
+                                        {#                                   rel="noreferrer">#}
+                                        {#                                    <img class="mr-1"#}
+                                        {#                                         src="{{ url_for('static' , filename='images/bootstrap-icons/chat-square-text.svg') }}"#}
+                                        {#                                         width="25"#}
+                                        {#                                         height="25"#}
+                                        {#                                         alt="Feedback form"> Rate me!#}
+                                        {#                                </a>#}
+                                        <a class="text-warning"
+                                           href='https://play.google.com/store/apps/details?id=com.modern.spike.android.app'>
+                                            <img class="img-fluid"
+                                                 alt='Get it on Google Play'
+                                                 src='{{ url_for('static' , filename='images/google-play-badge.png') }}'/></a>
+
+
+                                    </p>
+                                </div>
+                            </div>
 
                             <p class="lead">
-                                Feedback, comments or anything else:
-                                <u>
-                                    <a class="text-white"
-                                       href="mailto:hristo.meshinski@gmail.com">
-                                        hristo.meshinski@gmail.com :)
-                                    </a>
-                                </u>
+                                Feedback, comments: <br>
+                                <a class="text-warning" href="https://forms.gle/DaNmcJ8Cs6Ro6TNp6"
+                                   target="_blank"
+                                   rel="noreferrer">
+                                    <img class="mr-1"
+                                         src="{{ url_for('static' , filename='images/bootstrap-icons/chat-square-text.svg') }}"
+                                         width="30px"
+                                         alt="Feedback form">Feedback form
+                                </a>
+                            </p>
+                            <p class="lead">
+                                Contact developer:
+                                <br>
+                                <a class="text-warning"
+                                   href="mailto:jointless.inc@gmail.com">
+                                    <img class="mr-1"
+                                         src="{{ url_for('static' , filename='images/bootstrap-icons/envelope.svg') }}"
+                                         width="30px"
+                                         alt="Email">jointless.inc@gmail.com
+                                </a>
+
                             </p>
                         </div>
 
@@ -70,11 +143,22 @@
                 <div class="col-12 col-sm-9 col-md-7 col-lg-9 col-xl-7 d-flex flex-column mx-auto justify-content-center">
                     <div class="row mt-auto">
 
-                        <div class="col-lg-6 col-12 mx-auto">
-                            <nav id="footer_menu" class="nav  nav-fill justify-content-between my-1">
+                        <div class="col-12 col-lg-7  mx-auto">
+                            <nav id="footer_menu" class="nav  nav-fill justify-content-between mb-2 mt-1">
                                 <a class="nav-item my-1 my-md-0 nav-link text-white text-center text-md-left"
-                                   href="/">Home</a>
+                                   href="/">
+                                    <img alt="Home"
+                                         width="25"
+                                         height="25"
+                                         src="{{ url_for('static', filename='/images/bootstrap-icons/house-fill.svg') }}">
 
+                                </a>
+
+
+                                <a class="nav-item my-1 my-md-0 nav-link text-white text-center text-md-left"
+                                   href="/about">
+
+                                </a>
                                 {#                                <a class="nav-item my-1 my-md-0 nav-link text-white" href="#">Link</a>#}
 
                                 <a class="nav-item my-1 my-md-0 nav-link text-white d-flex align-items-center text-center text-md-left justify-content-center"
