@@ -869,7 +869,12 @@ def similar_cards(card_name, not_enough=False, last_chance=False):
         print("Card does not have similar_cards")
 
     list_similar_cards = []
-    card_id_atomic = card_modern_atomic['_id']
+    try:
+        card_id_atomic = card_modern_atomic['_id']
+    except TypeError:
+        print("Importing latest set from ModernAtomic to Db")
+        from_atomic_to_db()
+
     card_name_atomic = card_modern_atomic['name']
     card_names_atomic = []
 
@@ -1119,7 +1124,7 @@ def gen_new_cards(card_type_filters=None, get_all_uris=0, get_oracle_texts=1, ga
     # random_card_name = "Goblin Charbelcher"
     # random_card_name = "Bala Ged Recovery"
     # random_card_name = "Hanweir Battlements"
-    # random_card_name = "Hazoret the Fervent"
+    # random_card_name = "Snakeskin Veil"
     #
     correct_answer_data = get_card_data_from_local_file(random_card_name)
 
@@ -1326,3 +1331,100 @@ def add_to_type_list(card, card_type, card_types_dict):
     else:
         if card not in card_types_dict[card_type.lower()]:
             card_types_dict[card_type.lower()].append(card)
+
+
+def from_atomic_to_db():
+    modern_atomic = read_from_file('static/ModernAtomic.json')
+    modern_atomic_data = modern_atomic['data']
+    new_cards_dict_atomic = []
+    modern_atomic = mongo.db.modern_atomic
+
+    card_ids = modern_atomic.find().distinct('_id')
+    pprint(card_ids)
+    for current_card_name, current_card_data in modern_atomic_data.items():  # pprint(old_card.keys())
+        atomic_dict_to_add = {}
+        # TODO: FIX bug with flip planeswalker having creature as type not pw
+        oracle_text = ''
+
+        if current_card_name in card_ids:
+            continue
+
+        if len(current_card_data) > 1:
+            # pprint(current_card_name)
+            # pprint(type(current_card_data[0]))
+            # current_card_data = current_card_data[0]
+            split_str = current_card_name.split('//', 1)
+            split_str.reverse()
+
+            # check = any(item in split_str for item in card_ids)
+
+            # if check:
+            #     continue
+
+            # pprint(split_str[1])
+            # print(current_card_data)
+            # pprint(len(split_str))
+            for card in range(0, len(split_str)):
+                # for split_card_name in split_str:
+                # pprint(current_card_data[split_card_name]['faceName'])
+                # current_card_data = current_card_data[split_card_name]
+                # print(current_card_data)
+
+                split_card_name = split_str[card].rstrip().lstrip()
+
+                card = current_card_data[card]
+                pprint(split_card_name)
+                # pprint(current_card_data[card])
+
+                #
+                # pprint(split_card_name)
+                try:
+                    oracle_text = card['text']
+                except KeyError:
+                    print("No oracle text")
+                atomic_dict_to_add = {'_id': split_card_name,
+                                      'colorIdentity': card['colorIdentity'],
+                                      'colors': card['colors'],
+                                      'convertedManaCost': card['convertedManaCost'],
+                                      'layout': card['layout'],
+                                      'subtypes': card['subtypes'],
+                                      'supertypes': card['supertypes'],
+                                      'type': card['type'],
+                                      'types': card['types'],
+                                      'text': oracle_text,
+                                      'name': card['name']}
+                new_cards_dict_atomic.append(atomic_dict_to_add)
+        else:
+            # pprint()
+            # break
+            # pprint(current_card_name)
+            card = current_card_data[0]
+            try:
+                oracle_text = card['text']
+            except KeyError:
+                print("No oracle text")
+            atomic_dict_to_add = {'_id': current_card_name,
+                                  'colorIdentity': card['colorIdentity'],
+                                  'colors': card['colors'],
+                                  'convertedManaCost': card['convertedManaCost'],
+                                  'layout': card['layout'],
+                                  'subtypes': card['subtypes'],
+                                  'supertypes': card['supertypes'],
+                                  'type': card['type'],
+                                  'types': card['types'],
+                                  'text': oracle_text,
+                                  'name': card['name']}
+
+            new_cards_dict_atomic.append(atomic_dict_to_add)
+        # new_cards_dict_atomic.append(atomic_dict_to_add)
+    # pprint(new_cards_dict_atomic)
+
+    # Update all card properties
+    modern_atomic_upserts = [UpdateOne({'_id': x['_id']}, {'$set': x}, upsert=True) for x in
+                             new_cards_dict_atomic if x]
+
+    # Update only oracle text
+    # modern_atomic_upserts = [UpdateOne({'_id': x['_id']}, {"$set": {"oracle_text": x['text']}}, upsert=True) for x in
+    #                          new_cards_dict_atomic if x]
+    pprint(modern_atomic_upserts)
+    insert_new_cards_modern_atomic = modern_atomic.bulk_write(modern_atomic_upserts)
