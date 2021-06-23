@@ -41,13 +41,13 @@
             {#            {{ card_info }}#}
             {% if card_info == correct_answer_name %}
                 <img class="check invisible position-absolute"
-                     src="{{ url_for('static', filename='/images/bootstrap-icons/check-circle.svg') }}" alt="check mark"
+                     src="{{ url_for('static', filename='images/bootstrap-icons/check-circle.svg') }}" alt="check mark"
                      width="{{ size }}"
                      height="{{ size }}"
                      title="check">
             {% else %}
                 <img class="x invisible position-absolute"
-                     src="{{ url_for('static', filename='/images/bootstrap-icons/x-circle.svg') }}" alt="cross mark"
+                     src="{{ url_for('static', filename='images/bootstrap-icons/x-circle.svg') }}" alt="cross mark"
                      width="{{ size }}"
                      height="{{ size }}"
                      title="X">
