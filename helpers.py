@@ -62,7 +62,7 @@ def is_there_new_data() -> dict:
     latest_modern_tournament = soup.findAll("a")
     # pprint(latest_modern_tournament)
     for a in latest_modern_tournament:
-        pprint(a.text)
+        # pprint(a.text)
 
         # if "League" not in a.text:
         if "League" not in a.text and 'Modern' in a.text:

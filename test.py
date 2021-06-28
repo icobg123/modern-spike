@@ -1494,4 +1494,4 @@ def add_types():
 #                                  'sorcery', 'creature', ])
 
 # scrape_card_data()
-pprint(is_there_new_data())
+# pprint(is_there_new_data())
