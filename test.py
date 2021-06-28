@@ -833,7 +833,7 @@ def from_atomic_to_db():
     insert_new_cards_modern_atomic = modern_atomic.bulk_write(modern_atomic_upserts)
 
 
-from_atomic_to_db()
+# from_atomic_to_db()
 
 
 # pprint(mongo.db.cards)
@@ -1493,5 +1493,5 @@ def add_types():
 #                                  # 'artifact', 'tribal',
 #                                  'sorcery', 'creature', ])
 
-scrape_card_data()
-# pprint(is_there_new_data())
+# scrape_card_data()
+pprint(is_there_new_data())
