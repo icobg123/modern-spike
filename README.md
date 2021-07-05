@@ -20,6 +20,3 @@ You can find the game hosted online [https://modern-spike.herokuapp.com/](https:
 Or you can download it on Android from 
 [Google Play](https://play.google.com/store/apps/details?id=com.modern.spike.android.app).
 
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
