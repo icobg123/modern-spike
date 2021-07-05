@@ -14,7 +14,7 @@ The Modern Spike is a Progressive Web App, built using the following technologie
 - jQuery
 
 
-### Play the game
+## Play the game
 You can find the game hosted online [https://modern-spike.herokuapp.com/](https://modern-spike.herokuapp.com/)
 
 Or you can download it on Android from 
