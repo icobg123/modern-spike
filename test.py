@@ -830,7 +830,7 @@ def from_atomic_to_db():
     # modern_atomic_upserts = [UpdateOne({'_id': x['_id']}, {"$set": {"oracle_text": x['text']}}, upsert=True) for x in
     #                          new_cards_dict_atomic if x]
     pprint(modern_atomic_upserts)
-    # insert_new_cards_modern_atomic = modern_atomic.bulk_write(modern_atomic_upserts)
+    insert_new_cards_modern_atomic = modern_atomic.bulk_write(modern_atomic_upserts)
 
 
 # from_atomic_to_db()
@@ -1493,5 +1493,5 @@ def add_types():
 #                                  # 'artifact', 'tribal',
 #                                  'sorcery', 'creature', ])
 
-scrape_card_data()
+# scrape_card_data()
 # pprint(is_there_new_data())
